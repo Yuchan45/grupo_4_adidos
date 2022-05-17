@@ -29,3 +29,8 @@ https://ar.puma.com
 Nike:
 https://www.nike.com/ar/
 
+HebeBoutique:
+https://hebeboutique.com
+
+MURO EXE:
+https://eu.muroexe.com
