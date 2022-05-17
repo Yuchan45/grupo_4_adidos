@@ -3,17 +3,17 @@
 
 ## Descripcion:
 
-- ¿Qué productos o servicios brindará nuestro sitio?
+¿Qué productos o servicios brindará nuestro sitio?
 
-Nuestro sitio sera un E-Commerce de indumentaria deportiva. Estara compuesto en un principio por las siguentes secciones: Home, detalle de producto, carrito de compras, formulario de registro, formulario de login, asi como de una tienda con los articulos en venta.
+- Nuestro sitio sera un E-Commerce de indumentaria deportiva. Estara compuesto en un principio por las siguentes secciones: Home, detalle de producto, carrito de compras, formulario de registro, formulario de login, asi como de una tienda con los articulos en venta.
 
-- ¿Quién será nuestra audiencia objetivo?
+¿Quién será nuestra audiencia objetivo?
 
-Estara dirigida a un publico general de todas las edades.
+- Estara dirigida a un publico general de todas las edades.
 
-- ¿Cómo ajustaremos nuestra oferta a ese público?
+¿Cómo ajustaremos nuestra oferta a ese público?
 
-Trataremos de implementar un diseño agradable e intuitivo para mejorar la experiencia de usuario.
+- Trataremos de implementar un diseño agradable e intuitivo para mejorar la experiencia de usuario.
 
 
 # Integrantes:
