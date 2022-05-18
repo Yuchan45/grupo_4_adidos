@@ -1,5 +1,6 @@
-# Grupo: 
+# Proyecto: Nike E-commerce 
 
+## Grupo: 
 
 ## Descripcion:
 
