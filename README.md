@@ -1,12 +1,12 @@
-# Proyecto: Nike E-commerce 
+# Proyecto: ShooCity E-commerce 
 
-## Grupo: 
+## Grupo: 04-Code Apples
 
 ## Descripcion:
 
 ¿Qué productos o servicios brindará nuestro sitio?
 
-- Nuestro sitio sera un E-Commerce de indumentaria deportiva. Estara compuesto en un principio por las siguentes secciones: Home, detalle de producto, carrito de compras, formulario de registro, formulario de login, asi como de una tienda con los articulos en venta.
+- Nuestro sitio sera un E-Commerce de calzados. Estara compuesto en un principio por las siguentes secciones: Home, detalle de producto, carrito de compras, formulario de registro, formulario de login, asi como de una tienda con los articulos en venta.
 
 ¿Quién será nuestra audiencia objetivo?
 
