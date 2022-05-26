@@ -6,7 +6,8 @@
 
 ¿Qué productos o servicios brindará nuestro sitio?
 
-- Nuestro sitio sera un E-Commerce de calzados. Estara compuesto en un principio por las siguentes secciones: Home, detalle de producto, carrito de compras, formulario de registro, formulario de login, asi como de una tienda con los articulos en venta.
+- Nuestro sitio sera un E-Commerce de calzados de diferentes marcas y para diferentes tipos de actividades. Ya sean de running o de tipo urbanas. El sitio web estara compuesto en un principio por las siguentes secciones: 
+Home, detalle de producto, carrito de compras, formulario de registro, formulario de login, asi como de una tienda con los articulos en venta. 
 
 ¿Quién será nuestra audiencia objetivo?
 
@@ -29,14 +30,23 @@
 - Kevin Marzo
 
 
-# 5 sitios referentes:
+# 5 sitios referentes y el motivo de su seleccion:
 
 - Adidas: https://www.adidas.com.ar
+(Sitio web completo de 1er nivel con diseños y tendencias)
+
 
 - Puma: https://ar.puma.com
+(Seccion de grid en el home)
+
 
 - Nike: https://www.nike.com/ar/
+(Mismo motivo que adidas)
+
 
 - HebeBoutique: https://hebeboutique.com
+(Estilo de la seccion de detalles del producto)
+
 
 - MURO EXE: https://eu.muroexe.com
+(Diseño de las tarjetas de presentacion de los productos)
