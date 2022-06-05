@@ -4,11 +4,17 @@
     font-family: 'Open Sans', sans-serif;
 }
 
+body {
+    background-image: url("https://library.sportingnews.com/2022-04/Messi%20PSG%20Training.png");
+}
+
 .header-container {
     width: 100vw;
     height: 100px;
-    background-color: blueviolet;
     text-align: center;
+    position: fixed;
+    background: #ffffffb8;
+    backdrop-filter: blur(10px);
 }
 
 .header-container .header-bounds {
@@ -16,13 +22,11 @@
     width: 100%;
     max-width: 1200px;
     height: 100%;
-    background-color: black;
 }
 
 .header-bounds .nav-search {
     width: 100%;
     height: 50%;
-    background-color: yellow;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -40,7 +44,13 @@
 .header-bounds .nav-menu{
     width: 100%;
     height: 50%;
-    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-content: center;
+    flex-wrap: wrap;
+    color: var(--black);
+    font-weight: 500;
 }
 
 .header-bounds .nav-search .search-bar {
@@ -52,7 +62,7 @@
 
 .nav-search .search-input {
     width: 500px;
-    height: 30px;
+    height: 40px;
     padding: 0 5px 0 15px;
     background: #f1f1f1;
     border: none;
@@ -79,18 +89,32 @@
     font-size: var(--normal);
 }
 
-.nav-menu .nav-language {
-    
+.nav-menu .language {
+    display: flex;
+    align-items: center;
 }
 
-.nav-menu .nav-language .fa-angle-down {
-    
-}
-
-.nav-menu .nav-language > p{
-    
+.nav-menu .language > p {
+    margin-left: 5px;
 }
 
 .nav-menu .nav-menu-list {
-    
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-menu .nav-menu-list li {
+    margin: 0 10px 0 10px;
+}
+
+.nav-menu .nav-menu-list li a {
+    padding: 5px;
+    text-decoration: none;
+    color: var(--black);
+}
+
+.nav-menu .bell-trollie-container {
+    margin-left: 20px;
 }
