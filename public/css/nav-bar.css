@@ -1,0 +1,96 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.header-container {
+    width: 100vw;
+    height: 100px;
+    background-color: blueviolet;
+    text-align: center;
+}
+
+.header-container .header-bounds {
+    margin: auto;
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    background-color: black;
+}
+
+.header-bounds .nav-search {
+    width: 100%;
+    height: 50%;
+    background-color: yellow;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    align-content: center;
+}
+
+.header-bounds .nav-search .shoocity-logo {
+    height: 50px;
+}
+
+.nav-search .shoocity-logo > img {
+    height: 100%;
+}
+
+.header-bounds .nav-menu{
+    width: 100%;
+    height: 50%;
+    background-color: red;
+}
+
+.header-bounds .nav-search .search-bar {
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-search .search-input {
+    width: 500px;
+    height: 30px;
+    padding: 0 5px 0 15px;
+    background: #f1f1f1;
+    border: none;
+    box-shadow: 1px 1px 2px 0px rgb(0 0 0 / 71%);
+    border-radius: 2px;
+    display: block;
+    font-size: var(--normal);
+    color: #333;
+}
+
+.nav-search .search-input:focus {
+    outline: none;
+}
+
+.nav-search .search-btn {
+    width: 20px;
+    height: 20px;
+    border-radius: 1px;
+    border: none;
+    background-color: transparent;
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: -25px;
+    font-size: var(--normal);
+}
+
+.nav-menu .nav-language {
+    
+}
+
+.nav-menu .nav-language .fa-angle-down {
+    
+}
+
+.nav-menu .nav-language > p{
+    
+}
+
+.nav-menu .nav-menu-list {
+    
+}
