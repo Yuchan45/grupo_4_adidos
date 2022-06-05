@@ -50,3 +50,10 @@ Home, detalle de producto, carrito de compras, formulario de registro, formulari
 
 - MURO EXE: https://eu.muroexe.com
 (Diseño de las tarjetas de presentacion de los productos)
+
+
+# Tablero de tareas - TRELLO:
+
+https://trello.com/b/vkfML8Dk/shoocity
+
+
