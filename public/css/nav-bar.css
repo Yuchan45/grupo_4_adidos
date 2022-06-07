@@ -1,13 +1,3 @@
-* {
-    padding: 0;
-    margin: 0;
-    font-family: 'Open Sans', sans-serif;
-}
-
-body {
-    background-image: url("https://library.sportingnews.com/2022-04/Messi%20PSG%20Training.png");
-}
-
 .header-container {
     width: 100vw;
     height: 50px;
