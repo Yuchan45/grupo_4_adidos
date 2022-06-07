@@ -1,3 +1,20 @@
+/* ¡Codigo :root no perteneciente al normalize original! */
+:root {
+  --black: #000000;
+  --white: #FFFFFF;
+  --onyx: #3E3E3E;
+  --yellow: #F2E81F;
+  --blue: #058ED9;
+
+  --big-title: 4.5;
+  --title: 3rem;
+  --subtitle: 1.5rem;
+  --normal: 1rem;
+  --small: 0.75rem;
+}
+
+
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 /* Document

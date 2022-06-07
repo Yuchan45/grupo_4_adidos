@@ -4,11 +4,127 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/nav-bar.css">
+    <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/home-styles.css">
     <link rel="stylesheet" href="/css/normalize.css">
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
     <title>Home</title>
 </head>
 <body>
-    <h1>HOME modificado 2</h1>
+    <header class="header-container">
+        <div class="header-bounds">
+            <div class="nav-search">
+                <a href="/">
+                    <div class="shoocity-logo">
+                        <img src="/images/logos/logo-prueba.svg" alt="">
+                    </div>
+                </a>
+                <div class="search-bar">
+                    <input class="search-input" type="text" name="search-box" id="search-input" placeholder="Buscar productos..." max-length="120" autocapitalize="off" autocorrect="off">
+                    <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <div class="menu" id="ham-menu">
+                    <div class="hamburger-btn-menu">
+                        <div class="ham-inner"></div>
+                    </div>
+                </div>
+                <aside class="aside-menu">
+                    <div class="aside-bounds">
+                        <div class="profile-div">
+                            <img src="https://i.pinimg.com/564x/4c/95/d4/4c95d42d0c5737bfcde088b81436af9b.jpg" alt="" class="profile-pic">
+                        </div>
+                        <ul class="nav-menu-list">
+                            <li>
+                                <i class="fa-solid fa-user"></i>
+                                <a href="">User</a>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-bag-shopping"></i>
+                                <a href="">Mis compras</a>   
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-heart"></i>
+                                <a href="">Favoritos</a>
+                            </li>
+                        </ul>
+                        <ul class="nav-menu-list">
+                            <li>
+                                <i class="fa-solid fa-shop"></i>
+                                <a href="">Tienda</a>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-shoe-prints"></i>
+                                <a href="">Marcas</a>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-tag"></i>
+                                <a href="">Ofertas</a>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-user-astronaut"></i>
+                                <a href="">Nosotros</a>
+                            </li>
+                        </ul>
+                        <p>Cerrar sesión</p>
+                    </div>
+                </aside>
+            </div>
+            <nav class="nav-menu">
+                <div class="language">
+                    <i class="fa-solid fa-angle-down"></i>
+                    <p>Language</p>
+                </div>
+                <ul class="nav-menu-list">
+                    <li><a href="">Tienda</a></li>
+                    <li><a href="">Marcas</a></li>
+                    <li><a href="">Ofertas</a></li>
+                    <li><a href="">Nosotros</a></li>
+                </ul>
+                <ul class="nav-menu-list">
+                    <li>
+                        <i class="fa-solid fa-user"></i>
+                        <a href="">User</a>
+                        <i class="fa-solid fa-angle-down"></i>
+                    </li>
+                    <li>
+                        <a href="">Mis compras</a>   
+                    </li>
+                    <li>
+                        <a href="">Favoritos</a>
+                        <i class="fa-solid fa-angle-down"></i>
+                    </li>
+                    <div class="bell-trollie-container">
+                        <i class="fa-solid fa-bell"></i>
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+   <main>
+
+   </main> 
+
+
+    <footer>
+        <div class="footer-bounds">
+            <div class="first-line">
+                <p>Made with </p>
+                <i class="fa-solid fa-heart"></i>
+                <p> By</p> 
+            </div>
+            <h3>CODE APPLES</h3>
+        </div>
+    </footer>
+
+
+    <script src="/js/hamburger.js"></script>
+    <script src="https://kit.fontawesome.com/95aa681591.js" crossorigin="anonymous"></script>
 </body>
 </html>
