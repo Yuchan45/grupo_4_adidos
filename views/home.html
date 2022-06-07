@@ -18,13 +18,60 @@
     <header class="header-container">
         <div class="header-bounds">
             <div class="nav-search">
-                <div class="shoocity-logo">
-                    <img src="/images/logos/logo-prueba.svg" alt="">
-                </div>
+                <a href="/">
+                    <div class="shoocity-logo">
+                        <img src="/images/logos/logo-prueba.svg" alt="">
+                    </div>
+                </a>
                 <div class="search-bar">
                     <input class="search-input" type="text" name="search-box" id="search-input" placeholder="Buscar productos..." max-length="120" autocapitalize="off" autocorrect="off">
                     <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
+                <div class="menu" id="ham-menu">
+                    <div class="hamburger-btn-menu">
+                        <div class="ham-inner"></div>
+                    </div>
+                </div>
+                <aside class="aside-menu">
+                    <div class="aside-bounds">
+                        <div class="profile-div">
+                            <img src="https://i.pinimg.com/564x/4c/95/d4/4c95d42d0c5737bfcde088b81436af9b.jpg" alt="" class="profile-pic">
+                        </div>
+                        <ul class="nav-menu-list">
+                            <li>
+                                <i class="fa-solid fa-user"></i>
+                                <a href="">User</a>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-bag-shopping"></i>
+                                <a href="">Mis compras</a>   
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-heart"></i>
+                                <a href="">Favoritos</a>
+                            </li>
+                        </ul>
+                        <ul class="nav-menu-list">
+                            <li>
+                                <i class="fa-solid fa-shop"></i>
+                                <a href="">Tienda</a>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-shoe-prints"></i>
+                                <a href="">Marcas</a>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-tag"></i>
+                                <a href="">Ofertas</a>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-user-astronaut"></i>
+                                <a href="">Nosotros</a>
+                            </li>
+                        </ul>
+                        <p>Cerrar sesión</p>
+                    </div>
+                </aside>
             </div>
             <nav class="nav-menu">
                 <div class="language">
@@ -59,6 +106,7 @@
         </div>
     </header>
 
+    <script src="/js/hamburger.js"></script>
     <script src="https://kit.fontawesome.com/95aa681591.js" crossorigin="anonymous"></script>
 </body>
 </html>
