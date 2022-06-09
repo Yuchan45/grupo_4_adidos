@@ -76,10 +76,11 @@ main {
     text-transform: uppercase;
     text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
     font-size: 16px;
+    font-weight: 800;
 }
 
 .panel p:nth-child(2) {
-    font-size: 16px;
+    font-size: 30px;
     font-weight: 800;
 }
 
@@ -91,7 +92,7 @@ main {
 /* PROMOTED PRODUCT */
 .promoted-product {
     text-align: center;
-    width: 90vw;
+    width: 100vw;
     margin: 80px auto;
 }
 
@@ -193,6 +194,9 @@ main {
         font-size: var(--big-title);
     }
     /* PROMOTED PRODUCT */
+    .promoted-product {
+        width: 90vw;
+    }
     .promoted-container .promo-text {
         order: 1;
         width: 40%;
