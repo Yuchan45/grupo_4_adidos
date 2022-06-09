@@ -1,9 +1,10 @@
 * {
     font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
 }
 
 body {
-    background-color: #212121;
+    /* background-color: #212121; */
 }
 
 main {
@@ -18,7 +19,7 @@ main {
 }
 
 .panel {
-    background: #6B0F9C;
+    /* background: #6B0F9C; */
     box-shadow: inset 0 0 0 2px rgba(255,255,255,0.1);
     color: white;
     text-align: center;
@@ -84,28 +85,78 @@ main {
     font-size: 40px;
 }
 
+/* PROMOTED PRODUCT */
+.promoted-product {
+    text-align: center;
+    margin-top: 80px;
+}
+.promoted-product .section-title {
+    margin: auto;
+    text-transform: uppercase;
+    color: var(--onyx);
+    font-size: var(--title);
+    margin: 10px auto;
+    font-weight: 900;
+    letter-spacing: 4px;
+}
 
+.promoted-product .promoted-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 
+.promoted-container .promo-text {
+    width: 100%;
+    padding: 50px;
+    background-color: pink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    order: 2;
+}
 
+.promoted-container .promo-text div > h2 {
+    font-size: var(--title);
+    margin: 10px auto 0 auto;
+}
 
+.promoted-container .promo-text div > p {
+    font-size: var(--normal);
+    font-style: italic;
+    margin: 0 auto 25px;
+}
 
+.promoted-container .promo-text div .go-for-btn {
+    border: none;
+    width: 120px;
+    height: 40px;
+    font-size: var(--normal);
+    font-weight: 600;
+    color: white;
+    background-color: var(--black);
+    text-transform: uppercase;
+}
 
+.promoted-container .promo-img {
+    width: 100%;
+    height: 320px;
+    text-align: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+}
 
+.promo-image1 {
+    order: 1;
+    background-image: url('https://images.pexels.com/photos/2526878/pexels-photo-2526878.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.promo-image2 {
+    order: 3;
+    background-image: url('https://www.infobae.com/new-resizer/jO7Yp7DCVoG5JZZNwpI_3XLl_Lw=/992x661/filters:format(webp):quality(85)/cloudfront-us-east-1.images.arcpublishing.com/infobae/SEZCUCQXDFFDVBSNHVOVPESXSM.jpg');
+}
 
 
 
@@ -115,24 +166,64 @@ main {
 
 /* Mobile and Tablet */
 @media (min-width:361px) {
+    /* PANEL */
+    .panel p:nth-child(2) {
+        font-size: 30px;
+        font-weight: 800;
+    } 
+    /* PROMOTED PRODUCT */
+    
+
 
 }
 
 /* Desktop */
 @media (min-width:769px) {
-    .panel p:nth-child(2) {
-        font-size: 20px;
-    }
-    
-}
-
-@media (min-width:1200px) {
+    /* PANEL */
     .panel p {
         font-size: var(--subtitle);
     }
     .panel p:nth-child(2) {
         font-size: var(--big-title);
     }
+    /* PROMOTED PRODUCT */
+    .promoted-container .promo-text {
+        order: 1;
+        width: 40%;
+    }
+    .promo-img {
+        height: 600px !important;
+    }
+    .promo-image1 {
+        order: 2;
+        width: 60% !important;
+    }
+    .promo-image2 {
+        order: 3;
+        width: 100% !important;
+    }
+
 }
+
+@media (min-width:1200px) {
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -46,41 +46,45 @@
     font-weight: 500;
 }
 
-.header-bounds .nav-search .search-bar {
+.nav-search .search-bar {
     display: none;
-    /* display: flex; */
+    width: 50%;
     align-items: center;
     justify-content: center;
 }
 
-.nav-search .search-input {
+.search-bar .search-input {
     width: 400px;
     height: 40px;
-    padding: 0 5px 0 15px;
     background: #f1f1f1;
-    border: none;
-    box-shadow: 1px 1px 2px 0px rgb(0 0 0 / 71%);
-    border-radius: 2px;
+    padding: 0 15px;
+    border: 1px solid grey;
+    border-radius: 5px;
     display: block;
-    font-size: var(--normal);
-    color: #333;
+    font-size: var(--text-body);
+    border-right: none;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
 }
 
-.nav-search .search-input:focus {
+.search-bar .search-input:focus {
     outline: none;
 }
 
-.nav-search .search-btn {
-    width: 20px;
-    height: 20px;
+.search-bar .search-btn {
+    width: 30px;
+    height: 40px;
     border-radius: 1px;
-    border: none;
-    background-color: transparent;
+    border: 1px solid gray;
+    background-color: #f1f1f1;
     text-decoration: none;
     cursor: pointer;
-    margin-left: -25px;
     font-size: var(--normal);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left: none;
 }
+
 
 /* MENU contenedor del hamburger */
 .menu {

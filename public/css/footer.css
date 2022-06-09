@@ -31,6 +31,7 @@ footer {
 }
 
 .footer-bounds > h3{
+    margin: 0;
     width: 100%;
     font-size: 18px;
 }
