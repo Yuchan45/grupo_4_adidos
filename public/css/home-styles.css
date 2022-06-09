@@ -5,6 +5,7 @@
 
 body {
     /* background-color: #212121; */
+    overflow-x: hidden;
 }
 
 main {
@@ -137,6 +138,11 @@ main {
     color: white;
     background-color: var(--black);
     text-transform: uppercase;
+    transition: background-color .5s ease;
+}
+
+.promoted-container .promo-text div .go-for-btn:hover {
+    background-color: var(--blue);
 }
 
 .promoted-container .promo-img {

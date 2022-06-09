@@ -303,6 +303,7 @@ svg:hover {
     }
     .header-bounds .nav-search .search-bar {
         display: flex;
+        justify-content: flex-end;
     }
     .header-bounds .nav-search .menu {
         display: none;
