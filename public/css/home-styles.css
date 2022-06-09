@@ -91,7 +91,8 @@ main {
 /* PROMOTED PRODUCT */
 .promoted-product {
     text-align: center;
-    margin-top: 80px;
+    width: 90vw;
+    margin: 80px auto;
 }
 
 .section-title {
@@ -155,7 +156,7 @@ main {
     text-align: center;
     align-items: center;
     background-size: cover;
-    background-position: center;
+    background-position: top;
 }
 
 .promo-image1 {
@@ -165,7 +166,8 @@ main {
 
 .promo-image2 {
     order: 3;
-    background-image: url('https://www.infobae.com/new-resizer/jO7Yp7DCVoG5JZZNwpI_3XLl_Lw=/992x661/filters:format(webp):quality(85)/cloudfront-us-east-1.images.arcpublishing.com/infobae/SEZCUCQXDFFDVBSNHVOVPESXSM.jpg');
+    /* background-image: url('https://www.infobae.com/new-resizer/jO7Yp7DCVoG5JZZNwpI_3XLl_Lw=/992x661/filters:format(webp):quality(85)/cloudfront-us-east-1.images.arcpublishing.com/infobae/SEZCUCQXDFFDVBSNHVOVPESXSM.jpg'); */
+    background-image: url('https://hips.hearstapps.com/vidthumb/images/2021-rw-tracktrials-day11-teamusa-dc-v01-thumb-update-1627603555.jpeg');
 }
 
 
@@ -196,7 +198,7 @@ main {
         width: 40%;
     }
     .promo-img {
-        height: 600px !important;
+        height: 500px !important;
     }
     .promo-image1 {
         order: 2;
