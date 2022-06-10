@@ -15,7 +15,7 @@
 
 .header-container .header-bounds {
     margin: auto;
-    width: 90%;
+    width: 100%;
     max-width: 1200px;
     height: 100%;
 }
@@ -85,14 +85,14 @@
 }
 
 .nav-search .search-bar {
-    display: none;
+    display: flex;
     width: 50%;
     align-items: center;
     justify-content: center;
 }
 
 .search-bar .search-input {
-    width: 400px;
+    width: 75%;
     height: 40px;
     background: #1818189c;
     padding: 0 15px;
@@ -365,6 +365,9 @@ svg:hover {
     }
     .header-bounds .nav-search a .shoocity-logo .logo-slogan {
         font-size: 0.75rem;
+    }
+    .search-bar .search-input {
+        width: 400px;
     }
 }
 
