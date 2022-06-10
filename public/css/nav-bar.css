@@ -5,7 +5,10 @@
     padding: 5px;
     text-align: center;
     position: fixed;
-    background: #ffffffb8;
+    /* position: sticky;
+    top: 0px;
+    left: 0px; */
+    background: #1818189c;
     backdrop-filter: blur(10px);
     z-index: 10;
 }
@@ -27,12 +30,45 @@
     align-content: center;
 }
 
-.header-bounds .nav-search .shoocity-logo {
+/* .header-bounds .nav-search .shoocity-logo {
     height: 50px;
 }
 
 .nav-search .shoocity-logo > img {
     height: 100%;
+} */
+.header-bounds .nav-search a {
+    text-decoration: none;
+}
+
+
+.header-bounds .nav-search a .shoocity-logo {
+    height: 100%;
+    width: auto;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+}
+
+.header-bounds .nav-search a .shoocity-logo .logo-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    /* font-size: 2rem; */
+    font-weight: 300;
+    margin: 0;
+    text-decoration: none;
+    color: var(--white);
+    text-align: left;
+}
+
+.header-bounds .nav-search a .shoocity-logo .logo-slogan {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    font-size: 0.75rem;
+    font-size: 0.5rem;
+    letter-spacing: 2px;
+    margin: 0 auto;
+    color: var(--white);
 }
 
 .header-bounds .nav-menu {
@@ -43,8 +79,9 @@
     align-items: center;
     justify-content: space-between;
     align-content: center;
-    color: var(--black);
-    font-weight: 500;
+    /* color: var(--onyx); */
+    color: var(--white);
+    font-weight: 300;
 }
 
 .nav-search .search-bar {
@@ -57,27 +94,24 @@
 .search-bar .search-input {
     width: 400px;
     height: 40px;
-    background: #f1f1f1;
+    background: #1818189c;
     padding: 0 15px;
-    border: 1px solid grey;
+    border: 1px solid #787878;
     border-radius: 5px;
     display: block;
-    font-size: var(--text-body);
+    font-size: var(--normal);
     border-right: none;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
-}
-
-.search-bar .search-input:focus {
-    outline: none;
+    color: white;
 }
 
 .search-bar .search-btn {
     width: 30px;
     height: 40px;
     border-radius: 1px;
-    border: 1px solid gray;
-    background-color: #f1f1f1;
+    border: 1px solid #787878;
+    background-color: #1818189c;
     text-decoration: none;
     cursor: pointer;
     font-size: var(--normal);
@@ -85,6 +119,16 @@
     border-bottom-right-radius: 5px;
     border-left: none;
 }
+
+.search-bar .search-btn svg {
+    color: white;
+}
+
+.search-bar .search-input:focus .search-input {
+    /* outline: none; */
+    border: 1px solid white;
+}
+
 
 
 /* MENU contenedor del hamburger */
@@ -116,10 +160,10 @@
     top: -8px;
     position: relative;
     display: block;
-    background: var(--black);
+    background: var(--white);
     opacity: 1;
     transform: rotate(0deg);
-    transition: var(--black);
+    transition: var(--white);
     transition: all .25s ease-in-out;
 }
 
@@ -130,7 +174,7 @@
     width: 20px;
     height: 2px;
     border-radius: 4px;
-    background-color: var(--black);
+    background-color: var(--white);
     transform: rotate(0deg);
     transition: all .25s ease-in-out;
 }
@@ -142,10 +186,10 @@
     bottom: -8px;
     position: relative;
     display: block;
-    background: var(--black);
+    background: var(--white);
     opacity: 1;
     transform: rotate(0deg);
-    transition: var(--black);
+    transition: var(--white);
     transition: all .25s ease-in-out;
 }
 
@@ -249,6 +293,7 @@
 
 .nav-menu .language > p {
     margin-left: 5px;
+    color: var(--white);
 }
 
 .nav-menu .nav-menu-list {
@@ -265,13 +310,13 @@
 .nav-menu .nav-menu-list li a {
     padding: 5px;
     text-decoration: none;
-    color: var(--onyx);
+    /* color: var(--onyx); */
+    color: var(--white);
     transition: all .3s ease;
 }
 
 .nav-menu .nav-menu-list li a:hover {
     color: var(--blue);
-    font-weight: 500;
 }
 
 svg {
@@ -297,7 +342,7 @@ svg:hover {
 /* Desktop */
 @media (min-width:769px) {
     .header-container {
-        height: 80px;
+        height: 100px;
     }
     .header-bounds .nav-search {
         height: 70%;
@@ -314,6 +359,12 @@ svg:hover {
     }
     .header-bounds .nav-menu {
         display: flex;
+    }
+    .header-bounds .nav-search a .shoocity-logo .logo-title {
+        font-size: 2rem;
+    }
+    .header-bounds .nav-search a .shoocity-logo .logo-slogan {
+        font-size: 0.75rem;
     }
 }
 
