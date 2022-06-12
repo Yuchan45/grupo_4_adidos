@@ -1,0 +1,150 @@
+body{
+    margin: 0;
+}
+
+.imgDetails {
+    max-width: 43%;
+    margin-top: 50px;
+    margin-left: 12%;
+    border-radius: 5px;
+}
+
+main {
+    display:flex;
+    flex-direction: row;
+}
+
+.detailRightContainer {
+    margin-top: 60px;
+    margin-left: 5%;
+}
+
+.detailShoeName {
+    margin: 0;
+    font-size: 1.9rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+.buyButtonDetail {
+    width: 70%;
+    height: 50px;
+    border-radius: 6px;
+    background-color: black;
+    margin-top: 40px;
+    border: none;
+    color: #F2E81F;
+}
+
+.buyButtonDetail:hover {
+    background-color: #212121;
+}
+
+.sizeButtonDetail:hover {
+    background-color: #d6d6d6;
+}
+
+.sizeButtonDetail {
+    width: 70%;
+    height: 40px;
+    border-radius: 3px;
+    background-color: #d0d0d0;
+    margin-top: 40px;
+    border: none;
+}
+
+.detailShoePrice {
+    font-size: 1.4rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+@media only screen and (max-width:850px){
+    .imgDetails {
+        max-width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    main {
+        display:flex;
+        flex-direction: column;
+    }
+    .detailRightContainer {
+        margin-top: 10px;
+        margin-left: 6%;
+    }
+    .buyButtonDetail {
+        width: 60%;
+        height: 50px;
+        border-radius: 6px;
+        background-color: black;
+        margin-top: 20px;
+        border: none;
+        color: #F2E81F;
+    }
+    .sizeButtonDetail {
+        width: 60%;
+        height: 40px;
+        border-radius: 3px;
+        background-color: #d0d0d0;
+        margin-top: 17px;
+        border: none;
+    }
+    .detailShoePrice {
+        margin-top: 5px;
+    }
+}
+
+
+header {
+    width: 100%;
+    height: 100px;
+    background-color: gray;
+}
+
+.cardListContainer {
+    margin: 40px;
+    padding: 10px;
+    justify-content: space-evenly;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.main-item:hover{
+    box-shadow: 1px 1px 18px #efecec;
+}
+
+.main-item{
+    width: 250px;
+    height: 340px;
+    margin: 20px;
+}
+
+.item-image{
+    max-width: 250px;
+}
+
+.item-name{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+.item-price{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+.listTittle {
+    font-size: 1.5rem;
+    font-family: 'LeJeuneDeck-Regular,Times New Roman,Times,serif';
+    margin: o;
+    margin-left: 30px;
+    margin-top: 100px;
+    margin-bottom: -60px;
+}
+
+.listTittleContainer {
+    display: flex;
+    justify-content: center;
+}
