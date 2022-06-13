@@ -1,12 +1,239 @@
 * {
-    padding: 0;
-    margin: 0;
     font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
 }
 
+body {
+    /* background-color: #212121; */
+    overflow-x: hidden;
+}
 
 main {
-    height: 500px;
-    width: 100vw;
-    
+   width: 100vw;
+   height: auto;
+   text-align: center;
 }
+
+/* Paneles */
+.panels {
+    min-height: 90vh;
+    overflow: hidden;
+    display: flex;
+}
+
+.panel {
+    /* background: #6B0F9C; */
+    box-shadow: inset 0 0 0 2px rgba(255,255,255,0.1);
+    color: white;
+    text-align: center;
+    align-items: center;
+    /* Safari transitionend event.propertyName === flex */
+    /* Chrome + FF transitionend event.propertyName === flex-grow */
+    transition: font-size 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11), 
+                flex 0.7s cubic-bezier(0.16, -0.13, 0.39, -0.18), 
+                background 0.2s;
+    font-size: 20px;
+    background-size: cover;
+    background-position: center;
+    flex: 1; /*Hace que cada hijo del flex, se extienda lo maximo posible dentro del ancho disponible*/
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.panel1 { background-image:url(https://radiichina.com/wp-content/uploads/2021/08/Su-Bingtian-Cover-Image.jpg); }
+.panel2 { background-image:url(https://img.olympicchannel.com/images/image/private/t_16-9_1920/primary/niyvlpicxlsgom2jcruy); }
+.panel3 { background-image:url(https://cdn.wallpapersafari.com/88/22/rAb3Qd.jpeg); }
+
+
+/* Flex Children */
+.panel > * {
+    margin: 0;
+    width: 100%;
+    transition: transform 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 auto;
+}
+
+.panel > *:first-child {
+    transform: translateY(-100%);
+}
+.panel.open-active > *:first-child {
+    transform: translateY(0%);
+}
+
+.panel > *:last-child {
+    transform: translateY(100%);
+}
+.panel.open-active > *:last-child {
+    transform: translateY(0%);
+}
+
+.panel p {
+    text-transform: uppercase;
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.panel p:nth-child(2) {
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.panel.open {
+    flex: 3; /* Hace que ocupe 3 veces su espacio. Basicamente agranda el panel */
+    font-size: 40px;
+}
+
+/* PROMOTED PRODUCT */
+.promoted-product {
+    text-align: center;
+    width: 100vw;
+    margin: 80px auto;
+}
+
+.section-title {
+    margin: auto;
+    text-transform: uppercase;
+    color: var(--onyx);
+    font-size: var(--title);
+    margin: 10px auto;
+    font-weight: 900;
+    letter-spacing: 4px;
+}
+
+.promoted-product .promoted-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.promoted-container .promo-text {
+    width: 100%;
+    padding: 50px;
+    /* background-color: #dabeb3; */
+    background-color: #ffc0cb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    order: 2;
+}
+
+.promoted-container .promo-text div > h2 {
+    font-size: var(--title);
+    margin: 10px auto 0 auto;
+}
+
+.promoted-container .promo-text div > p {
+    font-size: var(--normal);
+    font-style: italic;
+    margin: 0 auto 25px;
+}
+
+.promoted-container .promo-text div .go-for-btn {
+    border: none;
+    width: 120px;
+    height: 40px;
+    font-size: var(--normal);
+    font-weight: 600;
+    color: white;
+    background-color: var(--black);
+    text-transform: uppercase;
+    transition: background-color .5s ease;
+}
+
+.promoted-container .promo-text div .go-for-btn:hover {
+    background-color: var(--blue);
+}
+
+.promoted-container .promo-img {
+    width: 100%;
+    height: 320px;
+    text-align: center;
+    align-items: center;
+    background-size: cover;
+    background-position: top;
+}
+
+.promo-image1 {
+    order: 1;
+    background-image: url('https://images.pexels.com/photos/2526878/pexels-photo-2526878.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+}
+
+.promo-image2 {
+    order: 3;
+    /* background-image: url('https://www.infobae.com/new-resizer/jO7Yp7DCVoG5JZZNwpI_3XLl_Lw=/992x661/filters:format(webp):quality(85)/cloudfront-us-east-1.images.arcpublishing.com/infobae/SEZCUCQXDFFDVBSNHVOVPESXSM.jpg'); */
+    background-image: url('https://hips.hearstapps.com/vidthumb/images/2021-rw-tracktrials-day11-teamusa-dc-v01-thumb-update-1627603555.jpeg');
+}
+
+
+/* Mobile and Tablet */
+@media (min-width:361px) {
+    /* PANEL */
+    .panel p:nth-child(2) {
+        font-size: 30px;
+        font-weight: 800;
+    } 
+    /* PROMOTED PRODUCT */
+
+
+}
+
+/* Desktop */
+@media (min-width:769px) {
+    /* PANEL */
+    .panel p {
+        font-size: var(--subtitle);
+    }
+    .panel p:nth-child(2) {
+        font-size: var(--big-title);
+    }
+    /* PROMOTED PRODUCT */
+    .promoted-product {
+        width: 90vw;
+    }
+    .promoted-container .promo-text {
+        order: 1;
+        width: 40%;
+    }
+    .promo-img {
+        height: 500px !important;
+    }
+    .promo-image1 {
+        order: 2;
+        width: 60% !important;
+    }
+    .promo-image2 {
+        order: 3;
+        width: 100% !important;
+    }
+
+}
+
+@media (min-width:1200px) {
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

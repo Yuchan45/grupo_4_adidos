@@ -4,7 +4,7 @@ footer {
     height: 10vh;
     max-height: 100px;
     text-align: center;
-    background-color: var(--white);
+    background-color: #181818;
 }
 
 .footer-bounds {
@@ -22,17 +22,23 @@ footer {
 }
 
 .footer-bounds .first-line > p {
+    color: #818181;
     display: inline-block;
     font-size: var(--small);
+    margin: 0;
 }
 
 .footer-bounds .first-line .fa-heart {
-    color: red;
+    color: white;
+    margin: 0 3px;
 }
 
 .footer-bounds > h3{
+    color: var(--white);
+    margin: 0;
     width: 100%;
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 

@@ -5,13 +5,17 @@
     padding: 5px;
     text-align: center;
     position: fixed;
-    background: #ffffffb8;
+    /* position: sticky;
+    top: 0px;
+    left: 0px; */
+    background: #1818189c;
     backdrop-filter: blur(10px);
+    z-index: 10;
 }
 
 .header-container .header-bounds {
     margin: auto;
-    width: 90%;
+    width: 100%;
     max-width: 1200px;
     height: 100%;
 }
@@ -26,12 +30,45 @@
     align-content: center;
 }
 
-.header-bounds .nav-search .shoocity-logo {
+/* .header-bounds .nav-search .shoocity-logo {
     height: 50px;
 }
 
 .nav-search .shoocity-logo > img {
     height: 100%;
+} */
+.header-bounds .nav-search a {
+    text-decoration: none;
+}
+
+
+.header-bounds .nav-search a .shoocity-logo {
+    height: 100%;
+    width: auto;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+}
+
+.header-bounds .nav-search a .shoocity-logo .logo-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    /* font-size: 2rem; */
+    font-weight: 300;
+    margin: 0;
+    text-decoration: none;
+    color: var(--white);
+    text-align: left;
+}
+
+.header-bounds .nav-search a .shoocity-logo .logo-slogan {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    font-size: 0.75rem;
+    font-size: 0.5rem;
+    letter-spacing: 2px;
+    margin: 0 auto;
+    color: var(--white);
 }
 
 .header-bounds .nav-menu {
@@ -42,45 +79,57 @@
     align-items: center;
     justify-content: space-between;
     align-content: center;
-    color: var(--black);
-    font-weight: 500;
+    /* color: var(--onyx); */
+    color: var(--white);
+    font-weight: 300;
 }
 
-.header-bounds .nav-search .search-bar {
-    display: none;
-    /* display: flex; */
+.nav-search .search-bar {
+    display: flex;
+    width: 50%;
     align-items: center;
     justify-content: center;
 }
 
-.nav-search .search-input {
-    width: 400px;
+.search-bar .search-input {
+    width: 75%;
     height: 40px;
-    padding: 0 5px 0 15px;
-    background: #f1f1f1;
-    border: none;
-    box-shadow: 1px 1px 2px 0px rgb(0 0 0 / 71%);
-    border-radius: 2px;
+    background: #1818189c;
+    padding: 0 15px;
+    border: 1px solid #787878;
+    border-radius: 5px;
     display: block;
     font-size: var(--normal);
-    color: #333;
+    border-right: none;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    color: var(--white);
 }
 
-.nav-search .search-input:focus {
-    outline: none;
-}
-
-.nav-search .search-btn {
-    width: 20px;
-    height: 20px;
+.search-bar .search-btn {
+    width: 30px;
+    height: 40px;
     border-radius: 1px;
-    border: none;
-    background-color: transparent;
+    border: 1px solid #787878;
+    background-color: #1818189c;
     text-decoration: none;
     cursor: pointer;
-    margin-left: -25px;
     font-size: var(--normal);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left: none;
 }
+
+.search-bar .search-btn svg {
+    color: white;
+}
+
+.search-bar .search-input:focus .search-input {
+    /* outline: none; */
+    border: 1px solid var(--white);
+}
+
+
 
 /* MENU contenedor del hamburger */
 .menu {
@@ -111,10 +160,10 @@
     top: -8px;
     position: relative;
     display: block;
-    background: var(--black);
+    background: var(--white);
     opacity: 1;
     transform: rotate(0deg);
-    transition: var(--black);
+    transition: var(--white);
     transition: all .25s ease-in-out;
 }
 
@@ -125,7 +174,7 @@
     width: 20px;
     height: 2px;
     border-radius: 4px;
-    background-color: var(--black);
+    background-color: var(--white);
     transform: rotate(0deg);
     transition: all .25s ease-in-out;
 }
@@ -137,10 +186,10 @@
     bottom: -8px;
     position: relative;
     display: block;
-    background: var(--black);
+    background: var(--white);
     opacity: 1;
     transform: rotate(0deg);
-    transition: var(--black);
+    transition: var(--white);
     transition: all .25s ease-in-out;
 }
 
@@ -237,16 +286,146 @@
     align-self: center;
 }
 
-.nav-menu .language {
+
+/*  *** DROPDOWN TABS GENERAL *** */
+.dropdown {
+    position: relative;
+}
+
+.dropdown .dropdown-menu {
+    opacity: 0;
+    pointer-events: none; /* El menu esta oculto, pero esta. Asi que tengo que deshabilitar que toquen los botones del menu cuando esta oculto */
+    position: absolute;
+    left: 0;
+    top: 150%;
+    padding: 10px;
+    background-color: var(--white);
+    color: var(--black);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .5);
+    transform: translateY(-10px);
+    transition: all .2s ease-in-out;
+}
+
+
+/*  *** LANGUAGES TAB *** */
+.nav-menu .dropdown .language {
     display: flex;
     align-items: center;
 }
+.dropdown .language:focus > p,
+.language:hover > p {
+    color: var(--blue) !important;
+}
 
-.nav-menu .language > p {
+.nav-menu .dropdown .language > p {
+    margin: 0 5px 0 0;
+    color: var(--white);
+    transition: all .3s ease;
+}
+
+.dropdown .dropdown-menu .languages-list {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
+
+.dropdown .dropdown-menu .languages-list li {
+    display: flex;
+    margin: 2px 0;
+    gap: 8px;
+}
+
+.dropdown .dropdown-menu .languages-list li img {
+    width: 20px;
+}
+
+.dropdown .dropdown-menu .languages-list li a {
+    text-decoration: none;
+    color: var(--black);
+    transition: color .3s ease;
+}
+
+.dropdown .dropdown-menu .languages-list li a:hover {
+    color: var(--blue);
+}
+
+
+.dropdown .language:focus + .dropdown-menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0px);
+
+}
+
+/*  *** NOTIFICATIONS TAB *** */
+.dropdown .notification:focus + .dropdown-menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0px);
+
+}
+
+.dropdown .notification:focus > svg,
+.notification:hover > svg {
+    color: var(--blue) !important;
+}
+
+.dropdown .notification-menu .notification-header {
+    width: 100%;
+    border-bottom: 1px solid var(--onyx);
+}
+
+.dropdown .notification-menu .notification-header p {
+    font-size: var(--normal);
+    font-weight: 600;
+    margin: 0 0 5px 0;
+    text-align: left;
     margin-left: 5px;
 }
 
+.dropdown .notification-menu {
+    right: 0 !important;
+    left: auto;
+    padding: 10px 0;
+}
+
+.notification-menu .notification-list {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0;
+    list-style: none;
+}
+
+.notification-menu .notification-list li {
+    margin: 0 !important;
+    display: flex;
+    transition: all .3s ease;
+    gap: 15px;
+}
+
+.notification-menu .notification-list li:hover {
+    background-color: #0000000a;
+}
+
+.notification-menu .notification-list li img{
+    margin-left: 5px;
+    width: 40px;
+}
+
+.notification-menu .notification-list li p {
+    font-size: var(--small);
+    width: 350px;
+    text-align: left;
+}
+
+/* End of dropdown tabs */
+
+
 .nav-menu .nav-menu-list {
+    margin: 0;
     display: flex;
     list-style: none;
     align-items: center;
@@ -260,20 +439,12 @@
 .nav-menu .nav-menu-list li a {
     padding: 5px;
     text-decoration: none;
-    color: var(--onyx);
+    /* color: var(--onyx); */
+    color: var(--white);
     transition: all .3s ease;
 }
 
 .nav-menu .nav-menu-list li a:hover {
-    color: var(--blue);
-    font-weight: 500;
-}
-
-svg {
-    transition: all .3S ease;
-}
-
-svg:hover {
     color: var(--blue);
 }
 
@@ -284,6 +455,15 @@ svg:hover {
     justify-content: space-around;
 }
 
+.nav-menu .bell-trollie-container svg {
+    color: var(--white);
+    transition: all .3s ease;
+}
+
+.nav-menu .bell-trollie-container svg:hover {
+    color: var(--blue);
+}
+
 /* Mobile and Tablet */
 @media (min-width:361px) {
 
@@ -292,13 +472,14 @@ svg:hover {
 /* Desktop */
 @media (min-width:769px) {
     .header-container {
-        height: 80px;
+        height: 100px;
     }
     .header-bounds .nav-search {
         height: 70%;
     }
     .header-bounds .nav-search .search-bar {
         display: flex;
+        justify-content: flex-end;
     }
     .header-bounds .nav-search .menu {
         display: none;
@@ -309,9 +490,13 @@ svg:hover {
     .header-bounds .nav-menu {
         display: flex;
     }
-}
-
-
-@media (min-width:1200px) {
-
+    .header-bounds .nav-search a .shoocity-logo .logo-title {
+        font-size: 2rem;
+    }
+    .header-bounds .nav-search a .shoocity-logo .logo-slogan {
+        font-size: var(--small);
+    }
+    .search-bar .search-input {
+        width: 400px;
+    }
 }

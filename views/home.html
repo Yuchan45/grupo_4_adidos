@@ -4,30 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/logos/shoocity-fav.png" type="image/x-icon">
     <link rel="stylesheet" href="/css/nav-bar.css">
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/home-styles.css">
+    <link rel="stylesheet" href="/css/prod-slider.css">
     <link rel="stylesheet" href="/css/normalize.css">
+    <!-- FONT AWESOME -->
+    <script src="https://kit.fontawesome.com/95aa681591.js" crossorigin="anonymous"></script>
     <!-- GOOGLE FONTS -->
+    <!-- Open Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <!-- Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-    <title>Home</title>
+    <title>ShooCity</title>
 </head>
 <body>
     <header class="header-container">
         <div class="header-bounds">
             <div class="nav-search">
                 <a href="/">
+                    <!-- <div class="shoocity-logo">
+                        <img src="/images/logos/logo-simple.png" alt="">
+                    </div> -->
                     <div class="shoocity-logo">
-                        <img src="/images/logos/logo-prueba.svg" alt="">
+                        <h1 class="logo-title">Shoocity</h1>
+                        <h2 class="logo-slogan">Inspiration Works</h2>
                     </div>
                 </a>
-                <div class="search-bar">
-                    <input class="search-input" type="text" name="search-box" id="search-input" placeholder="Buscar productos..." max-length="120" autocapitalize="off" autocorrect="off">
+                <form class="search-bar" action="#" method="POST">
+                    <input class="search-input" type="search" name="search" id="search" placeholder="Buscar productos...">
                     <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-                </div>
+                </form>
                 <div class="menu" id="ham-menu">
                     <div class="hamburger-btn-menu">
                         <div class="ham-inner"></div>
@@ -75,31 +88,63 @@
                 </aside>
             </div>
             <nav class="nav-menu">
-                <div class="language">
-                    <i class="fa-solid fa-angle-down"></i>
-                    <p>Language</p>
+                <div class="dropdown">
+                    <div class="language" tabindex="1"> <!-- El tab index me permite el 'focus' sobre el div -->
+                        <p>Language</p>
+                        <i class="fa-solid fa-angle-down"></i>
+                    </div>
+                    <div class="dropdown-menu">
+                        <ul class="languages-list">
+                            <li>
+                                <img src="/images/flags/es.svg" alt="" srcset="">
+                                <a href="">Español</a>
+                            </li>
+                            <li>
+                                <img src="/images/flags/gb.svg" alt="" srcset="">
+                                <a href="">Inglés</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <ul class="nav-menu-list">
-                    <li><a href="">Tienda</a></li>
+                    <li><a href="">Categorias</a></li>
                     <li><a href="">Marcas</a></li>
-                    <li><a href="">Ofertas</a></li>
+                    <li><a href="">Tienda</a></li>
                     <li><a href="">Nosotros</a></li>
                 </ul>
                 <ul class="nav-menu-list">
                     <li>
-                        <i class="fa-solid fa-user"></i>
+                        <!-- <i class="fa-solid fa-user"></i> -->
                         <a href="">User</a>
-                        <i class="fa-solid fa-angle-down"></i>
+                        
                     </li>
                     <li>
                         <a href="">Mis compras</a>   
                     </li>
                     <li>
                         <a href="">Favoritos</a>
-                        <i class="fa-solid fa-angle-down"></i>
                     </li>
                     <div class="bell-trollie-container">
-                        <i class="fa-solid fa-bell"></i>
+                        <div class="dropdown">
+                            <div class="notification" tabindex="1"> <!-- El tab index me permite el 'focus' sobre el div -->
+                                <i class="fa-solid fa-bell"></i>
+                            </div>
+                            <div class="dropdown-menu notification-menu">
+                                <div class="notification-header">
+                                    <p>Notificaciones</p>
+                                </div>
+                                <ul class="notification-list">
+                                    <li>
+                                        <img src="/images/flags/es.svg" alt="" srcset="">
+                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus, error?</p>
+                                    </li>
+                                    <li>
+                                        <img src="/images/flags/gb.svg" alt="" srcset="">
+                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, maxime?</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                         <i class="fa-solid fa-cart-shopping"></i>
                     </div>
                 </ul>
@@ -108,23 +153,254 @@
     </header>
 
    <main>
-
+    <!-- Panels -->
+    <section>
+        <div class="panels">
+            <div class="panel panel1">
+                <p>Hey</p>
+                <p>Just</p>
+                <p>Dance</p>
+            </div>
+            <div class="panel panel2">
+                <p>Think</p>
+                <p>Do</p>
+                <p>Receive</p>
+            </div>
+            <div class="panel panel3">
+                <p>Experience</p>
+                <p>It</p>
+                <p>Today</p>
+            </div>
+        </div>
+    </section>
+    <!-- PROMOTED PRODUCT -->
+    <section class="promoted-product">
+        <h1 class="section-title">PROMOTED PRODUCT</h1>
+        <div class="promoted-container">
+            <div class="promo-text">
+                <div>
+                    <h2>GO FOR</h2>
+                    <p>Inspiration Works</p>
+                    <button class="go-for-btn">Comprar</button>
+                </div>
+            </div>
+            <div class="promo-img promo-image1">
+                <!-- <img src="https://images.pexels.com/photos/2526878/pexels-photo-2526878.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt=""> -->
+            </div>
+            <div class="promo-img promo-image2">
+                <!-- <img src="https://www.infobae.com/new-resizer/jO7Yp7DCVoG5JZZNwpI_3XLl_Lw=/992x661/filters:format(webp):quality(85)/cloudfront-us-east-1.images.arcpublishing.com/infobae/SEZCUCQXDFFDVBSNHVOVPESXSM.jpg" alt=""> -->
+            </div>
+        </div>
+    </section>
+    <!-- PRODUCTS CARROUSEL -->
+    <section class="products-carrousel">
+        <h1 class="section-title">TRENDING</h1>
+        <div class="carrousel-container">
+            <div class="controls" id="prod-prev-btn">
+                <i class="fa-solid fa-chevron-left"></i>
+            </div>
+            <div class="content-container">
+                <article class="product">
+                    <div class="prod-header">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
+                    <div class="prod-picture">
+                        <img src="https://image.goat.com/transform/v1/attachments/product_template_pictures/images/052/002/689/original/1011B017_401.png.png?action=crop&width=2000" alt="">
+                    </div>
+                    <div class="prod-description">
+                        <h3 class="prod-category">Track & Field</h3>
+                        <h2 class="prod-title">Asics Evo Ride 2</h2>
+                        <div class="prod-price-desc">
+                            <p>ARS $34.999</p>
+                            <p>5% OFF</p>
+                        </div>
+                    </div>
+                    <a href="">
+                        <button class="prod-button">VER</button>
+                    </a>
+                </article>
+                <article class="product">
+                    <div class="prod-header">
+                        <i class="fa-regular fa-cart-circle-plus"></i>
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
+                    <div class="prod-picture">
+                        <img src="https://image.goat.com/transform/v1/attachments/product_template_pictures/images/052/002/689/original/1011B017_401.png.png?action=crop&width=2000" alt="">
+                    </div>
+                    <div class="prod-description">
+                        <h3 class="prod-category">Track & Field</h3>
+                        <h2 class="prod-title">Asics Evo Ride 3</h2>
+                        <div class="prod-price-desc">
+                            <p>ARS $34.999</p>
+                            <p>5% OFF</p>
+                        </div>
+                    </div>
+                    <a href="">
+                        <button class="prod-button">VER</button>
+                    </a>
+                </article>
+                <article class="product">
+                    <div class="prod-header">
+                        <i class="fa-regular fa-cart-circle-plus"></i>
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
+                    <div class="prod-picture">
+                        <img src="https://image.goat.com/transform/v1/attachments/product_template_pictures/images/052/002/689/original/1011B017_401.png.png?action=crop&width=2000" alt="">
+                    </div>
+                    <div class="prod-description">
+                        <h3 class="prod-category">Track & Field</h3>
+                        <h2 class="prod-title">Asics Evo Ride 4</h2>
+                        <div class="prod-price-desc">
+                            <p>ARS $34.999</p>
+                            <p>5% OFF</p>
+                        </div>
+                    </div>
+                    <a href="">
+                        <button class="prod-button">VER</button>
+                    </a>
+                </article>
+                <article class="product">
+                    <div class="prod-header">
+                        <i class="fa-regular fa-cart-circle-plus"></i>
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
+                    <div class="prod-picture">
+                        <img src="https://image.goat.com/transform/v1/attachments/product_template_pictures/images/052/002/689/original/1011B017_401.png.png?action=crop&width=2000" alt="">
+                    </div>
+                    <div class="prod-description">
+                        <h3 class="prod-category">Track & Field</h3>
+                        <h2 class="prod-title">Asics Evo Ride 5</h2>
+                        <div class="prod-price-desc">
+                            <p>ARS $34.999</p>
+                            <p>5% OFF</p>
+                        </div>
+                    </div>
+                    <a href="">
+                        <button class="prod-button">VER</button>
+                    </a>
+                </article>
+                <article class="product">
+                    <div class="prod-header">
+                        <i class="fa-regular fa-cart-circle-plus"></i>
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
+                    <div class="prod-picture">
+                        <img src="https://image.goat.com/transform/v1/attachments/product_template_pictures/images/052/002/689/original/1011B017_401.png.png?action=crop&width=2000" alt="">
+                    </div>
+                    <div class="prod-description">
+                        <h3 class="prod-category">Track & Field</h3>
+                        <h2 class="prod-title">Asics Evo Ride 6</h2>
+                        <div class="prod-price-desc">
+                            <p>ARS $34.999</p>
+                            <p>5% OFF</p>
+                        </div>
+                    </div>
+                    <a href="">
+                        <button class="prod-button">VER</button>
+                    </a>
+                </article>
+                <article class="product">
+                    <div class="prod-header">
+                        <i class="fa-regular fa-cart-circle-plus"></i>
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
+                    <div class="prod-picture">
+                        <img src="https://image.goat.com/transform/v1/attachments/product_template_pictures/images/052/002/689/original/1011B017_401.png.png?action=crop&width=2000" alt="">
+                    </div>
+                    <div class="prod-description">
+                        <h3 class="prod-category">Track & Field</h3>
+                        <h2 class="prod-title">Asics Evo Ride 7</h2>
+                        <div class="prod-price-desc">
+                            <p>ARS $34.999</p>
+                            <p>5% OFF</p>
+                        </div>
+                    </div>
+                    <a href="">
+                        <button class="prod-button">VER</button>
+                    </a>
+                </article>
+                <article class="product">
+                    <div class="prod-header">
+                        <i class="fa-regular fa-cart-circle-plus"></i>
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
+                    <div class="prod-picture">
+                        <img src="https://image.goat.com/transform/v1/attachments/product_template_pictures/images/052/002/689/original/1011B017_401.png.png?action=crop&width=2000" alt="">
+                    </div>
+                    <div class="prod-description">
+                        <h3 class="prod-category">Track & Field</h3>
+                        <h2 class="prod-title">Asics Evo Ride 8</h2>
+                        <div class="prod-price-desc">
+                            <p>ARS $34.999</p>
+                            <p>5% OFF</p>
+                        </div>
+                    </div>
+                    <a href="">
+                        <button class="prod-button">VER</button>
+                    </a>
+                </article>
+                <article class="product">
+                    <div class="prod-header">
+                        <i class="fa-regular fa-cart-circle-plus"></i>
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
+                    <div class="prod-picture">
+                        <img src="https://image.goat.com/transform/v1/attachments/product_template_pictures/images/052/002/689/original/1011B017_401.png.png?action=crop&width=2000" alt="">
+                    </div>
+                    <div class="prod-description">
+                        <h3 class="prod-category">Track & Field</h3>
+                        <h2 class="prod-title">Asics Evo Ride 9</h2>
+                        <div class="prod-price-desc">
+                            <p>ARS $34.999</p>
+                            <p>5% OFF</p>
+                        </div>
+                    </div>
+                    <a href="">
+                        <button class="prod-button">VER</button>
+                    </a>
+                </article>
+                <article class="product">
+                    <div class="prod-header">
+                        <i class="fa-regular fa-cart-circle-plus"></i>
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
+                    <div class="prod-picture">
+                        <img src="https://image.goat.com/transform/v1/attachments/product_template_pictures/images/052/002/689/original/1011B017_401.png.png?action=crop&width=2000" alt="">
+                    </div>
+                    <div class="prod-description">
+                        <h3 class="prod-category">Track & Field</h3>
+                        <h2 class="prod-title">Asics Evo Ride 10</h2>
+                        <div class="prod-price-desc">
+                            <p>ARS $34.999</p>
+                            <p>5% OFF</p>
+                        </div>
+                    </div>
+                    <a href="">
+                        <button class="prod-button">VER</button>
+                    </a>
+                </article>
+            </div>
+            <div class="controls" id="prod-next-btn">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+        </div>
+    </section>
    </main> 
 
 
     <footer>
         <div class="footer-bounds">
             <div class="first-line">
-                <p>Made with </p>
+                <p>Made with</p>
                 <i class="fa-solid fa-heart"></i>
-                <p> By</p> 
+                <p>By</p> 
             </div>
             <h3>CODE APPLES</h3>
         </div>
     </footer>
 
-
+    <script src="/js/panels.js"></script>
     <script src="/js/hamburger.js"></script>
-    <script src="https://kit.fontawesome.com/95aa681591.js" crossorigin="anonymous"></script>
 </body>
 </html>
