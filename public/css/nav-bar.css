@@ -335,7 +335,7 @@
 .dropdown .dropdown-menu .languages-list li {
     display: flex;
     margin: 2px 0;
-    gap: 5px;
+    gap: 8px;
 }
 
 .dropdown .dropdown-menu .languages-list li img {
@@ -366,6 +366,11 @@
     pointer-events: auto;
     transform: translateY(0px);
 
+}
+
+.dropdown .notification:focus > svg,
+.notification:hover > svg {
+    color: var(--blue) !important;
 }
 
 .dropdown .notification-menu .notification-header {
@@ -411,6 +416,7 @@
 }
 
 .notification-menu .notification-list li p {
+    font-size: var(--small);
     width: 350px;
     text-align: left;
 }
@@ -493,9 +499,4 @@
     .search-bar .search-input {
         width: 400px;
     }
-}
-
-
-@media (min-width:1200px) {
-
 }
