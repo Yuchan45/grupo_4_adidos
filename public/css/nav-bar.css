@@ -286,17 +286,140 @@
     align-self: center;
 }
 
-.nav-menu .language {
+
+/*  *** DROPDOWN TABS GENERAL *** */
+.dropdown {
+    position: relative;
+}
+
+.dropdown .dropdown-menu {
+    opacity: 0;
+    pointer-events: none; /* El menu esta oculto, pero esta. Asi que tengo que deshabilitar que toquen los botones del menu cuando esta oculto */
+    position: absolute;
+    left: 0;
+    top: 150%;
+    padding: 10px;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .5);
+    transform: translateY(-10px);
+    transition: all .2s ease-in-out;
+}
+
+
+/*  *** LANGUAGES TAB *** */
+.nav-menu .dropdown .language {
     display: flex;
     align-items: center;
 }
-
-.nav-menu .language > p {
-    margin-left: 5px;
-    color: var(--white);
+.dropdown .language:focus > p,
+.language:hover > p {
+    color: var(--blue) !important;
 }
 
+.nav-menu .dropdown .language > p {
+    margin: 0 5px 0 0;
+    color: var(--white);
+    transition: all .3s ease;
+}
+
+.dropdown .dropdown-menu .languages-list {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
+
+.dropdown .dropdown-menu .languages-list li {
+    display: flex;
+    margin: 2px 0;
+    gap: 5px;
+}
+
+.dropdown .dropdown-menu .languages-list li img {
+    width: 20px;
+}
+
+.dropdown .dropdown-menu .languages-list li a {
+    text-decoration: none;
+    color: black;
+    transition: color .3s ease;
+}
+
+.dropdown .dropdown-menu .languages-list li a:hover {
+    color: var(--blue);
+}
+
+
+.dropdown .language:focus + .dropdown-menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0px);
+
+}
+
+/*  *** NOTIFICATIONS TAB *** */
+.dropdown .notification:focus + .dropdown-menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0px);
+
+}
+
+.dropdown .notification-menu .notification-header {
+    width: 100%;
+    border-bottom: 1px solid var(--onyx);
+}
+
+.dropdown .notification-menu .notification-header p {
+    font-size: var(--normal);
+    font-weight: 600;
+    margin: 0 0 5px 0;
+    text-align: left;
+    margin-left: 5px;
+}
+
+.dropdown .notification-menu {
+    right: 0 !important;
+    left: auto;
+    padding: 10px 0;
+}
+
+.notification-menu .notification-list {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0;
+    list-style: none;
+}
+
+.notification-menu .notification-list li {
+    margin: 0 !important;
+    display: flex;
+    transition: all .3s ease;
+    gap: 15px;
+}
+
+.notification-menu .notification-list li:hover {
+    background-color: #0000000a;
+}
+
+.notification-menu .notification-list li img{
+    margin-left: 5px;
+    width: 40px;
+}
+
+.notification-menu .notification-list li p {
+    width: 350px;
+    text-align: left;
+}
+
+/* End of dropdown tabs */
+
+
 .nav-menu .nav-menu-list {
+    margin: 0;
     display: flex;
     list-style: none;
     align-items: center;
@@ -319,19 +442,20 @@
     color: var(--blue);
 }
 
-svg {
-    transition: all .3S ease;
-}
-
-svg:hover {
-    color: var(--blue);
-}
-
 .nav-menu .bell-trollie-container {
     margin-left: 20px;
     width: 60px;
     display: flex;
     justify-content: space-around;
+}
+
+.nav-menu .bell-trollie-container svg {
+    color: var(--white);
+    transition: all .3s ease;
+}
+
+.nav-menu .bell-trollie-container svg:hover {
+    color: var(--blue);
 }
 
 /* Mobile and Tablet */
