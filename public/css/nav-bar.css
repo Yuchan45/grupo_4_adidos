@@ -103,7 +103,7 @@
     border-right: none;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
-    color: white;
+    color: var(--white);
 }
 
 .search-bar .search-btn {
@@ -126,7 +126,7 @@
 
 .search-bar .search-input:focus .search-input {
     /* outline: none; */
-    border: 1px solid white;
+    border: 1px solid var(--white);
 }
 
 
@@ -299,8 +299,8 @@
     left: 0;
     top: 150%;
     padding: 10px;
-    background-color: white;
-    color: black;
+    background-color: var(--white);
+    color: var(--black);
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, .5);
     transform: translateY(-10px);
@@ -344,7 +344,7 @@
 
 .dropdown .dropdown-menu .languages-list li a {
     text-decoration: none;
-    color: black;
+    color: var(--black);
     transition: color .3s ease;
 }
 
@@ -494,7 +494,7 @@
         font-size: 2rem;
     }
     .header-bounds .nav-search a .shoocity-logo .logo-slogan {
-        font-size: 0.75rem;
+        font-size: var(--small);
     }
     .search-bar .search-input {
         width: 400px;
