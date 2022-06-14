@@ -43,9 +43,18 @@ main {
     align-items: center;
 }
 
-.panel1 { background-image:url(https://radiichina.com/wp-content/uploads/2021/08/Su-Bingtian-Cover-Image.jpg); }
-.panel2 { background-image:url(https://img.olympicchannel.com/images/image/private/t_16-9_1920/primary/niyvlpicxlsgom2jcruy); }
-.panel3 { background-image:url(https://cdn.wallpapersafari.com/88/22/rAb3Qd.jpeg); }
+.panel1 { 
+    background-image:url(https://radiichina.com/wp-content/uploads/2021/08/Su-Bingtian-Cover-Image.jpg);
+
+}
+.panel2 {
+    background-image:url(https://img.olympicchannel.com/images/image/private/t_16-9_1920/primary/niyvlpicxlsgom2jcruy);
+
+}
+.panel3 {
+    background-image:url(https://cdn.wallpapersafari.com/88/22/rAb3Qd.jpeg);
+
+}
 
 
 /* Flex Children */
@@ -89,6 +98,109 @@ main {
     flex: 3; /* Hace que ocupe 3 veces su espacio. Basicamente agranda el panel */
     font-size: 40px;
 }
+
+/* DISCOVER */
+.discover {
+    margin: 80px auto;
+}
+
+.discover-boxes {
+    width: 100%;
+    /* background-color: red; */
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.discover-boxes .box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    position: relative;
+    margin: 25px 20px;
+    width: 85%;
+    max-width: 400px;
+    height: 250px;
+    background-color: #1d1f27;
+    border-radius: 10px;
+}
+
+.discover-boxes .box::after {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #ffc0cb, #91eeee);
+    opacity: 0.5;
+    mix-blend-mode: color;
+    transition: all .3s ease;
+}
+
+.discover-boxes .box:hover::after {
+    filter: none;
+    opacity: 0;
+}
+
+.discover-boxes .box .box-pic {
+    background-color: transparent;
+    height: auto;
+    width: 100% !important;
+    padding: 15px;
+    transition: all .3s ease;
+}
+
+.discover-boxes .box .box-pic img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.discover-boxes .box .box-description {
+    position: absolute;
+    width: 100%;
+    height: 75px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all .3s ease;
+}
+
+.discover-boxes .box .box-description > h2 {
+    margin: 0;
+    color: var(--white);
+    font-size: var(--title);
+    font-weight: 600;
+    transition: all .3s ease;
+    text-shadow: 2px 2px 3px rgb(0 0 0 / 75%);
+}
+
+.discover-boxes .box:hover .box-description {
+    transform: translateY(0%);
+    opacity: 1;
+}
+
+.box1 {
+
+}
+
+.box2 {
+
+}
+
+.box3 {
+
+}
+
 
 /* PROMOTED PRODUCT */
 .promoted-product {
@@ -169,7 +281,8 @@ main {
 .promo-image2 {
     order: 3;
     /* background-image: url('https://www.infobae.com/new-resizer/jO7Yp7DCVoG5JZZNwpI_3XLl_Lw=/992x661/filters:format(webp):quality(85)/cloudfront-us-east-1.images.arcpublishing.com/infobae/SEZCUCQXDFFDVBSNHVOVPESXSM.jpg'); */
-    background-image: url('https://hips.hearstapps.com/vidthumb/images/2021-rw-tracktrials-day11-teamusa-dc-v01-thumb-update-1627603555.jpeg');
+    /* background-image: url('https://hips.hearstapps.com/vidthumb/images/2021-rw-tracktrials-day11-teamusa-dc-v01-thumb-update-1627603555.jpeg'); */
+    background-image: url('https://img.olympicchannel.com/images/image/private/t_16-9_1920/primary/p8aoyh8hq5pbvpsdborx');
 }
 
 
@@ -203,7 +316,8 @@ main {
         width: 40%;
     }
     .promo-img {
-        height: 500px !important;
+        height: 50vh !important;
+        max-height: 500px !important;
     }
     .promo-image1 {
         order: 2;
