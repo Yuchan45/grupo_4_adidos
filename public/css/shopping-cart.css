@@ -1,0 +1,365 @@
+body{
+    margin: 0px;
+}
+
+.cart-main{
+    margin: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.cart-right{
+    margin-top: 153px;
+}
+
+
+
+header{
+    background-color: lightgray;
+    height: 100px;
+    width: 100%
+}
+
+footer{
+    background-color: lightgray;
+    height: 80px;
+    width: 100%
+}
+
+.cart-header{
+    margin: 20px;
+
+}
+
+.header-text{
+    font-family: 'Montserrat', sans-serif;
+    color: darkslategray;
+}
+
+.header-tittle{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+.cart-banner{
+    margin: 20px;
+    background-color: rgb(241, 254, 229);
+    flex-direction: row;
+    justify-content: space-between;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.cart-banner:hover{
+    background-color: rgba(228, 250, 208, 0.882);
+}
+
+.banner-text{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: bolder;
+    color: black;
+    align-self: center;
+}
+
+.banner-item{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: bolder;
+    justify-self: center;
+    align-self: center;
+    margin: 20px;
+    color: black;
+}
+
+.order-summery{
+    padding: 15px;
+    border: 1px solid #ccc;
+}
+
+.order-tittle{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.order-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.order-text{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+}
+
+.order-text-bold{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.cart-button{
+    margin-top: 10px;
+    font-family: 'Montserrat', sans-serif;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    width: 100%;
+    align-self: center;
+    font-size: 20px;
+    padding: 5px;
+}
+
+.cart-button:hover{
+    background-color: grey;
+}
+
+.item-image{
+    width: 250px;
+    height: 250px;
+    align-self: center;
+}
+
+.item{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #ccc;
+    margin: 20px;
+}
+
+.item-button{
+    margin-top: 15px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.item-button:hover{
+    text-decoration: underline;
+}
+
+.item-quantity{
+    padding: 15px;
+    width: 48%;
+}
+
+.item-details{
+    display: flex;
+    flex-direction: column;
+    margin-right: 90px;
+    margin-left: 20px;
+}
+
+.item-tittle{
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 4px;
+}
+
+.item-price{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+.item-stock{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: darkslategray;
+    margin-bottom: 4px;
+
+}
+
+@media only screen and (max-width: 1050px) {
+    .cart-main{
+        margin: 20px
+    }
+
+    .item-details{
+        margin-right: 40px;
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    .cart-main{
+        margin: 20px
+    }
+
+    .item-details{
+        margin-right: 40px;
+    }
+
+    .item-image{
+        width: 200px;
+        height: 200px;
+    }
+
+    .item-details{
+        margin-right: 20px;
+        margin-left: 10px;
+    }
+
+    .item-tittle{
+        margin-bottom: 0px;
+        margin-top: 10px;
+        font-size: 17px;
+    }
+
+    .item-price{
+        font-size: 16px;
+        margin-bottom: 0px;
+    }
+
+    .item-stock{
+        margin-bottom: 10;
+        font-size: 13px;
+    }
+
+    .item-quantity {
+        padding: 10px;}
+
+    .order-tittle{
+        font-size: 20px;
+    }
+
+    .cart-button{
+        font-size: 15px;
+    }
+    }
+
+    @media only screen and (max-width: 860px){
+        .cart-main{
+            display: block;
+            margin: 50px;
+        }
+
+        .cart-right{
+            margin-top: 40px;
+            padding: 20px;
+        }
+        .header-tittle{
+            font-size: 30px;
+        }
+
+        .header-text{
+            font-size: 18px;
+        }
+        .cart-banner{
+            max-width: 600px;
+        }
+
+        .banner-text{
+            font-size: 18px;
+        }
+
+        .banner-item{
+            font-size: 18px;
+        }
+
+        .cart-item-list{
+            max-width: 600px;
+            margin: 20px;
+        }
+
+        .item{
+            margin: 0px;
+            margin-bottom: 20px;
+        }
+
+        .item-price{
+            margin-top: 10px;
+        }
+
+        .item-stock{
+            margin-top: 10px;
+        }
+
+        .order-summery{
+            max-width: 600px;
+        }
+    }
+
+    @media only screen and (max-width: 500px){
+        .cart-main{
+            margin: 10px;
+        }
+
+        .cart-item-list{
+            margin: 10px;
+        }
+
+        .cart-header{
+            margin: 10px;
+        }
+
+        .header-tittle{
+            font-size: 25px;
+            margin-top: 25px;
+        }
+
+        .header-text{
+            font-size: 15px;
+        }
+
+        .cart-banner{
+            margin: 10px;
+        }
+
+        .banner-text{
+            font-size: 16px;
+        }
+
+        .banner-item{
+            font-size: 16px;
+        }
+    }
+
+    @media only screen and (max-width: 400px){
+        .item-image {
+            width: 120px;
+            height: 160px;
+        }
+
+        .item-tittle{
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        .item-price {
+            font-size: 13px;
+            margin-bottom: 0px;
+            margin-top: 5px;
+        }
+
+        .item-stock {
+            font-size: 11px;
+            margin-top: 5px;
+        }
+
+        .item-quantity {
+            padding: 8px;
+        }
+
+        .item-button {
+            font-size: 12px;
+            margin-top: 10px;
+            margin-bottom: 5px
+        }
+
+        .order-tittle {
+            font-size: 18px;
+        }
+
+        .order-text {
+            font-size: 12px;
+        }
+
+        .order-text-bold {
+            font-size: 12px;
+        }
+
+        .cart-right {
+            margin-top: 20px;
+            padding: 10px;
+        }  
+        
+    }
