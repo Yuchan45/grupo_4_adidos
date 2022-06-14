@@ -1,14 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+    <link rel="icon" href="/images/logos/shoocity-fav.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/nav-bar.css">
+    <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/login-form.css">
+    <link rel="stylesheet" href="/css/home-styles.css">
+    <link rel="stylesheet" href="/css/prod-slider.css">
     <link rel="stylesheet" href="/css/normalize.css">
-    <title>Log In</title>
+    <!-- FONT AWESOME -->
+    <script src="https://kit.fontawesome.com/95aa681591.js" crossorigin="anonymous"></script>
+    <!-- GOOGLE FONTS -->
+    <!-- Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <!-- Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Shoocity</title>
 </head>
+
 <body>
-    <h1>Log in</h1>
-</body>
+    <div class="login-page">
+    <header class="header-container">
+        <div class="header-bounds">
+            <div class="nav-search">
+                <a href="/">
+                    <!-- <div class="shoocity-logo">
+                        <img src="/images/logos/logo-simple.png" alt="">
+                    </div> -->
+                    <div class="shoocity-logo">
+                        <h1 class="logo-title">Shoocity</h1>
+                        <h2 class="logo-slogan">Inspiration Works</h2>
+                    </div>
+                </a>
+                <form class="search-bar" action="#" method="POST">
+                    <input class="search-input" type="search" name="search" id="search" placeholder="Buscar productos...">
+                    <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+                <div class="menu" id="ham-menu">
+                    <div class="hamburger-btn-menu">
+                        <div class="ham-inner"></div>
+                    </div>
+                </div>
+                <aside class="aside-menu">
+                    <div class="aside-bounds">
+                        <div class="profile-div">
+                            <img src="https://i.pinimg.com/564x/4c/95/d4/4c95d42d0c5737bfcde088b81436af9b.jpg" alt="" class="profile-pic">
+                        </div>
+                        <ul class="nav-menu-list">
+                            <li>
+                                <i class="fa-solid fa-user"></i>
+                                <a href="">User</a>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-bag-shopping"></i>
+                                <a href="">Mis compras</a>   
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-heart"></i>
+                                <a href="">Favoritos</a>
+                            </li>
+                        </ul>
+                        <ul class="nav-menu-list">
+                            <li>
+                                <i class="fa-solid fa-shop"></i>
+                                <a href="">Tienda</a>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-shoe-prints"></i>
+                                <a href="">Marcas</a>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-tag"></i>
+                                <a href="">Ofertas</a>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-user-astronaut"></i>
+                                <a href="">Nosotros</a>
+                            </li>
+                        </ul>
+                        <p>Cerrar sesión</p>
+                    </div>
+                </aside>
+            </div>
+            <nav class="nav-menu">
+                <div class="dropdown">
+                    <div class="language" tabindex="1"> <!-- El tab index me permite el 'focus' sobre el div -->
+                        <p>Language</p>
+                        <i class="fa-solid fa-angle-down"></i>
+                    </div>
+                    <div class="dropdown-menu">
+                        <ul class="languages-list">
+                            <li>
+                                <img src="/images/flags/es.svg" alt="" srcset="">
+                                <a href="">Español</a>
+                            </li>
+                            <li>
+                                <img src="/images/flags/gb.svg" alt="" srcset="">
+                                <a href="">Inglés</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <ul class="nav-menu-list">
+                    <li><a href="">Categorias</a></li>
+                    <li><a href="">Marcas</a></li>
+                    <li><a href="">Tienda</a></li>
+                    <li><a href="">Nosotros</a></li>
+                </ul>
+                <ul class="nav-menu-list">
+                    <li>
+                        <!-- <i class="fa-solid fa-user"></i> -->
+                        <a href="">User</a>
+                        
+                    </li>
+                    <li>
+                        <a href="">Mis compras</a>   
+                    </li>
+                    <li>
+                        <a href="">Favoritos</a>
+                    </li>
+                    <div class="bell-trollie-container">
+                        <div class="dropdown">
+                            <div class="notification" tabindex="1"> <!-- El tab index me permite el 'focus' sobre el div -->
+                                <i class="fa-solid fa-bell"></i>
+                            </div>
+                            <div class="dropdown-menu notification-menu">
+                                <div class="notification-header">
+                                    <p>Notificaciones</p>
+                                </div>
+                                <ul class="notification-list">
+                                    <li>
+                                        <img src="/images/flags/es.svg" alt="" srcset="">
+                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus, error?</p>
+                                    </li>
+                                    <li>
+                                        <img src="/images/flags/gb.svg" alt="" srcset="">
+                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, maxime?</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+         <section class="form-section">
+            <div class="form-login">
+              <h5>Formulario Login</h5>
+              <input  maxlength="35" class="controls" type="text" name="usuario" value="" placeholder="Usuario">
+            <div class="input-wrapper">
+                <input maxlength="25" class="controls" type="password" name="contrasena" value="" placeholder="Contraseña" data-lpignore="true">
+                <ion-icon onclick="toggle()" class="password-icon hidden" name="eye-off" size="large"></ion-icon>
+            </div>
+              <input class="buttons" type="submit" name="" value="Ingresar">
+              <p><a href="#">¿Olvidastes tu Contraseña?</a></p>
+              </div>
+        </section>
+
+
+  <footer>
+        <div class="footer-bounds">
+            <div class="first-line">
+                <p>Made with</p>
+                <i class="fa-solid fa-heart"></i>
+                <p>By</p> 
+            </div>
+            <h3>CODE APPLES</h3>
+        </div>
+    </footer>
+</div>
+
+    <script type = "text/javascript">
+        
+
+        function toggle() {
+            const input = document.querySelector('.input-wrapper input')
+            const eyeIcon =  document.querySelector('.password-icon')
+            const shown =  '<ion-icon onclick="toggle()" class="password-icon on md icon-large hydrated" name="eye" size="large" role="img" aria-label="eye"></ion-icon>'
+            const hidden =  '<ion-icon onclick="toggle()" class="password-icon off md icon-large hydrated" name="eye-off" size="large" role="img" aria-label="eye"></ion-icon>'
+            if (input.type === 'password') {
+                input.type = 'text'
+                eyeIcon.outerHTML = shown
+                document.querySelector('.password-icon').style.color ='rgba(150,150,150,0.88)'
+            } else {
+                input.type = 'password';
+                eyeIcon.outerHTML = hidden
+                document.querySelector('.password-icon').style.color ='rgba(150,150,150,0.88)'
+            }
+        }
+        document.querySelector('.input-wrapper input').addEventListener('focus', (event) => {
+            const eyeIcon =  document.querySelector('.password-icon')
+            const noIcon = '<ion-icon onclick="toggle()" class="password-icon hidden md icon-large hydrated" name="eye-off" size="large" role="img" aria-label="eye off"></ion-icon>'
+            const hidden =  '<ion-icon onclick="toggle()" class="password-icon off md icon-large hydrated" name="eye-off" size="large" role="img" aria-label="eye"></ion-icon>'
+            if (eyeIcon.outerHTML === noIcon) {eyeIcon.outerHTML = hidden} 
+            document.querySelector('.password-icon').style.color ='rgba(150,150,150,0.88)'
+        })
+
+    </script>  
+
 </html>
+
+
