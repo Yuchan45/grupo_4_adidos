@@ -1,21 +1,10 @@
+* {
+  font-family: "Open Sans", sans-serif;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0px;
-}
-
-header {
-  position: fixed;
-  top: 0;
-  background-color: lightgray;
-  height: 100px;
-  width: 100%;
-}
-
-footer {
-  position: fixed;
-  bottom: 0;
-  background-color: lightgray;
-  height: 80px;
-  width: 100%;
 }
 
 .main-footer {
@@ -28,15 +17,15 @@ footer {
 }
 
 .main-footer-text {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 30px;
   font-weight: bolder;
   color: black;
-  align-self: center;
+  text-align: center;
 }
 
 .main-footer-button {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   background-color: rgb(0, 0, 0);
   color: white;
   font-weight: bold;
@@ -59,7 +48,7 @@ footer {
 }
 
 .banner-text {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   margin: 0px;
   margin-bottom: 5px;
   text-align: center;
@@ -86,7 +75,7 @@ footer {
 }
 
 .item-name {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   text-align: center;
 }
 
@@ -100,7 +89,81 @@ footer {
 }
 
 .item-price {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: bold;
   text-align: center;
+}
+
+@media only screen and (max-width: 750px) {
+  .main-item {
+    width: 200px;
+    height: 280px;
+  }
+  .item-image {
+    max-width: 200px;
+  }
+  .item-name {
+    font-size: 15px;
+  }
+  .item.price {
+    font-size: 15px;
+  }
+
+  .main-footer-text {
+    font-size: 20px;
+    margin-right: 20px;
+  }
+
+  .main-footer-button {
+    font-size: 15px;
+  }
+
+  .main-item-container {
+    margin: 20px;
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  .main-footer {
+    flex-direction: column;
+  }
+
+  .main-banner {
+    font-size: 15px;
+  }
+
+  .main-item-container {
+    margin: 10px;
+  }
+
+  .main-item {
+    width: 160px;
+    height: 210px;
+    margin: 5px;
+  }
+
+  .item-image {
+    max-width: 160px;
+  }
+
+  .item-name {
+    font-size: 12px;
+    margin: 7px;
+  }
+  .item-price {
+    font-size: 12px;
+    margin: 5px;
+  }
+
+  .main-footer {
+    padding: 20px;
+  }
+
+  .main-footer-text {
+    font-size: 17px;
+  }
+
+  .main-footer-button {
+    padding: 10px;
+  }
 }
