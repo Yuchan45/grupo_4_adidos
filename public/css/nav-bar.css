@@ -293,8 +293,9 @@
 }
 
 .dropdown .dropdown-menu {
-    opacity: 0;
-    pointer-events: none; /* El menu esta oculto, pero esta. Asi que tengo que deshabilitar que toquen los botones del menu cuando esta oculto */
+    visibility: hidden;
+    /* opacity: 0; */
+    /*pointer-events: none;  El menu esta oculto, pero esta. Asi que tengo que deshabilitar que toquen los botones del menu cuando esta oculto */
     position: absolute;
     left: 0;
     top: 150%;
@@ -311,7 +312,7 @@
 /*  *** LANGUAGES TAB *** */
 .nav-menu .dropdown .language {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
 }
 .dropdown .language:focus > p,
 .language:hover > p {
@@ -354,16 +355,18 @@
 
 
 .dropdown .language:focus + .dropdown-menu {
-    opacity: 1;
-    pointer-events: auto;
+    visibility: visible;
+    /* opacity: 1; */
+    pointer-events: auto !important;
     transform: translateY(0px);
 
 }
 
 /*  *** NOTIFICATIONS TAB *** */
 .dropdown .notification:focus + .dropdown-menu {
-    opacity: 1;
-    pointer-events: auto;
+    visibility: visible;
+    /* opacity: 1; */
+    pointer-events: auto !important;
     transform: translateY(0px);
 
 }
@@ -373,24 +376,25 @@
     color: var(--blue) !important;
 }
 
-.dropdown .notification-menu .notification-header {
-    width: 100%;
-    border-bottom: 1px solid var(--onyx);
-}
-
-.dropdown .notification-menu .notification-header p {
-    font-size: var(--normal);
-    font-weight: 600;
-    margin: 0 0 5px 0;
-    text-align: left;
-    margin-left: 5px;
-}
-
 .dropdown .notification-menu {
     right: 0 !important;
     left: auto;
     padding: 10px 0;
 }
+
+.drop-menu-header {
+    width: 100%;
+    border-bottom: 1px solid var(--onyx);
+}
+
+.drop-menu-header p {
+    font-size: var(--normal);
+    font-weight: 400;
+    margin: 0 0 5px 0;
+    text-align: left;
+    margin-left: 5px;
+}
+
 
 .notification-menu .notification-list {
     display: flex;
@@ -421,11 +425,101 @@
     text-align: left;
 }
 
+/* USER TABS */
+.dropdown .user:focus + .dropdown-menu {
+    visibility: visible;
+    /* opacity: 1; */
+    pointer-events: auto !important;
+    transform: translateY(0px);
+
+}
+
+.dropdown .user:focus > p,
+.user:hover > p {
+    color: var(--blue) !important;
+}
+
+.dropdown .user {
+    display: flex;
+    gap: 5px;
+    align-items: flex-end;
+    justify-content: center;
+    align-content: center;
+}
+
+.dropdown .user > p {
+    margin: 0;
+    transition: all .3s ease;
+}
+
+.dropdown .user-menu {
+    width: 250px;
+    right: 0 !important;
+    left: auto;
+    padding: 10px 0;
+}
+
+.user-menu .profile-div {
+    align-self: center;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+.user-menu .profile-div > img {
+    min-width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid var(--onyx);
+    object-fit: cover;
+}
+
+.user-menu .profile-div > p {
+    margin: 20px 0 0 0;
+    font-size: var(--subtitle);
+    white-space: nowrap;
+    text-decoration: underline 2px #dedede;
+    text-underline-offset: 9px;
+}
+
+.dropdown .user-menu .user-list {
+    padding: 10px 30px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dropdown .user-menu .user-list li {
+    text-align: center;
+    transition: all .3s ease;
+}
+
+.dropdown .user-menu .user-list li a {
+    margin: auto;
+    text-decoration: none;
+    color: var(--black);
+    font-size: var(--normal);
+}
+
+.dropdown .user-menu .user-list li:hover {
+    background-color: #0000000a;
+    color: var(--blue);
+}
+
+
 /* End of dropdown tabs */
 
 
 .nav-menu .nav-menu-list {
     margin: 0;
+    white-space: nowrap;
     display: flex;
     list-style: none;
     align-items: center;
