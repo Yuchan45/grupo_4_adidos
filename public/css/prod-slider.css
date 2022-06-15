@@ -59,6 +59,12 @@
 
 .product .prod-header > svg {
     padding: 0 5px;
+    transition: all .3s ease;
+}
+
+.product .prod-header > svg:hover {
+    padding: 0 5px;
+    color: var(--yellow);
 }
 
 .product .prod-picture {
