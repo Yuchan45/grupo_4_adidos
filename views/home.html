@@ -113,10 +113,31 @@
                     <li><a href="">Nosotros</a></li>
                 </ul>
                 <ul class="nav-menu-list">
-                    <li>
-                        <!-- <i class="fa-solid fa-user"></i> -->
-                        <a href="">User</a>
-                        
+                    <li class="dropdown">
+                        <div class="user" tabindex="1"> <!-- El tab index me permite el 'focus' sobre el div -->
+                            <p>User</p>
+                            <i class="fa-solid fa-angle-down"></i>
+                        </div>
+                        <div class="dropdown-menu user-menu">
+                            <div class="drop-menu-header">
+                                <p>Mi cuenta</p>
+                            </div>
+                            <div class="profile-div">
+                                <img src="https://i.pinimg.com/564x/4c/95/d4/4c95d42d0c5737bfcde088b81436af9b.jpg" alt="" class="profile-pic">
+                                <p>Hola Messi!</p>
+                            </div>
+                            <ul class="user-list">
+                                <li>
+                                    <a href="">Iniciar Sesión</a>
+                                </li>
+                                <li>
+                                    <a href="">Registrarme!</a>
+                                </li>
+                                <li>
+                                    <a href="">Cerrar Sesion</a>
+                                </li>
+                            </ul>
+                        </div>                        
                     </li>
                     <li>
                         <a href="">Mis compras</a>   
@@ -130,7 +151,7 @@
                                 <i class="fa-solid fa-bell"></i>
                             </div>
                             <div class="dropdown-menu notification-menu">
-                                <div class="notification-header">
+                                <div class="drop-menu-header">
                                     <p>Notificaciones</p>
                                 </div>
                                 <ul class="notification-list">
