@@ -1,10 +1,11 @@
 .header-container {
+  top: 0;
   width: 100vw;
   height: 50px;
   /* height: 80px; */
   padding: 5px;
   text-align: center;
-  /* position: fixed; */
+  position: fixed;
   /* position: sticky;
     top: 0px;
     left: 0px; */

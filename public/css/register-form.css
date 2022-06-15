@@ -5,14 +5,16 @@
 body {
     /* background-color: #212121; */
     overflow-x: hidden;
+    /* min-height: 100vh;
+    background-image: url(../images/logos/deportes.jpg); */
 }
 main {
-   width: 50vw;
-   height: auto;
-   text-align: center;
-   border: solid;
-   margin: 90px;
-   padding: 40px;
+    width: 50vw;
+    height: auto;
+    margin: 150px auto;
+    border: solid;
+    padding: 40px;
+    text-align: center;
 }
 
 form{

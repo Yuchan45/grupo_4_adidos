@@ -8,6 +8,7 @@
 }
 
 .products-carrousel .carrousel-container {
+    text-align: center;
     width: 95%;
     /* height: 320px; */
     height: auto;
