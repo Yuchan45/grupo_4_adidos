@@ -399,7 +399,6 @@
 .notification-menu .notification-list li {
   margin: 0 !important;
   display: flex;
-  transition: all 0.3s ease;
   gap: 15px;
 }
 
