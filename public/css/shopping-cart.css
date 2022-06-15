@@ -1,5 +1,14 @@
-body{
+* {
+    font-family: "Open Sans", sans-serif;
+    box-sizing: border-box;
+  }
+  
+  body{
     margin: 0px;
+}
+
+.header-container{
+    top: 0;
 }
 
 .cart-main{
@@ -15,20 +24,8 @@ body{
 
 
 
-header{
-    background-color: lightgray;
-    height: 100px;
-    width: 100%
-}
-
-footer{
-    background-color: lightgray;
-    height: 80px;
-    width: 100%
-}
-
 .cart-header{
-    margin: 20px;
+    margin-top: 100px;
 
 }
 
@@ -287,9 +284,6 @@ footer{
             margin: 10px;
         }
 
-        .cart-header{
-            margin: 10px;
-        }
 
         .header-tittle{
             font-size: 25px;
