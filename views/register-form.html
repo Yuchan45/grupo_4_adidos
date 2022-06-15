@@ -9,6 +9,71 @@
     <title>Register</title>
 </head>
 <body>
-    <h1>Register</h1>
+
+    <main>
+        <div class="control-form">Registro</div>
+        <form action="/login" method="POST" class="create-form">
+            <div class="control-form">
+                <label for="registerForm">
+                    <input type="text" name="nombre" placeholder="Nombre*">
+                </label>
+            </div>
+            <div class="control-form">
+                <label for="registerForm">
+                    <input type="text" name="Apellido" placeholder="Apellido*">
+                </label>
+            </div>
+            <div class="control-form">                
+                <label for="registerForm">
+                    <input type="email" name="email" placeholder="Correo Electronico*">
+                </label>
+            </div>
+            <div class="control-form"> 
+                <label for="registerForm">
+                    <input type="password" name="password" placeholder="Contraseña*">
+                </label>
+            </div>
+            <div class="control-form">
+                <label for="registerForm">
+                    Fecha de Nacimiento
+                    <input type="date" name="nombre" value="1992-09-11" min="14-6-2004">
+                </label>
+            </div>
+                <div class="texts">Conseguí una recompensa de miembro de Shoocity cada año por tu cumpleaños.</div>
+            <div class="control-form">
+                <label for="registerForm">
+                    Pais de Nacimiento
+                    <select>Pais
+                    <option value="ar">Argentina</option>
+                    <option value="bz">Brazil</option>
+                    <option value="ch">Chile</option>
+                    <option value="vz">Venezuela</option>
+                    </select> 
+                </label>
+            </div>
+            <div class="control-form-sexo">
+                <label class="control-form-sexo" for="sexo">
+                    Hombre
+                    <input type="checkbox" value="sexo">
+                </label>
+                <label class="control-form-sexo">
+                    Mujer
+                    <input type="checkbox" value="sexo">
+                </label>
+            </div>
+            <div class="control-form">
+                <label class="texts">
+                    <input type="radio" value="Terminos">
+                    Registrate para recibir correos electrónicos de Shoocity con actualizaciones de productos, ofertas y beneficios como
+miembro.
+                </label>
+            </div>
+            <div class="control-form">
+                <button class="button-form" type="submit" value="Unite">Unite</button>
+                <p>¿Ya sos miembro? <a href="./login-form.html">Inicia Sesión</a></p>
+            </div>
+        
+    </main>
+
 </body>
 </html>

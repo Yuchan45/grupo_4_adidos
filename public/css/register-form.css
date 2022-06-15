@@ -1,0 +1,50 @@
+* {
+    font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
+}
+body {
+    /* background-color: #212121; */
+    overflow-x: hidden;
+}
+main {
+   width: 50vw;
+   height: auto;
+   text-align: center;
+   border: solid;
+   margin: 90px;
+   padding: 40px;
+}
+
+form{
+    width: auto;
+}
+
+.create-form{
+    padding: 20px 15 px;
+}
+.control-form{
+    margin-bottom: 15px;
+    vertical-align: baseline
+}
+.control-form-sexo{
+    display: inline;
+}
+div.control-form label{
+    margin-bottom: 15px;
+    display: block;
+}
+.control{
+    width: 100%;
+    padding: 8px;
+}
+.button-form{
+    background-color: black;
+    color: white;
+    border: none;
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: unset;
+}
+.texts{
+    text-align: left;
+}
