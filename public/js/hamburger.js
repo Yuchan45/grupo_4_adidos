@@ -19,10 +19,12 @@ menuBtn.addEventListener('click', function() {
     if (!menuOpen) {
         menuBtn.classList.add('open');
         aside.classList.add('active');
+        document.body.style.overflow = "hidden";
         menuOpen = true;
     }else {
         menuBtn.classList.remove('open');
         aside.classList.remove('active');
+        document.body.style.overflow = "auto";
         menuOpen = false;
     }
 });
