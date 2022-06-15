@@ -373,6 +373,7 @@
     right: 0 !important;
     left: auto;
     padding: 10px 0;
+    white-space: normal;
 }
 
 .drop-menu-header {
