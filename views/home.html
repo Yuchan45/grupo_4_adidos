@@ -54,11 +54,11 @@
                         <ul class="nav-menu-list">
                             <li>
                                 <i class="fa-solid fa-user"></i>
-                                <a href="">User</a>
+                                <a href="">Cuenta</a>
                             </li>
                             <li>
                                 <i class="fa-solid fa-bag-shopping"></i>
-                                <a href="">Mis compras</a>   
+                                <a href="/shopping-cart">Mis compras</a>   
                             </li>
                             <li>
                                 <i class="fa-solid fa-heart"></i>
@@ -68,7 +68,7 @@
                         <ul class="nav-menu-list">
                             <li>
                                 <i class="fa-solid fa-shop"></i>
-                                <a href="">Tienda</a>
+                                <a href="/all-products">Tienda</a>
                             </li>
                             <li>
                                 <i class="fa-solid fa-shoe-prints"></i>
@@ -90,7 +90,7 @@
             <nav class="nav-menu">
                 <div class="dropdown">
                     <div class="language" tabindex="1"> <!-- El tab index me permite el 'focus' sobre el div -->
-                        <p>Language</p>
+                        <p>Idioma</p>
                         <i class="fa-solid fa-angle-down"></i>
                     </div>
                     <div class="dropdown-menu">
@@ -107,15 +107,21 @@
                     </div>
                 </div>
                 <ul class="nav-menu-list">
+                    <li><a href="/all-products">Tienda</a></li>
                     <li><a href="">Categorias</a></li>
                     <li><a href="">Marcas</a></li>
-                    <li><a href="">Tienda</a></li>
                     <li><a href="">Nosotros</a></li>
                 </ul>
                 <ul class="nav-menu-list">
+                    <li>
+                        <a href="/shopping-cart">Mis compras</a>   
+                    </li>
+                    <li>
+                        <a href="">Favoritos</a>
+                    </li>
                     <li class="dropdown">
                         <div class="user" tabindex="1"> <!-- El tab index me permite el 'focus' sobre el div -->
-                            <p>User</p>
+                            <p>Cuenta</p>
                             <i class="fa-solid fa-angle-down"></i>
                         </div>
                         <div class="dropdown-menu user-menu">
@@ -128,22 +134,16 @@
                             </div>
                             <ul class="user-list">
                                 <li>
-                                    <a href="">Iniciar Sesión</a>
+                                    <a href="/login-form">Iniciar Sesión</a>
                                 </li>
                                 <li>
-                                    <a href="">Registrarme!</a>
+                                    <a href="/register-form">Registrarme!</a>
                                 </li>
                                 <li>
                                     <a href="">Cerrar Sesion</a>
                                 </li>
                             </ul>
                         </div>                        
-                    </li>
-                    <li>
-                        <a href="">Mis compras</a>   
-                    </li>
-                    <li>
-                        <a href="">Favoritos</a>
                     </li>
                     <div class="bell-trollie-container">
                         <div class="dropdown">
@@ -198,7 +198,7 @@
     <section class="discover">
         <h1 class="section-title">DISCOVER</h1>
         <div class="discover-boxes">
-            <a href="">
+            <a href="/all-products">
                 <article class="box box1">
                     <div class="box-pic">
                         <img src="https://images.vans.com/is/image/VansBrand/sp22_skate_classics_shoe_oldskool?wid=810&fmt=png-alpha" alt="">
@@ -208,7 +208,7 @@
                     </div>
                 </article>
             </a>
-            <a href="">
+            <a href="/all-products">
                 <article class="box box2">
                     <div class="box-pic">
                         <img src="https://static.nike.com/a/images/t_default/26165c3d-e7ca-427c-aad1-4b87a593db5e/zoom-rival-d-10-track-field-distance-spikes-V32GbO.png" alt="">
@@ -218,7 +218,7 @@
                     </div>
                 </article>
             </a>
-            <a href="">
+            <a href="/all-products">
                 <article class="box box3">
                     <div class="box-pic">
                         <img src="https://i.ebayimg.com/00/s/MTIwMFgxMjAw/z/b5kAAOSwkcFf07AX/$_58.png" alt="">
@@ -239,15 +239,13 @@
                 <div>
                     <h2>GO FOR</h2>
                     <p>Inspiration Works</p>
-                    <button class="go-for-btn">Comprar</button>
+                    <a href="/product-details">
+                        <button class="go-for-btn">Comprar</button>
+                    </a>
                 </div>
             </div>
-            <div class="promo-img promo-image1">
-                <!-- <img src="https://images.pexels.com/photos/2526878/pexels-photo-2526878.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt=""> -->
-            </div>
-            <div class="promo-img promo-image2">
-                <!-- <img src="https://www.infobae.com/new-resizer/jO7Yp7DCVoG5JZZNwpI_3XLl_Lw=/992x661/filters:format(webp):quality(85)/cloudfront-us-east-1.images.arcpublishing.com/infobae/SEZCUCQXDFFDVBSNHVOVPESXSM.jpg" alt=""> -->
-            </div>
+            <div class="promo-img promo-image1"></div>
+            <div class="promo-img promo-image2"></div>
         </div>
     </section>
     <!-- PRODUCTS CARROUSEL -->
@@ -274,7 +272,7 @@
                             <p>5% OFF</p>
                         </div>
                     </div>
-                    <a href="">
+                    <a href="/product-details">
                         <button class="prod-button">VER</button>
                     </a>
                 </article>
@@ -294,7 +292,7 @@
                             <p>5% OFF</p>
                         </div>
                     </div>
-                    <a href="">
+                    <a href="/product-details">
                         <button class="prod-button">VER</button>
                     </a>
                 </article>
@@ -314,7 +312,7 @@
                             <p>5% OFF</p>
                         </div>
                     </div>
-                    <a href="">
+                    <a href="/product-details">
                         <button class="prod-button">VER</button>
                     </a>
                 </article>
@@ -334,7 +332,7 @@
                             <p>5% OFF</p>
                         </div>
                     </div>
-                    <a href="">
+                    <a href="/product-details">
                         <button class="prod-button">VER</button>
                     </a>
                 </article>
@@ -354,7 +352,7 @@
                             <p>5% OFF</p>
                         </div>
                     </div>
-                    <a href="">
+                    <a href="/product-details">
                         <button class="prod-button">VER</button>
                     </a>
                 </article>
@@ -374,7 +372,7 @@
                             <p>5% OFF</p>
                         </div>
                     </div>
-                    <a href="">
+                    <a href="/product-details">
                         <button class="prod-button">VER</button>
                     </a>
                 </article>
@@ -394,7 +392,7 @@
                             <p>5% OFF</p>
                         </div>
                     </div>
-                    <a href="">
+                    <a href="/product-details">
                         <button class="prod-button">VER</button>
                     </a>
                 </article>
@@ -414,7 +412,7 @@
                             <p>5% OFF</p>
                         </div>
                     </div>
-                    <a href="">
+                    <a href="/product-details">
                         <button class="prod-button">VER</button>
                     </a>
                 </article>
@@ -434,7 +432,7 @@
                             <p>5% OFF</p>
                         </div>
                     </div>
-                    <a href="">
+                    <a href="/product-details">
                         <button class="prod-button">VER</button>
                     </a>
                 </article>

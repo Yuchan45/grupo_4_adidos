@@ -293,8 +293,9 @@
 }
 
 .dropdown .dropdown-menu {
-    opacity: 0;
-    pointer-events: none; /* El menu esta oculto, pero esta. Asi que tengo que deshabilitar que toquen los botones del menu cuando esta oculto */
+    visibility: hidden;
+    /* opacity: 0; */
+    /*pointer-events: none;  El menu esta oculto, pero esta. Asi que tengo que deshabilitar que toquen los botones del menu cuando esta oculto */
     position: absolute;
     left: 0;
     top: 150%;
@@ -354,16 +355,18 @@
 
 
 .dropdown .language:focus + .dropdown-menu {
-    opacity: 1;
-    pointer-events: auto;
+    visibility: visible;
+    /* opacity: 1; */
+    pointer-events: auto !important;
     transform: translateY(0px);
 
 }
 
 /*  *** NOTIFICATIONS TAB *** */
 .dropdown .notification:focus + .dropdown-menu {
-    opacity: 1;
-    pointer-events: auto;
+    visibility: visible;
+    /* opacity: 1; */
+    pointer-events: auto !important;
     transform: translateY(0px);
 
 }
@@ -424,8 +427,9 @@
 
 /* USER TABS */
 .dropdown .user:focus + .dropdown-menu {
-    opacity: 1;
-    pointer-events: auto;
+    visibility: visible;
+    /* opacity: 1; */
+    pointer-events: auto !important;
     transform: translateY(0px);
 
 }
@@ -510,14 +514,12 @@
 }
 
 
-
-
-
 /* End of dropdown tabs */
 
 
 .nav-menu .nav-menu-list {
     margin: 0;
+    white-space: nowrap;
     display: flex;
     list-style: none;
     align-items: center;
