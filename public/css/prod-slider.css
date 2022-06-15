@@ -14,13 +14,15 @@
     margin: 15px auto;
     /* background-color: red; */
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    /* justify-content: space-between; */
     align-items: center;
     align-content: center;
 }
 
 .carrousel-container .controls {
     font-size: var(--title);
+    display: none;
 }
 
 .carrousel-container .content-container {
@@ -152,5 +154,12 @@
     /* PRODUCTS SLIDER */
     .content-container .product {
         min-width: 300px;
+    }
+    .products-carrousel .carrousel-container {
+        justify-content: space-between;
+    }
+    
+    .carrousel-container .controls {
+        display: block;
     }
 }
