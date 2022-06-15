@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/Yuchan45/grupo_4_adidos#readme",
   "dependencies": {
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
