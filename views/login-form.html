@@ -114,7 +114,7 @@
                 <ul class="nav-menu-list">
                     <li><a href="">Categorias</a></li>
                     <li><a href="">Marcas</a></li>
-                    <li><a href="">Tienda</a></li>
+                    <li><a href="/all-products">Tienda</a></li>
                     <li><a href="">Nosotros</a></li>
                 </ul>
                 <ul class="nav-menu-list">
@@ -150,7 +150,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <i class="fa-solid fa-cart-shopping"></i>
+                        <a href="/shopping-cart"><i class="fa-solid fa-cart-shopping"></i></a>
                     </div>
                 </ul>
             </nav>
@@ -159,34 +159,33 @@
     
          <section class="form-section">
             <div class="form-login">
-              <h5>Formulario Login</h5>
+              <h5>Login</h5>
               <input  maxlength="35" class="controls" type="text" name="usuario" value="" placeholder="Usuario">
             <div class="input-wrapper">
                 <input maxlength="25" class="controls" type="password" name="contrasena" value="" placeholder="Contraseña" data-lpignore="true">
                 <ion-icon onclick="toggle()" class="password-icon hidden" name="eye-off" size="large"></ion-icon>
             </div>
               <input class="buttons" type="submit" name="" value="Ingresar">
-              <p><a href="#">¿Olvidastes tu Contraseña?</a></p>
-              </div>
-        </section>
-
-
-  <footer>
-        <div class="footer-bounds">
-            <div class="first-line">
-                <p>Made with</p>
-                <i class="fa-solid fa-heart"></i>
-                <p>By</p> 
+              <p><a href="#" onclick="btnAbrirPopup.addEventListener())">¿Olvidastes tu Contraseña?</a></p>
+              <p><a href="/register">Regístrate en Shoocity</a></p>
             </div>
-            <h3>CODE APPLES</h3>
+        </section>
+    </div>
+</body>
+
+<footer>
+    <div class="footer-bounds">
+        <div class="first-line">
+            <p>Made with</p>
+            <i class="fa-solid fa-heart"></i>
+            <p>By</p> 
         </div>
-    </footer>
-</div>
+        <h3>CODE APPLES</h3>
+    </div>
+</footer>
 
     <script type = "text/javascript">
-        
-
-        function toggle() {
+            function toggle() {
             const input = document.querySelector('.input-wrapper input')
             const eyeIcon =  document.querySelector('.password-icon')
             const shown =  '<ion-icon onclick="toggle()" class="password-icon on md icon-large hydrated" name="eye" size="large" role="img" aria-label="eye"></ion-icon>'
@@ -208,9 +207,6 @@
             if (eyeIcon.outerHTML === noIcon) {eyeIcon.outerHTML = hidden} 
             document.querySelector('.password-icon').style.color ='rgba(150,150,150,0.88)'
         })
-
     </script>  
 
 </html>
-
-
