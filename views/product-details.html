@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/css/normalize.css">
-    <link rel="stylesheet" href="../public/css/nav-bar.css">
-    <link rel="stylesheet" href="../public/css/product-details.css">
-    <link rel="stylesheet" href="../public/css/footer.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/nav-bar.css">
+    <link rel="stylesheet" href="/css/product-details.css">
+    <link rel="stylesheet" href="/css/footer.css">
     <title>Product Details</title>
+    <!-- FONT AWESOME -->
+    <script src="https://kit.fontawesome.com/95aa681591.js" crossorigin="anonymous"></script>
     <!-- GOOGLE FONTS -->
     <!-- Open Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,11 +54,11 @@
                         <ul class="nav-menu-list">
                             <li>
                                 <i class="fa-solid fa-user"></i>
-                                <a href="">User</a>
+                                <a href="">Cuenta</a>
                             </li>
                             <li>
                                 <i class="fa-solid fa-bag-shopping"></i>
-                                <a href="">Mis compras</a>   
+                                <a href="/shopping-cart">Mis compras</a>   
                             </li>
                             <li>
                                 <i class="fa-solid fa-heart"></i>
@@ -66,7 +68,7 @@
                         <ul class="nav-menu-list">
                             <li>
                                 <i class="fa-solid fa-shop"></i>
-                                <a href="">Tienda</a>
+                                <a href="/all-products">Tienda</a>
                             </li>
                             <li>
                                 <i class="fa-solid fa-shoe-prints"></i>
@@ -88,7 +90,7 @@
             <nav class="nav-menu">
                 <div class="dropdown">
                     <div class="language" tabindex="1"> <!-- El tab index me permite el 'focus' sobre el div -->
-                        <p>Language</p>
+                        <p>Idioma</p>
                         <i class="fa-solid fa-angle-down"></i>
                     </div>
                     <div class="dropdown-menu">
@@ -105,22 +107,43 @@
                     </div>
                 </div>
                 <ul class="nav-menu-list">
+                    <li><a href="/all-products">Tienda</a></li>
                     <li><a href="">Categorias</a></li>
                     <li><a href="">Marcas</a></li>
-                    <li><a href="">Tienda</a></li>
                     <li><a href="">Nosotros</a></li>
                 </ul>
                 <ul class="nav-menu-list">
                     <li>
-                        <!-- <i class="fa-solid fa-user"></i> -->
-                        <a href="">User</a>
-                        
-                    </li>
-                    <li>
-                        <a href="">Mis compras</a>   
+                        <a href="/shopping-cart">Mis compras</a>   
                     </li>
                     <li>
                         <a href="">Favoritos</a>
+                    </li>
+                    <li class="dropdown">
+                        <div class="user" tabindex="1"> <!-- El tab index me permite el 'focus' sobre el div -->
+                            <p>Cuenta</p>
+                            <i class="fa-solid fa-angle-down"></i>
+                        </div>
+                        <div class="dropdown-menu user-menu">
+                            <div class="drop-menu-header">
+                                <p>Mi cuenta</p>
+                            </div>
+                            <div class="profile-div">
+                                <img src="https://i.pinimg.com/564x/4c/95/d4/4c95d42d0c5737bfcde088b81436af9b.jpg" alt="" class="profile-pic">
+                                <p>Hola Messi!</p>
+                            </div>
+                            <ul class="user-list">
+                                <li>
+                                    <a href="/login-form">Iniciar Sesión</a>
+                                </li>
+                                <li>
+                                    <a href="/register-form">Registrarme!</a>
+                                </li>
+                                <li>
+                                    <a href="">Cerrar Sesion</a>
+                                </li>
+                            </ul>
+                        </div>                        
                     </li>
                     <div class="bell-trollie-container">
                         <div class="dropdown">
@@ -128,7 +151,7 @@
                                 <i class="fa-solid fa-bell"></i>
                             </div>
                             <div class="dropdown-menu notification-menu">
-                                <div class="notification-header">
+                                <div class="drop-menu-header">
                                     <p>Notificaciones</p>
                                 </div>
                                 <ul class="notification-list">
@@ -143,7 +166,9 @@
                                 </ul>
                             </div>
                         </div>
-                        <i class="fa-solid fa-cart-shopping"></i>
+                        <a href="/shopping-cart">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
                     </div>
                 </ul>
             </nav>
