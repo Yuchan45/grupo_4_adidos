@@ -89,19 +89,19 @@
             </div>
             <nav class="nav-menu">
                 <div class="dropdown">
-                    <div class="language" tabindex="1"> <!-- El tab index me permite el 'focus' sobre el div -->
-                        <p>Idioma</p>
+                    <div class="language" id="drop-btn">
+                        <p data-dropdown-button>Idioma</p>
                         <i class="fa-solid fa-angle-down"></i>
                     </div>
                     <div class="dropdown-menu">
                         <ul class="languages-list">
                             <li>
                                 <img src="/images/flags/es.svg" alt="" srcset="">
-                                <a href="">Español</a>
+                                <button id="spanish">Español</button>
                             </li>
                             <li>
                                 <img src="/images/flags/gb.svg" alt="" srcset="">
-                                <a href="">Inglés</a>
+                                <button id="english">Inglés</button>
                             </li>
                         </ul>
                     </div>
@@ -120,8 +120,8 @@
                         <a href="">Favoritos</a>
                     </li>
                     <li class="dropdown">
-                        <div class="user" tabindex="1"> <!-- El tab index me permite el 'focus' sobre el div -->
-                            <p>Cuenta</p>
+                        <div class="user" id="drop-btn">
+                            <p data-dropdown-button>Cuenta</p>
                             <i class="fa-solid fa-angle-down"></i>
                         </div>
                         <div class="dropdown-menu user-menu">
@@ -134,21 +134,21 @@
                             </div>
                             <ul class="user-list">
                                 <li>
-                                    <a href="/login-form">Iniciar Sesión</a>
+                                    <button id="login-link">Iniciar Sesión</button>
                                 </li>
                                 <li>
-                                    <a href="/register-form">Registrarme</a>
+                                    <button id="register-link">Registrarme</button>
                                 </li>
                                 <li>
-                                    <a href="">Cerrar Sesion</a>
+                                    <button id="logout-link">Cerrar Sesion</button>
                                 </li>
                             </ul>
                         </div>                        
                     </li>
                     <div class="bell-trollie-container">
                         <div class="dropdown">
-                            <div class="notification" tabindex="1"> <!-- El tab index me permite el 'focus' sobre el div -->
-                                <i class="fa-solid fa-bell"></i>
+                            <div class="notification" id="drop-btn">
+                                <i class="fa-solid fa-bell" data-dropdown-button></i>
                             </div>
                             <div class="dropdown-menu notification-menu">
                                 <div class="drop-menu-header">
@@ -460,5 +460,6 @@
 
     <script src="/js/panels.js"></script>
     <script src="/js/hamburger.js"></script>
+    <script src="/js/nav-bar-tabs.js"></script>
 </body>
 </html>
