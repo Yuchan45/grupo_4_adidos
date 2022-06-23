@@ -10,10 +10,11 @@ const shoppingCartRoutes = require('./routes/shoppingCartRoutes');
 const loginRoutes = require('./routes/loginRoutes');
 const registerRoutes = require('./routes/registerRoutes');
 
-//MIDDLEWARE
+// STATIC PATHS
 const publicPath = path.resolve(__dirname, '../public');
 app.use(express.static(publicPath));
 app.set('port', process.env.PORT || 3001);
+app.set('views', path.resolve(__dirname, './views'));
 
 // SET TEMPLATE ENGINE (EJS)
 app.set('view engine', 'ejs');

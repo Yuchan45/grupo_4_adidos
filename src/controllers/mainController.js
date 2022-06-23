@@ -1,6 +1,7 @@
 const mainController = {
     landing: function(req, res) {
-        res.sendFile('home.html', {root: './src/views/'});
+        //res.sendFile('home.ejs', {root: './src/views/'});
+        res.render('home');
     }
 };
 
