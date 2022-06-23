@@ -2,6 +2,9 @@
 
 ## Grupo: 04-Code Apples
 
+## Herokus por Sprint
+- Sprint 2: https://shoocity-sprint-2.herokuapp.com
+
 ## Descripcion:
 
 ¿Qué productos o servicios brindará nuestro sitio?
