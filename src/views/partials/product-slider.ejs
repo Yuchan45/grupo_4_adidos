@@ -5,186 +5,37 @@
             <i class="fa-solid fa-chevron-left"></i>
         </div>
         <div class="content-container">
+            <% for(let i=0; i<sneakers.length; i++) { %> 
             <article class="product">
                 <div class="prod-header">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <i class="fa-regular fa-heart"></i>
                 </div>
                 <div class="prod-picture">
-                    <img src="https://image.goat.com/transform/v1/attachments/product_template_pictures/images/052/002/689/original/1011B017_401.png.png?action=crop&width=2000" alt="">
+                    <img src="<%= sneakers[i].image %> " alt="">
                 </div>
                 <div class="prod-description">
-                    <h3 class="prod-category">Track & Field</h3>
-                    <h2 class="prod-title">Asics Evo Ride 2</h2>
+                    <h3 class="prod-category"><%= sneakers[i].category %></h3>
+                    <h2 class="prod-title"><%= sneakers[i].brand %></h2>
+                    <h2 class="prod-model"><%= sneakers[i].model %></h2>
+                    <h3 class="prod-colors">Colores</h3>
+                    <div class="colors-wrapper">
+                        <% for(let j=0; j<sneakers[i].color.length; j++ ) { %>
+                        <div class="color" style=<%= 'background-color:' + sneakers[i].color[j] + ';' %> ></div>
+                        <% } %>
+                    </div>
                     <div class="prod-price-desc">
-                        <p>ARS $34.999</p>
-                        <p>5% OFF</p>
+                        <p>ARS $<%- sneakers[i].price %></p>
+                        <% if (sneakers[i].discount !== 0) { %>
+                            <p><%- sneakers[i].discount %>% OFF</p>
+                        <% } %> 
                     </div>
                 </div>
                 <a href="/product-details">
                     <button class="prod-button">VER</button>
                 </a>
             </article>
-            <article class="product">
-                <div class="prod-header">
-                    <i class="fa-regular fa-cart-circle-plus"></i>
-                    <i class="fa-regular fa-heart"></i>
-                </div>
-                <div class="prod-picture">
-                    <img src="https://image.goat.com/transform/v1/attachments/product_template_pictures/images/052/002/689/original/1011B017_401.png.png?action=crop&width=2000" alt="">
-                </div>
-                <div class="prod-description">
-                    <h3 class="prod-category">Track & Field</h3>
-                    <h2 class="prod-title">Asics Evo Ride 3</h2>
-                    <div class="prod-price-desc">
-                        <p>ARS $34.999</p>
-                        <p>5% OFF</p>
-                    </div>
-                </div>
-                <a href="/product-details">
-                    <button class="prod-button">VER</button>
-                </a>
-            </article>
-            <article class="product">
-                <div class="prod-header">
-                    <i class="fa-regular fa-cart-circle-plus"></i>
-                    <i class="fa-regular fa-heart"></i>
-                </div>
-                <div class="prod-picture">
-                    <img src="https://image.goat.com/transform/v1/attachments/product_template_pictures/images/052/002/689/original/1011B017_401.png.png?action=crop&width=2000" alt="">
-                </div>
-                <div class="prod-description">
-                    <h3 class="prod-category">Track & Field</h3>
-                    <h2 class="prod-title">Asics Evo Ride 4</h2>
-                    <div class="prod-price-desc">
-                        <p>ARS $34.999</p>
-                        <p>5% OFF</p>
-                    </div>
-                </div>
-                <a href="/product-details">
-                    <button class="prod-button">VER</button>
-                </a>
-            </article>
-            <article class="product">
-                <div class="prod-header">
-                    <i class="fa-regular fa-cart-circle-plus"></i>
-                    <i class="fa-regular fa-heart"></i>
-                </div>
-                <div class="prod-picture">
-                    <img src="https://image.goat.com/transform/v1/attachments/product_template_pictures/images/052/002/689/original/1011B017_401.png.png?action=crop&width=2000" alt="">
-                </div>
-                <div class="prod-description">
-                    <h3 class="prod-category">Track & Field</h3>
-                    <h2 class="prod-title">Asics Evo Ride 5</h2>
-                    <div class="prod-price-desc">
-                        <p>ARS $34.999</p>
-                        <p>5% OFF</p>
-                    </div>
-                </div>
-                <a href="/product-details">
-                    <button class="prod-button">VER</button>
-                </a>
-            </article>
-            <article class="product">
-                <div class="prod-header">
-                    <i class="fa-regular fa-cart-circle-plus"></i>
-                    <i class="fa-regular fa-heart"></i>
-                </div>
-                <div class="prod-picture">
-                    <img src="https://image.goat.com/transform/v1/attachments/product_template_pictures/images/052/002/689/original/1011B017_401.png.png?action=crop&width=2000" alt="">
-                </div>
-                <div class="prod-description">
-                    <h3 class="prod-category">Track & Field</h3>
-                    <h2 class="prod-title">Asics Evo Ride 6</h2>
-                    <div class="prod-price-desc">
-                        <p>ARS $34.999</p>
-                        <p>5% OFF</p>
-                    </div>
-                </div>
-                <a href="/product-details">
-                    <button class="prod-button">VER</button>
-                </a>
-            </article>
-            <article class="product">
-                <div class="prod-header">
-                    <i class="fa-regular fa-cart-circle-plus"></i>
-                    <i class="fa-regular fa-heart"></i>
-                </div>
-                <div class="prod-picture">
-                    <img src="https://image.goat.com/transform/v1/attachments/product_template_pictures/images/052/002/689/original/1011B017_401.png.png?action=crop&width=2000" alt="">
-                </div>
-                <div class="prod-description">
-                    <h3 class="prod-category">Track & Field</h3>
-                    <h2 class="prod-title">Asics Evo Ride 7</h2>
-                    <div class="prod-price-desc">
-                        <p>ARS $34.999</p>
-                        <p>5% OFF</p>
-                    </div>
-                </div>
-                <a href="/product-details">
-                    <button class="prod-button">VER</button>
-                </a>
-            </article>
-            <article class="product">
-                <div class="prod-header">
-                    <i class="fa-regular fa-cart-circle-plus"></i>
-                    <i class="fa-regular fa-heart"></i>
-                </div>
-                <div class="prod-picture">
-                    <img src="https://image.goat.com/transform/v1/attachments/product_template_pictures/images/052/002/689/original/1011B017_401.png.png?action=crop&width=2000" alt="">
-                </div>
-                <div class="prod-description">
-                    <h3 class="prod-category">Track & Field</h3>
-                    <h2 class="prod-title">Asics Evo Ride 8</h2>
-                    <div class="prod-price-desc">
-                        <p>ARS $34.999</p>
-                        <p>5% OFF</p>
-                    </div>
-                </div>
-                <a href="/product-details">
-                    <button class="prod-button">VER</button>
-                </a>
-            </article>
-            <article class="product">
-                <div class="prod-header">
-                    <i class="fa-regular fa-cart-circle-plus"></i>
-                    <i class="fa-regular fa-heart"></i>
-                </div>
-                <div class="prod-picture">
-                    <img src="https://image.goat.com/transform/v1/attachments/product_template_pictures/images/052/002/689/original/1011B017_401.png.png?action=crop&width=2000" alt="">
-                </div>
-                <div class="prod-description">
-                    <h3 class="prod-category">Track & Field</h3>
-                    <h2 class="prod-title">Asics Evo Ride 9</h2>
-                    <div class="prod-price-desc">
-                        <p>ARS $34.999</p>
-                        <p>5% OFF</p>
-                    </div>
-                </div>
-                <a href="/product-details">
-                    <button class="prod-button">VER</button>
-                </a>
-            </article>
-            <article class="product">
-                <div class="prod-header">
-                    <i class="fa-regular fa-cart-circle-plus"></i>
-                    <i class="fa-regular fa-heart"></i>
-                </div>
-                <div class="prod-picture">
-                    <img src="https://image.goat.com/transform/v1/attachments/product_template_pictures/images/052/002/689/original/1011B017_401.png.png?action=crop&width=2000" alt="">
-                </div>
-                <div class="prod-description">
-                    <h3 class="prod-category">Track & Field</h3>
-                    <h2 class="prod-title">Asics Evo Ride 10</h2>
-                    <div class="prod-price-desc">
-                        <p>ARS $34.999</p>
-                        <p>5% OFF</p>
-                    </div>
-                </div>
-                <a href="/product-details">
-                    <button class="prod-button">VER</button>
-                </a>
-            </article>
+            <% } %> 
         </div>
         <div class="controls" id="prod-next-btn">
             <i class="fa-solid fa-chevron-right"></i>
