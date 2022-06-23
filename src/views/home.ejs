@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %> 
+    <link rel="stylesheet" href="/css/nav-bar.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/home-styles.css">
+    <link rel="stylesheet" href="/css/prod-slider.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+</head>
+<body>
+    <!-- Nav-bar -->
+    <%- include('./partials/nav-bar') %>
+
+   <main>
+        <!-- Panels -->
+        <section>
+            <div class="panels">
+                <div class="panel panel1">
+                    <p>Hey</p>
+                    <p>Just</p>
+                    <p>Dance</p>
+                </div>
+                <div class="panel panel2">
+                    <p>Think</p>
+                    <p>Do</p>
+                    <p>Receive</p>
+                </div>
+                <div class="panel panel3">
+                    <p>Experience</p>
+                    <p>It</p>
+                    <p>Today</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Discover -->
+        <section class="discover">
+            <h1 class="section-title">DISCOVER</h1>
+            <div class="discover-boxes">
+                <a href="/all-products">
+                    <article class="box box1">
+                        <div class="box-pic">
+                            <img src="https://images.vans.com/is/image/VansBrand/sp22_skate_classics_shoe_oldskool?wid=810&fmt=png-alpha" alt="">
+                        </div>
+                        <div class="box-description">
+                            <h2>URBAN</h2>
+                        </div>
+                    </article>
+                </a>
+                <a href="/all-products">
+                    <article class="box box2">
+                        <div class="box-pic">
+                            <img src="https://static.nike.com/a/images/t_default/26165c3d-e7ca-427c-aad1-4b87a593db5e/zoom-rival-d-10-track-field-distance-spikes-V32GbO.png" alt="">
+                        </div>
+                        <div class="box-description">
+                            <h2>Track & Field</h2>
+                        </div>
+                    </article>
+                </a>
+                <a href="/all-products">
+                    <article class="box box3">
+                        <div class="box-pic">
+                            <img src="https://i.ebayimg.com/00/s/MTIwMFgxMjAw/z/b5kAAOSwkcFf07AX/$_58.png" alt="">
+                        </div>
+                        <div class="box-description">
+                            <h2>SNEAKERS</h2>
+                        </div>
+                    </article>
+                </a>
+            </div>
+        </section>
+
+        <!-- PROMOTED PRODUCT -->
+        <section class="promoted-product">
+            <h1 class="section-title">PROMOTED PRODUCT</h1>
+            <div class="promoted-container">
+                <div class="promo-text">
+                    <div>
+                        <h2>GO FOR</h2>
+                        <p>Inspiration Works</p>
+                        <a href="/product-details">
+                            <button class="go-for-btn">Comprar</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="promo-img promo-image1"></div>
+                <div class="promo-img promo-image2"></div>
+            </div>
+        </section>
+
+        <!-- PRODUCTS CARROUSEL -->
+        <%- include('./partials/product-slider') %>
+    </main> 
+
+    <!-- Footer -->
+    <%- include('./partials/footer') %>
+
+    <script src="/js/panels.js"></script>
+    <script src="/js/hamburger.js"></script>
+    <script src="/js/nav-bar-tabs.js"></script>
+</body>
+</html>

@@ -290,9 +290,9 @@
 }
 
 .dropdown .dropdown-menu {
-    visibility: hidden;
-    /* opacity: 0; */
-    /*pointer-events: none;  El menu esta oculto, pero esta. Asi que tengo que deshabilitar que toquen los botones del menu cuando esta oculto */
+    /* visibility: hidden; */
+    opacity: 0;
+    pointer-events: none;  /* El menu esta oculto, pero esta. Asi que tengo que deshabilitar que toquen los botones del menu cuando esta oculto */
     position: absolute;
     left: 0;
     top: 150%;
@@ -307,16 +307,18 @@
 
 /*  *** LANGUAGES TAB *** */
 .nav-menu .dropdown .language {
-    display: flex;
+	display: flex;
+    gap: 5px;
     align-items: flex-end;
+    justify-content: center;
+    align-content: center;
 }
-.dropdown .language:focus > p,
-.language:hover > p {
+.dropdown .language:hover > p {
   color: var(--blue) !important;
 }
 
 .nav-menu .dropdown .language > p {
-  margin: 0 5px 0 0;
+  margin: 0;
   color: var(--white);
   transition: all 0.3s ease;
 }
@@ -339,33 +341,36 @@
   width: 20px;
 }
 
-.dropdown .dropdown-menu .languages-list li a {
+.dropdown .dropdown-menu .languages-list li button {
   text-decoration: none;
   color: var(--black);
   transition: color 0.3s ease;
+  background-color: transparent;
+  border: none;
 }
 
-.dropdown .dropdown-menu .languages-list li a:hover {
+.dropdown .dropdown-menu .languages-list li button:hover {
   color: var(--blue);
 }
 
-.dropdown .language:focus + .dropdown-menu {
-    visibility: visible;
-    /* opacity: 1; */
-    pointer-events: auto !important;
-    transform: translateY(0px);
+.dropdown-active {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: translateY(0px) !important;
+}
+
+.active-tab {
+  color: var(--blue) !important;
 }
 
 /*  *** NOTIFICATIONS TAB *** */
-.dropdown .notification:focus + .dropdown-menu {
-    visibility: visible;
-    /* opacity: 1; */
+/* .dropdown .notification:focus + .dropdown-menu {
+    opacity: 1;
     pointer-events: auto !important;
     transform: translateY(0px);
-}
+} */
 
-.dropdown .notification:focus > svg,
-.notification:hover > svg {
+.dropdown .notification:hover > svg {
   color: var(--blue) !important;
 }
 
@@ -418,16 +423,13 @@
 }
 
 /* USER TABS */
-.dropdown .user:focus + .dropdown-menu {
-    visibility: visible;
-    /* opacity: 1; */
+/* .dropdown .user:focus + .dropdown-menu {
+    opacity: 1;
     pointer-events: auto !important;
     transform: translateY(0px);
+} */
 
-}
-
-.dropdown .user:focus > p,
-.user:hover > p {
+.dropdown .user:hover > p {
     color: var(--blue) !important;
 }
 
@@ -493,15 +495,17 @@
     transition: all .3s ease;
 }
 
-.dropdown .user-menu .user-list li a {
+.dropdown .user-menu .user-list li button {
     margin: auto;
     text-decoration: none;
     color: var(--black);
     font-size: var(--normal);
+    background-color: transparent;
+    border: none;
+    transition: all .2s ease;
 }
 
-.dropdown .user-menu .user-list li:hover {
-    background-color: #0000000a;
+.dropdown .user-menu .user-list li:hover button {
     color: var(--blue);
 }
 
