@@ -12,6 +12,7 @@
   background: #1818189c;
   backdrop-filter: blur(10px);
   z-index: 10;
+  user-select: none;
 }
 
 .header-container .header-bounds {
