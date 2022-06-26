@@ -1,255 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./partials/head') %> 
     <link rel="stylesheet" href="/css/register-form.css">
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/nav-bar.css">
     <link rel="stylesheet" href="/css/footer.css">
-    <!-- FONT AWESOME -->
-    <script src="https://kit.fontawesome.com/95aa681591.js" crossorigin="anonymous"></script>
-    <!-- GOOGLE FONTS -->
-    <!-- Open Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-    <!-- Montserrat -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <title>Register</title>
 </head>
 <body>
-    <header class="header-container">
-        <div class="header-bounds">
-            <div class="nav-search">
-                <a href="/">
-                    <!-- <div class="shoocity-logo">
-                        <img src="/images/logos/logo-simple.png" alt="">
-                    </div> -->
-                    <div class="shoocity-logo">
-                        <h1 class="logo-title">Shoocity</h1>
-                        <h2 class="logo-slogan">Inspiration Works</h2>
-                    </div>
-                </a>
-                <form class="search-bar" action="#" method="POST">
-                    <input class="search-input" type="search" name="search" id="search" placeholder="Buscar productos...">
-                    <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-                </form>
-                <div class="menu" id="ham-menu">
-                    <div class="hamburger-btn-menu">
-                        <div class="ham-inner"></div>
-                    </div>
-                </div>
-                <aside class="aside-menu">
-                    <div class="aside-bounds">
-                        <div class="profile-div">
-                            <img src="https://i.pinimg.com/564x/4c/95/d4/4c95d42d0c5737bfcde088b81436af9b.jpg" alt="" class="profile-pic">
-                        </div>
-                        <ul class="nav-menu-list">
-                            <li>
-                                <i class="fa-solid fa-user"></i>
-                                <a href="">Cuenta</a>
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-bag-shopping"></i>
-                                <a href="/shopping-cart">Mis compras</a>   
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-heart"></i>
-                                <a href="">Favoritos</a>
-                            </li>
-                        </ul>
-                        <ul class="nav-menu-list">
-                            <li>
-                                <i class="fa-solid fa-shop"></i>
-                                <a href="/all-products">Tienda</a>
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-shoe-prints"></i>
-                                <a href="">Marcas</a>
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-tag"></i>
-                                <a href="">Ofertas</a>
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-user-astronaut"></i>
-                                <a href="">Nosotros</a>
-                            </li>
-                        </ul>
-                        <p>Cerrar sesión</p>
-                    </div>
-                </aside>
-            </div>
-            <nav class="nav-menu">
-                <div class="dropdown">
-                    <div class="language" tabindex="1"> <!-- El tab index me permite el 'focus' sobre el div -->
-                        <p>Idioma</p>
-                        <i class="fa-solid fa-angle-down"></i>
-                    </div>
-                    <div class="dropdown-menu">
-                        <ul class="languages-list">
-                            <li>
-                                <img src="/images/flags/es.svg" alt="" srcset="">
-                                <a href="">Español</a>
-                            </li>
-                            <li>
-                                <img src="/images/flags/gb.svg" alt="" srcset="">
-                                <a href="">Inglés</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <ul class="nav-menu-list">
-                    <li><a href="/all-products">Tienda</a></li>
-                    <li><a href="">Categorias</a></li>
-                    <li><a href="">Marcas</a></li>
-                    <li><a href="">Nosotros</a></li>
-                </ul>
-                <ul class="nav-menu-list">
-                    <li>
-                        <a href="/shopping-cart">Mis compras</a>   
-                    </li>
-                    <li>
-                        <a href="">Favoritos</a>
-                    </li>
-                    <li class="dropdown">
-                        <div class="user" tabindex="1"> <!-- El tab index me permite el 'focus' sobre el div -->
-                            <p>Cuenta</p>
-                            <i class="fa-solid fa-angle-down"></i>
-                        </div>
-                        <div class="dropdown-menu user-menu">
-                            <div class="drop-menu-header">
-                                <p>Mi cuenta</p>
-                            </div>
-                            <div class="profile-div">
-                                <img src="https://i.pinimg.com/564x/4c/95/d4/4c95d42d0c5737bfcde088b81436af9b.jpg" alt="" class="profile-pic">
-                                <p>Hola Messi!</p>
-                            </div>
-                            <ul class="user-list">
-                                <li>
-                                    <a href="/login-form">Iniciar Sesión</a>
-                                </li>
-                                <li>
-                                    <a href="/register-form">Registrarme!</a>
-                                </li>
-                                <li>
-                                    <a href="">Cerrar Sesion</a>
-                                </li>
-                            </ul>
-                        </div>                        
-                    </li>
-                    <div class="bell-trollie-container">
-                        <div class="dropdown">
-                            <div class="notification" tabindex="1"> <!-- El tab index me permite el 'focus' sobre el div -->
-                                <i class="fa-solid fa-bell"></i>
-                            </div>
-                            <div class="dropdown-menu notification-menu">
-                                <div class="drop-menu-header">
-                                    <p>Notificaciones</p>
-                                </div>
-                                <ul class="notification-list">
-                                    <li>
-                                        <img src="/images/flags/es.svg" alt="" srcset="">
-                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus, error?</p>
-                                    </li>
-                                    <li>
-                                        <img src="/images/flags/gb.svg" alt="" srcset="">
-                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, maxime?</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <a href="/shopping-cart">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                        </a>
-                    </div>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <!-- Nav-bar -->
+    <%- include('./partials/nav-bar') %>
 
-    <main>
-        <div class="control-form">Registro</div>
-        <form action="/login-form" method="GET" class="create-form">
-            <div class="control-form">
-                <label for="registerForm">
-                    <input type="text" name="nombre" placeholder="Nombre*">
-                </label>
-            </div>
-            <div class="control-form">
-                <label for="registerForm">
-                    <input type="text" name="Apellido" placeholder="Apellido*">
-                </label>
-            </div>
-            <div class="control-form">                
-                <label for="registerForm">
-                    <input type="email" name="email" placeholder="Correo Electronico*">
-                </label>
-            </div>
-            <div class="control-form"> 
-                <label for="registerForm">
-                    <input type="password" name="password" placeholder="Contraseña*">
-                </label>
-            </div>
-            <div class="control-form">
-                <label for="registerForm">
-                    Fecha de Nacimiento
-                    <input type="date" name="nombre" value="1992-09-11" min="14-6-2004">
-                </label>
-            </div>
-                <div class="texts">Conseguí una recompensa de miembro de Shoocity cada año por tu cumpleaños.</div>
-            <div class="control-form">
-                <label for="registerForm">
-                    Pais de Nacimiento
-                    <select>Pais
-                    <option value="ar">Argentina</option>
-                    <option value="bz">Brazil</option>
-                    <option value="ch">Chile</option>
-                    <option value="vz">Venezuela</option>
-                    </select> 
-                </label>
-            </div>
-            <div class="control-form-sexo">
-                <label class="control-form-sexo" for="sexo">
-                    Hombre
-                    <input type="checkbox" value="sexo">
-                </label>
-                <label class="control-form-sexo">
-                    Mujer
-                    <input type="checkbox" value="sexo">
-                </label>
-            </div>
-            <div class="control-form">
-                <label class="texts">
-                    <input type="radio" value="Terminos">
-                    Registrate para recibir correos electrónicos de Shoocity con actualizaciones de productos, ofertas y beneficios como
-miembro.
-                </label>
-            </div>
-            <div class="control-form">
-                <a href="/">
-                    <button class="button-form" type="submit" value="Unite">Unite</button>
-                </a>
-                <p>¿Ya sos miembro? <a href="/login-form">Inicia Sesión</a></p>
-            </div>
-        
+    <main class="main-register">
+        <div class="register-wrapper">
+            <h1 class="form-title">Registrate</h1>
+            <h4 class="form-subtitle ">Sé parte de Shoocity</h4>
+            <form action="#" method="POST">
+                <div class="register-form-left">
+                    <h3 class="register-label">Datos</h3>
+                    <div class="form-group first-last-name">
+                        <label for="name">Nombre y apellido</label>
+                        <input type="text" name="name" id="name" required>
+                    </div>
+                    <div class="form-group user">
+                        <label for="user">Usuario</label>
+                        <input type="text" name="user" id="user" required>
+                    </div>
+                    <div class="form-group email">
+                        <label for="email">E-mail</label>
+                        <input type="email" name="email" id="email" required>
+                    </div>
+                    <div class="form-group domicilio">
+                        <label for="address">Domicilio</label>
+                        <input type="text" name="address" id="address" required>
+                    </div>
+                    <h3 class="register-label">Fecha de nacimiento</h3>
+                    <div class="form-group">
+                        <input type="date" id="birthday" name="birthday" required>
+                    </div>
+                </div>
+                <div class="register-form-right">
+                    <h3 class="register-label">Perfil de usuario</h3>
+                    <div class="radio-list">
+                        <div class="radio-group">
+                            <input type="radio" id="buySell" name="buySell" value="bubuySellyer" checked>
+                            <label for="buySell">Comprador</label>
+                        </div>
+                        <div class="radio-group">
+                            <input type="radio" id="buySell" name="buySell" value="buySell">
+                            <label for="buySell">Vendedor</label>
+                        </div>
+                    </div>
+                    <h3 class="register-label">Genero</h3>
+                    <div class="radio-list">
+                        <div class="radio-group">
+                            <input type="radio" id="gender" name="gender" value="gender" checked>
+                            <label for="gender">Hombre</label>
+                        </div>
+                        <div class="radio-group">
+                            <input type="radio" id="gender" name="gender" value="gender">
+                            <label for="gender">Mujer</label>
+                        </div>
+                        <div class="radio-group">
+                            <input type="radio" id="gender" name="gender" value="gender">
+                            <label for="gender">Otro</label>
+                        </div>
+                    </div>
+                    <h3 class="register-label">País de nacimiento</h3>
+                    <select class="country-combobox" name="country" id="country">
+                        <option value="arg">Argentina</option>
+                        <option value="brz">Brasil</option>
+                        <option value="chl">Chile</option>
+                        <option value="per">Peru</option>
+                        <option value="blv">Bolivia</option>
+                        <option value="uru">Uruguay</option>
+                    </select>
+                    <h3 class="register-label">Intereses</h3>
+                    <div class="checkbox-list">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="sports" name="sports" value="sports">
+                            <label for="sports">Deportes</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="fashion" name="fashion" value="fashion">
+                            <label for="fashion">Moda</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="vintage" name="vintage" value="vintage">
+                            <label for="vintage">Vintage</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="health" name="health" value="health">
+                            <label for="health">Vida sana</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="checkbox-list mail-spam-checkbox">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="mailspam" name="mailspam" value="mailspam">
+                        <label for="mailspam" class="mail-spam">Recibir correos electrónicos de Shoocity con actualizaciones de productos, ofertas y otros beneficios como Miembro!</label>
+                    </div>
+                </div>
+                <div class="send-container">
+                    <div class="error-message-container">
+                        <label class="error-msg">Mensaje de error!</label>
+                    </div>
+                    <button type="submit" class="submit-btn">Crear cuenta</button>
+                </div>
+            </form>
+        </div>
     </main>
 
 
-    <footer>
-        <div class="footer-bounds">
-            <div class="first-line">
-                <p>Made with</p>
-                <i class="fa-solid fa-heart"></i>
-                <p>By</p> 
-            </div>
-            <h3>CODE APPLES</h3>
-        </div>
-    </footer>
+    <!-- Footer -->
+    <%- include('./partials/footer') %>
 
+    <!-- Scripts -->
+    <script src="/js/hamburger.js"></script>
+    <script src="/js/nav-bar-tabs.js"></script>
 </body>
 </html>
