@@ -31,6 +31,13 @@ main {
     font-weight: bold;
 }
 
+.descriptionDetailContainer {
+    width: 30%;
+    background-color: rgb(234, 234, 234);
+    border-radius: 6px;
+    margin-left: 60%;
+}
+
 .buyButtonDetail {
     width: 70%;
     height: 50px;
@@ -96,6 +103,10 @@ main {
     }
     .detailShoePrice {
         margin-top: 5px;
+    }
+    .descriptionDetailContainer {
+        margin-left: 5%;
+        margin-top: -50px;
     }
 }
 
