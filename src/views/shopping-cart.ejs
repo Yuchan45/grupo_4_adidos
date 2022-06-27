@@ -1,103 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('./partials/head') %> 
-    <link rel="stylesheet" href="/css/nav-bar.css" />
-    <link rel="stylesheet" href="/css/footer.css" />
-    <link rel="stylesheet" href="/css/prod-slider.css" />
-    <link rel="stylesheet" href="/css/shopping-cart.css" />
-    <link rel="stylesheet" href="/css/normalize.css" />
-    <title>Shopping cart</title>
-  </head>
-  <body>
-    <!-- Nav-bar -->
-    <%- include('./partials/nav-bar') %>
-    <main>
-      <div class="cart-main">
-        <div class="cart-left">
-          <div class="cart-header">
-            <h1 class="header-tittle">TU CARRITO</h1>
-            <p class="header-text">TOTAL (x productos) $X,XXXX</p>
-            <p class="header-text">
-              Los productos seleccionados de Shocity no estan reservados.
-            </p>
-          </div>
-          <a href="/" class="cart-banner">
-            <p class="banner-text">CONTINUA COMPRANDO</p>
-            <p class="banner-item">></p>
-          </a>
-          <div class="cart-item-list">
-            <div class="item">
-              <img scr="" class="item-image" />
-              <div class="item-details">
-                <h3 class="item-tittle">Zapatilla X para correr</h3>
-                <p class="item-price">$XXXXXX</p>
-                <p class="item-stock">Stock: 10</p>
-                <select class="item-quantity" name="quantity">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                </select>
-                <p class="item-button">Eliminar producto</p>
-              </div>
+        <head>
+        <%- include('./partials/head') %> 
+        <link rel="stylesheet" href="/css/nav-bar.css" />
+        <link rel="stylesheet" href="/css/footer.css" />
+        <link rel="stylesheet" href="/css/prod-slider.css" />
+        <link rel="stylesheet" href="/css/shopping-cart.css" />
+        <link rel="stylesheet" href="/css/normalize.css" />
+        <title>Shopping cart</title>
+    </head>
+    <body>
+        <!-- Nav-bar -->
+        <%- include('./partials/nav-bar') %>
+        <main>
+            <div class="cart-main">
+                <div class="cart-left">
+                    <div class="cart-header">
+                        <h1 class="header-tittle">TU CARRITO</h1>
+                        <p class="header-text">TOTAL (<%= shopCartSneakers.length %>  productos)</p>
+                        <p class="header-text">
+                            Los productos seleccionados de Shocity no estan reservados.
+                        </p>
+                    </div>
+                    <a href="/" class="cart-banner">
+                        <p class="banner-text">CONTINUA COMPRANDO</p>
+                        <p class="banner-item">></p>
+                    </a>
+					<% for(let i=0; i<shopCartSneakers.length; i++) { %>
+					<div class="cart-item-list">
+						<div class="item">
+							<div class="item-picture">
+								<img src="<%= shopCartSneakers[i].image %> " alt="">
+							</div>
+							<div class="item-details">
+								<h3 class="item-tittle"> <%= shopCartSneakers[i].brand + " - '" + shopCartSneakers[i].model + "'" %> </h3>
+								<p class="item-price"> <%= "ARS$" + shopCartSneakers[i].price %> </p>
+								<p class="item-stock"> <%="Stock: " + shopCartSneakers[i].stock %> </p>
+								<select class="item-quantity" name="quantity">
+									<% for(let j=0; j<shopCartSneakers[i].stock; j++) { %>
+										<option value="<%= j+1 %>"> <%= j+1 %>  </option>
+									<% } %>
+									
+								</select>
+								<p class="item-button">Eliminar producto</p>
+							</div>
+						</div>
+					</div>
+					<% } %>
+                </div>
+                <div class="cart-right">
+                    <div class="order-summery">
+                        <h2 class="order-tittle">RESUMEN DEL PEDIDO</h2>
+                        <div class="order-details">
+                            <p class="order-text">X PRODUCTO</p>
+                            <p class="order-text">$ XXXXXX</p>
+                        </div>
+                        <div class="order-details">
+                            <p class="order-text">ENTREGA</p>
+                            <p class="order-text">GRATIS</p>
+                        </div>
+                        <div class="order-details">
+                            <p class="order-text-bold">TOTAL</p>
+                            <p class="order-text-bold">$ XXXXXX</p>
+                        </div>
+                    </div>
+                    <button class="cart-button">Comprar</button>
+                </div>
             </div>
-            <div class="item">
-              <img scr="" class="item-image" />
-              <div class="item-details">
-                <h3 class="item-tittle">Zapatilla X para correr</h3>
-                <p class="item-price">$XXXXXX</p>
-                <p class="item-stock">Stock: 10</p>
-                <select class="item-quantity" name="quantity">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                </select>
-                <p class="item-button">Eliminar producto</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="cart-right">
-          <div class="order-summery">
-            <h2 class="order-tittle">RESUMEN DEL PEDIDO</h2>
-            <div class="order-details">
-              <p class="order-text">X PRODUCTO</p>
-              <p class="order-text">$ XXXXXX</p>
-            </div>
-            <div class="order-details">
-              <p class="order-text">ENTREGA</p>
-              <p class="order-text">GRATIS</p>
-            </div>
-            <div class="order-details">
-              <p class="order-text-bold">TOTAL</p>
-              <p class="order-text-bold">$ XXXXXX</p>
-            </div>
-          </div>
-          <button class="cart-button">Comprar</button>
-        </div>
-      </div>
-      <!-- PRODUCTS CARROUSEL -->
-      <%- include('./partials/product-slider') %>
-    </main>
+            <!-- PRODUCTS CARROUSEL -->
+            <%- include('./partials/product-slider') %>
+        </main>
 
-    <!-- Footer -->
-    <%- include('./partials/footer') %>
+        <!-- Footer -->
+        <%- include('./partials/footer') %>
 
-    <script src="/js/panels.js"></script>
-    <script src="/js/hamburger.js"></script>
-  </body>
+        <script src="/js/panels.js"></script>
+        <script src="/js/hamburger.js"></script>
+    </body>
 </html>
