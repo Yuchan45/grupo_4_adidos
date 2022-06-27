@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <!-- <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script> -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,12 +32,12 @@
 
 <body>
     <div class="login-page">
-     <!-- Inicio Nav-bar -->
-     <%- include('./partials/nav-bar') %>
-     <!-- Fin Nav-bar -->
+      <!-- Inicio Nav-bar -->
+      <%- include('./partials/nav-bar') %>
+      <!-- Fin Nav-bar -->
 
-     <!-- Inicio Main (página) -->
-	 <main>
+      <!-- Inicio Main (página) -->
+      <main>
 		<div class="color"></div>
 		<div class="color"></div>
 		<div class="color"></div>
@@ -48,38 +49,25 @@
 			<div class="square" style="--i:4;"></div>
 			 <div class="container">
 			 	<div class="form">
-			 		<h2>Ingresar</h2>
+			 		<h2>Recuperar contraseña</h2>
 			 		<form >
-            <div class="inputBox">
-              <input type="text"  placeholder="Usuario" name="usuario" />
-            </div>
-            <div class="inputBox">
-              <input maxlength="25" type="password" class="controls" name="contrasena" value="" placeholder="Contraseña" id="password" data-lpignore="true">
-              <ion-icon onclick="toggle()" class="password-icon"	id ="eye-icon" name="eye-off" size="large" ></ion-icon>
-            </div> 
-          <br>
-          <label>
-            <input type="checkbox">
-            <span></span>
-            <small>Recuérdame</small>
-          </label>
-            <div class="inputBox">
-			    <input type="submit" value="Enviar"/>
-			</div>
-			<p class="forget">
-              <a href="recover">¿Olvidaste tu contraseña?</a>
-            </p>
-            <br>
-            <p class="forget">
-              <a href="register-form">Registrate en Shoocity?</a>
-            </p>
-         </form>
+			 			<div class="inputBox">
+			 				<input type="text" placeholder="Correo electronico"/>
+			 			</div>
+			 			<div class="inputBox">
+			 				<input type="submit" value="Enviar" />
+			 			</div>
+			 			<p class="forget">
+			 				Ya tienes una cuenta? <a href="login-form">Iniciar sesión</a>
+			 			</p>
+			 		</form>
 			 	</div>
 			 </div>
 		</div>
 	</main>
-    <!-- Fin Main (página) -->
-      
+      <!-- Fin Main (página)-->
+
+    
         <!-- Inicio Footer -->
         <%- include('./partials/footer') %>
 
@@ -89,15 +77,6 @@
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
         <!-- Fin Footer -->
-
-	<script type="text/javascript">
-		function toggle() {
-			document.querySelector("#eye-icon").name === "eye" ? document.querySelector("#eye-icon").name = "eye-off" : document.querySelector("#eye-icon").name = "eye"
-			document.querySelector("#password").type === "password" ? document.querySelector("#password").type = "text" : document.querySelector("#password").type = "password"
-		}
-
-	</script>
-
 
 </body>
 </html>

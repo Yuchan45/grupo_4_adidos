@@ -9,6 +9,7 @@ const prodDetailsRoutes = require('./routes/productDetails');
 const shoppingCartRoutes = require('./routes/shoppingCartRoutes');
 const loginRoutes = require('./routes/loginRoutes');
 const registerRoutes = require('./routes/registerRoutes');
+const recoverRoutes = require('./routes/recoverRoutes');
 
 // STATIC PATHS
 const publicPath = path.resolve(__dirname, '../public');
@@ -27,6 +28,7 @@ app.use('/product-details', prodDetailsRoutes);
 app.use('/shopping-cart', shoppingCartRoutes);
 app.use('/login-form', loginRoutes);
 app.use('/register-form', registerRoutes);
+app.use('/recover', recoverRoutes);
 
 
 // LISTEN
