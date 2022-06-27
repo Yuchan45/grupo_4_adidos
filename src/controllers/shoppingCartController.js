@@ -4,10 +4,14 @@ const shopCartSneakers = require('../data/shopCartSneakers');
 
 const shoppingCartController = {
     landing: function(req, res) {
-        //res.sendFile('shopping-cart.html', {root: './src/views/'});
+        let total = 0;
+        for (let i=0; i<shopCartSneakers.length; i++) {
+            total += shopCartSneakers[i].price;
+        }
         res.render('shopping-cart', {
             sneakers: sliderSneakers,
-            shopCartSneakers: shopCartSneakers
+            shopCartSneakers: shopCartSneakers,
+            total: total
         });
     }
 };
