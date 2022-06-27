@@ -13,12 +13,12 @@ const prodDetailsController = {
                 productoEncontrado = sneakersData[i];
             }
         }
-        
+
         if (!productoEncontrado){
             res.status(404).send("No se encuentra el producto");
         }
         else {
-            res.render( "product-details",  {sneakers: productoEncontrado});
+            res.render( "product-details",  {sneakerEncontrado: productoEncontrado, sneakers: sneakersData});
         }
 
     }

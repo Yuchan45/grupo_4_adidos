@@ -16,11 +16,15 @@
 
     <main>
         <img class="imgDetails"
-            src="<%= sneakers.image %>"alt="">
+            src="<%= sneakerEncontrado.image %>"alt="">
         <div class="detailRightContainer">
             <div class="DetailInfo">
-                <p class="detailShoeName">nombre: <%= sneakers.model %></p>
-                <p class="detailShoePrice">precio: <%= sneakers.price %></p>
+                <p class="detailShoeName"><%= sneakerEncontrado.model %></p>
+                <p class="detailShoePrice">$<%= sneakerEncontrado.price %> 
+                    <% if (sneakerEncontrado.discount !== 0) { %>
+                        <span style="color: green;";>%<%= sneakerEncontrado.discount %></span>
+                    <% } %> 
+                </p>
             </div>
 
             <select class="sizeButtonDetail" size="1">
@@ -38,9 +42,10 @@
             </button>
         </div>
 
-        
-
     </main>
+    <div class="descriptionDetailContainer">
+        <%= sneakerEncontrado.description %>
+    </div>
 
             <!-- PRODUCTS CARROUSEL -->
         <%- include('./partials/product-slider') %>
