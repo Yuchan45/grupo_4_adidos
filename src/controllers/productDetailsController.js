@@ -4,6 +4,12 @@ const prodDetailsController = {
     landing: function(req, res) {
         res.render('product-details', {sneakers: sneakersData});
     },
+    login: function(req, res) {
+        res.render('login-form');
+    },
+    register: function(req, res) {
+        res.render('register-form');
+    },
     obtenerPorId: (req, res) => {
         const productId = parseInt(req.params.id, 10);
         let productoEncontrado; 
@@ -16,9 +22,11 @@ const prodDetailsController = {
 
         if (!productoEncontrado){
             res.status(404).send("No se encuentra el producto");
-        }
-        else {
-            res.render( "product-details",  {sneakerEncontrado: productoEncontrado, sneakers: sneakersData});
+        } else {
+            res.render( "product-details",  {
+                sneakerEncontrado: productoEncontrado, 
+                sneakers: sneakersData
+            });
         }
 
     }

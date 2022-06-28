@@ -1,9 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const prodDetailsController = require('../controllers/productDetailsController');
+const {
+    landing,
+    login,
+    register,
+    obtenerPorId
+} = require("../controllers/productDetailsController");
 
-router.get('/', prodDetailsController.landing);
-router.get('/:id', prodDetailsController.obtenerPorId);
+router.get('/', landing);
+router.get('/login-form', login);
+router.get('/register-form', register);
+router.get('/:id', obtenerPorId);
 
 
 module.exports = router;
