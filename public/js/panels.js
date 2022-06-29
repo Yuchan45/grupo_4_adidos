@@ -5,5 +5,5 @@ function toggleOpenActive() {
     this.classList.toggle('open');
     setTimeout(()=> {
         this.classList.toggle('open-active');
-    }, 500)
+    }, 200)
 }

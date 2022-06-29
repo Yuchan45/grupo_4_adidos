@@ -82,7 +82,8 @@
   align-content: center;
   /* color: var(--onyx); */
   color: var(--white);
-  font-weight: 300;
+  font-weight: 400;
+  font-size: var(--normal) !important;
 }
 
 .nav-search .search-bar {
