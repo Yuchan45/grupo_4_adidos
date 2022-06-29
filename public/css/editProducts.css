@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-
 * {
 	margin: 0;
 	padding: 0;
@@ -10,243 +8,325 @@ body {
 	font-family: arial;
 }
 
-.login-page {
+body{
+	overflow: hidden;
+}
+
+main {
+	display: flex;
+   flex: 1;
+	justify-content: center;
+	align-items: center;
+	background: linear-gradient(to bottom,#000000,#dff1ff);
+}
+
+main .color{
+	position: absolute;
+	filter: blur(150px);
+}
+
+main .color:nth-child(1){
+top: -350px;
+width: 600px;
+height: 600px;
+background: #ff359b;
+}
+
+main .color:nth-child(2){
+	top: 150px;
+   left: -125px;
+   width: 120px;
+   height: 120px;
+   z-index: 2;
+}
+
+main .color:nth-child(3){
+	bottom: 50px;
+	right: 100px;
+	width: 300px;
+	height: 300px;
+	background: #00d2ff;
+}
+.editProducts-page {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
 }
 
-.form-login {
-	width: 400px;
-	height: 360px;
-	background: rgba(24, 24, 24, 1);
-	margin: auto;
-	box-shadow: 7px 13px 37px #000;
-	padding: 20px 30px;
-	border-top: 4px solid #017bab;
-	color: white;
+.box{
+	position: relative;
 }
 
-.form-login h5 {
-	margin: 0;
-	text-align: center;
-	height: 40px;
-	margin-bottom: 30px;
-	border-bottom: 1px solid;
-	font-size: 20px;
+.box .square{
+	position: absolute;
+	backdrop-filter:blur(5px);
+	box-shadow: 0 25px 45px rgba(0,0,0,0.1);
+	border: 1px solid rgba(255,255,255,0.5);
+	border-right: 1px solid rgba(255,255,255,0.2);
+	border-bottom: 1px solid rgba(255,255,255,0.2);
+	background: rgba(255,255,255,0.1);
+	border-radius: 10px; 
+	animation:animate 10s linear infinite;
+	animation-delay:calc(-1s * var(--i));
 }
 
-.controls {
-	width: 100%;
-	border: 1px solid #017bab;
-	margin-bottom: 15px;
-	padding: 11px 10px;
-	background: #1818189c;
-	font-size: 14px;
-	font-weight: normal;
-	color: white;
-	border-radius: 5px;
+@keyframes animate
+{
+   0%,100%
+   {
+	   transform: translateY(-40px);
+   }
+   50%
+   {
+	   transform: translateY(40px);
+   }
 }
 
-.buttons {
-	width: 100%;
-	height: 40px;
-	background: #017bab;
-	border: none;
-	color: white;
-	margin-bottom: 16px;
-	transition: all 0.5s;
-	cursor: pointer;
-	border-radius: 5px;
+.box .square:nth-child(1){
+   top: -50px;
+   right: -95px;
+   width: 100px;
+   height: 100px;
 }
 
-.form-section {
+.box .square:nth-child(2){
+   top: 150px;
+   left: -115px;
+   width: 120px;
+   height: 120px;
+   z-index: 2;
+}
+
+.box .square:nth-child(3){
+   bottom: 50px;
+   right: -78px;
+   width: 80px;
+   height: 80px;
+   z-index: 2;
+}
+
+
+.box .square:nth-child(4){
+   bottom: -80px;
+   left: 100px;
+   width: 50px;
+   height: 50px;
+}
+
+.box .square:nth-child(5){
+   top: -80px;
+   left: 100px;
+   width: 60px;
+   height: 60px;
+}
+/* contenedor formulario padre - para configurar ancho y alto*/
+.container-editProducts{
+	position: relative;
+	width: 760px;
+	min-height: 320px;
+	background: rgba(255,255,255,0.1);
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	backdrop-filter:blur(5px);
+	box-shadow: 0 25px 45px rgba(0,0,0,0.1);
+	border: 1px solid rgba(255,255,255,0.5);
+	border-right: 1px solid rgba(255,255,255,0.2);
+	border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+/*div contenedor de formulario+foto (padre)*/
+.EditProductform-container {
 	display: flex;
 	flex: 1;
+	flex-direction: row;
 }
 
-.form-login p {
-	height: 40px;
+/*div contenedor de formulario+foto (hijos)*/
+.EditProductform-children {
+	display: flex;
+	flex: 1;
+	justify-content: center;
+}
+
+.EditProductform-children form{
+	width: 100%;
+}
+
+/*foto de producto*/
+.imgDetails {
+	border-radius: 16px;
+	-webkit-box-shadow: 0px 0px 13px 3px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 0px 13px 3px rgba(0,0,0,0.2);
+	box-shadow: 0px 0px 13px 3px rgba(0,0,0,0.2);
+}
+
+/*formulario completo*/
+.Editform {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	padding: 40px;
 	text-align: center;
 }
 
-.form-login a {
-	color: white;
-	text-decoration: none;
-	font-size: 14px;
-}
-
-.form-login a:hover {
-	text-decoration: underline;
-}
-
-.icon {
-	position: absolute;
-	height: 60%;
-	top: 50%;
-	right: 8px;
-	transform: translateY(-50%);
-	opacity: 0.3;
-	cursor: pointer;
-}
-
-.icon:hover {
-	opacity: 0.8;
-}
-
-.input-wrapper {
+.Editform h2{
 	position: relative;
-	display: flex;
-	flex-direction: row;
-	width: 340px;
+	color: #fff;
+	font-size: 24px;
+	font-weight: 600;
+	letter-spacing: 1px;
+	margin-bottom: 40px;
 }
 
-.password-icon {
+.Editform h2::before{
+	content: '';
 	position: absolute;
-	right: 10px;
-	height: '100%';
+	left: 13%;
+	bottom: -10px;
+	width: 74%;
+	height: 4px;
+	background: #fff;
+}
+
+.Editform .inputBox
+{
+	width: 100%;
+	text-align: center;
+	margin-top: 20px;
+	position: relative;
+}
+
+.Editform .inputBox input, .Editform .inputBox select
+{
+	width: 86%;
+	background: rgba(255,255,255,0.2);
+	border: none;
+	outline: none;
+	padding: 10px 20px;
+	border-radius: 30px;
+	border: 1px solid rgba(255,255,255,0.5);
+ 	border-right: 1px solid rgba(255,255,255,0.2);
+ 	border-bottom: 1px solid rgba(255,255,255,0.2);
+ 	font-size: 16px;
+ 	letter-spacing: 1px;
+ 	color: #fff;
+ 	box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+
+.Editform .inputBox input::placeholder, .Editform .inputBox select::placeholder {
+	color: #fff;
+}
+
+.Editform .inputBox input[type="submit"]{
+	background: #fff;
+	color: #666;
+	max-width: 200px;
 	cursor: pointer;
-	align-self: center;
+	margin-bottom: 20px;
+	font-weight: 600px;
+
 }
 
-.on {
-	margin-top: -15.5px;
+.Editform .inputBox input[type="submit"]:hover{
+	background: #eb80bf;
+	color: #fff;
+
 }
 
-.off {
-	margin-top: -14px;
+/*clase para select*/
+.select {
+	background-color:rgb(170, 170, 170);
 }
 
-.hidden {
-	display: none;
+.select::-ms-expand {
+	margin: 0 5px 0 5px;
+	border-radius: 0;
 }
 
-.input-icon {
-	color: #191919;
-	position: absolute;
-	width: 20px;
-	height: 20px;
-	left: 12px;
-	top: 45%;
-	transform: translateY(-50%);
+/*Inicio label*/
+label {
+    cursor: default;
+	padding: 0 5px;
+    margin-left: 10px;
+    display: block;
+    font-size: var(--small);
+    position: absolute;
+    top: -7px;
+	left: 25px;
+	background-color: rgba(166, 168, 181,0.8);
+	border-radius: 10px;
+	border: 1px solid rgba(255,255,255,0.5);
+	color: #fff;
+	letter-spacing: 1px;
+	z-index: 100000;
 }
+/*Fin label*/
 
-.input-icon.password {
-	left: unset;
-	right: 12px;
-	top: 45%;
-	position: absolute;
-}
-
-input[type='password']::-ms-reveal,
-input[type='password']::-ms-clear {
-	display: none;
-}
-
-.buttons:hover {
-	color: rgba(255, 255, 255, 1) !important;
-	box-shadow: 0 4px 16px rgba(49, 138, 172, 1);
-	transition: all 0.2s ease;
+/*adjuntar imagen*/
+.file-select {
+	position: relative;
+	display: inline-block;
   }
-
-  .overlay {
-	background: rgba(0,0,0,.3);
-	position: fixed;
-	top: 0;
-	bottom: 0;
+  
+  .file-select::before {
+	background-color: #fff;
+	color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 3px;
+	content: 'Seleccionar'; /* texto por defecto */
+	position: absolute;
 	left: 0;
 	right: 0;
-	align-items: center;
-	justify-content: center;
-	display: flex;
-	visibility: hidden;
-}
+	top: 0;
+	bottom: 0;
+  }
+  
+  .file-select input[type="file"] {
+	opacity: 0;
+	width: 200px;
+	height: 32px;
+	display: inline-block;
+  }
+  
+  #src-file1::before {
+	content: 'Seleccionar Archivo 1';
+  }
+  
+  #src-file2::before {
+	content: 'Seleccionar Archivo 2';
+  }
 
-.overlay.active {
-	visibility: visible;
-}
-
-.popup {
-	background: #F8F8F8;
-	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
-	border-radius: 3px;
-	font-family: 'Montserrat', sans-serif;
-	padding: 20px;
-	text-align: center;
-	width: 600px;
+  .file-select input[type="submit"]{
+		background: #fff;
+		color: #666;
+		max-width: 200px;
+		cursor: pointer;
+		margin-bottom: 20px;
+		font-weight: 600px;
 	
-	transition: .3s ease all;
-	transform: scale(0.7);
-	opacity: 0;
-}
+	}
+	
+	.Editform .inputBox input[type="submit"]:hover{
+		background: #eb80bf;
+		color: #fff;
+	
+	}
 
-.popup .btn-cerrar-popup {
-	font-size: 16px;
-	line-height: 16px;
-	display: block;
-	text-align: right;
-	transition: .3s ease all;
-	color: #BBBBBB;
-}
+	.file-select:hover::before {
+		background-color: #eb80bf;
+		color: white;
+	}
 
-.popup .btn-cerrar-popup:hover {
-	color: #000;
-}
-
-.popup h3 {
-	font-size: 36px;
-	font-weight: 600;
-	margin-bottom: 10px;
-	opacity: 0;
-}
-
-.popup h4 {
-	font-size: 26px;
-	font-weight: 300;
-	margin-bottom: 40px;
-	opacity: 0;
-}
-
-.popup form .contenedor-inputs {
-	opacity: 0;
-}
-
-.popup form .contenedor-inputs input {
-	width: 100%;
-	margin-bottom: 20px;
-	height: 52px;
-	font-size: 18px;
-	line-height: 52px;
-	text-align: center;
-	border: 1px solid #BBBBBB;
-}
-
-.popup form .btn-submit {
-	padding: 0 20px;
-	height: 40px;
-	line-height: 40px;
-	border: none;
-	color: #fff;
-	background: #5E7DE3;
-	border-radius: 3px;
-	font-family: 'Montserrat', sans-serif;
-	font-size: 16px;
-	cursor: pointer;
-	transition: .3s ease all;
-}
-
-.popup form .btn-submit:hover {
-	background: rgba(94,125,227, .9);
-}
-
-/*ICON settings*/
-.password-icon {
-	cursor: pointer;
-	color: rgba(0, 0, 0, 0.88);
-	right: 16%;
-	align-items: center;
-	content: icon;
-	top: 4px;
-	right: 33px;
-	opacity: 60%;
-}
+	/* Inicio eliminar decoradores de número en inputbox de Precio*/
+	input[type=number]::-webkit-inner-spin-button,
+	input[type=number]::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+		}
+	input[type=number] { -moz-appearance:textfield; }
+	/* Fin eliminar decoradores de número en inputbox de Precio*/

@@ -2,42 +2,23 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
-    <link rel="icon" href="/images/logos/shoocity-fav.png" type="image/x-icon">
+  <%- include('./partials/head') %> 
     <link rel="stylesheet" href="/css/nav-bar.css">
     <link rel="stylesheet" href="/css/footer.css">
-    <link rel="stylesheet" href="/css/login-form.css">
     <link rel="stylesheet" href="/css/home-styles.css">
     <link rel="stylesheet" href="/css/prod-slider.css">
     <link rel="stylesheet" href="/css/normalize.css">
-    <link rel="stylesheet" href="/css/recover.css">
     <link rel="stylesheet" href="/css/editProducts.css">
-    <!-- FONT AWESOME -->
-    <script src="https://kit.fontawesome.com/95aa681591.js" crossorigin="anonymous"></script>
-    <!-- GOOGLE FONTS -->
-    <!-- Open Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-    <!-- Montserrat -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <title>Shoocity</title>
 </head>
 
 <body>
-    <div class="login-page">
-     <!-- Inicio Nav-bar -->
-     <%- include('./partials/nav-bar') %>
-     <!-- Fin Nav-bar -->
+  <div class="editProducts-page">
+    <!-- Inicio Nav-bar -->
+    <%- include('./partials/nav-bar') %>
+    <!-- Fin Nav-bar -->
 
-     <!-- Inicio Main (página) -->
-	 <main>
+    <!-- Inicio Main (página) -->
+	  <main>
 		<div class="color"></div>
 		<div class="color"></div>
 		<div class="color"></div>
@@ -47,48 +28,84 @@
 			<div class="square" style="--i:2;"></div>
 			<div class="square" style="--i:3;"></div>
 			<div class="square" style="--i:4;"></div>
-			 <div class="container">
-			 	<div class="form">
-			 		<h2>Ingresar</h2>
-			 		<form >
-            <div class="inputBox">
-              <input type="text"  placeholder="Usuario" name="usuario" />
+			<div class="container-editProducts">
+			 	<div class="Editform">
+				  <h2>Editar producto</h2>
+		 		  <!-- Inicio cuadro de inputs + imagen de producto-->
+          <div class="EditProductform-container">
+		 		  <!-- Inicio cuadro de inputs-->
+            <div class="EditProductform-children">
+              <form>
+                <div class="inputBox">
+                  <label>Nombre del Producto</label> 
+                  <input type="text"  placeholder="Nombre del producto" name="nombreDelProducto" required/>
+                </div>
+
+                <div class="inputBox">
+                  <label>Descripción</label> 
+                  <input type="text"  placeholder="Descripción" name="descripcion" required/>
+                </div> 
+            
+                <div class="inputBox">
+                  <label>Foto del producto</label> 
+                  <input type="file" class="file-select" placeholder="Imagen" name="imagen" required/>
+                </div> 
+
+                <div class="inputBox">
+                  <label>Categoría</label> 
+                  <select placeholder="Categoría" name="categoria" class="inputBox-dropList" required>
+                    <option disabled hidden selected>Selecciona una opción</option>
+                    <option class="select" value="value1">Zapatillas</option>
+                    <option class="select" value="value2">Zapatos</option>
+                    <option class="select" value="value3">Remeras Deportivas</option>
+                  </select>
+                </div> 
+
+                <div class="inputBox">
+                  <label>Color</label> 
+                  <select placeholder="Color" name="color" class="inputBox-dropList" required>
+                    <option disabled hidden selected>Selecciona una opción</option>
+                    <option class="select" value="value1">Rojo</option>
+                    <option class="select" value="value2">Negro</option>
+                    <option class="select" value="value3">Blanco</option>
+                  </select>
+                </div> 
+
+                <div class="inputBox precio">
+                  <label>$ARS</label> <input type="number" placeholder="Precio" name="precio" required/>
+                </div> 
+			        </form>
             </div>
-            <div class="inputBox">
-              <input maxlength="25" type="password" class="controls" name="contrasena" value="" placeholder="Contraseña" id="password" data-lpignore="true">
-              <ion-icon onclick="toggle()" class="password-icon"	id ="eye-icon" name="eye-off" size="large" ></ion-icon>
-            </div> 
-          <br>
-          <label>
-            <input type="checkbox">
-            <span></span>
-            <small>Recuérdame</small>
-          </label>
-            <div class="inputBox">
-			    <input type="submit" value="Enviar"/>
+		 		    <!-- Fin cuadro de inputs-->
+            
+		 		    <!-- Inicio imagen de producto-->
+            <div class="EditProductform-children">
+              <img class="imgDetails" src="images/logos/zapatilla-ejemplo.jpg" alt="imagen" height="100%" width="100%" />
+            </div>
+		 		    <!-- Fin imagen de producto-->
+          </div>
+		 		  <!-- Fin cuadro de inputs + imagen de producto-->
+          
+		 		    <!-- Inicio botón editar-->
+           <div class="inputBox">
+            <input type="submit" value="Editar"/>
+          </div>
+		 		    <!-- Fin botón editar-->
+            
+        </div>
 			</div>
-			<p class="forget">
-              <a href="recover">¿Olvidaste tu contraseña?</a>
-            </p>
-            <br>
-            <p class="forget">
-              <a href="register-form">Registrate en Shoocity?</a>
-            </p>
-         </form>
-			 	</div>
-			 </div>
 		</div>
-	</main>
-    <!-- Fin Main (página) -->
+  </main>
+  <!-- Fin Main (página) -->
       
-        <!-- Inicio Footer -->
-        <%- include('./partials/footer') %>
-        <script src="/js/panels.js"></script>
-        <script src="/js/hamburger.js"></script>
-        <script src="/js/nav-bar-tabs.js"></script>
-        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-        <!-- Fin Footer -->
+  <!-- Inicio Footer -->
+  <%- include('./partials/footer') %>
+  <script src="/js/panels.js"></script>
+  <script src="/js/hamburger.js"></script>
+  <script src="/js/nav-bar-tabs.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <!-- Fin Footer -->
 
 	<script type="text/javascript">
 		function toggle() {
@@ -96,8 +113,15 @@
 			document.querySelector("#password").type === "password" ? document.querySelector("#password").type = "text" : document.querySelector("#password").type = "password"
 		}
 
+/* Inicio format number 1000000 to 1,234,567*/
+  // const f = new Intl.NumberFormat("es-AR", {
+  //   style: "currency";
+  //   currency: "ARS";
+  //   minimunFractionDigits: 2;
+  // })
+/* Fin format number 1000000 to 1,234,567*/
 	</script>
 
-
 </body>
+
 </html>
