@@ -1,40 +1,131 @@
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-
+/* Inicio page config*/
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppings',sans-serif;
+}
+ 
+ body{
+ 	overflow: hidden;
+ }
+ 
+ main {
+ 	display: flex !important;
+	flex: 1 !important;
+ 	justify-content: center !important;
+ 	align-items: center!important;
+ 	background: linear-gradient(to bottom,#000000,#dff1ff)!important;
+ }
+
+ main .color{
+ 	position: absolute;
+ 	filter: blur(150px);
+ }
+
+ main .color:nth-child(1){
+top: -350px;
+width: 600px;
+height: 600px;
+background: #ff359b;
 }
 
-body {
-	font-family: arial;
-}
+ main .color:nth-child(2){
+ 	top: 150px;
+    left: -125px;
+    width: 120px;
+    height: 120px;
+    z-index: 2;
+ }
+
+ main .color:nth-child(3){
+ 	bottom: 50px;
+ 	right: 100px;
+ 	width: 300px;
+ 	height: 300px;
+ 	background: #00d2ff;
+ }
 
 .login-page {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
 }
+/*Fin page config*/
 
-.form-login {
-	width: 400px;
-	height: 360px;
-	background: rgba(24, 24, 24, 1);
-	margin: auto;
-	box-shadow: 7px 13px 37px #000;
-	padding: 20px 30px;
-	border-top: 4px solid #017bab;
-	color: white;
+/*Inicio formulario*/
+.container {
+	position: relative;
+	width: 460px;
+	min-height: 400px;
+	background: rgba(255,255,255,0.1);
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	backdrop-filter:blur(5px);
+	box-shadow: 0 25px 45px rgba(0,0,0,0.1);
+	border: 1px solid rgba(255,255,255,0.5);
+	border-right: 1px solid rgba(255,255,255,0.2);
+	border-bottom: 1px solid rgba(255,255,255,0.2);
 }
 
-.form-login h5 {
-	margin: 0;
+.form-login{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	padding: 40px;
 	text-align: center;
-	height: 40px;
-	margin-bottom: 30px;
-	border-bottom: 1px solid;
-	font-size: 20px;
 }
+
+.form-login h2{
+	position: relative;
+	color: #fff;
+	font-size: 24px;
+	font-weight: 600;
+	letter-spacing: 1px;
+	margin-bottom: 40px;
+}
+
+.form-login h2::before{
+	content: '';
+	position: absolute;
+	left: 13%;
+	bottom: -10px;
+	width: 74%;
+	height: 4px;
+	background: #fff;
+}
+
+.form-login .inputBox
+{
+	width: 100%;
+	text-align: center;
+	margin-top: 20px;
+	position: relative;
+}
+
+.form-login .inputBox input
+{
+	width: 86%;
+	background: rgba(255,255,255,0.2);
+	border: none;
+	outline: none;
+	padding: 10px 20px;
+	border-radius: 35px;
+	border: 1px solid rgba(255,255,255,0.5);
+ 	border-right: 1px solid rgba(255,255,255,0.2);
+ 	border-bottom: 1px solid rgba(255,255,255,0.2);
+ 	font-size: 16px;
+ 	letter-spacing: 1px;
+ 	color: #fff;
+ 	box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+
+.form-login .inputBox input::placeholder{
+	color: #fff;
+}
+/*Fin formulario*/
 
 .controls {
 	width: 100%;
@@ -60,11 +151,6 @@ body {
 	border-radius: 5px;
 }
 
-.form-section {
-	display: flex;
-	flex: 1;
-}
-
 .form-login p {
 	height: 40px;
 	text-align: center;
@@ -79,7 +165,9 @@ body {
 .form-login a:hover {
 	text-decoration: underline;
 }
+/*Fin formulario*/
 
+/*Inicio icon*/
 .icon {
 	position: absolute;
 	height: 60%;
@@ -142,7 +230,9 @@ input[type='password']::-ms-reveal,
 input[type='password']::-ms-clear {
 	display: none;
 }
+/*Fin icon*/
 
+/*Inicio buttons*/
 .buttons:hover {
 	color: rgba(255, 255, 255, 1) !important;
 	box-shadow: 0 4px 16px rgba(49, 138, 172, 1);
@@ -207,11 +297,11 @@ input[type='password']::-ms-clear {
 	opacity: 0;
 }
 
-.popup form .contenedor-inputs {
+.popup form .container-inputs {
 	opacity: 0;
 }
 
-.popup form .contenedor-inputs input {
+.popup form .container-inputs input {
 	width: 100%;
 	margin-bottom: 20px;
 	height: 52px;
@@ -238,8 +328,23 @@ input[type='password']::-ms-clear {
 .popup form .btn-submit:hover {
 	background: rgba(94,125,227, .9);
 }
+/*Fin buttons*/
 
-/*ICON settings*/
+/*Inicio label*/
+label {
+    cursor: default;
+	padding: 0 5px;
+    margin-left: 10px;
+    display: block;
+    font-size: var(--small);
+    position: relative;
+	color: #fff;
+	letter-spacing: 1px;
+	z-index: 100000;
+}
+/*Fin label*/
+
+/*Inicio ICON settings*/
 .password-icon {
 	cursor: pointer;
 	color: rgba(0, 0, 0, 0.88);
@@ -250,3 +355,75 @@ input[type='password']::-ms-clear {
 	right: 33px;
 	opacity: 60%;
 }
+/*Fin ICON settings*/
+
+
+/*Inicio Box settings*/
+.box{
+	position: relative;
+}
+
+.box .square{
+	position: absolute;
+	backdrop-filter:blur(5px);
+	box-shadow: 0 25px 45px rgba(0,0,0,0.1);
+	border: 1px solid rgba(255,255,255,0.5);
+	border-right: 1px solid rgba(255,255,255,0.2);
+	border-bottom: 1px solid rgba(255,255,255,0.2);
+	background: rgba(255,255,255,0.1);
+	border-radius: 10px; 
+	animation:animate 10s linear infinite;
+	animation-delay:calc(-1s * var(--i));
+}
+
+@keyframes animate
+{
+   0%,100%
+   {
+	   transform: translateY(-40px);
+   }
+   50%
+   {
+	   transform: translateY(40px);
+   }
+}
+
+.box .square:nth-child(1){
+   top: -50px;
+   right: -95px;
+   width: 100px;
+   height: 100px;
+}
+
+.box .square:nth-child(2){
+   top: 150px;
+   left: -115px;
+   width: 120px;
+   height: 120px;
+   z-index: 2;
+}
+
+.box .square:nth-child(3){
+   bottom: 50px;
+   right: -78px;
+   width: 80px;
+   height: 80px;
+   z-index: 2;
+}
+
+
+.box .square:nth-child(4){
+   bottom: -80px;
+   left: 100px;
+   width: 50px;
+   height: 50px;
+}
+
+.box .square:nth-child(5){
+   top: -80px;
+   left: 100px;
+   width: 60px;
+   height: 60px;
+}
+/*Fin Box settings*/
+
