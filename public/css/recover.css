@@ -3,7 +3,6 @@
 	margin: 0;
 	padding: 0;
 	font-family: 'Poppings',sans-serif;
-
 }
  
  body{
@@ -11,12 +10,11 @@
  }
  
  main {
- 	display: flex;
-	flex: 1;
- 	justify-content: center;
- 	align-items: center;
- 	background: linear-gradient(to bottom,#000000,#dff1ff);
-
+ 	display: flex !important;
+	flex: 1!important;
+ 	justify-content: center!important;
+ 	align-items: center!important;
+ 	background: linear-gradient(to bottom,#000000,#dff1ff)!important;
  }
 
  main .color{
@@ -29,7 +27,6 @@ top: -350px;
 width: 600px;
 height: 600px;
 background: #ff359b;
-
  }
 
  main .color:nth-child(2){
@@ -115,9 +112,7 @@ background: #ff359b;
 	height: 60px;
 }
 
-
-
- .container{
+ .container {
  	position: relative;
  	width: 460px;
  	min-height: 400px;
@@ -205,7 +200,9 @@ background: #ff359b;
 	color: #fff;
 
 }
+/*FIN: Formato del cuadro de recuperación de cuenta*/
 
+/*Inicio: forget */
 .forget{
 	margin-top: 5px;
 	color: #fff;
@@ -216,4 +213,13 @@ background: #ff359b;
 color: #fff;
 font-weight: 600;
 }
-/*FIN: Formato del cuadro de recuperación de cuenta*/
+/*Fin: forget */
+
+/*Inicio recover page */
+.recover-page {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+/*Fin recover page */
+
