@@ -6,9 +6,7 @@ router.get('/', productsController.allProducts);
 router.get('/add', function(req, res) {
     res.send("Seccion para agregar un producto");
 });
-router.get('/edit', function(req, res) {
-    res.send("Seccion para editar un producto");
-});
+router.get('/edit', productsController.editProduct);
 
 router.get('/:id', productsController.obtenerPorId);
 // router.get('/details/:id', productsController.allProducts);

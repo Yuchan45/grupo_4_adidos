@@ -424,6 +424,7 @@
   margin: 0 !important;
   display: flex;
   gap: 15px;
+  padding: 5px 0;
 }
 
 .notification-menu .notification-list a li:hover {

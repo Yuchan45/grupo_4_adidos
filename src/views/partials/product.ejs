@@ -3,7 +3,7 @@
         <% for(let i=0; i<sneakers.length; i++) { %> 
       <div class="main-item">
         <div class="item-image">
-           <a href="/product-details">
+           <a href="<%= "products/" + sneakers[i].id %> ">
           <img
             src="<%= sneakers[i].image %> "
             alt=""
