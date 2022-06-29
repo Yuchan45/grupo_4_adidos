@@ -209,6 +209,7 @@ main {
 }
 
 .section-title {
+    text-align: center;
     margin: auto;
     text-transform: uppercase;
     color: var(--onyx);
