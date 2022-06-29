@@ -4,13 +4,8 @@ const app = express();
 
 // ROUTES
 const mainRoutes = require('./routes/mainRoutes');
-const allProdsRoutes = require('./routes/allProductsRoutes');
-const prodDetailsRoutes = require('./routes/productDetails');
-const shoppingCartRoutes = require('./routes/shoppingCartRoutes');
-const loginRoutes = require('./routes/loginRoutes');
-const registerRoutes = require('./routes/registerRoutes');
-const recoverRoutes = require('./routes/recoverRoutes');
-const editProductsRoutes = require('./routes/editProductsRoutes');
+const userRoutes = require('./routes/userRoutes');
+const productRoutes = require('./routes/productRoutes');
 
 
 // STATIC PATHS
@@ -26,13 +21,9 @@ app.set('view engine', 'ejs');
 
 // ADDRESSING
 app.use('/', mainRoutes);
-app.use('/all-products', allProdsRoutes);
-app.use('/product-details', prodDetailsRoutes);
-app.use('/shopping-cart', shoppingCartRoutes);
-app.use('/login-form', loginRoutes);
-app.use('/register-form', registerRoutes);
-app.use('/recover', recoverRoutes);
-app.use('/editProducts', editProductsRoutes);
+app.use('/user', userRoutes);
+app.use('/products', productRoutes);
+
 
 
 // LISTEN

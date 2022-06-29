@@ -1,8 +1,11 @@
 const sneakersData = require('../data/sneakers');
 
-const prodDetailsController = {
-    landing: function(req, res) {
-        res.render('product-details', {sneakers: sneakersData});
+const productsController = {
+    allProducts: function(req, res) {
+        res.render('all-products', {sneakers: sneakersData});
+    },
+    editProduct: function(req, res) {
+        res.render('editProducts');
     },
     obtenerPorId: (req, res) => {
         const productId = parseInt(req.params.id, 10);
@@ -13,15 +16,17 @@ const prodDetailsController = {
                 productoEncontrado = sneakersData[i];
             }
         }
-
+        
         if (!productoEncontrado){
             res.status(404).send("No se encuentra el producto");
-        }
-        else {
-            res.render( "product-details",  {sneakerEncontrado: productoEncontrado, sneakers: sneakersData});
+        } else {
+            res.render( "product-details",  {
+                sneakerEncontrado: productoEncontrado, 
+                sneakers: sneakersData
+            });
         }
 
     }
 };
 
-module.exports = prodDetailsController;
+module.exports = productsController;

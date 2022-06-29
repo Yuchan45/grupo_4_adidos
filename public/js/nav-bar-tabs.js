@@ -50,11 +50,11 @@ const registerBtn = document.querySelector('#register-link');
 const logoutBtn = document.querySelector('#logout-link');
 
 loginBtn.addEventListener('click', ()=> {
-    window.location.href = "login-form";
+    window.location.href = "/user/login";
 });
 
 registerBtn.addEventListener('click', ()=> {
-    window.location.href = "register-form";
+    window.location.href = "/user/register";
 });
 
 logoutBtn.addEventListener('click', ()=> {
