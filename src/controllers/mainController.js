@@ -2,7 +2,7 @@ const sliderSneakers = require('../data/sneakers');
 const shopCartSneakers = require('../data/shopCartSneakers');
 
 const mainController = {
-    landing: function(req, res) {
+    index: function(req, res) {
         res.render('home', {sneakers: sliderSneakers});
     },
     shoppingCart: function(req, res) {
