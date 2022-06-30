@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <%- include('./partials/head') %> 
+    <%- include('../partials/head.ejs') %> 
       <link rel="stylesheet" href="/css/nav-bar.css">
       <link rel="stylesheet" href="/css/footer.css">
       <link rel="stylesheet" href="/css/login-form.css">
@@ -14,7 +14,7 @@
 <body>
     <div class="login-page">
      <!-- Inicio Nav-bar -->
-     <%- include('./partials/nav-bar') %>
+     <%- include('../partials/nav-bar') %>
      <!-- Fin Nav-bar -->
 
      <!-- Inicio Main (página) -->
@@ -53,7 +53,7 @@
             <a href="recover">¿Olvidaste tu contraseña?</a>
           </p>
           <p class="forget">
-            <a href="register-form">Registrate en Shoocity?</a>
+            <a href="register">Registrate en Shoocity?</a>
           </p>
          </form>
 			 	</div>
@@ -63,7 +63,7 @@
     <!-- Fin Main (página) -->
       
         <!-- Inicio Footer -->
-        <%- include('./partials/footer') %>
+        <%- include('../partials/footer') %>
 
         <script src="/js/panels.js"></script>
         <script src="/js/hamburger.js"></script>

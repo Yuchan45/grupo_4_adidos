@@ -470,18 +470,18 @@
     width: 250px;
     right: 0 !important;
     left: auto;
-    padding: 0 0 10px 0;
+    padding: 0 0 15px 0;
 }
 
 .user-menu .profile-div {
-    align-self: center;
+	align-self: center;
     padding: 5px;
     display: flex;
     flex-direction: column;
     align-content: center;
     align-items: center;
     justify-content: center;
-    margin: 10px;
+    margin: 10px auto 0;
     margin-top: -60px;
     z-index: 10;
     position: relative;
@@ -497,7 +497,7 @@
 }
 
 .user-menu .profile-div .profile-info {
-    margin: 20px 0 0 0;
+    margin: 10px 0 0 0;
     padding: 0 15px;
 }
 
@@ -514,6 +514,14 @@
     white-space: nowrap;
     text-underline-offset: 9px;
 	text-transform: uppercase;
+}
+
+.user-menu .profile-div .profile-info .user-role {
+	margin: 0 auto;
+    font-size: .7rem;
+    white-space: nowrap;
+    text-underline-offset: 9px;
+    text-transform: uppercase;
 }
 
 .dropdown .user-menu .user-list {
