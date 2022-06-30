@@ -2,8 +2,8 @@
 
 ## Grupo: 04-Code Apples
 
-## Herokus por Sprint
-- Sprint 2: https://shoocity-sprint-2.herokuapp.com
+## Heroku
+- https://shoocity.herokuapp.com
 
 ## Descripcion:
 
