@@ -12,7 +12,94 @@
     <%- include('../partials/nav-bar') %>
 
     <main>
-        
+        <div class="users-container">
+            <h1>Lista de usuarios</h1>
+            <form class="search-bar" action="" method="GET">
+                <div class="search-container">
+                    <input class="search-input" type="search" name="search" id="search" placeholder="Filtrar..."/>
+                    <button class="search-btn">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+                <div class="user-filter-container">
+                    <button class="filter-btn">ID</button>
+                    <button class="filter-btn">ROLE</button>
+                    <button class="filter-btn">NAME</button>
+                    <button class="filter-btn">COUNTRY</button>
+                </div>
+			</form>
+
+            <div class="users-list">
+                <form class="user-card">
+                    <div class="banner">
+                        <img src="https://thumbs.dreamstime.com/b/september-moscow-russia-vector-illustration-background-logo-fifa-world-cup-which-will-be-held-qatar-copy-trophy-231463837.jpg" alt="">
+                    </div>
+                    <div class="data">
+                        <img src="https://i.pinimg.com/564x/4c/95/d4/4c95d42d0c5737bfcde088b81436af9b.jpg" alt=""/>
+                        <div class="data-info">
+                            <p class="data-title">ID</p>
+                            <p class="data-text">452616</p>
+                            <p class="data-title">ROLE</p>
+                            <p class="data-text">Admin</p>
+                            <p class="data-title">NAME</p>
+                            <p class="data-text">Tomas Yu Nakasone</p>
+                            <p class="data-title">COUNTRY</p>
+                            <p class="data-text">Argentina</p>
+                        </div>
+                    </div>
+                    <div class="actions-container">
+                        <button type="submit" class="action-btn edit">Edit</button>
+                        <button type="submit" class="action-btn delete">Delete</button>
+                    </div>
+                </form>
+
+                <form class="user-card">
+                    <div class="banner">
+                        <img src="https://thumbs.dreamstime.com/b/september-moscow-russia-vector-illustration-background-logo-fifa-world-cup-which-will-be-held-qatar-copy-trophy-231463837.jpg" alt="">
+                    </div>
+                    <div class="data">
+                        <img src="https://i.pinimg.com/564x/4c/95/d4/4c95d42d0c5737bfcde088b81436af9b.jpg" alt=""/>
+                        <div class="data-info">
+                            <p class="data-title">ID</p>
+                            <p class="data-text">452616</p>
+                            <p class="data-title">ROLE</p>
+                            <p class="data-text">Admin</p>
+                            <p class="data-title">NAME</p>
+                            <p class="data-text">Tomas Yu Nakasone</p>
+                            <p class="data-title">COUNTRY</p>
+                            <p class="data-text">Argentina</p>
+                        </div>
+                    </div>
+                    <div class="actions-container">
+                        <button type="submit" class="action-btn edit">Edit</button>
+                        <button type="submit" class="action-btn delete">Delete</button>
+                    </div>
+                </form>
+
+                <form class="user-card">
+                    <div class="banner">
+                        <img src="https://thumbs.dreamstime.com/b/september-moscow-russia-vector-illustration-background-logo-fifa-world-cup-which-will-be-held-qatar-copy-trophy-231463837.jpg" alt="">
+                    </div>
+                    <div class="data">
+                        <img src="https://i.pinimg.com/564x/4c/95/d4/4c95d42d0c5737bfcde088b81436af9b.jpg" alt=""/>
+                        <div class="data-info">
+                            <p class="data-title">ID</p>
+                            <p class="data-text">452616</p>
+                            <p class="data-title">ROLE</p>
+                            <p class="data-text">Admin</p>
+                            <p class="data-title">NAME</p>
+                            <p class="data-text">Tomas Yu Nakasone</p>
+                            <p class="data-title">COUNTRY</p>
+                            <p class="data-text">Argentina</p>
+                        </div>
+                    </div>
+                    <div class="actions-container">
+                        <button type="submit" class="action-btn edit">Edit</button>
+                        <button type="submit" class="action-btn delete">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </main>
 
     <!-- Footer -->

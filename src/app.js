@@ -18,7 +18,10 @@ const publicPath = path.resolve(__dirname, '../public');
 app.use(express.static(publicPath));
 app.set('port', process.env.PORT || 3001);
 app.set('views', path.resolve(__dirname, './views'));
-//app.use(express.static(__dirname + './public')); 
+// Para capturar datos de los forms
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+
 
 // SET TEMPLATE ENGINE (EJS)
 app.set('view engine', 'ejs');
@@ -33,6 +36,8 @@ app.use((req, res, next) => {
     //res.status(404).render('not-found');
     res.status(404).send("Error 404, pagina no encontrada");
 })
+
+
 
 
 // LISTEN
