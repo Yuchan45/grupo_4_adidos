@@ -62,6 +62,15 @@
     justify-content: center;
 }
 
+.user-filter-container > p {
+    width: 100%;
+    color: var(--black);
+    font-size: var(--normal);
+    font-weight: 500;
+    margin: 8px auto 2px;
+    font-style: normal;
+}
+
 .user-filter-container .filter-btn {
     border: none;
     padding: 5px;
@@ -71,6 +80,11 @@
     text-transform: uppercase;
     font-size: var(--normal);
     font-weight: 600;
+    transition: all .3s ease;
+}
+
+.user-filter-container .filter-btn:hover {
+    background-color: var(--blue);
 }
 
 .users-list {
@@ -206,5 +220,9 @@
     .users-container {
         margin-top: 120px;
         text-align: center;
+    }
+    .users-container .search-bar {
+        width: 600px;
+        margin-top: 50px;
     }
 }
