@@ -7,6 +7,9 @@ const usersController = {
     },
     recover: function(req, res) {
         res.render('./users/recover');
+    },
+    list: function(req, res) {
+        res.render('./users/user-list');
     }
 };
 
