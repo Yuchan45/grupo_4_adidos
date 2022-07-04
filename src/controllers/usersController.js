@@ -1,4 +1,6 @@
+const userCrud = require('./usersModules/fileControl');
 const { v4: uuidv4 } = require('uuid');
+
 
 const usersController = {
     login: function(req, res) {
@@ -11,7 +13,8 @@ const usersController = {
         res.render('./users/recover');
     },
     list: function(req, res) {
-        res.render('./users/user-list');
+        const users = require('../data/users.json');
+        res.render('./users/user-list', {users: users});
     },
     createUser: function(req, res) {
         let user = {
@@ -29,7 +32,8 @@ const usersController = {
             country: req.body.country,
             interests: req.body.interest
         };
-        res.send(user);
+        userCrud.saveUser(user);
+        res.redirect('/');
     }
 };
 

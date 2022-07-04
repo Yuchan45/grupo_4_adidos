@@ -141,7 +141,7 @@
     justify-content: center;
     margin: 10px auto 0;
     margin-top: -60px;
-    z-index: 10;
+    z-index: 0;
     position: relative;
 }
 
@@ -162,7 +162,8 @@
 }
 
 .users-list .user-card .data .data-info .data-title {
-    color: var(--white);
+    user-select: none;
+    color: #545454;
     font-size: var(--normal);
     font-weight: 700;
     margin: 8px auto 2px;
@@ -175,6 +176,7 @@
     font-weight: 100;
     margin: 0;
     font-style: oblique;
+    text-transform: uppercase;
 }
 
 .users-list .user-card .actions-container {
