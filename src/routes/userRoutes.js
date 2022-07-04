@@ -8,7 +8,7 @@ const router = express.Router();
 const usersController = require('../controllers/usersController');
 
 // Seteo donde y como guardar los archivos.
-const storage = multer.diskStorage({
+const fileStoratgeEngineConfig = multer.diskStorage({
     destination: function(req, file, cb) {
         let folder = path.join(__dirname, '../../public/images/profiles');
         cb(null, folder);
@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
     }
 });
 
-let fileUpload = multer({storage: storage});
+let fileUpload = multer({storage: fileStoratgeEngineConfig});
 
 
 router.get('/login', usersController.login);

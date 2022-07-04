@@ -4,8 +4,9 @@
 }
 
 .users-container {
-    margin-top: 70px;
     text-align: center;
+    width: 100vw;
+    margin: 70px auto;
 }
 
 .users-container .search-bar {
@@ -88,7 +89,7 @@
 }
 
 .users-list {
-    width: 100vw;
+    width: 95vw;
     margin: 50px auto;
     text-align: center;
     display: flex;

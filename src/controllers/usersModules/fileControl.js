@@ -31,7 +31,6 @@ let functionalities = {
         let usersArray = this.readFile();
         usersArray.push(user);
         this.writeFile(usersArray);
-        console.log("termine");
     }
 
 };
