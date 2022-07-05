@@ -3,6 +3,10 @@
     box-sizing: border-box;
 }
 
+main {
+    min-height: 80vh;
+}
+
 .users-container {
     text-align: center;
     width: 100vw;
@@ -116,6 +120,7 @@
     margin: 15px auto;
     background-color: #181818;
     border-radius: 5px;
+    box-shadow: 10px 10px 13px -6px rgba(0,0,0,0.5);
 }
 
 .users-list .user-card .banner {

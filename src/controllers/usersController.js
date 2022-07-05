@@ -1,3 +1,4 @@
+const path = require('path');
 const userCrud = require('./usersModules/fileControl');
 const { v4: uuidv4 } = require('uuid');
 
@@ -19,7 +20,15 @@ const usersController = {
         let profileImage = '';
         const file = req.file;
 
-        file ? profileImage = req.file.filename : "default.png";
+        profileImage = (file) ? req.file.filename : "default.png";
+
+        // DataType Validation.
+        let ext = path.extname(profileImage);
+        if (ext != '.png' && ext != '.jpg' && ext != '.jpeg') {
+            console.log("Archivo de imagen no valido!");
+            res.redirect('/user/register');
+            return;
+        }
 
         let user = {
             id: uuidv4(),
