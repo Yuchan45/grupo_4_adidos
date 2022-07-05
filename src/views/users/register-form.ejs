@@ -22,23 +22,27 @@
                     <h3 class="register-label">Datos</h3>
                     <div class="form-group first-last-name">
                         <label for="name">Nombre y apellido</label>
-                        <input type="text" name="name" id="name" required>
+                        <input type="text" name="name" id="name" value="<%= formData ? formData.name : '' %>" required>
                     </div>
                     <div class="form-group user">
                         <label for="user">Usuario</label>
-                        <input type="text" name="username" id="username" required>
+                        <input type="text" name="username" id="username" value="<%= formData ? formData.username : '' %>" required>
+                    </div>
+                    <div class="form-group user">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" minlength="6" value="<%= formData ? formData.password : '' %>" required>
                     </div>
                     <div class="form-group email">
                         <label for="email">E-mail</label>
-                        <input type="email" name="email" id="email" required>
+                        <input type="email" name="email" id="email" value="<%= formData ? formData.email : '' %>" required>
                     </div>
                     <div class="form-group domicilio">
                         <label for="address">Domicilio</label>
-                        <input type="text" name="address" id="address" required>
+                        <input type="text" name="address" id="address" value="<%= formData ? formData.address : '' %>" required>
                     </div>
                     <h3 class="register-label">Fecha de nacimiento</h3>
                     <div class="form-group">
-                        <input type="date" name="birthdate" id="birthdate" required>
+                        <input type="date" name="birthdate" id="birthdate" value="<%= formData ? formData.birthdate : '' %>" required>
                     </div>
                 </div>
                 <div class="register-form-right">
@@ -77,26 +81,6 @@
                         <option value="BLV">Bolivia</option>
                         <option value="UGY">Uruguay</option>
                     </select>
-
-                    <!-- <h3 class="register-label">Intereses</h3>
-                    <div class="checkbox-list">
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="sports" name="interest" value="sports">
-                            <label for="sports">Deportes</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="fashion" name="interest" value="fashion">
-                            <label for="fashion">Moda</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="vintage" name="interest" value="vintage">
-                            <label for="vintage">Vintage</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="health" name="interest" value="health">
-                            <label for="health">Vida sana</label>
-                        </div>
-                    </div> -->
                     <div class="upload-file-container">
                         <label for="profileImage">Foto de perfil</label>
                         <input type="file" id="profileImage" name="profileImage">
@@ -106,16 +90,10 @@
                         <input type="file" id="bannerImage" name="bannerImage">
                     </div>
                 </div>
-                <!-- <div class="checkbox-list mail-spam-checkbox">
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="mailspam" name="mailspam" value="mailspam">
-                        <label for="mailspam" class="mail-spam">Recibir correos electrónicos de Shoocity con actualizaciones de productos, ofertas y otros beneficios como Miembro!</label>
-                    </div>
-                </div> -->
                 <div class="send-container">
-                    <!-- <div class="error-message-container">
-                        <label class="error-msg">Mensaje de error!</label>
-                    </div> -->
+                    <div class="error-message-container">
+                        <label class="error-msg"><%= errorMsg %></label>
+                    </div>
                     <button type="submit" class="submit-btn">Crear cuenta</button>
                 </div>
             </form>

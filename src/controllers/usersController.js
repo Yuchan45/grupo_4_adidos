@@ -1,13 +1,34 @@
 const path = require('path');
 const userCrud = require('./usersModules/fileControl');
+const userValidation = require('./usersModules/userCreateValidation');
 const { v4: uuidv4 } = require('uuid');
 
+const allUsersFile = path.join(__dirname, '../data/users.json');
+const activeUserFile = path.join(__dirname, '../data/active-user.json');
+
 const usersController = {
+    loginIndex: function(req, res) {
+        res.render('./users/login-form');
+    },
     login: function(req, res) {
+        
+        let loggedUser = {
+            username: req.body.username,
+            password: req.body.password,
+        };
+
+        let allUsers = userCrud.readFile(allUsersFile); // ReadFile devuelve un array de objetos usuario.
+        
+
+
+
         res.render('./users/login-form');
     },
     register: function(req, res) {
-        res.render('./users/register-form');
+        res.render('./users/register-form', {
+            formData : '',
+            errorMsg : ''
+        });
     },
     recover: function(req, res) {
         res.render('./users/recover');
@@ -18,43 +39,57 @@ const usersController = {
     },
     createUser: function(req, res) {
         const files = req.files;
+        const userData = req.body;
+        let errorMsg = '';
 
-        const profileName = (files.profileImage) ? req.files.profileImage[0].filename : '';
-        const bannerName = (files.bannerImage) ? req.files.bannerImage[0].filename : '';
-
-        let profileImageName = (profileName) ? profileName : "default.png";
-        let bannerImageName = (bannerName) ? bannerName : "default-banner.png";
-
-        // DataType Validation.
-        let ext = path.extname(profileImageName);
-        let ext2 = path.extname(bannerImageName);
-        if (ext != '.png' && ext != '.jpg' && ext != '.jpeg') {
-            console.log("Archivo de imagen de perfil no valido!");
-            res.redirect('/user/register');
+        // Check if user already exists
+        let allUsers = userCrud.readFile(allUsersFile);
+        let usernameAlreadyExists = userValidation.usernameAvailable(allUsers, userData.username);
+        if (usernameAlreadyExists) {
+            errorMsg = "El usuario ya existe! Prueba con otro nombre de usuario.";
+            res.render('./users/register-form', {
+                formData : req.body,
+                errorMsg : errorMsg
+            });
             return;
         }
-        if (ext2 != '.png' && ext2 != '.jpg' && ext2 != '.jpeg') {
-            console.log("Archivo de imagen del banner no valido!");
-            res.redirect('/user/register');
+        
+        // Set the profile image name if exists, otherwise set the default image name.
+        const profileName = (files.profileImage) ? req.files.profileImage[0].filename : '';
+        const bannerName = (files.bannerImage) ? req.files.bannerImage[0].filename : '';
+        const profileImageName = (profileName) ? profileName : "default.png";
+        const bannerImageName = (bannerName) ? bannerName : "default-banner.png";
+
+        // DataType Validation.
+        const validProfileExtension = userValidation.extensionValidation(path.extname(profileImageName));
+        const validBannerExtension = userValidation.extensionValidation(path.extname(bannerImageName));   
+
+        if (!(validProfileExtension && validBannerExtension)) {
+            errorMsg = "Archivo de imagen no valido!";
+            res.render('./users/register-form', {
+                formData : req.body,
+                errorMsg : errorMsg
+            });
             return;
         }
 
         let user = {
             id: uuidv4(),
             accCreationDate: new Date().toISOString().slice(0, 10),
-            name: req.body.name,
-            username: req.body.username,
+            name: userData.name,
+            username: userData.username,
+            password: userData.password,
             avatarImageName: profileImageName,
             bannerName: bannerImageName,
-            email: req.body.email,
-            address: req.body.address,
-            birthdate: req.body.birthdate,
-            role: req.body.role,
-            gender: req.body.gender,
-            country: req.body.country,
-            interests: req.body.interest
+            email: userData.email,
+            address: userData.address,
+            birthdate: userData.birthdate,
+            role: userData.role,
+            gender: userData.gender,
+            country: userData.country,
+            interests: userData.interest
         };
-        userCrud.saveUser(user);
+        userCrud.saveUser(user, allUsersFile);
         res.redirect('/user/list');
     }
 };

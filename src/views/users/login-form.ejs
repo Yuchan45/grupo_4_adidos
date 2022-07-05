@@ -28,36 +28,36 @@
 			<div class="square" style="--i:2;"></div>
 			<div class="square" style="--i:3;"></div>
 			<div class="square" style="--i:4;"></div>
-			 <div class="container">
+			<div class="container">
 			 	<div class="form-login">
 			 		<h2>Ingresar</h2>
-			 		<form >
-            <div class="inputBox">
-              <input type="text"  placeholder="Usuario" name="usuario" required />
-            </div>
-            <div class="inputBox">
-              <input maxlength="25" type="password" class="controls" name="contrasena" value="" placeholder="Contraseña" id="password" data-lpignore="true" required>
-              <ion-icon onclick="toggle()" class="password-icon"	id ="eye-icon" name="eye-off" size="large" ></ion-icon>
-            </div> 
-          <br>
-          <label>
-            <input type="checkbox">
-            <span></span>
-            <small>Recuérdame</small>
-          </label>
-            <div class="inputBox">
-			    <input type="submit" value="Enviar"/>
-          </div>
-          <br>
-          <p class="forget">
-            <a href="recover">¿Olvidaste tu contraseña?</a>
-          </p>
-          <p class="forget">
-            <a href="register">Registrate en Shoocity?</a>
-          </p>
-         </form>
+			 		<form action="/user/login" method="POST">
+						<div class="inputBox">
+							<input type="text"  placeholder="Usuario" name="username" required />
+						</div>
+						<div class="inputBox">
+							<input maxlength="25" type="password" class="controls" name="password" value="" placeholder="Contraseña" id="password" data-lpignore="true" required>
+							<ion-icon onclick="toggle()" class="password-icon"	id ="eye-icon" name="eye-off" size="large" ></ion-icon>
+						</div> 
+          				<br>
+						<label>
+							<input type="checkbox">
+							<span></span>
+							<small>Recuérdame</small>
+						</label>
+						<div class="inputBox">
+							<input type="submit" value="Enviar"/>
+						</div>
+          				<br>
+						<p class="forget">
+							<a href="recover">¿Olvidaste tu contraseña?</a>
+						</p>
+						<p class="forget">
+							<a href="register">Registrate en Shoocity?</a>
+						</p>
+         			</form>
 			 	</div>
-			 </div>
+			</div>
 		</div>
 	</main>
     <!-- Fin Main (página) -->

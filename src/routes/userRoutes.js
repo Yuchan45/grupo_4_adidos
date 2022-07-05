@@ -34,7 +34,8 @@ const fileStorageEngineConfig = multer.diskStorage({
 let upload = multer({storage: fileStorageEngineConfig});
 let multipleUpload = upload.fields( [{name: 'profileImage'}, {name: 'bannerImage'}] );
 
-router.get('/login', usersController.login);
+router.get('/login', usersController.loginIndex);
+router.post('/login', usersController.login);
 
 router.get('/register', usersController.register);
 // router.post('/register', fileUpload.single('profileImage'), usersController.createUser); // le paso profileImage que seria el name del input file.
