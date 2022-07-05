@@ -152,10 +152,11 @@ main {
 }
 
 .users-list .user-card .data > img {
-    min-width: 150px;
-    height: 150px;
+    min-width: 120px;
+    height: 120px;
     border-radius: 50%;
     border: 3px solid var(--blue);
+    /* background-color: white; */
     padding: 3px;
     object-fit: cover;
 }
@@ -163,7 +164,7 @@ main {
 .users-list .user-card .data .data-info {
     width: 100%;
     text-align: center;
-    margin: 5px auto 10px;
+    margin: 5px auto 15px;
     padding: 5px;
 }
 

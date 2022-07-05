@@ -34,7 +34,7 @@
                 <% for(let i=0; i<users.length; i++) { %>
                 <form class="user-card">
                     <div class="banner">
-                        <img src="https://thumbs.dreamstime.com/b/september-moscow-russia-vector-illustration-background-logo-fifa-world-cup-which-will-be-held-qatar-copy-trophy-231463837.jpg" alt="">
+                        <img src="/images/banners/<%= users[i].bannerName ? users[i].bannerName : 'default-banner.png' %>" alt="">
                     </div>
                     <div class="data">
                         <img src="/images/profiles/<%= users[i].avatarImageName ? users[i].avatarImageName : 'default.png' %>" alt=""/>

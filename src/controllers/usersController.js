@@ -17,15 +17,24 @@ const usersController = {
         res.render('./users/user-list', {users: users});
     },
     createUser: function(req, res) {
-        let profileImage = '';
-        const file = req.file;
+        const files = req.files;
 
-        profileImage = (file) ? req.file.filename : "default.png";
+        const profileName = (files.profileImage) ? req.files.profileImage[0].filename : '';
+        const bannerName = (files.bannerImage) ? req.files.bannerImage[0].filename : '';
+
+        let profileImageName = (profileName) ? profileName : "default.png";
+        let bannerImageName = (bannerName) ? bannerName : "default-banner.png";
 
         // DataType Validation.
-        let ext = path.extname(profileImage);
+        let ext = path.extname(profileImageName);
+        let ext2 = path.extname(bannerImageName);
         if (ext != '.png' && ext != '.jpg' && ext != '.jpeg') {
-            console.log("Archivo de imagen no valido!");
+            console.log("Archivo de imagen de perfil no valido!");
+            res.redirect('/user/register');
+            return;
+        }
+        if (ext2 != '.png' && ext2 != '.jpg' && ext2 != '.jpeg') {
+            console.log("Archivo de imagen del banner no valido!");
             res.redirect('/user/register');
             return;
         }
@@ -35,8 +44,8 @@ const usersController = {
             accCreationDate: new Date().toISOString().slice(0, 10),
             name: req.body.name,
             username: req.body.username,
-            avatarImageName: profileImage,
-            bannerName: "",
+            avatarImageName: profileImageName,
+            bannerName: bannerImageName,
             email: req.body.email,
             address: req.body.address,
             birthdate: req.body.birthdate,
