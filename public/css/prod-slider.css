@@ -90,6 +90,11 @@
     max-height: 100%;
     max-width: 100%;
     object-fit: cover;
+    transition: transform .5s;
+}
+
+.product .prod-picture > img:hover {
+    transform: scale(1.1);
 }
 
 .product .prod-description {

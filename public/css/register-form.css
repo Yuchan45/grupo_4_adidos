@@ -177,6 +177,19 @@ input:-webkit-autofill:active{
     font-size: var(--normal);
 }
 
+.upload-file-container > label {
+    display: block;
+    font-size: var(--normal);
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.upload-file-container > input {
+    
+}
+
 /* Desktop */
 @media (min-width:769px) {
     /*REGISTER*/

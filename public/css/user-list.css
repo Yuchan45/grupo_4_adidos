@@ -1,0 +1,236 @@
+* {
+    font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
+}
+
+main {
+    min-height: 80vh;
+}
+
+.users-container {
+    text-align: center;
+    width: 100vw;
+    margin: 70px auto;
+}
+
+.users-container .search-bar {
+    display: flex;
+    width: 300px;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.users-container .search-bar .search-container {
+    display: flex;
+    width: 100%;
+    max-width: 400px;
+    align-items: center;
+    justify-content: center;
+}
+
+.users-container .search-bar .search-input {
+    background: #181818;
+}
+
+.users-container .search-bar .search-container .search-btn {
+    width: 30px;
+    height: 40px;
+    border-radius: 1px;
+    border: 1px solid #787878;
+    background-color: #181818;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: var(--normal);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left: none;
+}
+
+.users-container .search-bar .search-container .search-btn svg {
+    color: white;
+}
+
+.users-container .search-bar .search-container .search-input:focus .search-input {
+    /* outline: none; */
+    border: 1px solid var(--white);
+}
+
+.user-filter-container {
+    display: flex;
+    margin-top: 5px;
+    width: 400px;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.user-filter-container > p {
+    width: 100%;
+    color: var(--black);
+    font-size: var(--normal);
+    font-weight: 500;
+    margin: 8px auto 2px;
+    font-style: normal;
+}
+
+.user-filter-container .filter-btn {
+    border: none;
+    padding: 5px;
+    margin: 0 8px;
+    background-color: #18181826;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-size: var(--normal);
+    font-weight: 600;
+    transition: all .3s ease;
+}
+
+.user-filter-container .filter-btn:hover {
+    background-color: var(--blue);
+}
+
+.users-list {
+    width: 95vw;
+    margin: 50px auto;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: center;
+}
+
+.users-container > h1 {
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--onyx);
+    font-size: var(--title);
+    margin: 10px auto;
+    font-weight: 900;
+    letter-spacing: 4px;
+}
+
+.users-list .user-card {
+    width: 90%;
+    max-width: 300px;
+    padding-bottom: 15px;
+    margin: 15px auto;
+    background-color: #181818;
+    border-radius: 5px;
+    box-shadow: 10px 10px 13px -6px rgba(0,0,0,0.5);
+}
+
+.users-list .user-card .banner {
+    width: 100%;
+    position: relative;
+    height: auto;
+    max-height: 80px;
+}
+
+.users-list .user-card .banner > img {
+    border-radius: 5px 5px 0 0;
+    max-height: 80px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.users-list .user-card .data {
+    align-self: center;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto 0;
+    margin-top: -60px;
+    z-index: 0;
+    position: relative;
+}
+
+.users-list .user-card .data > img {
+    min-width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid var(--blue);
+    padding: 3px;
+    object-fit: cover;
+}
+
+.users-list .user-card .data .data-info {
+    width: 100%;
+    text-align: center;
+    margin: 5px auto 10px;
+    padding: 5px;
+}
+
+.users-list .user-card .data .data-info .data-title {
+    user-select: none;
+    color: #545454;
+    font-size: var(--normal);
+    font-weight: 700;
+    margin: 8px auto 2px;
+    font-style: normal;
+}
+
+.users-list .user-card .data .data-info .data-text {
+    color: var(--white);
+    font-size: var(--small);
+    font-weight: 100;
+    margin: 0;
+    font-style: oblique;
+    text-transform: uppercase;
+}
+
+.users-list .user-card .actions-container {
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 5px;
+}
+
+.users-list .user-card .actions-container .action-btn {
+    width: 80px;
+    border: none;
+    border-radius: 3px;
+    height: 30px;
+    font-size: var(--normal);
+    font-weight: 700;
+    opacity: .7;
+    transition: all .3s ease;
+}
+
+.users-list .user-card .actions-container .action-btn:hover {
+    opacity: 1;
+}
+
+.edit {
+    background-color: var(--blue);
+}
+
+.delete {
+    background-color: #bb0e0e;
+}
+
+
+/* Mobile and Tablet */
+@media (min-width: 361px) {
+}
+
+/* Desktop */
+@media (min-width: 769px) {
+    .users-container {
+        margin-top: 120px;
+        text-align: center;
+    }
+    .users-container .search-bar {
+        width: 600px;
+        margin-top: 50px;
+    }
+}

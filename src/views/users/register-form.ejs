@@ -16,7 +16,8 @@
         <div class="register-wrapper">
             <h1 class="form-title">Registrate</h1>
             <h4 class="form-subtitle ">Sé parte de Shoocity</h4>
-            <form action="#" method="POST">
+
+            <form action="/user/register" method="POST" enctype="multipart/form-data">
                 <div class="register-form-left">
                     <h3 class="register-label">Datos</h3>
                     <div class="form-group first-last-name">
@@ -25,7 +26,7 @@
                     </div>
                     <div class="form-group user">
                         <label for="user">Usuario</label>
-                        <input type="text" name="user" id="user" required>
+                        <input type="text" name="username" id="username" required>
                     </div>
                     <div class="form-group email">
                         <label for="email">E-mail</label>
@@ -37,75 +38,80 @@
                     </div>
                     <h3 class="register-label">Fecha de nacimiento</h3>
                     <div class="form-group">
-                        <input type="date" id="birthday" name="birthday" required>
+                        <input type="date" name="birthdate" id="birthdate" required>
                     </div>
                 </div>
                 <div class="register-form-right">
                     <h3 class="register-label">Perfil de usuario</h3>
                     <div class="radio-list">
                         <div class="radio-group">
-                            <input type="radio" id="buySell" name="buySell" value="bubuySellyer" checked>
-                            <label for="buySell">Comprador</label>
+                            <input type="radio" id="role" name="role" value="admin" checked>
+                            <label for="buySell">Administrador</label>
                         </div>
                         <div class="radio-group">
-                            <input type="radio" id="buySell" name="buySell" value="buySell">
-                            <label for="buySell">Vendedor</label>
+                            <input type="radio" id="role" name="role" value="customer">
+                            <label for="buySell">Cliente</label>
                         </div>
                     </div>
                     <h3 class="register-label">Genero</h3>
                     <div class="radio-list">
                         <div class="radio-group">
-                            <input type="radio" id="gender" name="gender" value="gender" checked>
+                            <input type="radio" id="gender" name="gender" value="male" checked>
                             <label for="gender">Hombre</label>
                         </div>
                         <div class="radio-group">
-                            <input type="radio" id="gender" name="gender" value="gender">
+                            <input type="radio" id="gender" name="gender" value="female">
                             <label for="gender">Mujer</label>
                         </div>
                         <div class="radio-group">
-                            <input type="radio" id="gender" name="gender" value="gender">
+                            <input type="radio" id="gender" name="gender" value="other">
                             <label for="gender">Otro</label>
                         </div>
                     </div>
                     <h3 class="register-label">País de nacimiento</h3>
                     <select class="country-combobox" name="country" id="country">
-                        <option value="arg">Argentina</option>
-                        <option value="brz">Brasil</option>
-                        <option value="chl">Chile</option>
-                        <option value="per">Peru</option>
-                        <option value="blv">Bolivia</option>
-                        <option value="uru">Uruguay</option>
+                        <option value="ARG">Argentina</option>
+                        <option value="BRZ">Brasil</option>
+                        <option value="CHL">Chile</option>
+                        <option value="PER">Peru</option>
+                        <option value="BLV">Bolivia</option>
+                        <option value="UGY">Uruguay</option>
                     </select>
-                    <h3 class="register-label">Intereses</h3>
+
+                    <!-- <h3 class="register-label">Intereses</h3>
                     <div class="checkbox-list">
                         <div class="checkbox-group">
-                            <input type="checkbox" id="sports" name="sports" value="sports">
+                            <input type="checkbox" id="sports" name="interest" value="sports">
                             <label for="sports">Deportes</label>
                         </div>
                         <div class="checkbox-group">
-                            <input type="checkbox" id="fashion" name="fashion" value="fashion">
+                            <input type="checkbox" id="fashion" name="interest" value="fashion">
                             <label for="fashion">Moda</label>
                         </div>
                         <div class="checkbox-group">
-                            <input type="checkbox" id="vintage" name="vintage" value="vintage">
+                            <input type="checkbox" id="vintage" name="interest" value="vintage">
                             <label for="vintage">Vintage</label>
                         </div>
                         <div class="checkbox-group">
-                            <input type="checkbox" id="health" name="health" value="health">
+                            <input type="checkbox" id="health" name="interest" value="health">
                             <label for="health">Vida sana</label>
                         </div>
+                    </div> -->
+                    <div class="upload-file-container">
+                        <label for="profileImage">Foto de perfil</label>
+                        <input type="file" id="profileImage" name="profileImage">
                     </div>
                 </div>
-                <div class="checkbox-list mail-spam-checkbox">
+                <!-- <div class="checkbox-list mail-spam-checkbox">
                     <div class="checkbox-group">
                         <input type="checkbox" id="mailspam" name="mailspam" value="mailspam">
                         <label for="mailspam" class="mail-spam">Recibir correos electrónicos de Shoocity con actualizaciones de productos, ofertas y otros beneficios como Miembro!</label>
                     </div>
-                </div>
+                </div> -->
                 <div class="send-container">
-                    <div class="error-message-container">
+                    <!-- <div class="error-message-container">
                         <label class="error-msg">Mensaje de error!</label>
-                    </div>
+                    </div> -->
                     <button type="submit" class="submit-btn">Crear cuenta</button>
                 </div>
             </form>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %> 
+    <link rel="stylesheet" href="/css/user-list.css">
+    <link rel="stylesheet" href="/css/nav-bar.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+</head>
+<body>
+    <!-- Nav-bar -->
+    <%- include('../partials/nav-bar') %>
+
+    <main>
+        <div class="users-container">
+            <h1>Lista de usuarios</h1>
+            <form class="search-bar" action="" method="GET">
+                <div class="search-container">
+                    <input class="search-input" type="search" name="search" id="search" placeholder="Nombre"/>
+                    <button class="search-btn">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+                <div class="user-filter-container">
+                    <p>Ordenar por:</p>
+                    <button class="filter-btn">ID</button>
+                    <button class="filter-btn">ROLE</button>
+                    <button class="filter-btn">NAME</button>
+                    <button class="filter-btn">COUNTRY</button>
+                </div>
+			</form>
+
+            <div class="users-list">
+                <% for(let i=0; i<users.length; i++) { %>
+                <form class="user-card">
+                    <div class="banner">
+                        <img src="https://thumbs.dreamstime.com/b/september-moscow-russia-vector-illustration-background-logo-fifa-world-cup-which-will-be-held-qatar-copy-trophy-231463837.jpg" alt="">
+                    </div>
+                    <div class="data">
+                        <img src="/images/profiles/<%= users[i].avatarImageName ? users[i].avatarImageName : 'default.png' %>" alt=""/>
+                        <div class="data-info">
+                            <p class="data-title">NAME</p>
+                            <p class="data-text"><%= users[i].name %></p>
+                            <p class="data-title">ROLE</p>
+                            <p class="data-text"><%= users[i].role %></p>
+                            <p class="data-title">COUNTRY</p>
+                            <p class="data-text"><%= users[i].country %></p>
+                            <p class="data-title">ID</p>
+                            <p class="data-text"><%= users[i].id %></p>
+                        </div>
+                    </div>
+                    <div class="actions-container">
+                        <button type="submit" class="action-btn edit">Edit</button>
+                        <button type="submit" class="action-btn delete">Delete</button>
+                    </div>
+                </form>
+                <% } %>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+
+
+    <script src="/js/hamburger.js"></script>
+    <script src="/js/nav-bar-tabs.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

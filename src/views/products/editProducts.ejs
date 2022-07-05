@@ -18,7 +18,7 @@
     <!-- Fin Nav-bar -->
 
     <!-- Inicio Main (página) -->
-	  <main>
+	<main>
 		<div class="color"></div>
 		<div class="color"></div>
 		<div class="color"></div>
@@ -30,69 +30,63 @@
 			<div class="square" style="--i:4;"></div>
 			<div class="container-editProducts">
 			 	<div class="Editform">
-				  <h2>Editar producto</h2>
-		 		  <!-- Inicio cuadro de inputs + imagen de producto-->
-          <div class="EditProductform-container">
-		 		  <!-- Inicio cuadro de inputs-->
-            <div class="EditProductform-children">
-              <form>
-                <div class="inputBox">
-                  <label>Nombre del Producto</label> 
-                  <input type="text"  placeholder="Nombre del producto" name="nombreDelProducto" required/>
-                </div>
-
-                <div class="inputBox">
-                  <label>Descripción</label> 
-                  <input type="text"  placeholder="Descripción" name="descripcion" required/>
-                </div> 
-            
-                <div class="inputBox">
-                  <label>Foto del producto</label> 
-                  <input type="file" class="file-select" placeholder="Imagen" name="imagen" required/>
-                </div> 
-
-                <div class="inputBox">
-                  <label>Categoría</label> 
-                  <select placeholder="Categoría" name="categoria" class="inputBox-dropList" required>
-                    <option disabled hidden selected>Selecciona una opción</option>
-                    <option class="select" value="value1">Zapatillas</option>
-                    <option class="select" value="value2">Zapatos</option>
-                    <option class="select" value="value3">Remeras Deportivas</option>
-                  </select>
-                </div> 
-
-                <div class="inputBox">
-                  <label>Color</label> 
-                  <select placeholder="Color" name="color" class="inputBox-dropList" required>
-                    <option disabled hidden selected>Selecciona una opción</option>
-                    <option class="select" value="value1">Rojo</option>
-                    <option class="select" value="value2">Negro</option>
-                    <option class="select" value="value3">Blanco</option>
-                  </select>
-                </div> 
-
-                <div class="inputBox precio">
-                  <label>$ARS</label> <input type="number" placeholder="Precio" name="precio" required/>
-                </div> 
-			        </form>
-            </div>
-		 		    <!-- Fin cuadro de inputs-->
-            
-		 		    <!-- Inicio imagen de producto-->
-            <div class="EditProductform-children">
-              <img class="imgDetails" src="../../public/images/logos/zapatilla-ejemplo.jpg" alt="imagen" height="100%" width="100%" />
-            </div>
-		 		    <!-- Fin imagen de producto-->
-          </div>
-		 		  <!-- Fin cuadro de inputs + imagen de producto-->
+					<h2>Editar producto</h2>
+		 		  	<!-- Inicio cuadro de inputs + imagen de producto-->
+        			<div class="EditProductform-container">
+		 		  		<!-- Inicio cuadro de inputs-->
+            			<div class="EditProductform-children">
+              			<form action="" method="POST" enctype="multipart/form-data">
+                			<div class="inputBox">
+                  				<label>Nombre del Producto</label> 
+                  				<input type="text"  placeholder="Nombre del producto" name="nombreDelProducto" required/>
+                			</div>
+							<div class="inputBox">
+								<label>Descripción</label> 
+								<input type="text"  placeholder="Descripción" name="descripcion" required/>
+							</div> 
+							<div class="inputBox">
+								<label>Foto del producto</label> 
+								<input type="file" class="file-select" placeholder="Imagen" name="imagen" required/>
+							</div> 
+							<div class="inputBox">
+								<label>Categoría</label> 
+								<select placeholder="Categoría" name="categoria" class="inputBox-dropList" required>
+									<option disabled hidden selected>Selecciona una opción</option>
+									<option class="select" value="value1">Zapatillas</option>
+									<option class="select" value="value2">Zapatos</option>
+									<option class="select" value="value3">Remeras Deportivas</option>
+								</select>
+							</div> 
+							<div class="inputBox">
+								<label>Color</label> 
+								<select placeholder="Color" name="color" class="inputBox-dropList" required>
+									<option disabled hidden selected>Selecciona una opción</option>
+									<option class="select" value="value1">Rojo</option>
+									<option class="select" value="value2">Negro</option>
+									<option class="select" value="value3">Blanco</option>
+								</select>
+							</div> 
+							<div class="inputBox precio">
+								<label>$ARS</label> <input type="number" placeholder="Precio" name="precio" required/>
+							</div>
+			    		</form>
+            		</div>
+					<!-- Fin cuadro de inputs-->
+	
+					<!-- Inicio imagen de producto-->
+					<div class="EditProductform-children">
+						<img class="imgDetails" src="../../public/images/logos/zapatilla-ejemplo.jpg" alt="imagen" height="100%" width="100%" />
+					</div>
+		 			<!-- Fin imagen de producto-->
+        			</div>
+					<!-- Fin cuadro de inputs + imagen de producto-->
           
-		 		    <!-- Inicio botón editar-->
-           <div class="inputBox">
-            <input type="submit" value="Editar"/>
-          </div>
-		 		    <!-- Fin botón editar-->
-            
-        </div>
+					<!-- Inicio botón editar-->
+					<div class="inputBox">
+						<input type="submit" value="Editar"/>
+					</div>
+					<!-- Fin botón editar-->   
+    			</div>
 			</div>
 		</div>
   </main>
