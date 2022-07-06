@@ -2,7 +2,6 @@ const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 const multer = require('multer');
 
-
 const express = require('express');
 const router = express.Router();
 const usersController = require('../controllers/usersController');
@@ -30,7 +29,6 @@ const fileStorageEngineConfig = multer.diskStorage({
     }
 });
 
-// let fileUpload = multer({storage: fileStorageEngineConfig});
 let upload = multer({storage: fileStorageEngineConfig});
 let multipleUpload = upload.fields( [{name: 'profileImage'}, {name: 'bannerImage'}] );
 
@@ -38,10 +36,11 @@ router.get('/login', usersController.loginIndex);
 router.post('/login', usersController.login);
 
 router.get('/register', usersController.register);
-// router.post('/register', fileUpload.single('profileImage'), usersController.createUser); // le paso profileImage que seria el name del input file.
 router.post('/register', multipleUpload, usersController.createUser);
 
 router.get('/recover', usersController.recover);
 router.get('/list', usersController.list);
+
+//router.get('/list/:id/edit', usersController.profileEdit);
 
 module.exports = router;

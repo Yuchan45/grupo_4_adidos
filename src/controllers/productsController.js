@@ -1,11 +1,22 @@
+const path = require('path');
 const sneakersData = require('../data/sneakers');
+const fileOperation = require('./usersModules/fileControl');
+const activeUserFile = path.join(__dirname, '../data/active-user.json');
+
+const activeUser = fileOperation.readFile(activeUserFile);
+
 
 const productsController = {
     allProducts: function(req, res) {
-        res.render('./products/all-products', {sneakers: sneakersData});
+        res.render('./products/all-products', {
+            sneakers: sneakersData,
+            activeUser: activeUser
+        });
     },
     editProduct: function(req, res) {
-        res.render('./products/editProducts');
+        res.render('./products/editProducts', {
+            activeUser: activeUser
+        });
     },
     obtenerPorId: (req, res) => {
         const productId = parseInt(req.params.id, 10);
@@ -22,7 +33,8 @@ const productsController = {
         } else {
             res.render('./products/product-details',  {
                 sneakerEncontrado: productoEncontrado, 
-                sneakers: sneakersData
+                sneakers: sneakersData,
+                activeUser: activeUser
             });
         }
     }

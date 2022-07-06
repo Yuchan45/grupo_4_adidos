@@ -1,16 +1,18 @@
 const path = require('path');
-const userCrud = require('./usersModules/fileControl');
+const fileOperation = require('./usersModules/fileControl');
 const userValidation = require('./usersModules/userValidation');
 const { v4: uuidv4 } = require('uuid');
 
 const allUsersFile = path.join(__dirname, '../data/users.json');
 const activeUserFile = path.join(__dirname, '../data/active-user.json');
+const activeUser = fileOperation.readFile(activeUserFile);
 
 const usersController = {
     loginIndex: function(req, res) {
         res.render('./users/login-form', {
             userData : '',
-            errorMsg : ''
+            errorMsg : '',
+            activeUser: activeUser
         });
     },
     login: function(req, res) {      
@@ -20,7 +22,7 @@ const usersController = {
             password: req.body.password,
         };
 
-        const allUsers = userCrud.readFile(allUsersFile); // ReadFile devuelve un array de objetos usuario.
+        const allUsers = fileOperation.readFile(allUsersFile); // ReadFile devuelve un array de objetos usuario.
         const user = userValidation.loginUser(allUsers, loggedUser);
 
         if (user === "yes") {
@@ -29,28 +31,35 @@ const usersController = {
             errorMsg = "El usuario ingresado NO existe!";
         } else {
             // Todo en orden, siga señor
-            userCrud.writeActiveUser(user, activeUserFile); // Guardo el usuario activo en un archivo.
+            fileOperation.writeActiveUser(user, activeUserFile); // Guardo el usuario activo en un archivo.
             res.redirect('/user/list');
             return;
         }
         // Si los datos no son validos...
         res.render('./users/login-form', {
             userData : req.body,
-            errorMsg : errorMsg
+            errorMsg : errorMsg,
+            activeUser: activeUser
         });
     },
     register: function(req, res) {
         res.render('./users/register-form', {
             formData : '',
-            errorMsg : ''
+            errorMsg : '',
+            activeUser: activeUser
         });
     },
     recover: function(req, res) {
-        res.render('./users/recover');
+        res.render('./users/recover', {
+            activeUser: activeUser
+        });
     },
     list: function(req, res) {
         const users = require('../data/users.json');
-        res.render('./users/user-list', {users: users});
+        res.render('./users/user-list', {
+            users: users,
+            activeUser: activeUser
+        });
     },
     createUser: function(req, res) {
         const files = req.files;
@@ -58,13 +67,14 @@ const usersController = {
         let errorMsg = '';
 
         // Check if user already exists
-        let allUsers = userCrud.readFile(allUsersFile);
+        let allUsers = fileOperation.readFile(allUsersFile);
         let usernameAlreadyExists = userValidation.usernameAvailable(allUsers, userData.username);
         if (usernameAlreadyExists) {
             errorMsg = "El usuario ya existe! Prueba con otro nombre de usuario.";
             res.render('./users/register-form', {
                 formData : req.body,
-                errorMsg : errorMsg
+                errorMsg : errorMsg,
+                activeUser: activeUser
             });
             return;
         }
@@ -83,7 +93,8 @@ const usersController = {
             errorMsg = "Archivo de imagen no valido!";
             res.render('./users/register-form', {
                 formData : req.body,
-                errorMsg : errorMsg
+                errorMsg : errorMsg,
+                activeUser: activeUser
             });
             return;
         }
@@ -104,7 +115,7 @@ const usersController = {
             country: userData.country,
             interests: userData.interest
         };
-        userCrud.saveUser(user, allUsersFile);
+        fileOperation.saveUser(user, allUsersFile);
         res.redirect('/user/list');
     }
 };
