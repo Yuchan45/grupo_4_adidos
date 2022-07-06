@@ -1,4 +1,4 @@
-const sneakersData = require('../data/sneakers');
+const sneakersData = require('../data/allSneakers');
 
 const productsController = {
     allProducts: function(req, res) {
