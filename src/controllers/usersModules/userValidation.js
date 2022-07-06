@@ -18,6 +18,27 @@ let functionalities = {
             flag = true;
         }
         return flag;
+    },
+    loginUser: function(array, user) {
+        // Recibe un array de objetos "usuario" y un objeto usuario con atributos "username" y "passowrd". Devuelve el usuario hallado (en caso de 
+        // existir y que su usuario y contraseña sean correctos). En caso de no existir dicho usuario devulve el string "no", y en caso de existir pero 
+        // que la contraseña sea invalida, retorna el string "yes".
+        let userExists = false;
+        let errorMsg = "no";
+        let flag = false;
+        let i = 0;
+        while (i < array.length && flag == false) {
+            if (array[i].username == user.username) {
+                userExists = true;
+                if (array[i].password == user.password) {
+                    flag = true;
+                }
+            }
+            i++;
+        }
+        if (userExists) errorMsg = "yes";
+
+        return flag ? array[i-1] : errorMsg;
     }
 
 

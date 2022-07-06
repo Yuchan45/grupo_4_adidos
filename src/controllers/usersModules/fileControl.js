@@ -11,7 +11,7 @@ let functionalities = {
         if (!(fs.existsSync(file))) {
             fs.writeFileSync(file, convertedEmpty, function(error) {
                 if (error) throw error;
-                console.log('Ha ocurrido un error al intentar guardar el usuario');
+                console.log('Ha ocurrido un error al intentar leer el archivo de usuarios');
             });
         }
         let rawData = fs.readFileSync(file, 'utf-8');
@@ -23,7 +23,7 @@ let functionalities = {
         let convertedData = JSON.stringify(users);
         fs.writeFileSync(file, convertedData, function(error) {
             if (error) throw error;
-            console.log('Ha ocurrido un error al intentar guardar la tarea');
+            console.log('Ha ocurrido un error al intentar guardar los datos de los usuarios');
         });
     },
     saveUser: function(user, file) {
@@ -31,6 +31,16 @@ let functionalities = {
         let usersArray = this.readFile(file);
         usersArray.push(user);
         this.writeFile(usersArray, file);
+    },
+    writeActiveUser: function(user, file) {
+        // Recibe un objeto del tipo 'usuario' y lo agrega al archivo que le pasen por parametro "file". Siempre pisa el contenido. 
+        // Siempre hay un solo y unico usuario activo en el archivo.
+        let convertedData = JSON.stringify(user);
+        fs.writeFileSync(file, convertedData, function(error) {
+            if (error) throw error;
+            console.log('Ha ocurrido un error al intentar guardar el usuario activo');
+        });
+        
     }
 
 };

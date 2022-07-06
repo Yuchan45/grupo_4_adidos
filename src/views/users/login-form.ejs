@@ -33,7 +33,7 @@
 			 		<h2>Ingresar</h2>
 			 		<form action="/user/login" method="POST">
 						<div class="inputBox">
-							<input type="text"  placeholder="Usuario" name="username" required />
+							<input type="text" placeholder="Usuario" name="username" value="<%= userData ? userData.username : '' %>" required />
 						</div>
 						<div class="inputBox">
 							<input maxlength="25" type="password" class="controls" name="password" value="" placeholder="Contraseña" id="password" data-lpignore="true" required>
@@ -54,6 +54,9 @@
 						</p>
 						<p class="forget">
 							<a href="register">Registrate en Shoocity?</a>
+						</p>
+						<p class="forget" style="color: red;">
+							<p><%= errorMsg %></p>
 						</p>
          			</form>
 			 	</div>

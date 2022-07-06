@@ -1,6 +1,6 @@
 const path = require('path');
 const userCrud = require('./usersModules/fileControl');
-const userValidation = require('./usersModules/userCreateValidation');
+const userValidation = require('./usersModules/userValidation');
 const { v4: uuidv4 } = require('uuid');
 
 const allUsersFile = path.join(__dirname, '../data/users.json');
@@ -8,21 +8,36 @@ const activeUserFile = path.join(__dirname, '../data/active-user.json');
 
 const usersController = {
     loginIndex: function(req, res) {
-        res.render('./users/login-form');
+        res.render('./users/login-form', {
+            userData : '',
+            errorMsg : ''
+        });
     },
-    login: function(req, res) {
-        
+    login: function(req, res) {      
+        let errorMsg = '';  
         let loggedUser = {
             username: req.body.username,
             password: req.body.password,
         };
 
-        let allUsers = userCrud.readFile(allUsersFile); // ReadFile devuelve un array de objetos usuario.
-        
+        const allUsers = userCrud.readFile(allUsersFile); // ReadFile devuelve un array de objetos usuario.
+        const user = userValidation.loginUser(allUsers, loggedUser);
 
-
-
-        res.render('./users/login-form');
+        if (user === "yes") {
+            errorMsg = "La contraseña ingresada no es valida!";
+        } else if (user === "no") {
+            errorMsg = "El usuario ingresado NO existe!";
+        } else {
+            // Todo en orden, siga señor
+            userCrud.writeActiveUser(user, activeUserFile); // Guardo el usuario activo en un archivo.
+            res.redirect('/user/list');
+            return;
+        }
+        // Si los datos no son validos...
+        res.render('./users/login-form', {
+            userData : req.body,
+            errorMsg : errorMsg
+        });
     },
     register: function(req, res) {
         res.render('./users/register-form', {
