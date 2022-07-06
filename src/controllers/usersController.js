@@ -31,7 +31,7 @@ const usersController = {
             errorMsg = "El usuario ingresado NO existe!";
         } else {
             // Todo en orden, siga señor
-            fileOperation.writeActiveUser(user, activeUserFile); // Guardo el usuario activo en un archivo.
+            fileOperation.writeActiveUser(user, activeUserFile); // Actualizo el usuario activo
             res.redirect('/user/list');
             return;
         }
@@ -65,6 +65,8 @@ const usersController = {
         const files = req.files;
         const userData = req.body;
         let errorMsg = '';
+
+        // No valido si el usuario sube o no archivos porque no es obligatorio establecer una foto de perfil.
 
         // Check if user already exists
         let allUsers = fileOperation.readFile(allUsersFile);
@@ -116,7 +118,14 @@ const usersController = {
             interests: userData.interest
         };
         fileOperation.saveUser(user, allUsersFile);
-        res.redirect('/user/list');
+        fileOperation.writeActiveUser(user, activeUserFile); // Actualizo el usuario activo
+        res.redirect('/user/login');
+        // res.redirect('/user/list');
+    },
+    logout: function(req, res) {
+        const user = {};
+        fileOperation.writeActiveUser(user, activeUserFile); // Borro el usuario del archivo active-user.json
+        res.redirect('/user/login');
     }
 };
 

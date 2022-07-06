@@ -41,6 +41,8 @@ router.post('/register', multipleUpload, usersController.createUser);
 router.get('/recover', usersController.recover);
 router.get('/list', usersController.list);
 
+router.get('/logout', usersController.logout);
+
 //router.get('/list/:id/edit', usersController.profileEdit);
 
 module.exports = router;

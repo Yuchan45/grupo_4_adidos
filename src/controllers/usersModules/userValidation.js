@@ -28,7 +28,7 @@ let functionalities = {
         let flag = false;
         let i = 0;
         while (i < array.length && flag == false) {
-            if (array[i].username == user.username) {
+            if (array[i].username.toLowerCase() == user.username.toLowerCase()) {
                 userExists = true;
                 if (array[i].password == user.password) {
                     flag = true;

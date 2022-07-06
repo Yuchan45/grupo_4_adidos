@@ -71,7 +71,7 @@
 		</div>
 		<nav class="nav-menu">
 			<div class="dropdown">
-				<div class="language" id="drop-btn">
+				<div class="language" id="drop-btn"  tabindex="1">
 					<p data-dropdown-button>Idioma</p>
 					<i class="fa-solid fa-angle-down"></i>
 				</div>
@@ -102,7 +102,7 @@
 					<a href="">Favoritos</a>
 				</li>
 				<li class="dropdown">
-					<div class="user" id="drop-btn">
+					<div class="user" id="drop-btn" tabindex="1">
 						<p data-dropdown-button>Cuenta</p>
 						<i class="fa-solid fa-angle-down"></i>
 					</div>
@@ -117,28 +117,39 @@
 								class="profile-pic"
 							/>
 							<div class="profile-info">
-								<p class="user-role"><%= activeUser.role %></p>
-								<p class="user-name"><%= activeUser.name %></p>
-								<p class="user-country"><%= activeUser.country %></p>
+								<p class="user-role"><%= activeUser.role ? activeUser.role : '' %></p>
+								<p class="user-name"><%= activeUser.name ? activeUser.name : 'Invitado' %></p>
+								<p class="user-country"><%= activeUser.country ? activeUser.country : '' %></p>
 								<hr>
 							</div>
 						</div>
 						<ul class="user-list">
+						<% if (activeUser.id) { %>  <!-- Me fijo si hay un usuario activo actualmente -->
+							<% if (activeUser.role == 'admin') { %>
+								<li>
+									<a href="/user/list" onclick="alert('Hello World')">Ver usuarios</a>
+								</li>
+							<% } %>
 							<li>
-								<button id="login-link">Iniciar Sesión</button>
+								<a href="/user/logout">Cerrar Sesion</a>
+							</li>
+						<% } else { %>
+							<li>
+								<a href="/user/login">Iniciar Sesión</a>
 							</li>
 							<li>
-								<button id="register-link">Registrarme</button>
+								<a href="/user/register">Registrarme</a>
 							</li>
 							<li>
-								<button id="logout-link">Cerrar Sesion</button>
+								<a href="/user/logout" >Cerrar Sesion</a>
 							</li>
+						<% } %>
 						</ul>
 					</div>
 				</li>
 				<div class="bell-trollie-container">
 					<div class="dropdown">
-						<div class="notification" id="drop-btn">
+						<div class="notification" id="drop-btn"  tabindex="1">
 							<i class="fa-solid fa-bell" data-dropdown-button></i>
 						</div>
 						<div class="dropdown-menu notification-menu">
