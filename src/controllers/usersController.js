@@ -2,6 +2,7 @@ const path = require('path');
 const fileOperation = require('./usersModules/fileControl');
 const userValidation = require('./usersModules/userValidation');
 const { v4: uuidv4 } = require('uuid');
+const { nextTick } = require('process');
 
 const allUsersFile = path.join(__dirname, '../data/users.json');
 const activeUserFile = path.join(__dirname, '../data/active-user.json');
@@ -32,7 +33,7 @@ const usersController = {
         } else {
             // Todo en orden, siga señor
             fileOperation.writeActiveUser(user, activeUserFile); // Actualizo el usuario activo
-            res.redirect('/user/list');
+            res.redirect('/');
             return;
         }
         // Si los datos no son validos...
@@ -61,11 +62,12 @@ const usersController = {
             activeUser: activeUser
         });
     },
-    createUser: function(req, res) {
+    createUser: function(req, res, next) {
         const files = req.files;
         const userData = req.body;
         let errorMsg = '';
 
+        console.log(next)
         // No valido si el usuario sube o no archivos porque no es obligatorio establecer una foto de perfil.
 
         // Check if user already exists
@@ -93,6 +95,9 @@ const usersController = {
 
         if (!(validProfileExtension && validBannerExtension)) {
             errorMsg = "Archivo de imagen no valido!";
+            // const error = new Error('Por favor seleccione un archivo valido!');
+            // error.httpStatusCode = 400;
+            // return next(error);
             res.render('./users/register-form', {
                 formData : req.body,
                 errorMsg : errorMsg,
@@ -118,7 +123,7 @@ const usersController = {
             interests: userData.interest
         };
         fileOperation.saveUser(user, allUsersFile);
-        fileOperation.writeActiveUser(user, activeUserFile); // Actualizo el usuario activo
+        // fileOperation.writeActiveUser(user, activeUserFile); No lo puedo logear, que se loguee denuevo
         res.redirect('/user/login');
         // res.redirect('/user/list');
     },
