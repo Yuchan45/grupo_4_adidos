@@ -1,15 +1,16 @@
 const path = require('path');
-const fileOperation = require('./usersModules/fileControl');
-const userValidation = require('./usersModules/userValidation');
+const fileOperation = require('./controllerModules/fileControl');
+const userValidation = require('./controllerModules/userValidation');
 const { v4: uuidv4 } = require('uuid');
 const { nextTick } = require('process');
 
 const allUsersFile = path.join(__dirname, '../data/users.json');
 const activeUserFile = path.join(__dirname, '../data/active-user.json');
-const activeUser = fileOperation.readFile(activeUserFile);
+let activeUser = fileOperation.readFile(activeUserFile);
 
 const usersController = {
     loginIndex: function(req, res) {
+        activeUser = fileOperation.readFile(activeUserFile);
         res.render('./users/login-form', {
             userData : '',
             errorMsg : '',
@@ -67,7 +68,7 @@ const usersController = {
         const userData = req.body;
         let errorMsg = '';
 
-        console.log(next)
+        //console.log(next)
         // No valido si el usuario sube o no archivos porque no es obligatorio establecer una foto de perfil.
 
         // Check if user already exists
@@ -125,7 +126,12 @@ const usersController = {
         fileOperation.saveUser(user, allUsersFile);
         // fileOperation.writeActiveUser(user, activeUserFile); No lo puedo logear, que se loguee denuevo
         res.redirect('/user/login');
-        // res.redirect('/user/list');
+    },
+    editUser: function(req, res) {
+        res.send("EDIT");
+    },
+    deleteUser: function(req, res) {
+        res.send("DELETE");
     },
     logout: function(req, res) {
         const user = {};

@@ -32,7 +32,7 @@
 
             <div class="users-list">
                 <% for(let i=0; i<users.length; i++) { %>
-                <form class="user-card">
+                <article class="user-card">
                     <div class="banner">
                         <img src="/images/banners/<%= users[i].bannerName ? users[i].bannerName : 'default-banner.png' %>" alt="">
                     </div>
@@ -52,10 +52,15 @@
                         </div>
                     </div>
                     <div class="actions-container">
-                        <button type="submit" class="action-btn edit">Edit</button>
-                        <button type="submit" class="action-btn delete">Delete</button>
+                        <form action="/user/3?_method=PUT" method="POST">
+                            <button type="submit" class="action-btn edit">Edit</button>
+                        </form>
+                        <br>
+                        <form action="/user/3?_method=DELETE" method="POST">
+                            <button type="submit" class="action-btn delete">Delete</button>
+                        </form>
                     </div>
-                </form>
+                </article>
                 <% } %>
 
             </div>
@@ -67,7 +72,6 @@
 
 
     <script src="/js/hamburger.js"></script>
-    <script src="/js/nav-bar-tabs.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

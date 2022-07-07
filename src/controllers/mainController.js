@@ -1,13 +1,14 @@
 const path = require('path');
 const sliderSneakers = require('../data/sneakers');
 const shopCartSneakers = require('../data/shopCartSneakers');
-const fileOperation = require('./usersModules/fileControl');
+const fileOperation = require('./controllerModules/fileControl');
 const activeUserFile = path.join(__dirname, '../data/active-user.json');
 
-const activeUser = fileOperation.readFile(activeUserFile);
+
 
 const mainController = {
     index: function(req, res) {
+        const activeUser = fileOperation.readFile(activeUserFile);
         res.render('home', {
             sneakers: sliderSneakers,
             activeUser: activeUser

@@ -118,7 +118,7 @@
 							/>
 							<div class="profile-info">
 								<p class="user-role"><%= activeUser.role ? activeUser.role : '' %></p>
-								<p class="user-name"><%= activeUser.name ? activeUser.name : 'Invitado' %></p>
+								<p class="user-name"><%= activeUser.name ? activeUser.name : 'Quien eres?' %></p>
 								<p class="user-country"><%= activeUser.country ? activeUser.country : '' %></p>
 								<hr>
 							</div>
@@ -129,7 +129,13 @@
 								<li>
 									<a href="/user/list">Ver usuarios</a>
 								</li>
+								<li>
+									<a href="#">Mi perfil</a>
+								</li>
 							<% } %>
+							<li>
+								<a href="#">Mi perfil</a>
+							</li>
 							<li>
 								<a href="/user/logout">Cerrar Sesion</a>
 							</li>

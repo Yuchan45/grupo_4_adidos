@@ -39,9 +39,16 @@ router.get('/register', usersController.register);
 router.post('/register', multipleUpload, usersController.createUser);
 
 router.get('/recover', usersController.recover);
+
 router.get('/list', usersController.list);
 
+router.put('/:id', usersController.editUser);
+
+router.delete('/:id', usersController.deleteUser);
+
 router.get('/logout', usersController.logout);
+
+
 
 //router.get('/list/:id/edit', usersController.profileEdit);
 

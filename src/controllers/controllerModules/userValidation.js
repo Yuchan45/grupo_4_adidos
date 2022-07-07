@@ -14,7 +14,7 @@ let functionalities = {
         // Recibe una extension de formato, por ejemplo: ".png". Se fija si la extension del archivo es 
         // valida (pertenece a un archivo de tipo imagen). Devuelve true en caso de ser valida y false en caso contrario.
         let flag = false;
-        if (ext == '.png' || ext == '.jpg' || ext == '.jpeg') {
+        if (ext == '.png' || ext == '.jpg' || ext == '.jpeg' || ext == '.jfif' || ext == '.gif' || ext == '.webp') {
             flag = true;
         }
         return flag;
