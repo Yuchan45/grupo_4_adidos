@@ -1,6 +1,6 @@
 const path = require('path');
 const fileOperation = require('./controllerModules/fileControl');
-const userValidation = require('./controllerModules/userValidation');
+const userFunction = require('./controllerModules/userFunction');
 const { v4: uuidv4 } = require('uuid');
 const { nextTick } = require('process');
 
@@ -25,7 +25,7 @@ const usersController = {
         };
 
         const allUsers = fileOperation.readFile(allUsersFile); // ReadFile devuelve un array de objetos usuario.
-        const user = userValidation.loginUser(allUsers, loggedUser);
+        const user = userFunction.userExists(allUsers, loggedUser); 
 
         if (user === "yes") {
             errorMsg = "La contraseña ingresada no es valida!";
@@ -57,7 +57,9 @@ const usersController = {
         });
     },
     list: function(req, res) {
-        const users = require('../data/users.json');
+        // Update de los datos de los archivos
+        const users = fileOperation.readFile(allUsersFile);
+        activeUser = fileOperation.readFile(activeUserFile);
         res.render('./users/user-list', {
             users: users,
             activeUser: activeUser
@@ -73,7 +75,7 @@ const usersController = {
 
         // Check if user already exists
         let allUsers = fileOperation.readFile(allUsersFile);
-        let usernameAlreadyExists = userValidation.usernameAvailable(allUsers, userData.username);
+        let usernameAlreadyExists = userFunction.usernameAvailable(allUsers, userData.username);
         if (usernameAlreadyExists) {
             errorMsg = "El usuario ya existe! Prueba con otro nombre de usuario.";
             res.render('./users/register-form', {
@@ -87,12 +89,12 @@ const usersController = {
         // Set the profile image name if exists, otherwise set the default image name.
         const profileName = (files.profileImage) ? req.files.profileImage[0].filename : '';
         const bannerName = (files.bannerImage) ? req.files.bannerImage[0].filename : '';
-        const profileImageName = (profileName) ? profileName : "default.png";
-        const bannerImageName = (bannerName) ? bannerName : "default-banner.png";
+        const profileImageName = (profileName) ? profileName : "default.jpg";
+        const bannerImageName = (bannerName) ? bannerName : "default-banner.jpg";
 
         // DataType Validation.
-        const validProfileExtension = userValidation.extensionValidation(path.extname(profileImageName));
-        const validBannerExtension = userValidation.extensionValidation(path.extname(bannerImageName));   
+        const validProfileExtension = userFunction.extensionValidation(path.extname(profileImageName));
+        const validBannerExtension = userFunction.extensionValidation(path.extname(bannerImageName));   
 
         if (!(validProfileExtension && validBannerExtension)) {
             errorMsg = "Archivo de imagen no valido!";
@@ -123,7 +125,7 @@ const usersController = {
             country: userData.country,
             interests: userData.interest
         };
-        fileOperation.saveUser(user, allUsersFile);
+        fileOperation.addUserToFile(user, allUsersFile);
         // fileOperation.writeActiveUser(user, activeUserFile); No lo puedo logear, que se loguee denuevo
         res.redirect('/user/login');
     },
@@ -131,7 +133,24 @@ const usersController = {
         res.send("EDIT");
     },
     deleteUser: function(req, res) {
-        res.send("DELETE");
+        if (!req.params.id) return;
+        const id = req.params.id;
+        let allUsers = fileOperation.readFile(allUsersFile); // ReadFile devuelve un array de objetos usuario.
+        let activeUser = fileOperation.readFile(activeUserFile);
+        
+        let newArray = userFunction.removeUserFromArray(allUsers, id);
+        fileOperation.writeFile(newArray, allUsersFile);
+        
+        if (activeUser.id == id) {
+            fileOperation.writeActiveUser({}, activeUserFile); // Limpio el archivo active-user
+            res.redirect('/user/login');
+        } else {
+            res.redirect('/user/list');
+        }
+
+        // Remove image files.
+        userFunction.removeUserProfileBannerImage(allUsers, id);
+
     },
     logout: function(req, res) {
         const user = {};
