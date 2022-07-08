@@ -129,8 +129,18 @@ const usersController = {
         // fileOperation.writeActiveUser(user, activeUserFile); No lo puedo logear, que se loguee denuevo
         res.redirect('/user/login');
     },
+    editIndex: function(req, res) {
+        // Update de los datos de los archivos
+        const users = fileOperation.readFile(allUsersFile);
+        activeUser = fileOperation.readFile(activeUserFile);
+        
+        res.render('./users/user-edit', {
+            users: users,
+            activeUser: activeUser
+        });
+    },
     editUser: function(req, res) {
-        res.send("EDIT");
+        res.send("PUT EDIT");
     },
     deleteUser: function(req, res) {
         if (!req.params.id) return;
@@ -150,7 +160,6 @@ const usersController = {
 
         // Remove image files.
         userFunction.removeUserProfileBannerImage(allUsers, id);
-
     },
     logout: function(req, res) {
         const user = {};
