@@ -49,37 +49,37 @@
                     <h3 class="register-label">Perfil de usuario</h3>
                     <div class="radio-list">
                         <div class="radio-group">
-                            <input type="radio" id="role" name="role" value="admin" checked>
+                            <input type="radio" id="role" name="role" value="admin" <%= (formData.role == 'admin') ? "checked" : '' %> checked>
                             <label for="buySell">Administrador</label>
                         </div>
                         <div class="radio-group">
-                            <input type="radio" id="role" name="role" value="customer">
+                            <input type="radio" id="role" name="role" value="customer" <%= (formData.role == 'customer') ? "checked" : '' %>>
                             <label for="buySell">Cliente</label>
                         </div>
                     </div>
                     <h3 class="register-label">Genero</h3>
                     <div class="radio-list">
                         <div class="radio-group">
-                            <input type="radio" id="gender" name="gender" value="male" checked>
+                            <input type="radio" id="gender" name="gender" value="male" <%= (formData.gender == 'male') ? "checked" : '' %> checked>
                             <label for="gender">Hombre</label>
                         </div>
                         <div class="radio-group">
-                            <input type="radio" id="gender" name="gender" value="female">
+                            <input type="radio" id="gender" name="gender" value="female" <%= (formData.gender == 'female') ? "checked" : '' %>>
                             <label for="gender">Mujer</label>
                         </div>
                         <div class="radio-group">
-                            <input type="radio" id="gender" name="gender" value="other">
+                            <input type="radio" id="gender" name="gender" value="other" <%= (formData.gender == 'other') ? "checked" : '' %>>
                             <label for="gender">Otro</label>
                         </div>
                     </div>
                     <h3 class="register-label">País de nacimiento</h3>
                     <select class="country-combobox" name="country" id="country">
-                        <option value="ARG">Argentina</option>
-                        <option value="BRZ">Brasil</option>
-                        <option value="CHL">Chile</option>
-                        <option value="PER">Peru</option>
-                        <option value="BLV">Bolivia</option>
-                        <option value="UGY">Uruguay</option>
+                        <option value="ARG" <%= (formData.country == 'ARG') ? "selected" : '' %>>Argentina</option>
+                        <option value="BRZ" <%= (formData.country == 'BRZ') ? "selected" : '' %>>Brasil</option>
+                        <option value="CHL" <%= (formData.country == 'CHL') ? "selected" : '' %>>Chile</option>
+                        <option value="PER" <%= (formData.country == 'PER') ? "selected" : '' %>>Peru</option>
+                        <option value="BLV" <%= (formData.country == 'BLV') ? "selected" : '' %>>Bolivia</option>
+                        <option value="UGY" <%= (formData.country == 'UGY') ? "selected" : '' %>>Uruguay</option>
                     </select>
                     <div class="upload-file-container">
                         <label for="profileImage">Foto de perfil</label>

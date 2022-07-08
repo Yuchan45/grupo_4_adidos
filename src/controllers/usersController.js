@@ -92,15 +92,15 @@ const usersController = {
         const profileImageName = (profileName) ? profileName : "default.jpg";
         const bannerImageName = (bannerName) ? bannerName : "default-banner.jpg";
 
+        let avatarFullPath = (files.profileImage) ? req.files.profileImage[0].path : '';
+        let bannerFullPath = (files.bannerImage) ? req.files.bannerImage[0].path : '';
+
         // DataType Validation.
         const validProfileExtension = userFunction.extensionValidation(path.extname(profileImageName));
         const validBannerExtension = userFunction.extensionValidation(path.extname(bannerImageName));   
 
         if (!(validProfileExtension && validBannerExtension)) {
             errorMsg = "Archivo de imagen no valido!";
-            // const error = new Error('Por favor seleccione un archivo valido!');
-            // error.httpStatusCode = 400;
-            // return next(error);
             res.render('./users/register-form', {
                 formData : req.body,
                 errorMsg : errorMsg,
@@ -117,6 +117,8 @@ const usersController = {
             password: userData.password,
             avatarImageName: profileImageName,
             bannerName: bannerImageName,
+            avatarPath: avatarFullPath,
+            bannerPath: bannerFullPath,
             email: userData.email,
             address: userData.address,
             birthdate: userData.birthdate,
@@ -131,16 +133,70 @@ const usersController = {
     },
     editIndex: function(req, res) {
         // Update de los datos de los archivos
+        const id = req.params.id;
         const users = fileOperation.readFile(allUsersFile);
         activeUser = fileOperation.readFile(activeUserFile);
-        
+
+        let editUser = userFunction.getUserById(users, id);
+
         res.render('./users/user-edit', {
-            users: users,
-            activeUser: activeUser
+            users: users, // Se usa para el nav-bar
+            activeUser: activeUser, // Se usa para el nav-bar
+            editUser: editUser
         });
     },
     editUser: function(req, res) {
-        res.send("PUT EDIT");
+        const files = req.files; 
+        const id = req.params.id; // Id del usuario a modificar.
+        const data = req.body; // Datos recibidos del form de edicion.
+
+        const activeUser = fileOperation.readFile(activeUserFile);
+        const allUsers = fileOperation.readFile(allUsersFile); // Array de todos los usuarios en la base de datos
+        const editUser = userFunction.getUserById(allUsers, id); // Busco al usuario de la database cuya id corresponda con la que se esta modificando.
+
+        // Set the profile image name if exists, otherwise set the default image name.
+        const profileName = (files.profileImage) ? req.files.profileImage[0].filename : '';
+        const bannerName = (files.bannerImage) ? req.files.bannerImage[0].filename : '';
+
+        const profileImageName = (profileName) ? profileName : editUser.avatarImageName;
+        const bannerImageName = (bannerName) ? bannerName : editUser.bannerName;
+
+        let avatarFullPath = (files.profileImage) ? req.files.profileImage[0].path : '';
+        let bannerFullPath = (files.bannerImage) ? req.files.bannerImage[0].path : '';
+
+        let modifiedUser = {
+            id: editUser.id,
+            accCreationDate: editUser.accCreationDate,
+            name: data.name,
+            username: data.username,
+            password: data.password,
+            avatarImageName: profileImageName,
+            bannerName: bannerImageName,
+            avatarPath: avatarFullPath,
+            bannerPath: bannerFullPath,
+            email: data.email,
+            address: data.address,
+            birthdate: data.birthdate,
+            role: data.role,
+            gender: data.gender,
+            country: data.country,
+            interests: data.interest
+        };
+
+        if (activeUser.id == id)  fileOperation.writeActiveUser(modifiedUser, activeUserFile); // Actualizo el archivo active-user
+        // Elimino del servidor las anteriores imagenes del usuario en caso de que este haya subido unas nuevas.
+        const profilePath = path.join(__dirname, '../../public/images/profiles/' + editUser.avatarImageName);
+        const bannerPath = path.join(__dirname, '../../public/images/banners/' + editUser.bannerName);
+        if (profileImageName != editUser.avatarImageName) userFunction.removeImage(profilePath);
+        if (bannerImageName != editUser.bannerName) userFunction.removeImage(bannerPath);
+        
+        
+        // Creo un nuevo array sin el elemento modificado.
+        let updatedArray = userFunction.removeUserFromArray(allUsers, id);
+        updatedArray.push(modifiedUser);
+        fileOperation.writeFile(updatedArray, allUsersFile);
+
+        res.redirect('/user/list');
     },
     deleteUser: function(req, res) {
         if (!req.params.id) return;

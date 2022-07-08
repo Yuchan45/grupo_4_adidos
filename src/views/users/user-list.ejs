@@ -34,10 +34,10 @@
                 <% for(let i=0; i<users.length; i++) { %>
                 <article class="user-card">
                     <div class="banner">
-                        <img src="/images/banners/<%= users[i].bannerName ? users[i].bannerName : 'default-banner.png' %>" alt="">
+                        <img src="/images/banners/<%= users[i].bannerName ? users[i].bannerName : 'default-banner.jpg' %>" alt="">
                     </div>
                     <div class="data">
-                        <img src="/images/profiles/<%= users[i].avatarImageName ? users[i].avatarImageName : 'default.png' %>" alt=""/>
+                        <img src="/images/profiles/<%= users[i].avatarImageName ? users[i].avatarImageName : 'default.jpg' %>" alt=""/>
                         <div class="data-info">
                             <p class="data-title">NAME</p>
                             <p class="data-text"><%= users[i].name %></p>
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="actions-container">
-                        <form action="/user/<%= users[i].id %>?_method=PUT" method="POST">
+                        <form action="/user/<%= users[i].id %>/edit" method="GET">
                             <button type="submit" class="action-btn edit">Edit</button>
                         </form>
                         <br>

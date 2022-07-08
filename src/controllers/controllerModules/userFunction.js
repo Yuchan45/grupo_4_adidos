@@ -46,16 +46,14 @@ let functionalities = {
     removeUserFromArray: function(array, id) {
         // Recibe un array de objetos 'usuario' y un id. Remueve el usuario cuyo id corresponda al parametro.
         // Devuelve un nuevo array (sin el elemento eliminado).
-        let userIndex = array.findIndex(user => user.id == id);
-        let userToDelete = array[userIndex];
+        let userToDelete = this.getUserById(array, id);
         let newArray = array.filter(user => user.id != userToDelete.id);
         return newArray;
     },
     removeUserProfileBannerImage: function(array, id) {
         // Recibe un array de objetos usuario y un id. 
         // Elimina del servidor las imagenes (Perfil y banner) correspondientes al usuario.
-        let userIndex = array.findIndex(user => user.id == id);
-        let userToDelete = array[userIndex];
+        let userToDelete = this.getUserById(array, id);
         const avatarImage = path.join(__dirname, '../../../public/images/profiles/' + userToDelete.avatarImageName);
         const bannerImage = path.join(__dirname, '../../../public/images/banners/' + userToDelete.bannerName);
         if (userToDelete.avatarImageName != 'default.jpg') this.removeImage(avatarImage);
@@ -68,7 +66,11 @@ let functionalities = {
             console.log(err);
         }
     },
-
+    getUserById: function(array, id) {
+        let userIndex = array.findIndex(user => user.id == id);
+        let user = array[userIndex];
+        return user;
+    }
 
 
 };

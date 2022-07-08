@@ -43,7 +43,7 @@ router.get('/recover', usersController.recover);
 router.get('/list', usersController.list);
 
 router.get('/:id/edit', usersController.editIndex);
-router.put('/:id', usersController.editUser);
+router.put('/:id', multipleUpload, usersController.editUser);
 
 router.delete('/:id', usersController.deleteUser);
 
