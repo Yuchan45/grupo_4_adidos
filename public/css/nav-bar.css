@@ -309,6 +309,16 @@
 }
 
 /*  *** LANGUAGES TAB *** */
+.dropdown .language:focus-within + .dropdown-menu {
+	pointer-events: auto !important;
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.dropdown-menu:hover .language-list li img {
+	pointer-events: auto !important;
+}
+
 .nav-menu .dropdown .language {
 	display: flex;
     gap: 5px;
@@ -373,6 +383,16 @@
     transform: translateY(0px);drop-menu-header
 } */
 
+.dropdown .notification:focus-within + .dropdown-menu {
+	pointer-events: auto !important;
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.notification-menu:hover {
+	pointer-events: auto !important;
+}
+
 .dropdown .notification:hover > svg {
   color: var(--blue) !important;
 }
@@ -425,10 +445,11 @@
   display: flex;
   gap: 15px;
   padding: 5px 0;
+  transition: all .3s ease;
 }
 
 .notification-menu .notification-list a li:hover {
-  background-color: #0000000a;
+	background-color: #222222;
 }
 
 .notification-menu .notification-list a li img {
@@ -440,7 +461,9 @@
   font-size: var(--small);
   width: 350px;
   text-align: left;
+  transition: all .3s ease;
 }
+
 
 /* USER TABS */
 /* .dropdown .user:focus + .dropdown-menu {
@@ -448,6 +471,16 @@
     pointer-events: auto !important;
     transform: translateY(0px);
 } */
+
+.dropdown .user:focus-within + .dropdown-menu {
+	pointer-events: auto !important;
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.dropdown-menu:hover .user-list li a {
+	pointer-events: auto !important;
+}
 
 .dropdown .user:hover > p {
     color: var(--blue) !important;
@@ -488,12 +521,13 @@
 }
 
 .user-menu .profile-div > img {
-	min-width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 3px solid var(--blue);
-    padding: 3px;
-    object-fit: cover;
+  min-width: 120px;
+  max-width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid var(--blue);
+  padding: 3px;
+  object-fit: cover;
 }
 
 .user-menu .profile-div .profile-info {
@@ -537,7 +571,7 @@
     transition: all .3s ease;
 }
 
-.dropdown .user-menu .user-list li button {
+.dropdown .user-menu .user-list li a {
     margin: auto;
     text-decoration: none;
     color: var(--white);
