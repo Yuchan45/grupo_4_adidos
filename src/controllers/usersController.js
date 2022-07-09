@@ -2,7 +2,6 @@ const path = require('path');
 const fileOperation = require('./controllerModules/fileControl');
 const userFunction = require('./controllerModules/userFunction');
 const { v4: uuidv4 } = require('uuid');
-const { nextTick } = require('process');
 
 const allUsersFile = path.join(__dirname, '../data/users.json');
 const activeUserFile = path.join(__dirname, '../data/active-user.json');

@@ -15,6 +15,7 @@ const mainController = {
         });
     },
     shoppingCart: function(req, res) {
+        const activeUser = fileOperation.readFile(activeUserFile);
         let total = 0;
         for (let i=0; i<shopCartSneakers.length; i++) {
             total += shopCartSneakers[i].price;
