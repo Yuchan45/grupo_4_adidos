@@ -184,8 +184,8 @@ const usersController = {
 
         if (activeUser.id == id)  fileOperation.writeActiveUser(modifiedUser, activeUserFile); // Actualizo el archivo active-user
         // Elimino del servidor las anteriores imagenes del usuario en caso de que este haya subido unas nuevas.
-        const profilePath = path.join(__dirname, '../../public/images/profiles/' + editUser.avatarImageName);
-        const bannerPath = path.join(__dirname, '../../public/images/banners/' + editUser.bannerName);
+        const profilePath = path.join(__dirname, '../../public/images/users/profiles/' + editUser.avatarImageName);
+        const bannerPath = path.join(__dirname, '../../public/images/users/banners/' + editUser.bannerName);
         if (profileImageName != editUser.avatarImageName) userFunction.removeImage(profilePath);
         if (bannerImageName != editUser.bannerName) userFunction.removeImage(bannerPath);
         

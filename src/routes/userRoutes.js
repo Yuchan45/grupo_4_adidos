@@ -11,9 +11,9 @@ const fileStorageEngineConfig = multer.diskStorage({
     destination: function(req, file, cb) {
         let folder = '';
         if (file.fieldname == 'profileImage') {
-            folder = path.join(__dirname, '../../public/images/profiles');
+            folder = path.join(__dirname, '../../public/images/users/profiles');
         } else {
-            folder = path.join(__dirname, '../../public/images/banners');    
+            folder = path.join(__dirname, '../../public/images/users/banners');    
         }
         cb(null, folder);
     },
