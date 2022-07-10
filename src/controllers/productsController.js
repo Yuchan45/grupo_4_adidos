@@ -67,6 +67,10 @@ const productsController = {
         const users = require('../data/newProduct.json');
         res.render('./products/productsList', {newProducts: newProducts});
     },
+    deleteProduct: function(req, res) {
+        
+    },
+    
 };
 
 module.exports = productsController;
