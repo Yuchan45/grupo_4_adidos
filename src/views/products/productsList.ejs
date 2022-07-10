@@ -25,8 +25,8 @@
                     <p>Ordenar por:</p>
                     <button class="filter-btn">ID</button>
                     <button class="filter-btn">Categoria</button>
-                    <button class="filter-btn">NAME</button>
-                    <button class="filter-btn">COUNTRY</button>
+                    <button class="filter-btn">Marca</button>
+                    <button class="filter-btn">Genero</button>
                 </div>
 			</form>
 
@@ -34,10 +34,10 @@
                 <% for(let i=0; i<newProducts.length; i++) { %>
                 <form class="user-card">
                     <div class="banner">
-                        <img src="https://thumbs.dreamstime.com/b/september-moscow-russia-vector-illustration-background-logo-fifa-world-cup-which-will-be-held-qatar-copy-trophy-231463837.jpg" alt="">
+                        <img src="/public/images/products/correr-runing-zapatillas-asfalto-atardecer.jpg" alt="">
                     </div>
                     <div class="data">
-                        <img src="/images/profiles/<%= users[i].avatarImageName ? users[i].avatarImageName : 'default.png' %>" alt=""/>
+                        <img src="/images/products/<%= newProducts[i].image ? newProducts[i].image : 'default.png' %>" alt=""/>
                         <div class="data-info">
                             <p class="data-title">NAME</p>
                             <p class="data-text"><%= newProducts[i].name %></p>

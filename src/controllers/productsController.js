@@ -1,5 +1,5 @@
 const path = require('path');
-const userCrud = require('./usersModules/fileControl');
+const newProductCrud = require('./usersModules/productControl');
 const { v4: uuidv4 } = require('uuid');
 
 const sneakersData = require('../data/sneakers');
@@ -33,26 +33,35 @@ const productsController = {
     create: function(req, res) {
         res.render('./products/createProduct')
     },
-    createproduct: function(req,res){
+    createProduct: function(req,res){
+        const file = req.file;
+        res.send(file.filename)
+        //agregar validar error
+        // DataType Validation.
+       let ext = path.extname(profileImage);
+        if (ext != '.png' && ext != '.jpg' && ext != '.jpeg') {
+            console.log("Archivo de imagen no valido!");
+            res.redirect('/products/list');
+            return;
+        }
         const newProduct={
             id: uuidv4(), //ver
-            accCreationDate: new Date().toISOString().slice(0, 10), //ver
-            id: req.body.id, //ver
+            prodCreationDate: new Date().toISOString().slice(0, 10), //dia que cree producto
             name: req.body.name,
             description: req.body.description,
             price: req.body.price,
             descount: req.body.descount,
-            image: req.body.image,
+            image: file.filename,
             category: req.body.category,
             brand: req.body.brand,
             color: req.body.color,
             cellphone: req.body.cellphone,
             gender: req.body.gender
         };
-        //guardarla
+        res.send(newProduct)
+        newProductCrud.saveUser(newProduct); // ver
         res.render("./products/createProduct", { newProduct : newProduct});
-        newProductCrud.saveProduct(newProduct); // ver
-        res.redirect('/products/create')
+        res.redirect('/products/list')
     },
     productList: function(req,res){
         const users = require('../data/newProduct.json');

@@ -15,11 +15,11 @@
 
     <main class="main-register">
         <div class="register-wrapper">
-            <h1 class="form-title">¿Que deseas Vender?</h1>
+            <h1 class="form-title">PUBLICA TU ANUNCIO</h1>
             <h2 class="form-subtitle ">Incluye algunos detalles</h2>
             <h4 class="form-subtitle ">Sé parte de Shoocity</h4>
 
-            <form action="/product/list" method="POST" enctype="multipart/form-data"> 
+            <form action="/products/create" method="POST" enctype="multipart/form-data"> 
                 <div class="register-form-left">
                     <h3 class="register-label">Datos</h3>
                     <div class="form-group first-last-name">
@@ -79,8 +79,8 @@
                         </div>
                     </div>
                     <div class="upload-file-container">
-                        <label for="image">Imagen del producto</label>
-                        <input type="file" id="image" name="image">
+                        <label for="product-image">Imagen del producto</label>
+                        <input type="file" id="product-image" name="product-image">
                         <br>
                         <span>Este campo es requerido</span>
                     </div>
