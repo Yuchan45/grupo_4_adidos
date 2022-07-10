@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %> 
+    <link rel="stylesheet" href="/css/register-form.css">
+    <link rel="stylesheet" href="/css/createProducts.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/nav-bar.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <title>Crear productos</title>
+</head>
+<body>
+    <!-- Nav-bar -->
+    <%- include('../partials/nav-bar') %>
+
+    <main class="main-register">
+        <div class="register-wrapper">
+            <h1 class="form-title">¿Que deseas Vender?</h1>
+            <h2 class="form-subtitle ">Incluye algunos detalles</h2>
+            <h4 class="form-subtitle ">Sé parte de Shoocity</h4>
+
+            <form action="/product/list" method="POST" enctype="multipart/form-data"> 
+                <div class="register-form-left">
+                    <h3 class="register-label">Datos</h3>
+                    <div class="form-group first-last-name">
+                        <label for="name">Nombre del producto</label>
+                        <input type="text" name="name" id="name" required>
+                    </div>
+                    <div class="form-group user">
+                        <label for="description">Descripción</label>
+                        <textarea name="description" id="description" required> </textarea>
+                    </div>
+                    <div class="form-group user">
+                        <label for="price">Precio</label>
+                        <input type="number" name="price" id="price" required>
+                    </div>
+                    <div class="form-group domicilio">
+                        <label for="descount">Descuento</label>
+                        <input type="number" name="descount" id="descount" required>
+                    </div>
+                    <div class="form-group domicilio">
+                        <h3 class="register-label">Categoria</h3>
+                        <select class="country-combobox" name="category" id="category">
+                            <option value="rn">Running</option>
+                            <option value="ls">Life Style</option>
+                            <option value="tk">Treeking</option>
+                            <option value="cf">Crossfit</option>
+                        </select>
+                    </div>
+                    <div class="form-group domicilio">
+                        <h3 class="register-label">Marca</h3>
+                        <select class="country-combobox" name="brand" id="brand">
+                            <option value="pu">Puma</option>
+                            <option value="nk">Nike</option>
+                            <option value="nb">New Balance</option>
+                            <option value="Vans">Vans</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="register-form-right">
+                    <h3 class="register-label">Perfil de usuario</h3>
+                    <div class="form-group domicilio">
+                        <label for="cellphone">Numero de contacto (+54)</label>
+                        <input type="tel" name="cellphone" id="cellphone" required>
+                    </div>
+                    <h3 class="register-label">Genero</h3>
+                    <div class="radio-list">
+                        <div class="radio-group">
+                            <input type="radio" id="gender" name="gender" value="male" checked>
+                            <label for="gender">Hombre</label>
+                        </div>
+                        <div class="radio-group">
+                            <input type="radio" id="gender" name="gender" value="female">
+                            <label for="gender">Mujer</label>
+                        </div>
+                        <div class="radio-group">
+                            <input type="radio" id="gender" name="gender" value="other">
+                            <label for="gender">Otro</label>
+                        </div>
+                    </div>
+                    <div class="upload-file-container">
+                        <label for="image">Imagen del producto</label>
+                        <input type="file" id="image" name="image">
+                        <br>
+                        <span>Este campo es requerido</span>
+                    </div>
+                </div>
+                <!-- <div class="checkbox-list mail-spam-checkbox">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="mailspam" name="mailspam" value="mailspam">
+                        <label for="mailspam" class="mail-spam">Recibir correos electrónicos de Shoocity con actualizaciones de productos, ofertas y otros beneficios como Miembro!</label>
+                    </div>
+                </div> -->
+                <div class="send-container">
+                    <!-- <div class="error-message-container">
+                        <label class="error-msg">Mensaje de error!</label>
+                    </div> -->
+                    <button type="submit" class="submit-btn">Crear producto</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+
+    <!-- Scripts -->
+    <script src="/js/hamburger.js"></script>
+    <script src="/js/nav-bar-tabs.js"></script>
+</body>
+</html>

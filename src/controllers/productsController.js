@@ -1,3 +1,7 @@
+const path = require('path');
+const userCrud = require('./usersModules/fileControl');
+const { v4: uuidv4 } = require('uuid');
+
 const sneakersData = require('../data/sneakers');
 
 const productsController = {
@@ -25,7 +29,35 @@ const productsController = {
                 sneakers: sneakersData
             });
         }
-    }
+    },
+    create: function(req, res) {
+        res.render('./products/createProduct')
+    },
+    createproduct: function(req,res){
+        const newProduct={
+            id: uuidv4(), //ver
+            accCreationDate: new Date().toISOString().slice(0, 10), //ver
+            id: req.body.id, //ver
+            name: req.body.name,
+            description: req.body.description,
+            price: req.body.price,
+            descount: req.body.descount,
+            image: req.body.image,
+            category: req.body.category,
+            brand: req.body.brand,
+            color: req.body.color,
+            cellphone: req.body.cellphone,
+            gender: req.body.gender
+        };
+        //guardarla
+        res.render("./products/createProduct", { newProduct : newProduct});
+        newProductCrud.saveProduct(newProduct); // ver
+        res.redirect('/products/create')
+    },
+    productList: function(req,res){
+        const users = require('../data/newProduct.json');
+        res.render('./products/productsList', {newProducts: newProducts});
+    },
 };
 
 module.exports = productsController;
