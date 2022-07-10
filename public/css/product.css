@@ -39,6 +39,30 @@
     text-align: center;
   }
 
+  .editButton{
+    margin-left: 5%;
+    height: 30px;
+    width: 30%;
+    background-color: #0b6a9f;
+    border: none;
+    border-radius: 5px;
+  }
+
+  .deleteButton{
+    height: 30px;
+    width: 30%;
+    margin-right: 5%;
+    background-color: #8a1111;
+    border: none;
+    border-radius: 5px;
+  }
+
+  .deleteEditProd{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   @media only screen and (max-width: 750px) {
     .main-item {
       max-width: 200px;
