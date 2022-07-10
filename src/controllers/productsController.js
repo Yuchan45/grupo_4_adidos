@@ -3,6 +3,7 @@ const newProductCrud = require('./usersModules/productControl');
 const { v4: uuidv4 } = require('uuid');
 
 const sneakersData = require('../data/sneakers');
+const { profile } = require('console');
 
 const productsController = {
     allProducts: function(req, res) {
@@ -33,19 +34,30 @@ const productsController = {
     create: function(req, res) {
         res.render('./products/createProduct')
     },
+    productList: function(req,res){
+        const newProducts = require('../data/newProduct.json');
+        res.render('./products/productsList', {newProducts: newProducts});
+    },
     createProduct: function(req,res){
+        let profileImage = '';
         const file = req.file;
-        res.send(file.filename)
+
+        profileImage = (file) ? req.file.filename : "default.png";
         //agregar validar error
+        if (!file) {
+            const error = new error ("Por Favor seleccione un archivo")
+            error.httpStatusCode = 400
+            return next(error)
+        }
         // DataType Validation.
        let ext = path.extname(profileImage);
-        if (ext != '.png' && ext != '.jpg' && ext != '.jpeg') {
+        if (ext != '.png' && ext != '.JPG' && ext != '.jpeg') {
             console.log("Archivo de imagen no valido!");
-            res.redirect('/products/list');
+            res.redirect('/products/create');
             return;
         }
         const newProduct={
-            id: uuidv4(), //ver
+            id: uuidv4(), 
             prodCreationDate: new Date().toISOString().slice(0, 10), //dia que cree producto
             name: req.body.name,
             description: req.body.description,
@@ -58,14 +70,8 @@ const productsController = {
             cellphone: req.body.cellphone,
             gender: req.body.gender
         };
-        res.send(newProduct)
-        newProductCrud.saveUser(newProduct); // ver
-        res.render("./products/createProduct", { newProduct : newProduct});
-        res.redirect('/products/list')
-    },
-    productList: function(req,res){
-        const users = require('../data/newProduct.json');
-        res.render('./products/productsList', {newProducts: newProducts});
+        newProductCrud.saveProduct(newProduct); // ver
+        res.redirect('/products/list');
     },
 };
 
