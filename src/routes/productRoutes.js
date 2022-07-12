@@ -5,7 +5,6 @@ const productsController = require('../controllers/productsController');
 
 router.get('/', productsController.allProducts);
 
-//editado hoyyyy (fue agregado)
 router.get('/search', productsController.search);
 
 router.get('/create', function(req, res) {

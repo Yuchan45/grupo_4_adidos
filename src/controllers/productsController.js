@@ -26,7 +26,6 @@ const productsController = {
             });
         }
     },
-    // agregado hoy
     search: function(req, res) {
         let userSearch = req.query.search;
         let productsResults = []
