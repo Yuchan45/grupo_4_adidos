@@ -1,6 +1,6 @@
 const path = require('path');
 const sneakersData = require('../data/sneakers');
-const fileOperation = require('./controllerModules/fileControl');
+const fileOperation = require('../middlewares/modules/fileControl');
 const activeUserFile = path.join(__dirname, '../data/active-user.json');
 
 const activeUser = fileOperation.readFile(activeUserFile);

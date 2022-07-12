@@ -1,7 +1,7 @@
 const path = require('path');
 const sliderSneakers = require('../data/sneakers');
 const shopCartSneakers = require('../data/shopCartSneakers');
-const fileOperation = require('./controllerModules/fileControl');
+const fileOperation = require('../middlewares/modules/fileControl');
 const activeUserFile = path.join(__dirname, '../data/active-user.json');
 
 

@@ -5,10 +5,12 @@ let functionalities = {
     usernameAvailable: function(array, username) {
         // Recibe un array de objetos "usuario" y un string "username". Se fija si dicho usuario se encuentra en el array.
         // Devuelve true en caso de que el usuario ya se encuentre en el array, y false en caso contrario.
+        let lowerUsername = username.toLowerCase();
         let flag = false;
         let i = 0;
         while (i < array.length && flag == false) {
-            if (array[i].username == username) flag = true;
+            // console.log("username buscado: " + usernameLower)
+            if ((array[i].username).toLowerCase() == lowerUsername) flag = true;
             i++;
         }
         return flag;

@@ -6,7 +6,17 @@ const express = require('express');
 const router = express.Router();
 const usersController = require('../controllers/usersController');
 
-// Seteo donde y como guardar los archivos.
+// Middlewares
+const loginValidation = require('../middlewares/users/loginValidation');
+const isAdmin = require('../middlewares/users/isAdmin');
+const userAlreadyExists = require('../middlewares/users/userAlreadyExists');
+const dataTypeValidation = require('../middlewares/users/dataTypeValidation');
+
+// Controllers
+const {loginIndex, login, register, createUser, recover, list, editIndex, editUser, deleteUser, logout} = usersController;
+
+
+// Multer
 const fileStorageEngineConfig = multer.diskStorage({
     destination: function(req, file, cb) {
         let folder = '';
@@ -19,7 +29,6 @@ const fileStorageEngineConfig = multer.diskStorage({
     },
     filename: function(req, file, cb) {
         let imageName = '';
-        //let imageName = Date.now() + path.extname(file.originalname);
         if (file.fieldname == 'profileImage') {
             imageName = 'userProfile-' + uuidv4() + path.extname(file.originalname);
         } else {
@@ -32,22 +41,22 @@ const fileStorageEngineConfig = multer.diskStorage({
 let upload = multer({storage: fileStorageEngineConfig});
 let multipleUpload = upload.fields( [{name: 'profileImage'}, {name: 'bannerImage'}] );
 
-router.get('/login', usersController.loginIndex);
-router.post('/login', usersController.login);
+router.get('/login', loginIndex);
+router.post('/login', loginValidation, login);
 
-router.get('/register', usersController.register);
-router.post('/register', multipleUpload, usersController.createUser);
+router.get('/register', register);
+router.post('/register', multipleUpload, userAlreadyExists, dataTypeValidation, createUser);
 
-router.get('/recover', usersController.recover);
+router.get('/recover', recover);
 
-router.get('/list', usersController.list);
+router.get('/list', isAdmin, list);
 
-router.get('/:id/edit', usersController.editIndex);
-router.put('/:id', multipleUpload, usersController.editUser);
+router.get('/:id/edit', editIndex);
+router.put('/:id', multipleUpload, dataTypeValidation, editUser);
 
-router.delete('/:id', usersController.deleteUser);
+router.delete('/:id', deleteUser);
 
-router.get('/logout', usersController.logout);
+router.get('/logout', logout);
 
 
 

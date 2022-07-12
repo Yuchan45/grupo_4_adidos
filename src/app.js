@@ -7,10 +7,11 @@ const app = express();
 // override with the X-HTTP-Method-Override header in the request. We can now use the 'put' & 'delete' method in html forms.
 app.use(methodOverride('_method'));
 
-// ROUTES
+// REQUIRES
 const mainRoutes = require('./routes/mainRoutes');
 const userRoutes = require('./routes/userRoutes');
 const productRoutes = require('./routes/productRoutes');
+const logs = require('./middlewares/logs');
 
 // CONFIGS
 const publicPath = path.resolve(__dirname, '../public');
@@ -20,6 +21,7 @@ app.set('views', path.resolve(__dirname, './views'));
 // Para capturar datos de los forms
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
+app.use(logs);
 
 
 // SET TEMPLATE ENGINE (EJS)
