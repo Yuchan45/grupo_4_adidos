@@ -37,6 +37,16 @@ const productsController = {
                 activeUser: activeUser
             });
         }
+    },
+    search: function(req, res) {
+        let userSearch = req.query.search;
+        let productsResults = []
+        for (let i = 0; i < sneakersData.length; i++) {
+            if ( sneakersData[i].brand.toLowerCase().includes(userSearch.toLowerCase())) {
+                productsResults.push(sneakersData[i])
+            }
+        }
+        res.render('./products/all-products', {sneakers : productsResults})
     }
 };
 

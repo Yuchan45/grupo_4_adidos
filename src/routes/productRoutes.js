@@ -5,6 +5,8 @@ const productsController = require('../controllers/productsController');
 
 router.get('/', productsController.allProducts);
 
+router.get('/search', productsController.search);
+
 router.get('/create', function(req, res) {
     res.send("Formulario de creación de productos");
 });
@@ -24,6 +26,8 @@ router.put('/:id', function(req, res) {
 router.delete('/:id', function(req, res) {
     res.send("Acción de borrado");
 });
+
+
 
 
 module.exports = router;
