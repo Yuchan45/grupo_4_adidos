@@ -39,6 +39,7 @@ const productsController = {
         }
     },
     search: function(req, res) {
+        const activeUser = fileOperation.readFile(activeUserFile);
         let userSearch = req.query.search;
         let productsResults = []
         for (let i = 0; i < sneakersData.length; i++) {
@@ -46,7 +47,10 @@ const productsController = {
                 productsResults.push(sneakersData[i])
             }
         }
-        res.render('./products/all-products', {sneakers : productsResults})
+        res.render('./products/all-products', {
+            sneakers : productsResults,
+            activeUser : activeUser
+        })
     }
 };
 
