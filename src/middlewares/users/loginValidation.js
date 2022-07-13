@@ -8,6 +8,7 @@ const activeUserFile = path.join(__dirname, '../../data/active-user.json');
 let activeUser = fileOperation.readFile(activeUserFile);
 
 function loginValidation(req, res, next) {
+    // Verifica: - El usuario ya existe. Contraseña valida o invalida.
     let errorMsg = '';  
     let loggedUser = {
         username: req.body.username,

@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const methodOverride = require('method-override');
+const session = require('express-session');
 const app = express();
 
 // METHOD OVERRRIDE package
@@ -18,9 +19,15 @@ const publicPath = path.resolve(__dirname, '../public');
 app.use(express.static(publicPath));
 app.set('port', process.env.PORT || 3001);
 app.set('views', path.resolve(__dirname, './views'));
-// Para capturar datos de los forms
-app.use(express.urlencoded({extended: false}));
-app.use(express.json());
+
+// Para capturar datos de los forms (POST && PUT)
+app.use(express.urlencoded({extended: false}));  // is a inbuilt method in express to recognize the incoming Request Object as strings or arrays.
+app.use(express.json());  // is a inbuilt METHOD in express to recognize the incoming Request Object as a JSON Object.
+
+// Express-Session. (Para guardar datos del usuario actual).
+app.use(session({secret: "Hashhhh"}));
+
+// Logs de ingreso a rutas.
 app.use(logs);
 
 

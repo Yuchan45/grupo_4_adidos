@@ -43,10 +43,10 @@ let multipleUpload = upload.fields( [{name: 'profileImage'}, {name: 'bannerImage
 
 // LogIn
 router.get('/login', loginIndex);
-router.post('/login', loginValidation, login);
+router.post('/login', loginValidation, login); // Falta express-validation (check pass lenght, etc).
 // Register
 router.get('/register', register);
-router.post('/register', multipleUpload, userAlreadyExists, dataTypeValidation, createUser);
+router.post('/register', multipleUpload, userAlreadyExists, dataTypeValidation, createUser); // Falta express-validation (check pass lenght, etc).
 // Recovery
 router.get('/recover', recover);
 // List

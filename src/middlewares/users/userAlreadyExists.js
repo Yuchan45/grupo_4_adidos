@@ -7,7 +7,7 @@ const activeUserFile = path.join(__dirname, '../../data/active-user.json');
 
 
 function userAlreadyExists(req, res, next) {
-    // Check if user already exists
+    // Checks if user already exists
     let activeUser = fileOperation.readFile(activeUserFile);
     let allUsers = fileOperation.readFile(allUsersFile);
 

@@ -3,6 +3,8 @@ const userFunction = require('../modules/userFunction');
 
 
 function dataTypeValidation(req, res, next) {
+    // Checks if there is a file or not. If theres not a profile or banner image, then it sets a default image.
+    // Then checks if the extension of the input image is valid (".jpg", ".png", ".jpeg", ".jfif", ".gif", ".webp")
     const files = req.files;
 
     const profileImageName = (files.profileImage) ? req.files.profileImage[0].filename : 'default.jpg';
