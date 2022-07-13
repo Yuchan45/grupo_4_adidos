@@ -30,6 +30,9 @@ app.use(session({secret: "Hashhhh"}));
 // Logs de ingreso a rutas.
 app.use(logs);
 
+// Cookie Parser
+app.use(cookieParser());
+
 
 // SET TEMPLATE ENGINE (EJS)
 app.set('view engine', 'ejs');
