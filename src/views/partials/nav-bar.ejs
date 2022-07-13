@@ -28,24 +28,40 @@
 				<div class="aside-bounds">
 					<div class="profile-div">
 						<img
-							src="/images/profiles/<%= activeUser.avatarImageName ? activeUser.avatarImageName : 'default.jpg' %>"
+							src="/images/users/profiles/<%= activeUser.avatarImageName ? activeUser.avatarImageName : 'default.jpg' %>"
 							alt=""
 							class="profile-pic"
 						/>
 					</div>
 					<ul class="nav-menu-list">
-						<li>
-							<i class="fa-solid fa-user"></i>
-							<a href="">Cuenta</a>
-						</li>
-						<li>
-							<i class="fa-solid fa-bag-shopping"></i>
-							<a href="/shopping-cart">Mis compras</a>
-						</li>
-						<li>
-							<i class="fa-solid fa-heart"></i>
-							<a href="">Favoritos</a>
-						</li>
+						<% if (activeUser.id) { %>  <!-- Me fijo si hay un usuario activo actualmente -->
+							<% if (activeUser.role == 'admin') { %>
+								<li class="user-list">
+									<i class="fa-solid fa-address-book"></i>
+									<a href="/user/list">Ver usuarios</a>
+								</li>
+							<% } %>
+							<li>
+								<i class="fa-solid fa-user"></i>
+								<a href="/user/<%= activeUser.id %>/edit">Mi perfil</a>
+							</li>
+							<li>
+								<i class="fa-solid fa-bag-shopping"></i>
+								<a href="/shopping-cart">Mis compras</a>
+							</li>
+							<li>
+								<i class="fa-solid fa-heart"></i>
+								<a href="">Favoritos</a>
+							</li>
+						<% } else { %>
+							<li>
+								<a href="/user/login">Iniciar Sesión</a>
+							</li>
+							<li>
+								<a href="/user/register">Registrarme</a>
+							</li>
+						<% } %>
+						
 					</ul>
 					<ul class="nav-menu-list">
 						<li>
@@ -64,8 +80,10 @@
 							<i class="fa-solid fa-user-astronaut"></i>
 							<a href="">Nosotros</a>
 						</li>
+						<li class="logout">
+							<a href="/user/logout" >Cerrar Sesion</a>
+						</li>
 					</ul>
-					<p>Cerrar sesión</p>
 				</div>
 			</aside>
 		</div>
@@ -108,11 +126,11 @@
 					</div>
 					<div class="dropdown-menu user-menu">
 						<div class="drop-menu-header">
-							<img src="/images/banners/<%= activeUser.bannerName ? activeUser.bannerName : 'default-banner.jpg' %>" alt="">
+							<img src="/images/users/banners/<%= activeUser.bannerName ? activeUser.bannerName : 'default-banner.jpg' %>" alt="">
 						</div>
 						<div class="profile-div">
 							<img
-								src="/images/profiles/<%= activeUser.avatarImageName ? activeUser.avatarImageName : 'default.jpg' %>"
+								src="/images/users/profiles/<%= activeUser.avatarImageName ? activeUser.avatarImageName : 'default.jpg' %>"
 								alt=""
 								class="profile-pic"
 							/>

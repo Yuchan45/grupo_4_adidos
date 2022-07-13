@@ -597,6 +597,10 @@
     justify-content: space-between;
 }
 
+.nav-menu-list .logout {
+  margin-top: 25px !important;
+}
+
 .nav-menu .nav-menu-list li {
   margin: 0 10px 0 10px;
 }

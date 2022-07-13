@@ -1,6 +1,6 @@
 const path = require('path');
-const fileOperation = require('./controllerModules/fileControl');
-const userFunction = require('./controllerModules/userFunction');
+const fileOperation = require('../middlewares/modules/fileControl');
+const userFunction = require('../middlewares/modules/userFunction');
 const { v4: uuidv4 } = require('uuid');
 
 const allUsersFile = path.join(__dirname, '../data/users.json');
@@ -17,31 +17,7 @@ const usersController = {
         });
     },
     login: function(req, res) {      
-        let errorMsg = '';  
-        let loggedUser = {
-            username: req.body.username,
-            password: req.body.password,
-        };
-
-        const allUsers = fileOperation.readFile(allUsersFile); // ReadFile devuelve un array de objetos usuario.
-        const user = userFunction.userExists(allUsers, loggedUser); 
-
-        if (user === "yes") {
-            errorMsg = "La contraseña ingresada no es valida!";
-        } else if (user === "no") {
-            errorMsg = "El usuario ingresado NO existe!";
-        } else {
-            // Todo en orden, siga señor
-            fileOperation.writeActiveUser(user, activeUserFile); // Actualizo el usuario activo
-            res.redirect('/');
-            return;
-        }
-        // Si los datos no son validos...
-        res.render('./users/login-form', {
-            userData : req.body,
-            errorMsg : errorMsg,
-            activeUser: activeUser
-        });
+        res.redirect('/');
     },
     register: function(req, res) {
         res.render('./users/register-form', {
@@ -60,45 +36,19 @@ const usersController = {
         const users = fileOperation.readFile(allUsersFile);
         activeUser = fileOperation.readFile(activeUserFile);
         res.render('./users/user-list', {
+            filter : '',
             users: users,
             activeUser: activeUser
         });
     },
     createUser: function(req, res, next) {
+        let errorMsg = '';
+        let activeUser = fileOperation.readFile(activeUserFile);
+
         const files = req.files;
         const userData = req.body;
-        let errorMsg = '';
 
-        //console.log(next)
-        // No valido si el usuario sube o no archivos porque no es obligatorio establecer una foto de perfil.
-
-        // Check if user already exists
-        let allUsers = fileOperation.readFile(allUsersFile);
-        let usernameAlreadyExists = userFunction.usernameAvailable(allUsers, userData.username);
-        if (usernameAlreadyExists) {
-            errorMsg = "El usuario ya existe! Prueba con otro nombre de usuario.";
-            res.render('./users/register-form', {
-                formData : req.body,
-                errorMsg : errorMsg,
-                activeUser: activeUser
-            });
-            return;
-        }
-        
-        // Set the profile image name if exists, otherwise set the default image name.
-        const profileName = (files.profileImage) ? req.files.profileImage[0].filename : '';
-        const bannerName = (files.bannerImage) ? req.files.bannerImage[0].filename : '';
-        const profileImageName = (profileName) ? profileName : "default.jpg";
-        const bannerImageName = (bannerName) ? bannerName : "default-banner.jpg";
-
-        let avatarFullPath = (files.profileImage) ? req.files.profileImage[0].path : '';
-        let bannerFullPath = (files.bannerImage) ? req.files.bannerImage[0].path : '';
-
-        // DataType Validation.
-        const validProfileExtension = userFunction.extensionValidation(path.extname(profileImageName));
-        const validBannerExtension = userFunction.extensionValidation(path.extname(bannerImageName));   
-
-        if (!(validProfileExtension && validBannerExtension)) {
+        if (!(req.validProfileExtension && req.validBannerExtension)) {
             errorMsg = "Archivo de imagen no valido!";
             res.render('./users/register-form', {
                 formData : req.body,
@@ -107,6 +57,13 @@ const usersController = {
             });
             return;
         }
+
+        // No valido si el usuario sube o no archivos porque no es obligatorio establecer una foto de perfil.    
+        // Set the profile image name if exists, otherwise set the default image name.
+        const profileImageName = (files.profileImage) ? req.files.profileImage[0].filename : 'default.jpg';
+        const bannerImageName = (files.bannerImage) ? req.files.bannerImage[0].filename : 'default-banner.jpg';
+        let avatarFullPath = (files.profileImage) ? req.files.profileImage[0].path : '';
+        let bannerFullPath = (files.bannerImage) ? req.files.bannerImage[0].path : '';
 
         let user = {
             id: uuidv4(),
@@ -127,11 +84,11 @@ const usersController = {
             interests: userData.interest
         };
         fileOperation.addUserToFile(user, allUsersFile);
-        // fileOperation.writeActiveUser(user, activeUserFile); No lo puedo logear, que se loguee denuevo
         res.redirect('/user/login');
     },
     editIndex: function(req, res) {
         // Update de los datos de los archivos
+        let errorMsg = '';
         const id = req.params.id;
         const users = fileOperation.readFile(allUsersFile);
         activeUser = fileOperation.readFile(activeUserFile);
@@ -139,26 +96,35 @@ const usersController = {
         let editUser = userFunction.getUserById(users, id);
 
         res.render('./users/user-edit', {
+            errorMsg : errorMsg,
             users: users, // Se usa para el nav-bar
             activeUser: activeUser, // Se usa para el nav-bar
             editUser: editUser
         });
     },
     editUser: function(req, res) {
+        let errorMsg = '';
         const files = req.files; 
         const id = req.params.id; // Id del usuario a modificar.
         const data = req.body; // Datos recibidos del form de edicion.
 
         const activeUser = fileOperation.readFile(activeUserFile);
-        const allUsers = fileOperation.readFile(allUsersFile); // Array de todos los usuarios en la base de datos
-        const editUser = userFunction.getUserById(allUsers, id); // Busco al usuario de la database cuya id corresponda con la que se esta modificando.
+        const allUsers = fileOperation.readFile(allUsersFile); 
+        const editUser = userFunction.getUserById(allUsers, id); 
+
+        if (!(req.validProfileExtension && req.validBannerExtension)) {
+            errorMsg = "Archivo de imagen no valido!";
+            res.render('./users/user-edit', {
+                editUser : editUser,
+                errorMsg : errorMsg,
+                activeUser: activeUser
+            });
+            return;
+        }
 
         // Set the profile image name if exists, otherwise set the default image name.
-        const profileName = (files.profileImage) ? req.files.profileImage[0].filename : '';
-        const bannerName = (files.bannerImage) ? req.files.bannerImage[0].filename : '';
-
-        const profileImageName = (profileName) ? profileName : editUser.avatarImageName;
-        const bannerImageName = (bannerName) ? bannerName : editUser.bannerName;
+        const profileImageName = (files.profileImage) ? req.files.profileImage[0].filename : editUser.avatarImageName;
+        const bannerImageName = (files.bannerImage) ? req.files.bannerImage[0].filename : editUser.bannerName;
 
         let avatarFullPath = (files.profileImage) ? req.files.profileImage[0].path : '';
         let bannerFullPath = (files.bannerImage) ? req.files.bannerImage[0].path : '';
@@ -184,8 +150,8 @@ const usersController = {
 
         if (activeUser.id == id)  fileOperation.writeActiveUser(modifiedUser, activeUserFile); // Actualizo el archivo active-user
         // Elimino del servidor las anteriores imagenes del usuario en caso de que este haya subido unas nuevas.
-        const profilePath = path.join(__dirname, '../../public/images/profiles/' + editUser.avatarImageName);
-        const bannerPath = path.join(__dirname, '../../public/images/banners/' + editUser.bannerName);
+        const profilePath = path.join(__dirname, '../../public/images/users/profiles/' + editUser.avatarImageName);
+        const bannerPath = path.join(__dirname, '../../public/images/users/banners/' + editUser.bannerName);
         if (profileImageName != editUser.avatarImageName) userFunction.removeImage(profilePath);
         if (bannerImageName != editUser.bannerName) userFunction.removeImage(bannerPath);
         
@@ -195,7 +161,11 @@ const usersController = {
         updatedArray.push(modifiedUser);
         fileOperation.writeFile(updatedArray, allUsersFile);
 
-        res.redirect('/user/list');
+        if (editUser.role == 'admin') {
+            res.redirect('/user/list');
+            return;
+        }
+        res.redirect('/');
     },
     deleteUser: function(req, res) {
         if (!req.params.id) return;
@@ -220,6 +190,55 @@ const usersController = {
         const user = {};
         fileOperation.writeActiveUser(user, activeUserFile); // Borro el usuario del archivo active-user.json
         res.redirect('/user/login');
+    },
+    search: function(req, res) {
+        users = fileOperation.readFile(allUsersFile);
+        let userSearch = req.query.search;
+        let userResults = []
+
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].username.toLowerCase().includes(userSearch.toLowerCase()) || users[i].name.toLowerCase().includes(userSearch.toLowerCase())) {
+                userResults.push(users[i])
+            }
+        }
+        
+        res.render('./users/user-list', {
+            filter : '',
+            users: userResults,
+            activeUser: activeUser
+        });
+    },
+    filter: function(req, res) {
+        const filter = req.query.filter;
+
+        users = fileOperation.readFile(allUsersFile);
+        
+        let userResults = [];
+        switch (filter) {
+            case 'all':
+                userResults = users;
+                break;
+            case 'id':
+                userResults = userFunction.getUsersOrderedById(users);
+                break;
+            case 'role':
+                userResults = userFunction.getUsersOrderedByRole(users);
+                break;
+            case 'name':
+                userResults = userFunction.getUsersOrderedByName(users);
+                break;
+            case 'country':
+                userResults = userFunction.getUsersOrderedByCountry(users);
+                break;
+            default:
+                res.send("Error");
+        }
+
+        res.render('./users/user-list', {
+            filter : filter,
+            users : userResults,
+            activeUser: activeUser
+        });
     }
 };
 

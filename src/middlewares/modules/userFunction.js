@@ -5,10 +5,12 @@ let functionalities = {
     usernameAvailable: function(array, username) {
         // Recibe un array de objetos "usuario" y un string "username". Se fija si dicho usuario se encuentra en el array.
         // Devuelve true en caso de que el usuario ya se encuentre en el array, y false en caso contrario.
+        let lowerUsername = username.toLowerCase();
         let flag = false;
         let i = 0;
         while (i < array.length && flag == false) {
-            if (array[i].username == username) flag = true;
+            // console.log("username buscado: " + usernameLower)
+            if ((array[i].username).toLowerCase() == lowerUsername) flag = true;
             i++;
         }
         return flag;
@@ -54,8 +56,8 @@ let functionalities = {
         // Recibe un array de objetos usuario y un id. 
         // Elimina del servidor las imagenes (Perfil y banner) correspondientes al usuario.
         let userToDelete = this.getUserById(array, id);
-        const avatarImage = path.join(__dirname, '../../../public/images/profiles/' + userToDelete.avatarImageName);
-        const bannerImage = path.join(__dirname, '../../../public/images/banners/' + userToDelete.bannerName);
+        const avatarImage = path.join(__dirname, '../../../public/images/users/profiles/' + userToDelete.avatarImageName);
+        const bannerImage = path.join(__dirname, '../../../public/images/users/banners/' + userToDelete.bannerName);
         if (userToDelete.avatarImageName != 'default.jpg') this.removeImage(avatarImage);
         if (userToDelete.bannerName != 'default-banner.jpg') this.removeImage(bannerImage);
     },
@@ -66,10 +68,67 @@ let functionalities = {
             console.log(err);
         }
     },
+    sortById: function(a, b) {
+        var idA = a.id.toLowerCase(); // ignore upper and lowercase
+        var idB = b.id.toLowerCase(); // ignore upper and lowercase
+        if (idA < idB) {
+          return -1; // idA comes first
+        }
+        if (idA > idB) {
+          return 1; // idB comes first
+        }
+        return 0; 
+    },
+    sortByName: function(a, b) {
+        var nameA = a.name.toLowerCase();
+        var nameB = b.name.toLowerCase();
+        if (nameA < nameB) {
+            return -1;
+        }
+        if (nameA > nameB) {
+            return 1;
+        }
+        return 0;
+    },
+    sortByRole: function(a, b) {
+        var roleA = a.role.toLowerCase();
+        var roleB = b.role.toLowerCase();
+        if (roleA < roleB) {
+            return -1;
+        }
+        if (roleA > roleB) {
+            return 1;
+        }
+        return 0;
+    },
+    sortByCountry: function(a, b) {
+        var countryB = b.country.toLowerCase();
+        var countryA = a.country.toLowerCase();
+        if (countryA < countryB) {
+            return -1;
+        }
+        if (countryA > countryB) {
+            return 1;
+        }
+        return 0;
+    },
     getUserById: function(array, id) {
         let userIndex = array.findIndex(user => user.id == id);
         let user = array[userIndex];
         return user;
+    },
+    getUsersOrderedById: function(users) {
+        // Recibe un array de usuarios y los devuelve ordenadas ascendentemente por ID.
+        return users.sort(this.sortById);
+    },
+    getUsersOrderedByName: function() {
+        return users.sort(this.sortByName);
+    },
+    getUsersOrderedByRole: function() {
+        return users.sort(this.sortByRole);
+    },
+    getUsersOrderedByCountry: function() {
+        return users.sort(this.sortByCountry);
     }
 
 
