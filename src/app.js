@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const methodOverride = require('method-override');
 const session = require('express-session');
+const cookieParser = require('cookie-parser')
 const app = express();
 
 // METHOD OVERRRIDE package
@@ -25,7 +26,11 @@ app.use(express.urlencoded({extended: false}));  // is a inbuilt method in expre
 app.use(express.json());  // is a inbuilt METHOD in express to recognize the incoming Request Object as a JSON Object.
 
 // Express-Session. (Para guardar datos del usuario actual).
-app.use(session({secret: "Hashhhh"}));
+app.use(session({
+    secret: "Hashhhh",
+    resave: true,
+    saveUninitialized: true
+}));
 
 // Logs de ingreso a rutas.
 app.use(logs);
