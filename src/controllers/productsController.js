@@ -3,11 +3,12 @@ const newProductCrud = require('./usersModules/productControl');
 const { v4: uuidv4 } = require('uuid');
 
 const sneakersData = require('../data/sneakers');
+const newProducts = require('../data/newProduct.json')
 const { profile } = require('console');
 
 const productsController = {
     allProducts: function(req, res) {
-        res.render('./products/all-products', {sneakers: sneakersData});
+        res.render('./products/all-products', {sneakers: sneakersData,newProducts:newProducts});
     },
     editProduct: function(req, res) {
         res.render('./products/editProducts');
@@ -35,7 +36,6 @@ const productsController = {
         res.render('./products/createProduct')
     },
     productList: function(req,res){
-        const newProducts = require('../data/newProduct.json');
         res.render('./products/productsList', {newProducts: newProducts});
     },
     createProduct: function(req,res){
@@ -67,11 +67,11 @@ const productsController = {
             category: req.body.category,
             brand: req.body.brand,
             color: req.body.color,
-            cellphone: req.body.cellphone,
+            model: req.body.model,
             gender: req.body.gender
         };
         newProductCrud.saveProduct(newProduct); // ver
-        res.redirect('/products/list');
+        res.redirect('/products');
     },
 };
 

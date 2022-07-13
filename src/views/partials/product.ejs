@@ -17,5 +17,21 @@
         </div>
     </div>
     <% } %> 
+    <div class="main-item-container">
+        <% for(let i=0; i<newProducts.length; i++) { %> 
+      <div class="main-item">
+        <div class="item-image">
+           <a href="<%= "products/" + newProducts[i].id %> ">
+            <img src="/images/products/<%= newProducts[i].image ? newProducts[i].image : 'default.png' %>" alt=""/></a> 
+        </div>
+        <div class="prod-description">
+            <h3 class="prod-category"><%= newProducts[i].category %></h3>
+            <h2 class="prod-title"><%= newProducts[i].brand %></h2>
+            <h2 class="prod-model"><%= newProducts[i].model %></h2>
+            <h2 class="prod-price">ARS $<%- newProducts[i].price %></h2>
+        </div>
+    </div>
+
+    <% } %> 
 </div>
     
