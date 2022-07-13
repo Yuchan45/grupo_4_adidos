@@ -58,13 +58,17 @@ main {
 }
 
 .user-filter-container {
+    width: 300px;
+    margin: 5px auto;
     display: flex;
-    margin-top: 5px;
-    width: 400px;
     flex-wrap: wrap;
     align-items: center;
     align-content: center;
     justify-content: center;
+}
+
+.user-filter-container .active {
+    background-color: var(--blue) !important;
 }
 
 .user-filter-container > p {
@@ -79,7 +83,7 @@ main {
 .user-filter-container .filter-btn {
     border: none;
     padding: 5px;
-    margin: 0 8px;
+    margin: 0 2px;
     background-color: #18181826;
     border-radius: 5px;
     text-transform: uppercase;
@@ -90,6 +94,10 @@ main {
 
 .user-filter-container .filter-btn:hover {
     background-color: var(--blue);
+}
+
+.controllers {
+    text-align: center;
 }
 
 .users-list {
@@ -234,5 +242,8 @@ main {
     .users-container .search-bar {
         width: 600px;
         margin-top: 50px;
+    }
+    .user-filter-container {
+        width: 600px;
     }
 }

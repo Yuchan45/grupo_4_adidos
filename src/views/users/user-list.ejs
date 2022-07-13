@@ -14,21 +14,24 @@
     <main>
         <div class="users-container">
             <h1>Lista de usuarios</h1>
-            <form class="search-bar" action="" method="GET">
-                <div class="search-container">
-                    <input class="search-input" type="search" name="search" id="search" placeholder="Nombre"/>
-                    <button class="search-btn">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </div>
-                <div class="user-filter-container">
+            <div class="controllers">
+                <form class="search-bar" action="/user/search" method="GET">
+                    <div class="search-container">
+                        <input class="search-input" type="search" name="search" id="search" placeholder="Nombre"/>
+                        <button class="search-btn">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                </form>
+                <form class="user-filter-container" action="/user/filter" method="GET">
                     <p>Ordenar por:</p>
-                    <button class="filter-btn">ID</button>
-                    <button class="filter-btn">ROLE</button>
-                    <button class="filter-btn">NAME</button>
-                    <button class="filter-btn">COUNTRY</button>
-                </div>
-			</form>
+                    <input type="submit" class="<%= (filter == 'all') ? 'filter-btn active' : 'filter-btn' %>" name="filter" value="all">
+                    <input type="submit" class="<%= (filter == 'id') ? 'filter-btn active' : 'filter-btn' %>" name="filter" value="id" >
+                    <input type="submit" class="<%= (filter == 'role') ? 'filter-btn active' : 'filter-btn' %>" name="filter" value="role">
+                    <input type="submit" class="<%= (filter == 'name') ? 'filter-btn active' : 'filter-btn' %>" name="filter" value="name">
+                    <input type="submit" class="<%= (filter == 'country') ? 'filter-btn active' : 'filter-btn' %>" name="filter" value="country">
+                </form>
+            </div>
 
             <div class="users-list">
                 <% for(let i=0; i<users.length; i++) { %>
@@ -69,7 +72,6 @@
 
     <!-- Footer -->
     <%- include('../partials/footer') %>
-
 
     <script src="/js/hamburger.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

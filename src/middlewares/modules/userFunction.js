@@ -68,10 +68,67 @@ let functionalities = {
             console.log(err);
         }
     },
+    sortById: function(a, b) {
+        var idA = a.id.toLowerCase(); // ignore upper and lowercase
+        var idB = b.id.toLowerCase(); // ignore upper and lowercase
+        if (idA < idB) {
+          return -1; // idA comes first
+        }
+        if (idA > idB) {
+          return 1; // idB comes first
+        }
+        return 0; 
+    },
+    sortByName: function(a, b) {
+        var nameA = a.name.toLowerCase();
+        var nameB = b.name.toLowerCase();
+        if (nameA < nameB) {
+            return -1;
+        }
+        if (nameA > nameB) {
+            return 1;
+        }
+        return 0;
+    },
+    sortByRole: function(a, b) {
+        var roleA = a.role.toLowerCase();
+        var roleB = b.role.toLowerCase();
+        if (roleA < roleB) {
+            return -1;
+        }
+        if (roleA > roleB) {
+            return 1;
+        }
+        return 0;
+    },
+    sortByCountry: function(a, b) {
+        var countryB = b.country.toLowerCase();
+        var countryA = a.country.toLowerCase();
+        if (countryA < countryB) {
+            return -1;
+        }
+        if (countryA > countryB) {
+            return 1;
+        }
+        return 0;
+    },
     getUserById: function(array, id) {
         let userIndex = array.findIndex(user => user.id == id);
         let user = array[userIndex];
         return user;
+    },
+    getUsersOrderedById: function(users) {
+        // Recibe un array de usuarios y los devuelve ordenadas ascendentemente por ID.
+        return users.sort(this.sortById);
+    },
+    getUsersOrderedByName: function() {
+        return users.sort(this.sortByName);
+    },
+    getUsersOrderedByRole: function() {
+        return users.sort(this.sortByRole);
+    },
+    getUsersOrderedByCountry: function() {
+        return users.sort(this.sortByCountry);
     }
 
 

@@ -13,7 +13,7 @@ const userAlreadyExists = require('../middlewares/users/userAlreadyExists');
 const dataTypeValidation = require('../middlewares/users/dataTypeValidation');
 
 // Controllers
-const {loginIndex, login, register, createUser, recover, list, editIndex, editUser, deleteUser, logout} = usersController;
+const {loginIndex, login, register, createUser, recover, list, editIndex, editUser, deleteUser, logout, search, filter} = usersController;
 
 
 // Multer
@@ -41,22 +41,29 @@ const fileStorageEngineConfig = multer.diskStorage({
 let upload = multer({storage: fileStorageEngineConfig});
 let multipleUpload = upload.fields( [{name: 'profileImage'}, {name: 'bannerImage'}] );
 
+// LogIn
 router.get('/login', loginIndex);
 router.post('/login', loginValidation, login);
-
+// Register
 router.get('/register', register);
 router.post('/register', multipleUpload, userAlreadyExists, dataTypeValidation, createUser);
-
+// Recovery
 router.get('/recover', recover);
-
+// List
 router.get('/list', isAdmin, list);
-
+// Edit user
 router.get('/:id/edit', editIndex);
 router.put('/:id', multipleUpload, dataTypeValidation, editUser);
-
+// Delete user
 router.delete('/:id', deleteUser);
-
+// LogOut
 router.get('/logout', logout);
+
+// Filters
+router.get('/filter', filter);
+
+// Search
+router.get('/search', search);
 
 
 

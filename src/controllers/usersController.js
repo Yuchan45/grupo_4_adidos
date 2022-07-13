@@ -36,6 +36,7 @@ const usersController = {
         const users = fileOperation.readFile(allUsersFile);
         activeUser = fileOperation.readFile(activeUserFile);
         res.render('./users/user-list', {
+            filter : '',
             users: users,
             activeUser: activeUser
         });
@@ -189,6 +190,55 @@ const usersController = {
         const user = {};
         fileOperation.writeActiveUser(user, activeUserFile); // Borro el usuario del archivo active-user.json
         res.redirect('/user/login');
+    },
+    search: function(req, res) {
+        users = fileOperation.readFile(allUsersFile);
+        let userSearch = req.query.search;
+        let userResults = []
+
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].username.toLowerCase().includes(userSearch.toLowerCase()) || users[i].name.toLowerCase().includes(userSearch.toLowerCase())) {
+                userResults.push(users[i])
+            }
+        }
+        
+        res.render('./users/user-list', {
+            filter : '',
+            users: userResults,
+            activeUser: activeUser
+        });
+    },
+    filter: function(req, res) {
+        const filter = req.query.filter;
+
+        users = fileOperation.readFile(allUsersFile);
+        
+        let userResults = [];
+        switch (filter) {
+            case 'all':
+                userResults = users;
+                break;
+            case 'id':
+                userResults = userFunction.getUsersOrderedById(users);
+                break;
+            case 'role':
+                userResults = userFunction.getUsersOrderedByRole(users);
+                break;
+            case 'name':
+                userResults = userFunction.getUsersOrderedByName(users);
+                break;
+            case 'country':
+                userResults = userFunction.getUsersOrderedByCountry(users);
+                break;
+            default:
+                res.send("Error");
+        }
+
+        res.render('./users/user-list', {
+            filter : filter,
+            users : userResults,
+            activeUser: activeUser
+        });
     }
 };
 
