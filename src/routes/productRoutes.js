@@ -37,8 +37,6 @@ router.put('/:id', function(req, res) {
     res.send("Acción de edición (a donde se envía el formulario):");
 });
 
-router.delete('/:id', function(req, res) {
-    res.send("Acción de borrado");
-});
+router.delete('/delete/:id', productsController.deleteProduct);
 
 module.exports = router;

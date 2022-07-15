@@ -1,37 +1,54 @@
 <div class="product-list-container">
     <div class="main-item-container">
-        <% for(let i=0; i<sneakers.length; i++) { %> 
-      <div class="main-item">
-        <div class="item-image">
-           <a href="<%= "products/" + sneakers[i].id %> ">
-          <img
-            src="<%= sneakers[i].image %> "
-            alt=""
-        /></a> 
-        </div>
-        <div class="prod-description">
-            <h3 class="prod-category"><%= sneakers[i].category %></h3>
-            <h2 class="prod-title"><%= sneakers[i].brand %></h2>
-            <h2 class="prod-model"><%= sneakers[i].model %></h2>
-            <h2 class="prod-price">ARS $<%- sneakers[i].price %></h2>
-        </div>
-    </div>
-    <% } %> 
-    <div class="main-item-container">
-        <% for(let i=0; i<newProducts.length; i++) { %> 
-      <div class="main-item">
-        <div class="item-image">
-           <a href="<%= "products/" + newProducts[i].id %> ">
-            <img src="/images/products/<%= newProducts[i].image ? newProducts[i].image : 'default.png' %>" alt=""/></a> 
-        </div>
-        <div class="prod-description">
-            <h3 class="prod-category"><%= newProducts[i].category %></h3>
-            <h2 class="prod-title"><%= newProducts[i].brand %></h2>
-            <h2 class="prod-model"><%= newProducts[i].model %></h2>
-            <h2 class="prod-price">ARS $<%- newProducts[i].price %></h2>
-        </div>
-    </div>
+        <% for(let i=0; i<sneakers.length; i++) { %>
+            <div class="main-item">
+                <div class="item-image">
+                    <a href="<%= " products/" + sneakers[i].id %> ">
+                        <img src="<%= sneakers[i].image %> " alt="" /></a>
+                </div>
+                <div class="prod-description">
+                    <h3 class="prod-category">
+                        <%= sneakers[i].category %>
+                    </h3>
+                    <h2 class="prod-title">
+                        <%= sneakers[i].brand %>
+                    </h2>
+                    <h2 class="prod-model">
+                        <%= sneakers[i].model %>
+                    </h2>
+                    <h2 class="prod-price">ARS $<%- sneakers[i].price %>
+                    </h2>
+                </div>
+            </div>
+            <% } %>
+                <div class="main-item-container">
+                    <% for(let i=0; i<newProducts.length; i++) { %>
+                        <div class="main-item">
+                            <div class="item-image">
+                                <a href="<%= " products/" + newProducts[i].id %> ">
+                                    <img src="/images/products/<%= newProducts[i].image ? newProducts[i].image : 'default.png' %>"
+                                        alt="" /></a>
+                            </div>
+                            <div class="prod-description">
+                                <h3 class="prod-category">
+                                    <%= newProducts[i].category %>
+                                </h3>
+                                <h2 class="prod-title">
+                                    <%= newProducts[i].brand %>
+                                </h2>
+                                <h2 class="prod-model">
+                                    <%= newProducts[i].model %>
+                                </h2>
+                                <h2 class="prod-price">ARS $<%- newProducts[i].price %>
+                                </h2>
+                            </div>
+                            <div class="deleteEditProd"> 
+                                <button class="editButton">Editar</button> 
+                                <form action="/products/delete/<%= newProducts[i].id %>?_method=DELETE" method="POST">
+                                    <button type="submit" class="deleteButton">Borrar</button> 
+                                </form>
+                            </div>
+                        </div>
 
-    <% } %> 
-</div>
-    
+                        <% } %>
+                </div>
