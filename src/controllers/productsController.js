@@ -13,9 +13,10 @@ const activeUser = fileOperation.readFile(activeUserFile);
 const productsController = {
     
     allProducts: function (req, res) {
+        updateProducts = fileOperation.readFile(allShoesPath);
         res.render('./products/all-products', { 
             trendingSneakers: sneakersData,
-            products: allShoes,
+            products: updateProducts,
             activeUser: activeUser
         });
     },
@@ -49,11 +50,11 @@ const productsController = {
             activeUser : activeUser
         })
     },
-    productList: function (req, res) {
-        res.render('./products/productsList', { products: allShoes });
-    },
+    // productList: function (req, res) {
+    //     res.render('./products/productsList', { products: allShoes });
+    // },
     createProduct: function (req, res) {
-        console.log("Entre al controller del create prods")
+        console.log("Entre al controller del create prods POST")
         const file = req.file;
         const product = req.body;
 
@@ -74,7 +75,6 @@ const productsController = {
         };
         
         fileOperation.addToFile(newProduct, allShoesPath);
-        
         res.redirect('/products');
     },
     search: function(req, res) {

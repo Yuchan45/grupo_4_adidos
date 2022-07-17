@@ -12,7 +12,7 @@ function extensionValidation(req, res, next) {
     productImage = (file) ? req.file.filename : "default.png";
 
     let ext = path.extname(productImage);
-    if (ext != '.png' && ext != '.JPG' && ext != '.jpeg') {
+    if (ext != '.png' && ext != '.JPG' && ext != '.jpeg' && ext != '.webp') {
         console.log("Archivo de imagen no valido!");
         res.render('./products/createProduct', {
             activeUser: activeUser

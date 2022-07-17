@@ -7,7 +7,7 @@
             <div class="main-item">
                 <div class="item-image">
                     <a href="<%= " products/" + products[i].id %> ">
-                        <img src="<%= products[i].image %> " alt="" />
+                        <img src="/images/products/<%= (products[i].image) ? products[i].image : 'default.jpg' %> " alt="" />
                     </a>
                 </div>
                 <div class="prod-description">
