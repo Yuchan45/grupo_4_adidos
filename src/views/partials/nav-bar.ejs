@@ -6,8 +6,8 @@
 					<h1 class="logo-title">Shoocity</h1>
 					<h2 class="logo-slogan">Inspiration Works</h2>
 				</div>
-			</a>
-			<form class="search-bar" action="/products" method="GET">
+			</a> 
+			<form class="search-bar" action="/products/search" method="GET">
 				<input
 					class="search-input"
 					type="search"
@@ -15,7 +15,7 @@
 					id="search"
 					placeholder="Buscar productos..."
 				/>
-				<button class="search-btn">
+				<button value="search" class="search-btn">
 					<i class="fa-solid fa-magnifying-glass"></i>
 				</button>
 			</form>
@@ -28,24 +28,40 @@
 				<div class="aside-bounds">
 					<div class="profile-div">
 						<img
-							src="https://i.pinimg.com/564x/4c/95/d4/4c95d42d0c5737bfcde088b81436af9b.jpg"
+							src="/images/users/profiles/<%= activeUser.avatarImageName ? activeUser.avatarImageName : 'default.jpg' %>"
 							alt=""
 							class="profile-pic"
 						/>
 					</div>
 					<ul class="nav-menu-list">
-						<li>
-							<i class="fa-solid fa-user"></i>
-							<a href="">Cuenta</a>
-						</li>
-						<li>
-							<i class="fa-solid fa-bag-shopping"></i>
-							<a href="/shopping-cart">Mis compras</a>
-						</li>
-						<li>
-							<i class="fa-solid fa-heart"></i>
-							<a href="">Favoritos</a>
-						</li>
+						<% if (activeUser.id) { %>  <!-- Me fijo si hay un usuario activo actualmente -->
+							<% if (activeUser.role == 'admin') { %>
+								<li class="user-list">
+									<i class="fa-solid fa-address-book"></i>
+									<a href="/user/list">Ver usuarios</a>
+								</li>
+							<% } %>
+							<li>
+								<i class="fa-solid fa-user"></i>
+								<a href="/user/<%= activeUser.id %>/edit">Mi perfil</a>
+							</li>
+							<li>
+								<i class="fa-solid fa-bag-shopping"></i>
+								<a href="/shopping-cart">Mis compras</a>
+							</li>
+							<li>
+								<i class="fa-solid fa-heart"></i>
+								<a href="">Favoritos</a>
+							</li>
+						<% } else { %>
+							<li>
+								<a href="/user/login">Iniciar Sesión</a>
+							</li>
+							<li>
+								<a href="/user/register">Registrarme</a>
+							</li>
+						<% } %>
+						
 					</ul>
 					<ul class="nav-menu-list">
 						<li>
@@ -64,14 +80,16 @@
 							<i class="fa-solid fa-user-astronaut"></i>
 							<a href="">Nosotros</a>
 						</li>
+						<li class="logout">
+							<a href="/user/logout" >Cerrar Sesion</a>
+						</li>
 					</ul>
-					<p>Cerrar sesión</p>
 				</div>
 			</aside>
 		</div>
 		<nav class="nav-menu">
 			<div class="dropdown">
-				<div class="language" id="drop-btn">
+				<div class="language" id="drop-btn"  tabindex="1">
 					<p data-dropdown-button>Idioma</p>
 					<i class="fa-solid fa-angle-down"></i>
 				</div>
@@ -102,43 +120,57 @@
 					<a href="">Favoritos</a>
 				</li>
 				<li class="dropdown">
-					<div class="user" id="drop-btn">
+					<div class="user" id="drop-btn" tabindex="1">
 						<p data-dropdown-button>Cuenta</p>
 						<i class="fa-solid fa-angle-down"></i>
 					</div>
 					<div class="dropdown-menu user-menu">
 						<div class="drop-menu-header">
-							<img src="https://thumbs.dreamstime.com/b/september-moscow-russia-vector-illustration-background-logo-fifa-world-cup-which-will-be-held-qatar-copy-trophy-231463837.jpg" alt="">
+							<img src="/images/users/banners/<%= activeUser.bannerName ? activeUser.bannerName : 'default-banner.jpg' %>" alt="">
 						</div>
 						<div class="profile-div">
 							<img
-								src="https://i.pinimg.com/564x/4c/95/d4/4c95d42d0c5737bfcde088b81436af9b.jpg"
+								src="/images/users/profiles/<%= activeUser.avatarImageName ? activeUser.avatarImageName : 'default.jpg' %>"
 								alt=""
 								class="profile-pic"
 							/>
 							<div class="profile-info">
-								<p class="user-role">Admin</p>
-								<p class="user-name">Lionel Messi</p>
-								<p class="user-country">Argentina</p>
+								<p class="user-role"><%= activeUser.role ? activeUser.role : '' %></p>
+								<p class="user-name"><%= activeUser.name ? activeUser.name : 'Quien eres?' %></p>
+								<p class="user-country"><%= activeUser.country ? activeUser.country : '' %></p>
 								<hr>
 							</div>
 						</div>
 						<ul class="user-list">
+						<% if (activeUser.id) { %>  <!-- Me fijo si hay un usuario activo actualmente -->
+							<% if (activeUser.role == 'admin') { %>
+								<li>
+									<a href="/user/list">Ver usuarios</a>
+								</li>
+							<% } %>
 							<li>
-								<button id="login-link">Iniciar Sesión</button>
+								<a href="/user/<%= activeUser.id %>/edit">Mi perfil</a>
 							</li>
 							<li>
-								<button id="register-link">Registrarme</button>
+								<a href="/user/logout">Cerrar Sesion</a>
+							</li>
+						<% } else { %>
+							<li>
+								<a href="/user/login">Iniciar Sesión</a>
 							</li>
 							<li>
-								<button id="logout-link">Cerrar Sesion</button>
+								<a href="/user/register">Registrarme</a>
 							</li>
+							<li>
+								<a href="/user/logout" >Cerrar Sesion</a>
+							</li>
+						<% } %>
 						</ul>
 					</div>
 				</li>
 				<div class="bell-trollie-container">
 					<div class="dropdown">
-						<div class="notification" id="drop-btn">
+						<div class="notification" id="drop-btn"  tabindex="1">
 							<i class="fa-solid fa-bell" data-dropdown-button></i>
 						</div>
 						<div class="dropdown-menu notification-menu">

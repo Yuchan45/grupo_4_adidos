@@ -25,9 +25,12 @@ let uploadFile = multer({storage});
 router.get('/', productsController.allProducts);
 
 router.get('/create', productsController.create);
+
 router.post('/create', uploadFile.single("product-image"), productsController.createProduct); 
 
-router.get('/list',productsController.productList)
+router.get('/list',productsController.productList);
+
+router.get('/search', productsController.search);
 
 router.get('/:id', productsController.obtenerPorId);
 
@@ -38,5 +41,7 @@ router.put('/:id', function(req, res) {
 });
 
 router.delete('/delete/:id', productsController.deleteProduct);
+
+
 
 module.exports = router;

@@ -1,5 +1,6 @@
 <div class="product-list-container">
     <div class="main-item-container">
+<<<<<<< HEAD
         <% for(let i=0; i<sneakers.length; i++) { %>
             <div class="main-item">
                 <div class="item-image">
@@ -52,3 +53,24 @@
 
                         <% } %>
                 </div>
+=======
+        <% for(let i=0; i<sneakers.length; i++) { %> 
+      <div class="main-item">
+        <div class="item-image">
+           <a href="<%= '/products/' + sneakers[i].id %> ">
+          <img
+            src="<%= sneakers[i].image %> "
+            alt=""
+        /></a> 
+        </div>
+        <div class="prod-description">
+            <h3 class="prod-category"><%= sneakers[i].category %></h3>
+            <h2 class="prod-title"><%= sneakers[i].brand %></h2>
+            <h2 class="prod-model"><%= sneakers[i].model %></h2>
+            <h2 class="prod-price">ARS $<%- sneakers[i].price %></h2>
+        </div>
+    </div>
+    <% } %> 
+</div>
+    
+>>>>>>> origin/main

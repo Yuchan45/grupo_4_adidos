@@ -1,0 +1,232 @@
+* {
+    font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+    background-color: #252525;
+}
+
+/* .main-profile-edit input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    box-shadow: 0 0 0 30px #181818 inset !important;
+    -webkit-text-fill-color: white !important;
+}
+
+.main-profile-edit {
+    height: auto;
+    width: 100vw;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+} */
+
+
+.edit-wrapper .form-title {
+    margin: 25px auto 0;
+    font-size: 2rem;
+    letter-spacing: .2rem;
+}
+
+.edit-wrapper .form-subtitle {
+    margin: 0 auto 15px;
+    font-size: var(--normal);
+    font-weight: 100;
+    font-style: italic;
+}
+
+.main-profile-edit .edit-wrapper {
+    width: 100%;
+    padding: 50px 25px;
+    background-color: #181818;
+    color: white;
+}
+
+
+.edit-wrapper form .submit-btn {
+    width: 100%;
+    height: 40px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 3px;
+    background-color: var(--blue);
+    color: white;
+    font-size: var(--normal);
+    transition: 0.2s ease;
+}
+
+.edit-wrapper form .submit-btn:hover {
+    background-color: #124897;
+}
+
+.edit-wrapper form .form-group {
+    text-align: left;
+    padding: 10px 0;
+    position: relative;
+    margin-bottom: 0px;
+}
+
+.edit-wrapper form .form-group label {
+    padding: 0 5px;
+    margin-left: 10px;
+    display: block;
+    font-size: var(--small);
+    position: absolute;
+    top: 5px;
+    background-color: #171818;
+}
+
+.edit-wrapper form .form-group input {
+    width: 100%;
+    margin: auto;
+    padding: 0 10px;
+    height: 40px;
+    border-radius: 3px;
+    border: 1px solid var(--blue);
+    font-size: var(--normal);
+    background-color: #181818;
+    color: white;
+    transition: all 0.05s ease;
+}
+
+.edit-wrapper form .form-group input:focus {
+    outline: none !important;
+    border: 1px solid #76cfff;
+}
+
+.mail-spam-checkbox {
+    margin: 25px auto 0;
+    text-align: center;
+}
+
+.mail-spam {
+    font-size: 10px;
+}
+
+.edit-form-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.edit-label {
+    font-size: var(--normal);
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.first-last-name {
+    width: 100%;
+}
+
+.user {
+    width: 100%;
+}
+
+.email {
+    width: 100%;
+}
+
+.radio-list {
+    margin: auto;
+    padding: 10px 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.radio-list .radio-group {
+    padding: 5px;
+}
+
+.checkbox-list {
+    text-align: left;
+}
+
+.checkbox-list .checkbox-group {
+    padding: 5px;
+}
+
+.country-combobox {
+    margin: 10px 0;
+    padding: 0 10px;
+    height: 30px;
+    width: 250px;
+    border-radius: 3px;
+    border: 1px solid var(--blue);
+    font-size: var(--normal);
+    background-color: #181818;
+    color: white;
+}
+
+.send-container .error-message-container {
+    text-align: center;
+    color: var(--red);
+    margin: 5px auto 0;
+    padding: 5px;
+}
+
+.send-container .error-message-container .error-msg {
+    font-size: var(--normal);
+}
+
+.upload-file-container > label {
+    display: block;
+    font-size: var(--normal);
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.upload-file-container > input {
+    
+}
+
+/* Desktop */
+@media (min-width:769px) {
+    /*REGISTER*/
+    .main-profile-edit {
+        background-color: transparent;
+    }
+    .main-profile-edit .edit-wrapper {
+        border-top: 4px solid #017bab;
+        padding: 30px 40px;
+        width: 80%;
+        max-width: 1200px;
+        border-radius: 3px;
+        margin: 150px auto 100px auto;
+        box-shadow: 5px 5px 10px -5px rgb(0 0 0 / 75%);
+    }
+    .edit-wrapper form {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .edit-form-left {
+        width: 50%;
+        padding: 15px;
+    }
+    .edit-form-right {
+        width: 50%;
+        padding: 15px;
+    }
+    .send-container {
+        width: 100%;
+    }
+    .radio-list {
+        justify-content: flex-start;
+    }
+    .edit-wrapper form .submit-btn {
+        background-color: transparent;
+    }
+    .edit-wrapper form .submit-btn:hover {
+        background-color: #124897;
+    }
+}

@@ -1,4 +1,8 @@
 const path = require('path');
+const sneakersData = require('../data/sneakers');
+const fileOperation = require('../middlewares/modules/fileControl');
+const activeUserFile = path.join(__dirname, '../data/active-user.json');
+const activeUser = fileOperation.readFile(activeUserFile);
 const newProductCrud = require('./usersModules/productControl');
 const { v4: uuidv4 } = require('uuid');
 
@@ -8,11 +12,18 @@ const newProducts = require('../data/newProduct.json')
 const { profile } = require('console');
 
 const productsController = {
+    
     allProducts: function (req, res) {
-        res.render('./products/all-products', { sneakers: sneakersData, newProducts: newProducts });
+        res.render('./products/all-products', { 
+            sneakers: sneakersData,
+            newProducts: newProducts,
+            activeUser: activeUser
+        });
     },
     editProduct: function (req, res) {
-        res.render('./products/editProducts');
+        res.render('./products/editProducts', {
+            activeUser: activeUser
+        });
     },
     obtenerPorId: (req, res) => {
         const productId = parseInt(req.params.id, 10);
@@ -27,9 +38,10 @@ const productsController = {
         if (!productoEncontrado) {
             res.status(404).send("No se encuentra el producto");
         } else {
-            res.render('./products/product-details', {
-                sneakerEncontrado: productoEncontrado,
-                sneakers: sneakersData
+            res.render('./products/product-details',  {
+                sneakerEncontrado: productoEncontrado, 
+                sneakers: sneakersData,
+                activeUser: activeUser
             });
         }
     },
@@ -74,6 +86,20 @@ const productsController = {
         newProductCrud.saveProduct(newProduct); // ver
         res.redirect('/products');
     },
+    search: function(req, res) {
+        const activeUser = fileOperation.readFile(activeUserFile);
+        let userSearch = req.query.search;
+        let productsResults = []
+        for (let i = 0; i < sneakersData.length; i++) {
+            if ( sneakersData[i].brand.toLowerCase().includes(userSearch.toLowerCase())) {
+                productsResults.push(sneakersData[i])
+            }
+        }
+        res.render('./products/all-products', {
+            sneakers : productsResults,
+            activeUser : activeUser
+        })
+    },
     deleteProduct: function (req, res) {
 
         //  const id = req.params.id;
@@ -89,8 +115,6 @@ const productsController = {
             fileOperation.writeActiveUser({}, newProducts); // Limpio el archivo active-user
             res.redirect('/products');
         }
-
-
         res.redirect('/products');
     }
 };
