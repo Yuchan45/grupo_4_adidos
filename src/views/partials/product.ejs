@@ -1,31 +1,36 @@
 <div class="product-list-container">
     <div class="main-item-container">
-        <% for(let i=0; i<sneakers.length; i++) { %>
+        <% if (products.length == 0) { %>
+            <span>No hay productos!</span>
+        <% } %>
+        <% for(let i=0; i<products.length; i++) { %>
             <div class="main-item">
                 <div class="item-image">
-                    <a href="<%= " products/" + sneakers[i].id %> ">
-                        <img src="<%= sneakers[i].image %> " alt="" />
+                    <a href="<%= " products/" + products[i].id %> ">
+                        <img src="<%= products[i].image %> " alt="" />
                     </a>
                 </div>
                 <div class="prod-description">
                     <h3 class="prod-category">
-                        <%= sneakers[i].category %>
+                        <%= products[i].category %>
                     </h3>
                     <h2 class="prod-title">
-                        <%= sneakers[i].brand %>
+                        <%= products[i].brand %>
                     </h2>
                     <h2 class="prod-model">
-                        <%= sneakers[i].model %>
+                        <%= products[i].model %>
                     </h2>
-                    <h2 class="prod-price">ARS $<%- sneakers[i].price %>
+                    <h2 class="prod-price">ARS $<%- products[i].price %>
                     </h2>
                 </div>
-                <div class="deleteEditProd">
-                    <button class="editButton">Editar</button>
-                    <form action="/products/delete/<%= newProducts[i].id %>?_method=DELETE" method="POST">
-                        <button type="submit" class="deleteButton">Borrar</button>
-                    </form>
-                </div>
+                <% if (activeUser.role == 'admin') { %>
+                    <div class="deleteEditProd">
+                        <button class="editButton">Editar</button>
+                        <form action="/products/delete/<%= products[i].id %>?_method=DELETE" method="POST">
+                            <button type="submit" class="deleteButton">Borrar</button>
+                        </form>
+                    </div>
+                <% } %>
             </div>
             <% } %>
     </div>

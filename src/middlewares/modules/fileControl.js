@@ -26,11 +26,11 @@ let functionalities = {
             console.log('Ha ocurrido un error al intentar guardar los datos de los usuarios');
         });
     },
-    addUserToFile: function(user, file) {
+    addToFile: function(object, file) {
         // Recibe un objeto de tipo 'usuario' y la ruta donde guardar. Lo agrega en el archivo json.
-        let usersArray = this.readFile(file);
-        usersArray.push(user);
-        this.writeFile(usersArray, file);
+        let array = this.readFile(file);
+        array.push(object);
+        this.writeFile(array, file);
     },
     writeActiveUser: function(user, file) {
         // Recibe un objeto del tipo 'usuario' y lo agrega al archivo que le pasen por parametro "file". Siempre pisa el contenido. 

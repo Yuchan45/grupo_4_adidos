@@ -83,7 +83,7 @@ const usersController = {
             country: userData.country,
             interests: userData.interest
         };
-        fileOperation.addUserToFile(user, allUsersFile);
+        fileOperation.addToFile(user, allUsersFile);
         res.redirect('/user/login');
     },
     editIndex: function(req, res) {

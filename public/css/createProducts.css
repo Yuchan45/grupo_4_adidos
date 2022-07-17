@@ -1,3 +1,12 @@
+h3 {
+    margin-top: 0px !important;
+    margin-bottom: 5px !important;
+}
+
+.create-cbox {
+    margin-bottom: 0px !important;
+}
+
 .form-createproducts{
     display: block;
     
@@ -5,6 +14,19 @@
 .product-img{
     width: 100%;
     display: block;
+}
+
+.description-txt {
+    padding: 10px;
+    width: 100%;
+    max-width: 100%;
+    background-color: transparent;
+}
+
+.create-country {
+    height: 40px !important;
+    width: 100% !important;
+    margin-bottom: 5px;
 }
 
 textarea{

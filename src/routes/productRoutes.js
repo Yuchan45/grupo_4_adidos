@@ -6,6 +6,10 @@ const express = require('express');
 const router = express.Router();
 const productsController = require('../controllers/productsController');
 
+// Middlewares
+const extensionValidation = require('../middlewares/products/extensionValidation');
+const hasFile = require('../middlewares/products/hasFile');
+
 // Seteo donde y como guardar los archivos.
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -25,7 +29,7 @@ router.get('/', productsController.allProducts);
 
 router.get('/create', productsController.create);
 
-router.post('/create', uploadFile.single("product-image"), productsController.createProduct); 
+router.post('/create', uploadFile.single("product-image"), hasFile, extensionValidation, productsController.createProduct); 
 
 router.get('/list',productsController.productList);
 

@@ -17,51 +17,39 @@
         <div class="register-wrapper">
             <h1 class="form-title">PUBLICA TU ANUNCIO</h1>
             <h2 class="form-subtitle ">Incluye algunos detalles</h2>
-            <h4 class="form-subtitle ">Sé parte de Shoocity</h4>
 
             <form action="/products/create" method="POST" enctype="multipart/form-data"> 
                 <div class="register-form-left">
-                    <h3 class="register-label">Datos</h3>
+                    <div class="form-group brand">
+                        <h3 class="register-label">Marca</h3>
+                        <select class="country-combobox create-country" name="brand" id="brand">
+                            <option value="adidas">Adidas</option>
+                            <option value="asics">Asics</option>
+                            <option value="brooks">Brooks</option>
+                            <option value="mizuno">Mizuno</option>
+                            <option value="nike">Nike</option>
+                            <option value="newBalance">New Balance</option>
+                            <option value="puma">Puma</option>
+                            <option value="reebok">Reebok</option>
+                            <option value="saucony">Saucony</option>
+                            <option value="vans">Vans</option>
+                        </select>
+                    </div>
                     <div class="form-group first-last-name">
-                        <label for="name">Nombre del producto</label>
-                        <input type="text" name="name" id="name" required>
+                        <label for="name">Modelo</label>
+                        <input type="text" name="model" id="model" required>
                     </div>
                     <div class="form-group user">
                         <label for="description">Descripción</label>
-                        <textarea name="description" id="description" required> </textarea>
+                        <textarea class="description-txt" name="description" id="description" required> </textarea>
                     </div>
                     <div class="form-group user">
                         <label for="price">Precio</label>
                         <input type="number" name="price" id="price" required>
                     </div>
-                    <div class="form-group domicilio">
-                        <label for="descount">Descuento</label>
-                        <input type="number" name="descount" id="descount" required>
-                    </div>
-                    <div class="form-group domicilio">
-                        <h3 class="register-label">Categoria</h3>
-                        <select class="country-combobox" name="category" id="category">
-                            <option value="Running">Running</option>
-                            <option value="Life Style">Life Style</option>
-                            <option value="Treeking">Treeking</option>
-                            <option value="Crossfit">Crossfit</option>
-                        </select>
-                    </div>
-                    <div class="form-group domicilio">
-                        <h3 class="register-label">Marca</h3>
-                        <select class="country-combobox" name="brand" id="brand">
-                            <option value="Puma">Puma</option>
-                            <option value="Nike">Nike</option>
-                            <option value="New Balance">New Balance</option>
-                            <option value="Vans">Vans</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="register-form-right">
-                    <h3 class="register-label">Perfil de usuario</h3>
-                    <div class="form-group domicilio">
-                        <label for="text">Modelo</label>
-                        <input type="tel" name="model" id="model" required>
+                    <div class="form-group discount">
+                        <label for="discount">Descuento</label>
+                        <input type="number" name="discount" id="discount" required>
                     </div>
                     <h3 class="register-label">Genero</h3>
                     <div class="radio-list">
@@ -78,6 +66,40 @@
                             <label for="gender">Otro</label>
                         </div>
                     </div>
+                </div>
+                <div class="register-form-right">
+                    <div class="form-group category">
+                        <h3 class="register-label">Categoria</h3>
+                        <select class="country-combobox create-cbox" name="category" id="category">
+                            <option value="running">Running</option>
+                            <option value="urban">Urban</option>
+                            <option value="trackAndField">Track & Field</option>
+                        </select>
+                    </div>
+                    <div class="form-group color">
+                        <h3 class="register-label">Color</h3>
+                        <select class="country-combobox create-cbox" name="color" id="color">
+                            <option value="#ff0000">Rojo</option>
+                            <option value="#00ff00">Verde</option>
+                            <option value="#0000ff">Azul</option>
+                        </select>
+                    </div>
+                    <div class="form-group talle">
+                        <h3 class="register-label">Talles</h3>
+                        <select class="country-combobox create-cbox" name="size" id="color">
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                        </select>
+                    </div>
+                    <div class="form-group stock">
+                        <label for="stock">Cantidad a vender</label>
+                        <input type="number" name="stock" id="stock" value='1' required>
+                    </div>
                     <div class="upload-file-container">
                         <label for="product-image">Imagen del producto</label>
                         <input type="file" id="product-image" name="product-image">
@@ -85,12 +107,6 @@
                         <span>Este campo es requerido</span>
                     </div>
                 </div>
-                <!-- <div class="checkbox-list mail-spam-checkbox">
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="mailspam" name="mailspam" value="mailspam">
-                        <label for="mailspam" class="mail-spam">Recibir correos electrónicos de Shoocity con actualizaciones de productos, ofertas y otros beneficios como Miembro!</label>
-                    </div>
-                </div> -->
                 <div class="send-container">
                     <!-- <div class="error-message-container">
                         <label class="error-msg">Mensaje de error!</label>
@@ -107,6 +123,5 @@
 
     <!-- Scripts -->
     <script src="/js/hamburger.js"></script>
-    <script src="/js/nav-bar-tabs.js"></script>
 </body>
 </html>

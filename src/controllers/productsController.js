@@ -3,10 +3,10 @@ const { v4: uuidv4 } = require('uuid');
 
 const fileOperation = require('../middlewares/modules/fileControl');
 const userFunction = require('../middlewares/modules/userFunction');
-const newProductCrud = require('./usersModules/productControl');
 
 const sneakersData = require('../data/sneakers');
-const newProducts = path.join(__dirname, '../data/newProduct.json')
+const allShoesPath = path.join(__dirname, '../data/products.json');
+const allShoes = fileOperation.readFile(allShoesPath);
 const activeUserFile = path.join(__dirname, '../data/active-user.json');
 const activeUser = fileOperation.readFile(activeUserFile);
 
@@ -14,8 +14,8 @@ const productsController = {
     
     allProducts: function (req, res) {
         res.render('./products/all-products', { 
-            sneakers: sneakersData,
-            newProducts: newProducts,
+            trendingSneakers: sneakersData,
+            products: allShoes,
             activeUser: activeUser
         });
     },
@@ -39,7 +39,7 @@ const productsController = {
         } else {
             res.render('./products/product-details',  {
                 sneakerEncontrado: productoEncontrado, 
-                sneakers: sneakersData,
+                trendingSneakers: sneakersData,
                 activeUser: activeUser
             });
         }
@@ -50,41 +50,31 @@ const productsController = {
         })
     },
     productList: function (req, res) {
-        res.render('./products/productsList', { newProducts: newProducts });
+        res.render('./products/productsList', { products: allShoes });
     },
     createProduct: function (req, res) {
-        let profileImage = '';
+        console.log("Entre al controller del create prods")
         const file = req.file;
+        const product = req.body;
 
-        profileImage = (file) ? req.file.filename : "default.png";
-        //agregar validar error
-        if (!file) {
-            const error = new error("Por Favor seleccione un archivo")
-            error.httpStatusCode = 400
-            return next(error)
-        }
-        // DataType Validation.
-        let ext = path.extname(profileImage);
-        if (ext != '.png' && ext != '.JPG' && ext != '.jpeg') {
-            console.log("Archivo de imagen no valido!");
-            res.redirect('/products/create');
-            return;
-        }
         const newProduct = {
             id: uuidv4(),
             prodCreationDate: new Date().toISOString().slice(0, 10), //dia que cree producto
-            name: req.body.name,
-            description: req.body.description,
-            price: req.body.price,
-            descount: req.body.descount,
+            // productOwner:  
+            brand: product.brand,
+            model: product.model,
+            category: product.category,
+            description: product.description,
+            price: product.price,
+            discount: product.discount,
             image: file.filename,
-            category: req.body.category,
-            brand: req.body.brand,
-            color: req.body.color,
-            model: req.body.model,
-            gender: req.body.gender
+            color: product.color,
+            gender: product.gender,
+            stock: product.stock
         };
-        newProductCrud.saveProduct(newProduct); // ver
+        
+        fileOperation.addToFile(newProduct, allShoesPath);
+        
         res.redirect('/products');
     },
     search: function(req, res) {
@@ -97,8 +87,8 @@ const productsController = {
             }
         }
         res.render('./products/all-products', {
-            sneakers : productsResults,
-            newProducts : newProducts,
+            trendingSneakers : productsResults,
+            products : allShoes,
             activeUser : activeUser
         })
     },
@@ -108,13 +98,13 @@ const productsController = {
 
         if (!req.params.id) return;
         const id = req.params.id;
-        let products = fileOperation.readFile(newProducts);
+        let products = fileOperation.readFile(allShoes);
 
         let newArray = userFunction.removeUserFromArray(products, id);
-        fileOperation.writeFile(newArray, newProducts);
+        fileOperation.writeFile(newArray, allShoes);
 
-        if (newProducts.id == id) {
-            fileOperation.writeActiveUser({}, newProducts); // Limpio el archivo active-user
+        if (allShoes.id == id) {
+            fileOperation.writeActiveUser({}, allShoes); // Limpio el archivo active-user
             res.redirect('/products');
         }
         res.redirect('/products');
