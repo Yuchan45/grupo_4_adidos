@@ -1,15 +1,14 @@
 const path = require('path');
-const sneakersData = require('../data/sneakers');
-const fileOperation = require('../middlewares/modules/fileControl');
-const activeUserFile = path.join(__dirname, '../data/active-user.json');
-const activeUser = fileOperation.readFile(activeUserFile);
-const newProductCrud = require('./usersModules/productControl');
 const { v4: uuidv4 } = require('uuid');
 
-const allProductsFile = path.join(__dirname, '../data/newProduct.json');
+const fileOperation = require('../middlewares/modules/fileControl');
+const userFunction = require('../middlewares/modules/userFunction');
+const newProductCrud = require('./usersModules/productControl');
+
 const sneakersData = require('../data/sneakers');
-const newProducts = require('../data/newProduct.json')
-const { profile } = require('console');
+const newProducts = path.join(__dirname, '../data/newProduct.json')
+const activeUserFile = path.join(__dirname, '../data/active-user.json');
+const activeUser = fileOperation.readFile(activeUserFile);
 
 const productsController = {
     
@@ -46,7 +45,9 @@ const productsController = {
         }
     },
     create: function (req, res) {
-        res.render('./products/createProduct')
+        res.render('./products/createProduct', {
+            activeUser : activeUser
+        })
     },
     productList: function (req, res) {
         res.render('./products/productsList', { newProducts: newProducts });
@@ -97,6 +98,7 @@ const productsController = {
         }
         res.render('./products/all-products', {
             sneakers : productsResults,
+            newProducts : newProducts,
             activeUser : activeUser
         })
     },
@@ -106,9 +108,9 @@ const productsController = {
 
         if (!req.params.id) return;
         const id = req.params.id;
-        let Products = fileOperation.readFile(newProducts);
+        let products = fileOperation.readFile(newProducts);
 
-        let newArray = userFunction.removeUserFromArray(Products, id);
+        let newArray = userFunction.removeUserFromArray(products, id);
         fileOperation.writeFile(newArray, newProducts);
 
         if (newProducts.id == id) {
