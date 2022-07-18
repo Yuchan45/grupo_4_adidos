@@ -96,13 +96,15 @@
     font-size: var(--small);
     font-style: italic;
     color: #a3a3a3;
+    text-transform: uppercase;
 }
 
 .prod-title {
-    text-align: left;
-    margin: 15px auto 5px;
-    font-size: var(--normal);
-    font-weight: 700;
+  text-align: left;
+  margin: 15px auto 5px;
+  font-size: var(--normal);
+  font-weight: 700;
+  text-transform: capitalize;
 }
 
 .prod-model {
@@ -110,6 +112,7 @@
     margin: 5px auto 10px;
     font-size: 0.9rem;
     font-weight: 500;
+    text-transform: capitalize;
 }
 
 .prod-price{
@@ -118,6 +121,7 @@
 
 .editButton{
   height: 30px;
+  font-weight: 800;
   background-color: var(--blue);
   border: none;
   border-radius: 5px;
@@ -127,6 +131,7 @@
 
 .deleteButton{
   height: 30px;
+  font-weight: 800;
   background-color: var(--red);
   border: none;
   border-radius: 5px;

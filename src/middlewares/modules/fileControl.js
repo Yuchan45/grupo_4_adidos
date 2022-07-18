@@ -6,7 +6,7 @@ let functionalities = {
     // file: path.join(__dirname, '../../data/users.json'),
 
     readFile: function(file) {
-        // Lee el archivo JSON y devuelve un array con los objetos 'usuario' que haya
+        // Lee el archivo JSON del file(path) recibido por parametroy devuelve un array con los objetos 'usuario' que haya
         let convertedEmpty = JSON.stringify([]);
         if (!(fs.existsSync(file))) {
             fs.writeFileSync(file, convertedEmpty, function(error) {
@@ -19,7 +19,8 @@ let functionalities = {
         return usersArray;
     },
     writeFile: function(users, file) {
-        // Recibe un array de objetos 'usuario' con los datos de los usuarios. Los escribe en un JSON.
+        // Recibe un array de objetos 'usuario' / 'producto' con los datos de los usuarios/producto. 
+        // Los escribe en un JSON cuyo path se pasa por parametro (file).
         let convertedData = JSON.stringify(users);
         fs.writeFileSync(file, convertedData, function(error) {
             if (error) throw error;

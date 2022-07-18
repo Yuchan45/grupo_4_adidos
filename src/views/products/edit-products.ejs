@@ -18,7 +18,7 @@
             <h1 class="form-title">MODIFICA TU PUBLICACION</h1>
             <h2 class="form-subtitle ">Incluye algunos detalles</h2>
 
-            <form action="/products/create" method="POST" enctype="multipart/form-data"> 
+            <form action="/products/<%= data.id %>?_method=PUT" method="POST" enctype="multipart/form-data"> 
                 <div class="register-form-left">
                     <div class="form-group brand">
                         <h3 class="register-label">Marca</h3>
@@ -108,10 +108,10 @@
                     </div>
                 </div>
                 <div class="send-container">
-                    <!-- <div class="error-message-container">
-                        <label class="error-msg">Mensaje de error!</label>
-                    </div> -->
-                    <button type="submit" class="submit-btn">Crear producto</button>
+                    <div class="error-message-container">
+                        <label class="error-msg"><%= msg ? msg : '' %></label>
+                    </div>
+                    <button type="submit" class="submit-btn">Guardar</button>
                 </div>
             </form>
         </div>

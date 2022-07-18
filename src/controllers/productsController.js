@@ -21,15 +21,61 @@ const productsController = {
             activeUser: activeUser
         });
     },
-    editProduct: function (req, res) {
+    editProdIndex: function (req, res) {
         const prodId = req.params.id;
         const allShoes = fileOperation.readFile(allShoesPath);
         let editProduct = productFunction.getProdById(allShoes, prodId);
 
         res.render('./products/edit-products', {
             activeUser : activeUser,
-            data : editProduct
+            data : editProduct,
+            msg : ''
         })
+    },
+    editProduct: function (req, res) {
+        const id = req.params.id;
+        const file = req.file;
+        const product = req.body;
+        const allShoes = fileOperation.readFile(allShoesPath);
+        let editProduct = productFunction.getProdById(allShoes, id);
+
+        if (!file) {
+            const msg = "Debe seleccionar una imagen de producto!";
+            const old = req.body;
+            res.render('./products/edit-products', {
+                activeUser : activeUser,
+                data : editProduct,
+                msg : msg
+            })
+            return;
+        }
+        //console.log(file.filename)
+     
+        const updatedProduct = {
+            id: editProduct.id,
+            prodCreationDate: editProduct.prodCreationDate, //dia que cree producto
+            // productOwner:  
+            brand: product.brand,
+            model: product.model,
+            category: product.category,
+            description: product.description,
+            price: product.price,
+            discount: product.discount,
+            image: file.filename,
+            color: product.color,
+            gender: product.gender,
+            stock: product.stock
+        };
+
+        // Remove image files.
+        productFunction.removeProductImage(allShoes, id);
+
+        // Creo un nuevo array sin el elemento modificado.
+        let updatedArray = productFunction.removeProdFromArray(allShoes, id);
+        updatedArray.push(updatedProduct);
+        fileOperation.writeFile(updatedArray, allShoesPath);
+
+        res.redirect('/products');
     },
     obtenerPorId: (req, res) => {
         const productId = parseInt(req.params.id, 10);
@@ -53,14 +99,15 @@ const productsController = {
     },
     create: function (req, res) {
         res.render('./products/createProduct', {
-            activeUser : activeUser
+            activeUser : activeUser,
+            old: '',
+            errorMsg: ''
         })
     },
     // productList: function (req, res) {
     //     res.render('./products/productsList', { products: allShoes });
     // },
     createProduct: function (req, res) {
-        console.log("Entre al controller del create prods POST")
         const file = req.file;
         const product = req.body;
 
@@ -85,34 +132,33 @@ const productsController = {
     },
     search: function(req, res) {
         const activeUser = fileOperation.readFile(activeUserFile);
+        const allShoes = fileOperation.readFile(allShoesPath);
+
         let userSearch = req.query.search;
-        let productsResults = []
-        for (let i = 0; i < sneakersData.length; i++) {
-            if ( sneakersData[i].brand.toLowerCase().includes(userSearch.toLowerCase())) {
-                productsResults.push(sneakersData[i])
+        let productsResults = [];
+
+        for (let i = 0; i < allShoes.length; i++) {
+            if (allShoes[i].brand.toLowerCase().includes(userSearch.toLowerCase())) {
+                productsResults.push(allShoes[i])
             }
         }
         res.render('./products/all-products', {
             trendingSneakers : productsResults,
-            products : allShoes,
+            products : productsResults,
             activeUser : activeUser
         })
     },
     deleteProduct: function (req, res) {
+         const id = req.params.id;
+        if (!id) return;
 
-        //  const id = req.params.id;
+        let products = fileOperation.readFile(allShoesPath);
+        let newArray = productFunction.removeProdFromArray(products, id);
+        fileOperation.writeFile(newArray, allShoesPath);
 
-        if (!req.params.id) return;
-        const id = req.params.id;
-        let products = fileOperation.readFile(allShoes);
+        // Remove image files.
+        productFunction.removeProductImage(products, id);
 
-        let newArray = userFunction.removeUserFromArray(products, id);
-        fileOperation.writeFile(newArray, allShoes);
-
-        if (allShoes.id == id) {
-            fileOperation.writeActiveUser({}, allShoes); // Limpio el archivo active-user
-            res.redirect('/products');
-        }
         res.redirect('/products');
     }
 };

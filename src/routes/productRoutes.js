@@ -37,11 +37,9 @@ router.get('/search', productsController.search);
 
 router.get('/:id', productsController.obtenerPorId);
 
-router.get('/:id/edit', productsController.editProduct);
+router.get('/:id/edit', productsController.editProdIndex);
 
-router.put('/:id', function(req, res) {
-    res.send("Acción de edición (a donde se envía el formulario):");
-});
+router.put('/:id', uploadFile.single("product-image"), productsController.editProduct)
 
 router.delete('/delete/:id', productsController.deleteProduct);
 
