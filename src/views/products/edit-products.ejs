@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %> 
+    <link rel="stylesheet" href="/css/register-form.css">
+    <link rel="stylesheet" href="/css/createProducts.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/nav-bar.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <title>Crear productos</title>
+</head>
+<body>
+    <!-- Nav-bar -->
+    <%- include('../partials/nav-bar') %>
+
+    <main class="main-register">
+        <div class="register-wrapper">
+            <h1 class="form-title">MODIFICA TU PUBLICACION</h1>
+            <h2 class="form-subtitle ">Incluye algunos detalles</h2>
+
+            <form action="/products/<%= data.id %>?_method=PUT" method="POST" enctype="multipart/form-data"> 
+                <div class="register-form-left">
+                    <div class="form-group brand">
+                        <h3 class="register-label">Marca</h3>
+                        <select class="country-combobox create-country" name="brand" id="brand">
+                            <option value="adidas" <%= (data.brand == 'adidas') ? "selected" : '' %>>Adidas</option>
+                            <option value="asics" <%= (data.brand == 'asics') ? "selected" : '' %>>Asics</option>
+                            <option value="brooks" <%= (data.brand == 'brooks') ? "selected" : '' %>>Brooks</option>
+                            <option value="mizuno" <%= (data.brand == 'mizuno') ? "selected" : '' %>>Mizuno</option>
+                            <option value="nike" <%= (data.brand == 'nike') ? "selected" : '' %>>Nike</option>
+                            <option value="newBalance" <%= (data.brand == 'newBalance') ? "selected" : '' %>>New Balance</option>
+                            <option value="puma" <%= (data.brand == 'puma') ? "selected" : '' %>>Puma</option>
+                            <option value="reebok" <%= (data.brand == 'reebok') ? "selected" : '' %>>Reebok</option>
+                            <option value="saucony" <%= (data.brand == 'saucony') ? "selected" : '' %>>Saucony</option>
+                            <option value="vans" <%= (data.brand == 'vans') ? "selected" : '' %>>Vans</option>
+                        </select>
+                    </div>
+                    <div class="form-group first-last-name">
+                        <label for="name">Modelo</label>
+                        <input type="text" name="model" id="model" value="<%= data.model %>" required>
+                    </div>
+                    <div class="form-group user">
+                        <label for="description">Descripción</label>
+                        <textarea class="description-txt" name="description" id="description" required><%= data.description %></textarea>
+                    </div>
+                    <div class="form-group user">
+                        <label for="price">Precio</label>
+                        <input type="number" name="price" id="price" value="<%= data.price %>" required>
+                    </div>
+                    <div class="form-group discount">
+                        <label for="discount">Descuento</label>
+                        <input type="number" name="discount" id="discount" value="<%= data.discount %>" required>
+                    </div>
+                    <h3 class="register-label">Genero</h3>
+                    <div class="radio-list">
+                        <div class="radio-group">
+                            <input type="radio" id="gender" name="gender" value="male" <%= (data.gender == 'male') ? "checked" : '' %> checked>
+                            <label for="gender">Hombre</label>
+                        </div>
+                        <div class="radio-group">
+                            <input type="radio" id="gender" name="gender" value="female" <%= (data.gender == 'female') ? "checked" : '' %>>
+                            <label for="gender">Mujer</label>
+                        </div>
+                        <div class="radio-group">
+                            <input type="radio" id="gender" name="gender" value="other" <%= (data.gender == 'other') ? "checked" : '' %>>
+                            <label for="gender">Otro</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="register-form-right">
+                    <div class="form-group category">
+                        <h3 class="register-label">Categoria</h3>
+                        <select class="country-combobox create-cbox" name="category" id="category">
+                            <option value="running" <%= (data.category == 'running') ? "selected" : '' %>>Running</option>
+                            <option value="urban"  <%= (data.category == 'urban') ? "selected" : '' %>>Urban</option>
+                            <option value="trackAndField"  <%= (data.category == 'trackAndField') ? "selected" : '' %>>Track & Field</option>
+                        </select>
+                    </div>
+                    <div class="form-group color">
+                        <h3 class="register-label">Color</h3>
+                        <select class="country-combobox create-cbox" name="color" id="color">
+                            <option value="#ff0000" <%= (data.color == '#ff0000') ? "selected" : '' %>>Rojo</option>
+                            <option value="#00ff00" <%= (data.color == '#00ff00') ? "selected" : '' %>>Verde</option>
+                            <option value="#0000ff" <%= (data.color == '#0000ff') ? "selected" : '' %>>Azul</option>
+                        </select>
+                    </div>
+                    <div class="form-group talle">
+                        <h3 class="register-label">Talles</h3>
+                        <select class="country-combobox create-cbox" name="size" id="color">
+                            <option value="5" <%= (data.size == '5') ? "selected" : '' %>>5</option>
+                            <option value="6" <%= (data.size == '6') ? "selected" : '' %>>6</option>
+                            <option value="7" <%= (data.size == '7') ? "selected" : '' %>>7</option>
+                            <option value="8" <%= (data.size == '8') ? "selected" : '' %>>8</option>
+                            <option value="9" <%= (data.size == '9') ? "selected" : '' %>>9</option>
+                            <option value="10" <%= (data.size == '10') ? "selected" : '' %>>10</option>
+                            <option value="11" <%= (data.size == '11') ? "selected" : '' %>>11</option>
+                        </select>
+                    </div>
+                    <div class="form-group stock">
+                        <label for="stock">Cantidad a vender</label>
+                        <input type="number" name="stock" id="stock" value="<%= (data.stock) ? data.stock : 1 %>" required>
+                    </div>
+                    <div class="upload-file-container">
+                        <label for="product-image">Imagen del producto</label>
+                        <input type="file" id="product-image" name="product-image">
+                        <br>
+                        <span>Este campo es requerido</span>
+                    </div>
+                </div>
+                <div class="send-container">
+                    <div class="error-message-container">
+                        <label class="error-msg"><%= msg ? msg : '' %></label>
+                    </div>
+                    <button type="submit" class="submit-btn">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+
+    <!-- Scripts -->
+    <script src="/js/hamburger.js"></script>
+</body>
+</html>

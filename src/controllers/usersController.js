@@ -1,6 +1,6 @@
 const path = require('path');
-const fileOperation = require('../middlewares/modules/fileControl');
-const userFunction = require('../middlewares/modules/userFunction');
+const fileOperation = require('../modules/fileControl');
+const userFunction = require('../modules/userFunction');
 const { v4: uuidv4 } = require('uuid');
 
 const allUsersFile = path.join(__dirname, '../data/users.json');
@@ -83,7 +83,7 @@ const usersController = {
             country: userData.country,
             interests: userData.interest
         };
-        fileOperation.addUserToFile(user, allUsersFile);
+        fileOperation.addToFile(user, allUsersFile);
         res.redirect('/user/login');
     },
     editIndex: function(req, res) {

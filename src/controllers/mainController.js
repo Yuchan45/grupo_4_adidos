@@ -1,7 +1,7 @@
 const path = require('path');
 const sliderSneakers = require('../data/sneakers');
 const shopCartSneakers = require('../data/shopCartSneakers');
-const fileOperation = require('../middlewares/modules/fileControl');
+const fileOperation = require('../modules/fileControl');
 const activeUserFile = path.join(__dirname, '../data/active-user.json');
 
 
@@ -10,7 +10,7 @@ const mainController = {
     index: function(req, res) {
         const activeUser = fileOperation.readFile(activeUserFile);
         res.render('home', {
-            sneakers: sliderSneakers,
+            trendingSneakers: sliderSneakers,
             activeUser: activeUser
         });
     },
@@ -21,7 +21,7 @@ const mainController = {
             total += shopCartSneakers[i].price;
         }
         res.render('shopping-cart', {
-            sneakers: sliderSneakers,
+            trendingSneakers: sliderSneakers,
             shopCartSneakers: shopCartSneakers,
             total: total,
             activeUser: activeUser

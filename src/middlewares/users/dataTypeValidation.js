@@ -1,5 +1,5 @@
 const path = require('path');
-const userFunction = require('../modules/userFunction');
+const userFunction = require('../../modules/userFunction');
 
 
 function dataTypeValidation(req, res, next) {
