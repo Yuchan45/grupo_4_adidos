@@ -18,7 +18,7 @@ let functionalities = {
         // Recibe un array de objetos producto y un id. 
         // Elimina del servidor las imagenes del producto correspondientes al producto.
         let prodToDelete = this.getProdById(array, id);
-        const prodImage = path.join(__dirname, '../../../public/images/products/' + prodToDelete.image);
+        const prodImage = path.join(__dirname, '../../public/images/products/' + prodToDelete.image);
         if (prodToDelete.image != 'default.jpg') this.removeImage(prodImage);
     },
     removeImage: function(path) {

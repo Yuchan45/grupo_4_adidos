@@ -57,7 +57,8 @@ Home, detalle de producto, carrito de compras, formulario de registro, formulari
 
 # Tablero de tareas - TRELLO:
 
-https://trello.com/b/vkfML8Dk/shoocity
-https://trello.com/b/aqLLKBv2/sprint-3
+Sprint 2 - https://trello.com/b/vkfML8Dk/shoocity
+Sprint 3 - https://trello.com/b/aqLLKBv2/sprint-3
+Sprint 4 - https://trello.com/b/0PtGed6t/sprint-4
 
 

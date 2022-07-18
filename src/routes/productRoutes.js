@@ -31,7 +31,7 @@ router.get('/create', productsController.create);
 
 router.post('/create', uploadFile.single("product-image"), hasFile, extensionValidation, productsController.createProduct); 
 
-//router.get('/list',productsController.productList);
+//router.get('/list',productsController.productList); // El listado se muestra directamente en la vista de products (/products)
 
 router.get('/search', productsController.search);
 

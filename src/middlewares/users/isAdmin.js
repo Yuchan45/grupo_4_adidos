@@ -1,6 +1,6 @@
 const path = require('path');
 
-const fileOperation = require('../modules/fileControl');
+const fileOperation = require('../../modules/fileControl');
 
 const activeUserFile = path.join(__dirname, '../../data/active-user.json');
 

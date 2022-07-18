@@ -1,9 +1,9 @@
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 
-const fileOperation = require('../middlewares/modules/fileControl');
-const userFunction = require('../middlewares/modules/userFunction');
-const productFunction = require('../middlewares/modules/productFunction');
+const fileOperation = require('../modules/fileControl');
+const userFunction = require('../modules/userFunction');
+const productFunction = require('../modules/productFunction');
 
 const sneakersData = require('../data/sneakers');
 const allShoesPath = path.join(__dirname, '../data/products.json');
