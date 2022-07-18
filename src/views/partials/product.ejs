@@ -25,10 +25,12 @@
                 </div>
                 <% if (activeUser.role == 'admin') { %>
                     <div class="deleteEditProd">
-                        <button class="editButton">Editar</button>
+                        <form action="/products/<%= products[i].id %>/edit" method="GET">
+                            <button type="submit" class="editButton">Editar</button>
+                        </form>
                         <form action="/products/delete/<%= products[i].id %>?_method=DELETE" method="POST">
                             <button type="submit" class="deleteButton">Borrar</button>
-                        </form>
+                        </form> 
                     </div>
                 <% } %>
             </div>

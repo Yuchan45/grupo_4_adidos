@@ -3,6 +3,7 @@ const { v4: uuidv4 } = require('uuid');
 
 const fileOperation = require('../middlewares/modules/fileControl');
 const userFunction = require('../middlewares/modules/userFunction');
+const productFunction = require('../middlewares/modules/productFunction');
 
 const sneakersData = require('../data/sneakers');
 const allShoesPath = path.join(__dirname, '../data/products.json');
@@ -21,9 +22,14 @@ const productsController = {
         });
     },
     editProduct: function (req, res) {
-        res.render('./products/editProducts', {
-            activeUser: activeUser
-        });
+        const prodId = req.params.id;
+        const allShoes = fileOperation.readFile(allShoesPath);
+        let editProduct = productFunction.getProdById(allShoes, prodId);
+
+        res.render('./products/edit-products', {
+            activeUser : activeUser,
+            data : editProduct
+        })
     },
     obtenerPorId: (req, res) => {
         const productId = parseInt(req.params.id, 10);

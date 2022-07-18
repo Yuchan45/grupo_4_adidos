@@ -81,9 +81,10 @@
 
   
 .main-item{
-    background-color: white;
-    border-radius: 5px;
-    border: 1px solid lightgray;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  padding: 15px;
 }
 .prod-description {
     width: 90%;
@@ -116,25 +117,33 @@
 }
 
 .editButton{
-  margin-left: 5%;
   height: 30px;
-  width: 30%;
-  background-color: #0b6a9f;
+  background-color: var(--blue);
   border: none;
   border-radius: 5px;
+  opacity: .8;
+  transition: all .3s ease;
 }
 
 .deleteButton{
   height: 30px;
-  width: 100%;
-  margin-right: 5%;
-  background-color: #8a1111;
+  background-color: var(--red);
   border: none;
   border-radius: 5px;
+  opacity: .8;
+  transition: all .3s ease;
+}
+
+.editButton:hover {
+  opacity: 1;
+}
+
+.deleteButton:hover {
+  opacity: 1;
 }
 
 .deleteEditProd{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
