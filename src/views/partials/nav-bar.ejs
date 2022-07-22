@@ -38,12 +38,12 @@
 							<% if (activeUser.role == 'admin') { %>
 								<li class="user-list">
 									<i class="fa-solid fa-address-book"></i>
-									<a href="/user/list">Ver usuarios</a>
+									<a href="/users/list">Ver usuarios</a>
 								</li>
 							<% } %>
 							<li>
 								<i class="fa-solid fa-user"></i>
-								<a href="/user/<%= activeUser.id %>/edit">Mi perfil</a>
+								<a href="/users/<%= activeUser.id %>/edit">Mi perfil</a>
 							</li>
 							<li>
 								<i class="fa-solid fa-sack-dollar"></i>
@@ -59,10 +59,10 @@
 							</li>
 						<% } else { %>
 							<li>
-								<a href="/user/login">Iniciar Sesión</a>
+								<a href="/users/login">Iniciar Sesión</a>
 							</li>
 							<li>
-								<a href="/user/register">Registrarme</a>
+								<a href="/users/register">Registrarme</a>
 							</li>
 						<% } %>
 						
@@ -84,9 +84,11 @@
 							<i class="fa-solid fa-user-astronaut"></i>
 							<a href="">Nosotros</a>
 						</li>
-						<li class="logout">
-							<a href="/user/logout" >Cerrar Sesion</a>
-						</li>
+						<% if (activeUser.id) { %>
+							<li class="logout">
+								<a href="/users/logout" >Cerrar Sesion</a>
+							</li>
+						<% } %>
 					</ul>
 				</div>
 			</aside>
@@ -149,27 +151,24 @@
 						<% if (activeUser.id) { %>  <!-- Me fijo si hay un usuario activo actualmente -->
 							<% if (activeUser.role == 'admin') { %>
 								<li>
-									<a href="/user/list">Ver usuarios</a>
+									<a href="/users/list">Ver usuarios</a>
 								</li>
 							<% } %>
 							<li>
-								<a href="/user/<%= activeUser.id %>/edit">Mi perfil</a>
+								<a href="/users/<%= activeUser.id %>/edit">Mi perfil</a>
 							</li>
 							<li>
 								<a href="/products/create">Vender</a>
 							</li>
 							<li>
-								<a href="/user/logout">Cerrar Sesion</a>
+								<a href="/users/logout">Cerrar Sesion</a>
 							</li>
 						<% } else { %>
 							<li>
-								<a href="/user/login">Iniciar Sesión</a>
+								<a href="/users/login">Iniciar Sesión</a>
 							</li>
 							<li>
-								<a href="/user/register">Registrarme</a>
-							</li>
-							<li>
-								<a href="/user/logout" >Cerrar Sesion</a>
+								<a href="/users/register">Registrarme</a>
 							</li>
 						<% } %>
 						</ul>

@@ -44,7 +44,7 @@ app.set('view engine', 'ejs');
 
 // ADDRESSING
 app.use('/', mainRoutes);
-app.use('/user', userRoutes);
+app.use('/users', userRoutes);
 app.use('/products', productRoutes);
 
 // 404 NOT FOUND

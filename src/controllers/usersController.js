@@ -84,7 +84,7 @@ const usersController = {
             interests: userData.interest
         };
         fileOperation.addToFile(user, allUsersFile);
-        res.redirect('/user/login');
+        res.redirect('/users/login');
     },
     editIndex: function(req, res) {
         // Update de los datos de los archivos
@@ -162,7 +162,7 @@ const usersController = {
         fileOperation.writeFile(updatedArray, allUsersFile);
 
         if (editUser.role == 'admin') {
-            res.redirect('/user/list');
+            res.redirect('/users/list');
             return;
         }
         res.redirect('/');
@@ -178,9 +178,9 @@ const usersController = {
         
         if (activeUser.id == id) {
             fileOperation.writeActiveUser({}, activeUserFile); // Limpio el archivo active-user
-            res.redirect('/user/login');
+            res.redirect('/users/login');
         } else {
-            res.redirect('/user/list');
+            res.redirect('/users/list');
         }
 
         // Remove image files.
@@ -189,7 +189,7 @@ const usersController = {
     logout: function(req, res) {
         const user = {};
         fileOperation.writeActiveUser(user, activeUserFile); // Borro el usuario del archivo active-user.json
-        res.redirect('/user/login');
+        res.redirect('/users/login');
     },
     search: function(req, res) {
         users = fileOperation.readFile(allUsersFile);
