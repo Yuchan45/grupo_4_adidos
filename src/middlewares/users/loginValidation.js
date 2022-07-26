@@ -17,11 +17,11 @@ function loginValidation(req, res, next) {
 
     const allUsers = fileOperation.readFile(allUsersFile); // ReadFile devuelve un array de objetos usuario.
     const user = userFunction.userExists(allUsers, loggedUser); 
-
+    // CORREGIR LOGIN, TA HORRIBLE PA
     if (user === "yes") {
-        errorMsg = "La contraseña ingresada no es valida!";
+        errorMsg = "Las credenciales son invalidas";
     } else if (user === "no") {
-        errorMsg = "El usuario ingresado NO existe!";
+        errorMsg = "Las credenciales son invalidas";
     } else {
         // Todo en orden, siga señor
         fileOperation.writeActiveUser(user, activeUserFile); // Actualizo el usuario activo

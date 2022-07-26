@@ -78,15 +78,17 @@ const productsController = {
         res.redirect('/products');
     },
     obtenerPorId: (req, res) => {
-        const productId = parseInt(req.params.id, 10);
+        const productId = req.params.id;
+        //console.log(productId);
         let productoEncontrado;
 
-        for (let i = 0; i < sneakersData.length; i++) {
-            if (sneakersData[i].id === productId) {
-                productoEncontrado = sneakersData[i];
+        for (let i = 0; i < allShoes.length; i++) {
+            //console.log(allShoes[i]);
+            if (allShoes[i].id === productId) {
+                productoEncontrado = allShoes[i];
             }
         }
-
+        //console.log(productoEncontrado)
         if (!productoEncontrado) {
             res.status(404).send("No se encuentra el producto");
         } else {
