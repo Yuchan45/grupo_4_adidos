@@ -116,7 +116,7 @@ const productsController = {
         const newProduct = {
             id: uuidv4(),
             prodCreationDate: new Date().toISOString().slice(0, 10), //dia que cree producto
-            // productOwner:  
+            productOwner: activeUser.name,
             brand: product.brand,
             model: product.model,
             category: product.category,
