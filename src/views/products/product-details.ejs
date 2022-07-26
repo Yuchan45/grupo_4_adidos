@@ -17,20 +17,22 @@
     <main>
 
         <div class="main-container">
-            <div class="title">
-                <h2 class="brand">Asics</h2>
-                <h1 class="model">Evo Ride 2</h1>
-                <p class="prod-owner">Por <span>Tomas Yu Nakasone</span></p>
-            </div>
-            <div class="image-container">
-                <img src="/images/products/product-image1658786556482.png" alt="">
+            <div class="left-side">
+                <div class="title">
+                    <h2 class="brand"><%= sneakerEncontrado.brand %></h2>
+                    <h1 class="model"><%= sneakerEncontrado.model %></h1>
+                    <p class="prod-owner">Por <span>Tomas Yu Nakasone</span></p>
+                </div>
+                <div class="image-container">
+                    <img src="/images/products/<%= sneakerEncontrado.image %>" alt="">
+                </div>
             </div>
             <div class="info-container">
                 <div class="description">
-                    <h3 class="category">CATEGORY</h3>
+                    <h3 class="category"><%= sneakerEncontrado.category %></h3>
                     <div class="price">
-                        <h3>$1500</h3>
-                        <p>5% OFF</p>
+                        <h3>$<%= sneakerEncontrado.price %></h3>
+                        <p><%= sneakerEncontrado.discount %>% OFF</p>
                     </div>
                 </div>
                 <div class="selection">
@@ -50,9 +52,9 @@
                         <option>43</option>
                         <option>44</option>
                     </select>
-                    
+                    <h3>Descripcion</h3>
                     <p class="prod-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non voluptate provident pariatur libero aliquam, molestias repellendus sit modi quam illum!</p>
-                    <p class="stock">15 productos en stock!</p>
+                    <p class="stock"><%= sneakerEncontrado.stock %> productos en stock!</p>
                 </div>
                 <div class="buy">
                     <p>Comprar ahora</p>

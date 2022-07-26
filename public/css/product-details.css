@@ -10,11 +10,14 @@ body{
 .main-container {
     margin-top: 50px;
     padding: 15px 25px;
+    display: flex;
+    flex-direction: column;
 }
 
 .main-container .image-container {
-    height: 150px;
+    height: 50%;
     width: 100% !important;
+    max-width: 600px;
     padding: 15px;
 }
 
@@ -36,39 +39,48 @@ body{
     margin: 0px auto 10px;
     font-size: var(--small);
     color: var(--blue);
-    letter-spacing: .1rem;
+    letter-spacing: 1.5px;
+    font-style: oblique;
     text-transform: uppercase;
 }
 
-.main-container .title {
+.main-container .left-side {
+    width: 100%;
+    max-width: 700px;
+}
+
+.main-container .left-side .title {
     margin: 15px 0;
     text-align: left;
 }
 
-.main-container .title .brand {
+.main-container .left-side .title .brand {
     margin: 0;
+    text-transform: capitalize;
     font-style: oblique;
     font-size: var(--subtitle);
 }
 
-.main-container .title .model {
+.main-container .left-side .title .model {
     margin: 0;
     font-size: 1.2rem;
     font-weight: 500;
     letter-spacing: 1.5px;
+    text-transform: capitalize;
     font-style: oblique;
 }
 
-.main-container .title .prod-owner {
+.main-container .left-side .title .prod-owner {
     margin: 5px 0;
     font-size: var(--small);
     color: var(--onyx);
     font-style: oblique;
 }
 
-.main-container .title .prod-owner span {
+.main-container .left-side .title .prod-owner span {
     color: var(--blue);
     font-weight: 500;
+    text-transform: capitalize;
 }
 
 .info-container .description .price {
@@ -93,7 +105,7 @@ body{
 }
 
 .prod-description {
-    margin: 50px auto 15px;
+    margin: 10px auto 15px;
     text-align: center;
 }
 
@@ -104,7 +116,7 @@ body{
 .info-container .selection > h3 {
     margin: 15px 0 5px;
     font-size: var(--normal);
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .info-container .selection .color-picker {
@@ -137,8 +149,8 @@ body{
 }
 
 .info-container .buy {
-    width: 150px;
-    height: 30px;
+    width: 180px;
+    height: 50px;
     background-color: var(--blue);
     border-radius: 5px;
     display: flex;
@@ -147,7 +159,7 @@ body{
     align-items: center;
     opacity: .8;
     transition: all .3s ease;
-    margin: auto;
+    margin: 10px auto 0;
 }
 
 .info-container .buy:hover {
@@ -160,159 +172,41 @@ body{
     font-weight: 600;
 }
 
-
-
-
-/* .imgDetails {
-    max-width: 43%;
-    margin-top: 50px;
-    margin-left: 12%;
-    border-radius: 5px;
-}
-
-main {
-    padding-top: 80px;
-    display:flex;
-    flex-direction: row;
-}
-
-.detailRightContainer {
-    margin-top: 60px;
-    margin-left: 5%;
-}
-
-.detailShoeName {
-    margin: 0;
-    font-size: 1.9rem;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-}
-
-.descriptionDetailContainer {
-    width: 30%;
-    background-color: rgb(234, 234, 234);
-    border-radius: 6px;
-    margin-left: 60%;
-}
-
-.buyButtonDetail {
-    width: 70%;
-    height: 50px;
-    border-radius: 6px;
-    background-color: black;
-    margin-top: 40px;
-    border: none;
-    color: #F2E81F;
-}
-
-.buyButtonDetail:hover {
-    background-color: #212121;
-}
-
-.sizeButtonDetail:hover {
-    background-color: #d6d6d6;
-}
-
-.sizeButtonDetail {
-    width: 70%;
-    height: 40px;
-    border-radius: 3px;
-    background-color: #d0d0d0;
-    margin-top: 40px;
-    border: none;
-}
-
-.detailShoePrice {
-    font-size: 1.4rem;
-    font-family: 'Montserrat', sans-serif;
-} */
-
-/* @media only screen and (max-width:850px){
-    .imgDetails {
-        max-width: 90%;
-        margin-left: 5%;
-        margin-right: 5%;
-    }
-    main {
-        display:flex;
-        flex-direction: column;
-    }
-    .detailRightContainer {
-        margin-top: 10px;
-        margin-left: 6%;
-    }
-    .buyButtonDetail {
-        width: 100px;
-        height: 50px;
-        border-radius: 6px;
-        background-color: black;
-        margin-top: 20px;
-        border: none;
-        color: #F2E81F;
-    }
-    .sizeButtonDetail {
-        width: 100px;
-        height: 50px;
-        border-radius: 3px;
-        background-color: #d0d0d0;
-        margin-top: 17px;
-        border: none;
-    }
-    .detailShoePrice {
-        margin-top: 5px;
-    }
-    .descriptionDetailContainer {
-        margin-left: 5%;
-        margin-top: -50px;
+/* Mobile and Tablet */
+@media (min-width:361px) {
+    .main-container {
+        padding: 15px 40px;
     }
 }
 
-
-
-.cardListContainer {
-    margin: 40px;
-    padding: 10px;
-    justify-content: space-evenly;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+/* Desktop */
+@media (min-width:769px) {
+    .main-container {
+        margin: auto;
+        max-width: 1200px;
+        margin-top: 100px;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-content: center;
+        align-items: flex-start;
+    }
+    .info-container {
+        margin: 15px 0;
+        width: 50%;
+        max-width: 500px;
+    }
+    .prod-description {
+        text-align: left;
+    }
+    .info-container .description .price > h3 {
+        font-size: var(--subtitle);
+    }
+    .info-container .description .price > p {
+        font-size: var(--normal);
+    }
+    
 }
 
-.main-item:hover{
-    box-shadow: 1px 1px 18px #efecec;
-}
+@media (min-width:1200px) {
 
-.main-item{
-    width: 250px;
-    height: 340px;
-    margin: 20px;
 }
-
-.item-image{
-    max-width: 250px;
-}
-
-.item-name{
-    font-family: 'Montserrat', sans-serif;
-    text-align: center;
-}
-
-.item-price{
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    text-align: center;
-}
-
-.listTittle {
-    font-size: 1.5rem;
-    font-family: 'LeJeuneDeck-Regular,Times New Roman,Times,serif';
-    margin: o;
-    margin-left: 30px;
-    margin-top: 100px;
-    margin-bottom: -60px;
-}
-
-.listTittleContainer {
-    display: flex;
-    justify-content: center;
-} */
