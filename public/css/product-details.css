@@ -8,6 +8,7 @@ body{
 }
 
 .main-container {
+    max-width: 1400px;
     margin-top: 50px;
     padding: 15px 25px;
     display: flex;
@@ -25,6 +26,7 @@ body{
     max-height: 100%;
     max-width: 100%;
     object-fit: cover;
+    filter: drop-shadow(10px 10px 9px var(--onyx));
 }
 
 .info-container {
@@ -105,8 +107,17 @@ body{
 }
 
 .prod-description {
-    margin: 10px auto 15px;
-    text-align: center;
+    margin: 0px auto 15px;
+    font-size: .9rem;
+    text-align: left;
+}
+
+.prod-description summary {
+    color: var(--blue);
+}
+
+.prod-description summary > p {
+    font-size: var(--normal);
 }
 
 .info-container .selection {
@@ -183,17 +194,21 @@ body{
 @media (min-width:769px) {
     .main-container {
         margin: auto;
-        max-width: 1200px;
+        max-width: 1400px;
         margin-top: 100px;
         flex-direction: row;
         justify-content: space-evenly;
         align-content: center;
         align-items: flex-start;
+        gap: 30px;
     }
     .info-container {
         margin: 15px 0;
         width: 50%;
-        max-width: 500px;
+        max-width: 400px;
+        padding: 50px;
+        border: 1px solid var(--onyx);
+        border-radius: 5px;
     }
     .prod-description {
         text-align: left;

@@ -53,7 +53,10 @@
                         <option>44</option>
                     </select>
                     <h3>Descripcion</h3>
-                    <p class="prod-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non voluptate provident pariatur libero aliquam, molestias repellendus sit modi quam illum!</p>
+                    <details class="prod-description">
+                        <summary>Ver descripción</summary>
+                        <p><%= sneakerEncontrado.description %></p>
+                    </details>
                     <p class="stock"><%= sneakerEncontrado.stock %> productos en stock!</p>
                 </div>
                 <div class="buy">
