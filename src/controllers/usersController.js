@@ -10,11 +10,11 @@ let activeUser = fileOperation.readFile(activeUserFile);
 
 const usersController = {
     loginIndex: function(req, res) {
-        activeUser = fileOperation.readFile(activeUserFile);
+        // activeUser = fileOperation.readFile(activeUserFile);
         res.render('./users/login-form', {
             userData : '',
             errorMsg : '',
-            activeUser: activeUser
+            activeUser: req.session.activeUser
         });
     },
     login: function(req, res) {      
@@ -24,22 +24,22 @@ const usersController = {
         res.render('./users/register-form', {
             formData : '',
             errorMsg : '',
-            activeUser: activeUser
+            activeUser: req.session.activeUser
         });
     },
     recover: function(req, res) {
         res.render('./users/recover', {
-            activeUser: activeUser
+            activeUser: req.session.activeUser
         });
     },
     list: function(req, res) {
         // Update de los datos de los archivos
         const users = fileOperation.readFile(allUsersFile);
-        activeUser = fileOperation.readFile(activeUserFile);
+        // activeUser = fileOperation.readFile(activeUserFile);
         res.render('./users/user-list', {
             filter : '',
             users: users,
-            activeUser: activeUser
+            activeUser: req.session.activeUser
         });
     },
     createUser: function(req, res, next) {
@@ -52,7 +52,7 @@ const usersController = {
         // }
 
         let errorMsg = '';
-        let activeUser = fileOperation.readFile(activeUserFile);
+        // let activeUser = fileOperation.readFile(activeUserFile);
 
         const files = req.files;
         const userData = req.body;
@@ -62,7 +62,7 @@ const usersController = {
             res.render('./users/register-form', {
                 formData : req.body,
                 errorMsg : errorMsg,
-                activeUser: activeUser
+                activeUser: req.session.activeUser
             });
             return;
         }
@@ -100,14 +100,14 @@ const usersController = {
         let errorMsg = '';
         const id = req.params.id;
         const users = fileOperation.readFile(allUsersFile);
-        activeUser = fileOperation.readFile(activeUserFile);
+        // activeUser = fileOperation.readFile(activeUserFile);
 
         let editUser = userFunction.getUserById(users, id);
 
         res.render('./users/user-edit', {
             errorMsg : errorMsg,
             users: users, // Se usa para el nav-bar
-            activeUser: activeUser, // Se usa para el nav-bar
+            activeUser: req.session.activeUser, // Se usa para el nav-bar
             editUser: editUser
         });
     },
@@ -117,21 +117,23 @@ const usersController = {
         const id = req.params.id; // Id del usuario a modificar.
         const data = req.body; // Datos recibidos del form de edicion.
 
-        const activeUser = fileOperation.readFile(activeUserFile);
+        // const activeUser = fileOperation.readFile(activeUserFile);
+        const activeUser = req.session.activeUser;
         const allUsers = fileOperation.readFile(allUsersFile); 
         const editUser = userFunction.getUserById(allUsers, id); 
+        console.log("Imagen vieja:", editUser.bannerName)
 
         if (!(req.validProfileExtension && req.validBannerExtension)) {
             errorMsg = "Archivo de imagen no valido!";
             res.render('./users/user-edit', {
                 editUser : editUser,
                 errorMsg : errorMsg,
-                activeUser: activeUser
+                activeUser: req.session.activeUser
             });
             return;
         }
 
-        // Set the profile image name if exists, otherwise set the default image name.
+        // Set the profile image name if exists, otherwise set the previous image name.
         const profileImageName = (files.profileImage) ? req.files.profileImage[0].filename : editUser.avatarImageName;
         const bannerImageName = (files.bannerImage) ? req.files.bannerImage[0].filename : editUser.bannerName;
 
@@ -156,8 +158,8 @@ const usersController = {
             country: data.country,
             interests: data.interest
         };
-
-        if (activeUser.id == id)  fileOperation.writeActiveUser(modifiedUser, activeUserFile); // Actualizo el archivo active-user
+        console.log("Imagen nueva:", modifiedUser.bannerName)
+        // if (activeUser.id == id)  fileOperation.writeActiveUser(modifiedUser, activeUserFile); // Actualizo el archivo active-user
         // Elimino del servidor las anteriores imagenes del usuario en caso de que este haya subido unas nuevas.
         const profilePath = path.join(__dirname, '../../public/images/users/profiles/' + editUser.avatarImageName);
         const bannerPath = path.join(__dirname, '../../public/images/users/banners/' + editUser.bannerName);
@@ -171,6 +173,8 @@ const usersController = {
         fileOperation.writeFile(updatedArray, allUsersFile);
 
         if (editUser.role == 'admin') {
+            console.log("Entro aca")
+            console.log("Imagen del us modif:", modifiedUser.bannerName)
             res.redirect('/users/list');
             return;
         }
@@ -214,7 +218,7 @@ const usersController = {
         res.render('./users/user-list', {
             filter : '',
             users: userResults,
-            activeUser: activeUser
+            activeUser: req.session.activeUser
         });
     },
     filter: function(req, res) {
@@ -246,7 +250,7 @@ const usersController = {
         res.render('./users/user-list', {
             filter : filter,
             users : userResults,
-            activeUser: activeUser
+            activeUser: req.session.activeUser
         });
     }
 };

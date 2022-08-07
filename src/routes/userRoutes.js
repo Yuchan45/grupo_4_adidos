@@ -5,6 +5,7 @@ const usersController = require('../controllers/usersController');
 // Middlewares
 const multipleUpload = require('../middlewares/users/usersMulter');
 const loginValidation = require('../middlewares/users/loginValidation');
+const isLogged = require('../middlewares/isLogged');
 const isAdmin = require('../middlewares/users/isAdmin');
 const userAlreadyExists = require('../middlewares/users/userAlreadyExists');
 const dataTypeValidation = require('../middlewares/users/dataTypeValidation');
@@ -50,7 +51,7 @@ router.post('/register', multipleUpload, userAlreadyExists, dataTypeValidation, 
 // Recovery
 router.get('/recover', recover);
 // List
-router.get('/list', isAdmin, list);
+router.get('/list', isLogged, list);
 // Edit user
 router.get('/:id/edit', editIndex);
 router.put('/:id', multipleUpload, dataTypeValidation, editUser);

@@ -29,7 +29,12 @@ app.use(express.json());  // is a inbuilt METHOD in express to recognize the inc
 app.use(session({
     secret: "Hashhhh",
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: {
+ 
+        // Session expires after 1 min of inactivity.
+        expires: 60000
+    }
 }));
 
 // Logs de ingreso a rutas.

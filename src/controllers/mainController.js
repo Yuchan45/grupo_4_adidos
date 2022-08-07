@@ -8,14 +8,14 @@ const activeUserFile = path.join(__dirname, '../data/active-user.json');
 
 const mainController = {
     index: function(req, res) {
-        const activeUser = fileOperation.readFile(activeUserFile);
+        //const activeUser = fileOperation.readFile(activeUserFile);
         res.render('home', {
             trendingSneakers: sliderSneakers,
-            activeUser: activeUser
+            activeUser: req.session.activeUser
         });
     },
     shoppingCart: function(req, res) {
-        const activeUser = fileOperation.readFile(activeUserFile);
+        //const activeUser = fileOperation.readFile(activeUserFile);
         let total = 0;
         for (let i=0; i<shopCartSneakers.length; i++) {
             total += shopCartSneakers[i].price;
@@ -24,7 +24,7 @@ const mainController = {
             trendingSneakers: sliderSneakers,
             shopCartSneakers: shopCartSneakers,
             total: total,
-            activeUser: activeUser
+            activeUser: req.session.activeUser
         });
     }
 };

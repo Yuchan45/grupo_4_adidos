@@ -8,32 +8,36 @@ const activeUserFile = path.join(__dirname, '../../data/active-user.json');
 let activeUser = fileOperation.readFile(activeUserFile);
 
 function loginValidation(req, res, next) {
-    // Verifica: - El usuario ya existe. Contraseña valida o invalida.
-    let errorMsg = '';  
-    let loggedUser = {
+    // Verifica: - El usuario ya existe. Contraseña valida o invalida.  
+    let actualUser = undefined;
+    let user = {
         username: req.body.username,
         password: req.body.password,
     };
 
     const allUsers = fileOperation.readFile(allUsersFile); // ReadFile devuelve un array de objetos usuario.
-    const user = userFunction.userExists(allUsers, loggedUser); 
-    // CORREGIR LOGIN, TA HORRIBLE PA
-    if (user === "yes") {
-        errorMsg = "Las credenciales son invalidas";
-    } else if (user === "no") {
-        errorMsg = "Las credenciales son invalidas";
-    } else {
-        // Todo en orden, siga señor
-        fileOperation.writeActiveUser(user, activeUserFile); // Actualizo el usuario activo
-        next();
-        return;
+
+    for (let i = 0; i < allUsers.length; i++) {
+        if (allUsers[i].username.toLowerCase() == user.username.toLowerCase()) {
+            if (allUsers[i].password == user.password) {
+                actualUser = allUsers[i];
+                break;
+            }
+        }
     }
-    // Si los datos no son validos...
-    res.render('./users/login-form', {
-        userData : req.body,
-        errorMsg : errorMsg,
-        activeUser: activeUser
-    });
+    if (!actualUser) {
+        res.render('./users/login-form', {
+            userData : req.body,
+            errorMsg : 'Las credenciales son invalidas!',
+            activeUser: activeUser
+        });
+    } else {
+        req.session.activeUser = actualUser;
+        //fileOperation.writeActiveUser(actualUser, activeUserFile); // Actualizo el usuario activo
+        next();
+    }
+
+
 }
 
 module.exports = loginValidation;
