@@ -1,4 +1,5 @@
 const path = require('path');
+const { validationResult } = require('express-validator');
 const fileOperation = require('../modules/fileControl');
 const userFunction = require('../modules/userFunction');
 const { v4: uuidv4 } = require('uuid');
@@ -42,6 +43,14 @@ const usersController = {
         });
     },
     createUser: function(req, res, next) {
+        let errors = validationResult(req);
+        
+        // if (errors.isEmpty){
+        //     console.log("Todo valido")
+        // } else {
+        //     console.log(errors.mapped())
+        // }
+
         let errorMsg = '';
         let activeUser = fileOperation.readFile(activeUserFile);
 
