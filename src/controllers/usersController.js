@@ -1,4 +1,5 @@
 const path = require('path');
+const bcrypt = require('bcrypt');
 const { validationResult } = require('express-validator');
 const fileOperation = require('../modules/fileControl');
 const userFunction = require('../modules/userFunction');
@@ -79,7 +80,8 @@ const usersController = {
             accCreationDate: new Date().toISOString().slice(0, 10),
             name: userData.name,
             username: userData.username,
-            password: userData.password,
+            //password: userData.password,
+            password: bcrypt.hashSync(userData.password, 10),
             avatarImageName: profileImageName,
             bannerName: bannerImageName,
             avatarPath: avatarFullPath,

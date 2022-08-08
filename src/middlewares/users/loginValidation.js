@@ -1,4 +1,5 @@
 const path = require('path');
+const bcrypt = require('bcrypt');
 
 const fileOperation = require('../../modules/fileControl');
 const userFunction = require('../../modules/userFunction');
@@ -19,7 +20,7 @@ function loginValidation(req, res, next) {
 
     for (let i = 0; i < allUsers.length; i++) {
         if (allUsers[i].username.toLowerCase() == user.username.toLowerCase()) {
-            if (allUsers[i].password == user.password) {
+            if (bcrypt.compareSync(user.password, allUsers[i].password)) {
                 actualUser = allUsers[i];
                 break;
             }
