@@ -56,11 +56,11 @@
                     </div>
                     <div class="actions-container">
                         <form action="/users/<%= users[i].id %>/edit" method="GET">
-                            <button type="submit" class="action-btn edit">Edit</button>
+                            <button type="submit" class="action-btn edit active" <%= locals.activeUser && activeUser.id==users[i].id ? '' : 'disabled' %>>Edit</button>
                         </form>
                         <br>
                         <form action="/users/<%= users[i].id %>?_method=DELETE" method="POST">
-                            <button type="submit" class="action-btn delete">Delete</button>
+                            <button type="submit" class="action-btn delete active" <%= locals.activeUser && activeUser.id==users[i].id ? '' : 'disabled' %>>Delete</button>
                         </form>
                     </div>
                 </article>
