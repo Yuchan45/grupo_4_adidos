@@ -31,7 +31,6 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
     cookie: {
- 
         // Session expires after 1 min of inactivity.
         expires: 60000
     }

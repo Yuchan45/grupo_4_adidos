@@ -118,10 +118,8 @@ const usersController = {
         const data = req.body; // Datos recibidos del form de edicion.
 
         // const activeUser = fileOperation.readFile(activeUserFile);
-        const activeUser = req.session.activeUser;
         const allUsers = fileOperation.readFile(allUsersFile); 
         const editUser = userFunction.getUserById(allUsers, id); 
-        console.log("Imagen vieja:", editUser.bannerName)
 
         if (!(req.validProfileExtension && req.validBannerExtension)) {
             errorMsg = "Archivo de imagen no valido!";
@@ -158,7 +156,10 @@ const usersController = {
             country: data.country,
             interests: data.interest
         };
-        console.log("Imagen nueva:", modifiedUser.bannerName)
+
+        // Actualizo el usuario activo en el session.
+        req.session.activeUser = modifiedUser;
+
         // if (activeUser.id == id)  fileOperation.writeActiveUser(modifiedUser, activeUserFile); // Actualizo el archivo active-user
         // Elimino del servidor las anteriores imagenes del usuario en caso de que este haya subido unas nuevas.
         const profilePath = path.join(__dirname, '../../public/images/users/profiles/' + editUser.avatarImageName);
@@ -173,8 +174,6 @@ const usersController = {
         fileOperation.writeFile(updatedArray, allUsersFile);
 
         if (editUser.role == 'admin') {
-            console.log("Entro aca")
-            console.log("Imagen del us modif:", modifiedUser.bannerName)
             res.redirect('/users/list');
             return;
         }
