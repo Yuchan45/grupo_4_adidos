@@ -15,8 +15,69 @@
     <%- include('../partials/nav-bar') %>
 
     <main>
-        <img class="imgDetails"
-            src="<%= sneakerEncontrado.image %>"alt="">
+
+        <div class="main-container">
+            <div class="left-side">
+                <div class="title">
+                    <h2 class="brand"><%= sneakerEncontrado.brand %></h2>
+                    <h1 class="model"><%= sneakerEncontrado.model %></h1>
+                    <p class="prod-owner">Por <span><%= sneakerEncontrado.productOwner %></span></p>
+                </div>
+                <div class="image-container">
+                    <img src="/images/products/<%= sneakerEncontrado.image %>" alt="">
+                </div>
+            </div>
+            <div class="info-container">
+                <div class="description">
+                    <h3 class="category"><%= sneakerEncontrado.category %></h3>
+                    <div class="price">
+                        <h3>$<%= sneakerEncontrado.price %></h3>
+                        <p><%= sneakerEncontrado.discount %>% OFF</p>
+                    </div>
+                </div>
+                <div class="selection">
+                    <h3>Color</h3>
+                    <div class="color-picker">
+                        <div class="color"></div>
+                        <div class="color"></div>
+                        <div class="color"></div>
+                    </div>
+                    
+                    <h3>Talles</h3>
+                    <select class="size-dropdown" size="1">
+                        <option>39</option>
+                        <option>40</option>
+                        <option>41</option>
+                        <option>42</option>
+                        <option>43</option>
+                        <option>44</option>
+                    </select>
+                    <h3>Descripcion</h3>
+                    <details class="prod-description">
+                        <summary>Ver descripción</summary>
+                        <p><%= sneakerEncontrado.description %></p>
+                    </details>
+                    <p class="stock"><%= sneakerEncontrado.stock %> productos en stock!</p>
+                </div>
+                <div class="buy">
+                    <p>Comprar ahora</p>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- <img class="imgDetails" src="/images/products/<%= sneakerEncontrado.image %>" alt="">
         <div class="detailRightContainer">
             <div class="DetailInfo">
                 <p class="detailShoeName"><%= sneakerEncontrado.model %></p>
@@ -40,12 +101,12 @@
             <button class="buyButtonDetail">
                 Buy
             </button>
-        </div>
+        </div> -->
 
     </main>
-    <div class="descriptionDetailContainer">
+    <!-- <div class="descriptionDetailContainer">
         <%= sneakerEncontrado.description %>
-    </div>
+    </div> -->
 
             <!-- PRODUCTS CARROUSEL -->
         <%- include('../partials/product-slider') %>

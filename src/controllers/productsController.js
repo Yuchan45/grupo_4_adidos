@@ -8,8 +8,8 @@ const productFunction = require('../modules/productFunction');
 const sneakersData = require('../data/sneakers');
 const allShoesPath = path.join(__dirname, '../data/products.json');
 const allShoes = fileOperation.readFile(allShoesPath);
-const activeUserFile = path.join(__dirname, '../data/active-user.json');
-const activeUser = fileOperation.readFile(activeUserFile);
+// const activeUserFile = path.join(__dirname, '../data/active-user.json');
+// const activeUser = fileOperation.readFile(activeUserFile);
 
 const productsController = {
     
@@ -18,7 +18,7 @@ const productsController = {
         res.render('./products/all-products', { 
             trendingSneakers: sneakersData,
             products: updateProducts,
-            activeUser: activeUser
+            activeUser: req.session.activeUser
         });
     },
     editProdIndex: function (req, res) {
@@ -27,7 +27,7 @@ const productsController = {
         let editProduct = productFunction.getProdById(allShoes, prodId);
 
         res.render('./products/edit-products', {
-            activeUser : activeUser,
+            activeUser : req.session.activeUser,
             data : editProduct,
             msg : ''
         })
@@ -43,7 +43,7 @@ const productsController = {
             const msg = "Debe seleccionar una imagen de producto!";
             const old = req.body;
             res.render('./products/edit-products', {
-                activeUser : activeUser,
+                activeUser : req.session.activeUser,
                 data : editProduct,
                 msg : msg
             })
@@ -78,28 +78,30 @@ const productsController = {
         res.redirect('/products');
     },
     obtenerPorId: (req, res) => {
-        const productId = parseInt(req.params.id, 10);
+        const productId = req.params.id;
+        //console.log(productId);
         let productoEncontrado;
 
-        for (let i = 0; i < sneakersData.length; i++) {
-            if (sneakersData[i].id === productId) {
-                productoEncontrado = sneakersData[i];
+        for (let i = 0; i < allShoes.length; i++) {
+            //console.log(allShoes[i]);
+            if (allShoes[i].id === productId) {
+                productoEncontrado = allShoes[i];
             }
         }
-
+        //console.log(productoEncontrado)
         if (!productoEncontrado) {
             res.status(404).send("No se encuentra el producto");
         } else {
             res.render('./products/product-details',  {
                 sneakerEncontrado: productoEncontrado, 
                 trendingSneakers: sneakersData,
-                activeUser: activeUser
+                activeUser: req.session.activeUser
             });
         }
     },
     create: function (req, res) {
         res.render('./products/createProduct', {
-            activeUser : activeUser,
+            activeUser : req.session.activeUser,
             old: '',
             errorMsg: ''
         })
@@ -114,7 +116,7 @@ const productsController = {
         const newProduct = {
             id: uuidv4(),
             prodCreationDate: new Date().toISOString().slice(0, 10), //dia que cree producto
-            // productOwner:  
+            productOwner: req.session.activeUser.name,
             brand: product.brand,
             model: product.model,
             category: product.category,
@@ -131,7 +133,7 @@ const productsController = {
         res.redirect('/products');
     },
     search: function(req, res) {
-        const activeUser = fileOperation.readFile(activeUserFile);
+        // const activeUser = fileOperation.readFile(activeUserFile);
         const allShoes = fileOperation.readFile(allShoesPath);
 
         let userSearch = req.query.search;
@@ -145,7 +147,7 @@ const productsController = {
         res.render('./products/all-products', {
             trendingSneakers : productsResults,
             products : productsResults,
-            activeUser : activeUser
+            activeUser : req.session.activeUser
         })
     },
     deleteProduct: function (req, res) {

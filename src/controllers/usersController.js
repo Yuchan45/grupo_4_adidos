@@ -1,4 +1,6 @@
 const path = require('path');
+const bcrypt = require('bcrypt');
+const { validationResult } = require('express-validator');
 const fileOperation = require('../modules/fileControl');
 const userFunction = require('../modules/userFunction');
 const { v4: uuidv4 } = require('uuid');
@@ -9,11 +11,11 @@ let activeUser = fileOperation.readFile(activeUserFile);
 
 const usersController = {
     loginIndex: function(req, res) {
-        activeUser = fileOperation.readFile(activeUserFile);
+        // activeUser = fileOperation.readFile(activeUserFile);
         res.render('./users/login-form', {
             userData : '',
             errorMsg : '',
-            activeUser: activeUser
+            activeUser: req.session.activeUser
         });
     },
     login: function(req, res) {      
@@ -23,27 +25,35 @@ const usersController = {
         res.render('./users/register-form', {
             formData : '',
             errorMsg : '',
-            activeUser: activeUser
+            activeUser: req.session.activeUser
         });
     },
     recover: function(req, res) {
         res.render('./users/recover', {
-            activeUser: activeUser
+            activeUser: req.session.activeUser
         });
     },
     list: function(req, res) {
         // Update de los datos de los archivos
         const users = fileOperation.readFile(allUsersFile);
-        activeUser = fileOperation.readFile(activeUserFile);
+        // activeUser = fileOperation.readFile(activeUserFile);
         res.render('./users/user-list', {
             filter : '',
             users: users,
-            activeUser: activeUser
+            activeUser: req.session.activeUser
         });
     },
     createUser: function(req, res, next) {
+        let errors = validationResult(req);
+        //console.log(errors);
+        if (errors.isEmpty()){
+            console.log("Todo valido");
+        } else {
+            console.log(errors.mapped());
+        }
+
         let errorMsg = '';
-        let activeUser = fileOperation.readFile(activeUserFile);
+        // let activeUser = fileOperation.readFile(activeUserFile);
 
         const files = req.files;
         const userData = req.body;
@@ -53,7 +63,7 @@ const usersController = {
             res.render('./users/register-form', {
                 formData : req.body,
                 errorMsg : errorMsg,
-                activeUser: activeUser
+                activeUser: req.session.activeUser
             });
             return;
         }
@@ -70,7 +80,8 @@ const usersController = {
             accCreationDate: new Date().toISOString().slice(0, 10),
             name: userData.name,
             username: userData.username,
-            password: userData.password,
+            //password: userData.password,
+            password: bcrypt.hashSync(userData.password, 10),
             avatarImageName: profileImageName,
             bannerName: bannerImageName,
             avatarPath: avatarFullPath,
@@ -84,21 +95,21 @@ const usersController = {
             interests: userData.interest
         };
         fileOperation.addToFile(user, allUsersFile);
-        res.redirect('/user/login');
+        res.redirect('/users/login');
     },
     editIndex: function(req, res) {
         // Update de los datos de los archivos
         let errorMsg = '';
         const id = req.params.id;
         const users = fileOperation.readFile(allUsersFile);
-        activeUser = fileOperation.readFile(activeUserFile);
+        // activeUser = fileOperation.readFile(activeUserFile);
 
         let editUser = userFunction.getUserById(users, id);
 
         res.render('./users/user-edit', {
             errorMsg : errorMsg,
             users: users, // Se usa para el nav-bar
-            activeUser: activeUser, // Se usa para el nav-bar
+            activeUser: req.session.activeUser, // Se usa para el nav-bar
             editUser: editUser
         });
     },
@@ -108,7 +119,7 @@ const usersController = {
         const id = req.params.id; // Id del usuario a modificar.
         const data = req.body; // Datos recibidos del form de edicion.
 
-        const activeUser = fileOperation.readFile(activeUserFile);
+        // const activeUser = fileOperation.readFile(activeUserFile);
         const allUsers = fileOperation.readFile(allUsersFile); 
         const editUser = userFunction.getUserById(allUsers, id); 
 
@@ -117,12 +128,12 @@ const usersController = {
             res.render('./users/user-edit', {
                 editUser : editUser,
                 errorMsg : errorMsg,
-                activeUser: activeUser
+                activeUser: req.session.activeUser
             });
             return;
         }
 
-        // Set the profile image name if exists, otherwise set the default image name.
+        // Set the profile image name if exists, otherwise set the previous image name.
         const profileImageName = (files.profileImage) ? req.files.profileImage[0].filename : editUser.avatarImageName;
         const bannerImageName = (files.bannerImage) ? req.files.bannerImage[0].filename : editUser.bannerName;
 
@@ -147,8 +158,11 @@ const usersController = {
             country: data.country,
             interests: data.interest
         };
+        // return res.send(modifiedUser);
+        // Actualizo el usuario activo en el session.
+        req.session.activeUser = modifiedUser;
 
-        if (activeUser.id == id)  fileOperation.writeActiveUser(modifiedUser, activeUserFile); // Actualizo el archivo active-user
+        // if (activeUser.id == id)  fileOperation.writeActiveUser(modifiedUser, activeUserFile); // Actualizo el archivo active-user
         // Elimino del servidor las anteriores imagenes del usuario en caso de que este haya subido unas nuevas.
         const profilePath = path.join(__dirname, '../../public/images/users/profiles/' + editUser.avatarImageName);
         const bannerPath = path.join(__dirname, '../../public/images/users/banners/' + editUser.bannerName);
@@ -162,7 +176,7 @@ const usersController = {
         fileOperation.writeFile(updatedArray, allUsersFile);
 
         if (editUser.role == 'admin') {
-            res.redirect('/user/list');
+            res.redirect('/users/list');
             return;
         }
         res.redirect('/');
@@ -178,9 +192,12 @@ const usersController = {
         
         if (activeUser.id == id) {
             fileOperation.writeActiveUser({}, activeUserFile); // Limpio el archivo active-user
-            res.redirect('/user/login');
+            req.session.activeUser = {};
+            res.redirect('/users/login');
         } else {
-            res.redirect('/user/list');
+            // Esto es por si en algun momento pinta poder borrar otros usuarios que no sean nuestros xdxd
+            req.session.activeUser = {}; 
+            res.redirect('/users/login');
         }
 
         // Remove image files.
@@ -188,8 +205,9 @@ const usersController = {
     },
     logout: function(req, res) {
         const user = {};
-        fileOperation.writeActiveUser(user, activeUserFile); // Borro el usuario del archivo active-user.json
-        res.redirect('/user/login');
+        // fileOperation.writeActiveUser(user, activeUserFile); // Borro el usuario del archivo active-user.json
+        req.session.activeUser = {}; 
+        res.redirect('/users/login');
     },
     search: function(req, res) {
         users = fileOperation.readFile(allUsersFile);
@@ -205,7 +223,7 @@ const usersController = {
         res.render('./users/user-list', {
             filter : '',
             users: userResults,
-            activeUser: activeUser
+            activeUser: req.session.activeUser
         });
     },
     filter: function(req, res) {
@@ -237,7 +255,7 @@ const usersController = {
         res.render('./users/user-list', {
             filter : filter,
             users : userResults,
-            activeUser: activeUser
+            activeUser: req.session.activeUser
         });
     }
 };

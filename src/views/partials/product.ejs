@@ -23,7 +23,7 @@
                     <h2 class="prod-price">ARS $<%- products[i].price %>
                     </h2>
                 </div>
-                <% if (activeUser.role == 'admin') { %>
+                <% if (locals.activeUser && activeUser.role == 'admin') { %>
                     <div class="deleteEditProd">
                         <form action="/products/<%= products[i].id %>/edit" method="GET">
                             <button type="submit" class="editButton">Editar</button>

@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const methodOverride = require('method-override');
 const session = require('express-session');
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
 const app = express();
 
 // METHOD OVERRRIDE package
@@ -29,7 +29,11 @@ app.use(express.json());  // is a inbuilt METHOD in express to recognize the inc
 app.use(session({
     secret: "Hashhhh",
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: {
+        // Session expires after 5 mins of inactivity.
+        expires: 300000
+    }
 }));
 
 // Logs de ingreso a rutas.
@@ -44,7 +48,7 @@ app.set('view engine', 'ejs');
 
 // ADDRESSING
 app.use('/', mainRoutes);
-app.use('/user', userRoutes);
+app.use('/users', userRoutes);
 app.use('/products', productRoutes);
 
 // 404 NOT FOUND

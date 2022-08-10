@@ -15,7 +15,7 @@
         <div class="users-container">
             <h1>Lista de usuarios</h1>
             <div class="controllers">
-                <form class="search-bar" action="/user/search" method="GET">
+                <form class="search-bar" action="/users/search" method="GET">
                     <div class="search-container">
                         <input class="search-input" type="search" name="search" id="search" placeholder="Nombre"/>
                         <button class="search-btn">
@@ -23,7 +23,7 @@
                         </button>
                     </div>
                 </form>
-                <form class="user-filter-container" action="/user/filter" method="GET">
+                <form class="user-filter-container" action="/users/filter" method="GET">
                     <p>Ordenar por:</p>
                     <input type="submit" class="<%= (filter == 'all') ? 'filter-btn active' : 'filter-btn' %>" name="filter" value="all">
                     <input type="submit" class="<%= (filter == 'id') ? 'filter-btn active' : 'filter-btn' %>" name="filter" value="id" >
@@ -55,12 +55,12 @@
                         </div>
                     </div>
                     <div class="actions-container">
-                        <form action="/user/<%= users[i].id %>/edit" method="GET">
-                            <button type="submit" class="action-btn edit">Edit</button>
+                        <form action="/users/<%= users[i].id %>/edit" method="GET">
+                            <button type="submit" class="action-btn edit active" <%= locals.activeUser && activeUser.id==users[i].id ? '' : 'disabled' %>>Edit</button>
                         </form>
                         <br>
-                        <form action="/user/<%= users[i].id %>?_method=DELETE" method="POST">
-                            <button type="submit" class="action-btn delete">Delete</button>
+                        <form action="/users/<%= users[i].id %>?_method=DELETE" method="POST">
+                            <button type="submit" class="action-btn delete active" <%= locals.activeUser && activeUser.id==users[i].id ? '' : 'disabled' %>>Delete</button>
                         </form>
                     </div>
                 </article>

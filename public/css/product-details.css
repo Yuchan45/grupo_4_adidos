@@ -2,160 +2,226 @@
     font-family: 'Open Sans', sans-serif;
     box-sizing: border-box;
 }
+
 body{
     margin: 0;
 }
 
-.imgDetails {
-    max-width: 43%;
+.main-container {
+    max-width: 1400px;
     margin-top: 50px;
-    margin-left: 12%;
-    border-radius: 5px;
+    padding: 15px 25px;
+    display: flex;
+    flex-direction: column;
 }
 
-main {
-    padding-top: 80px;
-    display:flex;
-    flex-direction: row;
+.main-container .image-container {
+    height: 50%;
+    width: 100% !important;
+    max-width: 600px;
+    padding: 15px;
 }
 
-.detailRightContainer {
-    margin-top: 60px;
-    margin-left: 5%;
+.main-container .image-container img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    filter: drop-shadow(10px 10px 9px var(--onyx));
 }
 
-.detailShoeName {
+.info-container {
+    margin: 15px 0;
+}
+
+.info-container .description {
+    
+}
+
+.info-container .description .category {
+    margin: 0px auto 10px;
+    font-size: var(--small);
+    color: var(--blue);
+    letter-spacing: 1.5px;
+    font-style: oblique;
+    text-transform: uppercase;
+}
+
+.main-container .left-side {
+    width: 100%;
+    max-width: 700px;
+}
+
+.main-container .left-side .title {
+    margin: 15px 0;
+    text-align: left;
+}
+
+.main-container .left-side .title .brand {
     margin: 0;
-    font-size: 1.9rem;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
+    text-transform: capitalize;
+    font-style: oblique;
+    font-size: var(--subtitle);
 }
 
-.descriptionDetailContainer {
-    width: 30%;
-    background-color: rgb(234, 234, 234);
-    border-radius: 6px;
-    margin-left: 60%;
+.main-container .left-side .title .model {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: capitalize;
+    font-style: oblique;
 }
 
-.buyButtonDetail {
-    width: 70%;
+.main-container .left-side .title .prod-owner {
+    margin: 5px 0;
+    font-size: var(--small);
+    color: var(--onyx);
+    font-style: oblique;
+}
+
+.main-container .left-side .title .prod-owner span {
+    color: var(--blue);
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.info-container .description .price {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+.info-container .description .price > h3 {
+    margin: 5px 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.info-container .description .price > p {
+    margin: 5px 0;
+    font-size: var(--small);
+    font-weight: 600;
+    color: green;
+}
+
+.prod-description {
+    margin: 0px auto 15px;
+    font-size: .9rem;
+    text-align: left;
+}
+
+.prod-description summary {
+    color: var(--blue);
+}
+
+.prod-description summary > p {
+    font-size: var(--normal);
+}
+
+.info-container .selection {
+    text-align: left;
+}
+
+.info-container .selection > h3 {
+    margin: 15px 0 5px;
+    font-size: var(--normal);
+    font-weight: 600;
+}
+
+.info-container .selection .color-picker {
+    display: flex;
+    gap: 5px;
+}
+
+.info-container .selection .color-picker .color {
+    background-color: blue;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.info-container .selection .size-dropdown {
+    width: 80px;
+    text-align: center;
+    font-size: var(--normal);
+    font-weight: 700;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+.info-container .selection .stock {
+    margin: 30px auto 5px;
+    font-size: .8rem;
+    font-weight: 300;
+    text-align: center;
+    opacity: .7;
+}
+
+.info-container .buy {
+    width: 180px;
     height: 50px;
-    border-radius: 6px;
-    background-color: black;
-    margin-top: 40px;
-    border: none;
-    color: #F2E81F;
-}
-
-.buyButtonDetail:hover {
-    background-color: #212121;
-}
-
-.sizeButtonDetail:hover {
-    background-color: #d6d6d6;
-}
-
-.sizeButtonDetail {
-    width: 70%;
-    height: 40px;
-    border-radius: 3px;
-    background-color: #d0d0d0;
-    margin-top: 40px;
-    border: none;
-}
-
-.detailShoePrice {
-    font-size: 1.4rem;
-    font-family: 'Montserrat', sans-serif;
-}
-
-@media only screen and (max-width:850px){
-    .imgDetails {
-        max-width: 90%;
-        margin-left: 5%;
-        margin-right: 5%;
-    }
-    main {
-        display:flex;
-        flex-direction: column;
-    }
-    .detailRightContainer {
-        margin-top: 10px;
-        margin-left: 6%;
-    }
-    .buyButtonDetail {
-        width: 100px;
-        height: 50px;
-        border-radius: 6px;
-        background-color: black;
-        margin-top: 20px;
-        border: none;
-        color: #F2E81F;
-    }
-    .sizeButtonDetail {
-        width: 100px;
-        height: 50px;
-        border-radius: 3px;
-        background-color: #d0d0d0;
-        margin-top: 17px;
-        border: none;
-    }
-    .detailShoePrice {
-        margin-top: 5px;
-    }
-    .descriptionDetailContainer {
-        margin-left: 5%;
-        margin-top: -50px;
-    }
-}
-
-
-
-.cardListContainer {
-    margin: 40px;
-    padding: 10px;
-    justify-content: space-evenly;
+    background-color: var(--blue);
+    border-radius: 5px;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.main-item:hover{
-    box-shadow: 1px 1px 18px #efecec;
-}
-
-.main-item{
-    width: 250px;
-    height: 340px;
-    margin: 20px;
-}
-
-.item-image{
-    max-width: 250px;
-}
-
-.item-name{
-    font-family: 'Montserrat', sans-serif;
-    text-align: center;
-}
-
-.item-price{
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    text-align: center;
-}
-
-.listTittle {
-    font-size: 1.5rem;
-    font-family: 'LeJeuneDeck-Regular,Times New Roman,Times,serif';
-    margin: o;
-    margin-left: 30px;
-    margin-top: 100px;
-    margin-bottom: -60px;
-}
-
-.listTittleContainer {
-    display: flex;
+    align-content: center;
     justify-content: center;
+    align-items: center;
+    opacity: .8;
+    transition: all .3s ease;
+    margin: 10px auto 0;
+}
+
+.info-container .buy:hover {
+    opacity: 1;
+}
+
+.info-container .buy > p {
+    margin: 0 auto;
+    font-size: var(--normal);
+    font-weight: 600;
+}
+
+/* Mobile and Tablet */
+@media (min-width:361px) {
+    .main-container {
+        padding: 15px 40px;
+    }
+}
+
+/* Desktop */
+@media (min-width:769px) {
+    .main-container {
+        margin: auto;
+        max-width: 1400px;
+        margin-top: 100px;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-content: center;
+        align-items: flex-start;
+        gap: 30px;
+    }
+    .info-container {
+        margin: 15px 0;
+        width: 50%;
+        max-width: 400px;
+        padding: 50px;
+        border: 1px solid var(--onyx);
+        border-radius: 5px;
+    }
+    .prod-description {
+        text-align: left;
+    }
+    .info-container .description .price > h3 {
+        font-size: var(--subtitle);
+    }
+    .info-container .description .price > p {
+        font-size: var(--normal);
+    }
+    
+}
+
+@media (min-width:1200px) {
+
 }

@@ -56,8 +56,8 @@ let functionalities = {
         // Recibe un array de objetos usuario y un id. 
         // Elimina del servidor las imagenes (Perfil y banner) correspondientes al usuario.
         let userToDelete = this.getUserById(array, id);
-        const avatarImage = path.join(__dirname, '../../../public/images/users/profiles/' + userToDelete.avatarImageName);
-        const bannerImage = path.join(__dirname, '../../../public/images/users/banners/' + userToDelete.bannerName);
+        const avatarImage = path.join(__dirname, '../../public/images/users/profiles/' + userToDelete.avatarImageName);
+        const bannerImage = path.join(__dirname, '../../public/images/users/banners/' + userToDelete.bannerName);
         if (userToDelete.avatarImageName != 'default.jpg') this.removeImage(avatarImage);
         if (userToDelete.bannerName != 'default-banner.jpg') this.removeImage(bannerImage);
     },
