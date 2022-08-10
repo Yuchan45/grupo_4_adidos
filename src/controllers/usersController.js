@@ -158,10 +158,9 @@ const usersController = {
             country: data.country,
             interests: data.interest
         };
-        return res.send(modifiedUser);
+        // return res.send(modifiedUser);
         // Actualizo el usuario activo en el session.
         req.session.activeUser = modifiedUser;
-        console.log("ASDASDASD " + modifiedUser);
 
         // if (activeUser.id == id)  fileOperation.writeActiveUser(modifiedUser, activeUserFile); // Actualizo el archivo active-user
         // Elimino del servidor las anteriores imagenes del usuario en caso de que este haya subido unas nuevas.
