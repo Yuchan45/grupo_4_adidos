@@ -1,17 +1,14 @@
-const path = require("path");
 const fs = require('fs');
 
 
 let functionalities = {
-    // file: path.join(__dirname, '../../data/users.json'),
-
     readFile: function(file) {
-        // Lee el archivo JSON del file(path) recibido por parametroy devuelve un array con los objetos 'usuario' que haya
+        // Lee el archivo JSON del file(path) recibido por parametro y devuelve un array con los objetos 'usuario' que haya
         let convertedEmpty = JSON.stringify([]);
         if (!(fs.existsSync(file))) {
             fs.writeFileSync(file, convertedEmpty, function(error) {
                 if (error) throw error;
-                console.log('Ha ocurrido un error al intentar leer el archivo de usuarios');
+                console.log('Ha ocurrido un error al intentar guardar los datos');
             });
         }
         let rawData = fs.readFileSync(file, 'utf-8');
@@ -21,10 +18,10 @@ let functionalities = {
     writeFile: function(users, file) {
         // Recibe un array de objetos 'usuario' / 'producto' con los datos de los usuarios/producto. 
         // Los escribe en un JSON cuyo path se pasa por parametro (file).
-        let convertedData = JSON.stringify(users);
+        let convertedData = JSON.stringify(users, null, ' ');
         fs.writeFileSync(file, convertedData, function(error) {
             if (error) throw error;
-            console.log('Ha ocurrido un error al intentar guardar los datos de los usuarios');
+            console.log('Ha ocurrido un error al intentar guardar los datos');
         });
     },
     addToFile: function(object, file) {
@@ -39,7 +36,7 @@ let functionalities = {
         let convertedData = JSON.stringify(user);
         fs.writeFileSync(file, convertedData, function(error) {
             if (error) throw error;
-            console.log('Ha ocurrido un error al intentar guardar el usuario activo');
+            console.log('Ha ocurrido un error al intentar guardar los datos');
         });
         
     }

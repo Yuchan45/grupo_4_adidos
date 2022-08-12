@@ -4,6 +4,7 @@ const { validationResult } = require('express-validator');
 const fileOperation = require('../modules/fileControl');
 const userFunction = require('../modules/userFunction');
 const { v4: uuidv4 } = require('uuid');
+const User = require('../modules/User');
 
 const allUsersFile = path.join(__dirname, '../data/users.json');
 const activeUserFile = path.join(__dirname, '../data/active-user.json');
@@ -23,7 +24,7 @@ const usersController = {
     },
     register: function(req, res) {
         res.render('./users/register-form', {
-            formData : '',
+            oldData : '',
             errorMsg : '',
             activeUser: req.session.activeUser
         });
@@ -61,7 +62,7 @@ const usersController = {
         if (!(req.validProfileExtension && req.validBannerExtension)) {
             errorMsg = "Archivo de imagen no valido!";
             res.render('./users/register-form', {
-                formData : req.body,
+                oldData : req.body,
                 errorMsg : errorMsg,
                 activeUser: req.session.activeUser
             });
@@ -96,6 +97,22 @@ const usersController = {
         };
         fileOperation.addToFile(user, allUsersFile);
         res.redirect('/users/login');
+    },
+    processRegister: function(req, res) {
+        let user = req.body;
+        let errors = validationResult(req);
+
+        if (!errors.isEmpty()){
+            console.log("Error encontrado por express-Validator");
+            return res.render('register-form', {
+                errors: errors.mapped(),
+                oldData: user
+            });
+        } 
+        
+        User.create(user);
+
+
     },
     editIndex: function(req, res) {
         // Update de los datos de los archivos

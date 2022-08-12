@@ -22,64 +22,64 @@
                     <h3 class="register-label">Datos</h3>
                     <div class="form-group first-last-name">
                         <label for="name">Nombre y apellido</label>
-                        <input type="text" name="name" id="name" value="<%= formData ? formData.name : '' %>" >
+                        <input type="text" name="name" id="name" value="<%= oldData ? oldData.name : '' %>" >
                     </div>
                     <div class="form-group user">
                         <label for="user">Usuario</label>
-                        <input type="text" name="username" id="username" value="<%= formData ? formData.username : '' %>" required>
+                        <input type="text" name="username" id="username" value="<%= oldData ? oldData.username : '' %>" required>
                     </div>
                     <div class="form-group user">
                         <label for="password">Password</label>
-                        <input type="password" name="password" id="password" minlength="6" value="<%= formData ? formData.password : '' %>" required>
+                        <input type="password" name="password" id="password" minlength="6" value="<%= oldData ? oldData.password : '' %>" required>
                     </div>
                     <div class="form-group email">
                         <label for="email">E-mail</label>
-                        <input type="email" name="email" id="email" value="<%= formData ? formData.email : '' %>" required>
+                        <input type="email" name="email" id="email" value="<%= oldData ? oldData.email : '' %>" required>
                     </div>
                     <div class="form-group domicilio">
                         <label for="address">Domicilio</label>
-                        <input type="text" name="address" id="address" value="<%= formData ? formData.address : '' %>" required>
+                        <input type="text" name="address" id="address" value="<%= oldData ? oldData.address : '' %>" required>
                     </div>
                     <h3 class="register-label">Fecha de nacimiento</h3>
                     <div class="form-group">
-                        <input type="date" name="birthdate" id="birthdate" value="<%= formData ? formData.birthdate : '' %>" required>
+                        <input type="date" name="birthdate" id="birthdate" value="<%= oldData ? oldData.birthdate : '' %>" required>
                     </div>
                 </div>
                 <div class="register-form-right">
                     <h3 class="register-label">Perfil de usuario</h3>
                     <div class="radio-list">
                         <div class="radio-group">
-                            <input type="radio" id="role" name="role" value="admin" <%= (formData.role == 'admin') ? "checked" : '' %> checked>
+                            <input type="radio" id="role" name="role" value="admin" <%= (oldData.role == 'admin') ? "checked" : '' %> checked>
                             <label for="buySell">Administrador</label>
                         </div>
                         <div class="radio-group">
-                            <input type="radio" id="role2" name="role" value="customer" <%= (formData.role == 'customer') ? "checked" : '' %>>
+                            <input type="radio" id="role2" name="role" value="customer" <%= (oldData.role == 'customer') ? "checked" : '' %>>
                             <label for="buySell">Cliente</label>
                         </div>
                     </div>
                     <h3 class="register-label">Genero</h3>
                     <div class="radio-list">
                         <div class="radio-group">
-                            <input type="radio" id="gender" name="gender" value="male" <%= (formData.gender == 'male') ? "checked" : '' %> checked>
+                            <input type="radio" id="gender" name="gender" value="male" <%= (oldData.gender == 'male') ? "checked" : '' %> checked>
                             <label for="gender">Hombre</label>
                         </div>
                         <div class="radio-group">
-                            <input type="radio" id="gender2" name="gender" value="female" <%= (formData.gender == 'female') ? "checked" : '' %>>
+                            <input type="radio" id="gender2" name="gender" value="female" <%= (oldData.gender == 'female') ? "checked" : '' %>>
                             <label for="gender">Mujer</label>
                         </div>
                         <div class="radio-group">
-                            <input type="radio" id="gender3" name="gender" value="other" <%= (formData.gender == 'other') ? "checked" : '' %>>
+                            <input type="radio" id="gender3" name="gender" value="other" <%= (oldData.gender == 'other') ? "checked" : '' %>>
                             <label for="gender">Otro</label>
                         </div>
                     </div>
                     <h3 class="register-label">País de nacimiento</h3>
                     <select class="country-combobox" name="country" id="country">
-                        <option value="ARG" <%= (formData.country == 'ARG') ? "selected" : '' %>>Argentina</option>
-                        <option value="BRZ" <%= (formData.country == 'BRZ') ? "selected" : '' %>>Brasil</option>
-                        <option value="CHL" <%= (formData.country == 'CHL') ? "selected" : '' %>>Chile</option>
-                        <option value="PER" <%= (formData.country == 'PER') ? "selected" : '' %>>Peru</option>
-                        <option value="BLV" <%= (formData.country == 'BLV') ? "selected" : '' %>>Bolivia</option>
-                        <option value="UGY" <%= (formData.country == 'UGY') ? "selected" : '' %>>Uruguay</option>
+                        <option value="ARG" <%= (oldData.country == 'ARG') ? "selected" : '' %>>Argentina</option>
+                        <option value="BRZ" <%= (oldData.country == 'BRZ') ? "selected" : '' %>>Brasil</option>
+                        <option value="CHL" <%= (oldData.country == 'CHL') ? "selected" : '' %>>Chile</option>
+                        <option value="PER" <%= (oldData.country == 'PER') ? "selected" : '' %>>Peru</option>
+                        <option value="BLV" <%= (oldData.country == 'BLV') ? "selected" : '' %>>Bolivia</option>
+                        <option value="UGY" <%= (oldData.country == 'UGY') ? "selected" : '' %>>Uruguay</option>
                     </select>
                     <div class="upload-file-container">
                         <label for="profileImage">Foto de perfil</label>

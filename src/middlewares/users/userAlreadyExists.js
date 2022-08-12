@@ -16,7 +16,7 @@ function userAlreadyExists(req, res, next) {
     if (usernameAlreadyExists) {
         errorMsg = "El usuario ya existe! Prueba con otro nombre de usuario.";
         res.render('./users/register-form', {
-            formData : req.body,
+            oldData : req.body,
             errorMsg : errorMsg,
             activeUser: activeUser
         });
