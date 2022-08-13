@@ -14,13 +14,30 @@ const usersController = {
     loginIndex: function(req, res) {
         // activeUser = fileOperation.readFile(activeUserFile);
         res.render('./users/login-form', {
-            userData : '',
-            errorMsg : '',
-            activeUser: req.session.activeUser
+            old : '',
+            errors : ''
         });
     },
-    login: function(req, res) {      
-        res.redirect('/');
+    loginProcess: function(req, res) {      
+        const user = req.body;
+
+        const userToLogin = User.findByField('email', (user.email).toLowerCase());
+        if (userToLogin) {
+            const isPswCorrect = bcrypt.compareSync(user.password, userToLogin.password);
+            if (isPswCorrect) {
+                return res.redirect('/');
+            }     
+        }
+        
+        return res.render('./users/login-form', {
+            old: user,
+            errors : {
+                loginFailed: {
+                    msg: 'Las credenciales son invalidas!'
+                }
+            },
+        });
+
     },
     register: function(req, res) {
         res.render('./users/register-form', {
@@ -44,74 +61,102 @@ const usersController = {
             activeUser: req.session.activeUser
         });
     },
-    createUser: function(req, res, next) {
-        let errors = validationResult(req);
-        //console.log(errors);
-        if (errors.isEmpty()){
-            console.log("Todo valido");
-        } else {
-            console.log(errors.mapped());
-        }
+    // createUser: function(req, res, next) {
+    //     let errors = validationResult(req);
+    //     //console.log(errors);
+    //     if (errors.isEmpty()){
+    //         console.log("Todo valido");
+    //     } else {
+    //         console.log(errors.mapped());
+    //     }
 
-        let errorMsg = '';
-        // let activeUser = fileOperation.readFile(activeUserFile);
+    //     let errorMsg = '';
+    //     // let activeUser = fileOperation.readFile(activeUserFile);
 
-        const files = req.files;
-        const userData = req.body;
+    //     const files = req.files;
+    //     const userData = req.body;
 
-        if (!(req.validProfileExtension && req.validBannerExtension)) {
-            errorMsg = "Archivo de imagen no valido!";
-            res.render('./users/register-form', {
-                oldData : req.body,
-                errorMsg : errorMsg,
-                activeUser: req.session.activeUser
-            });
-            return;
-        }
+    //     if (!(req.validProfileExtension && req.validBannerExtension)) {
+    //         errorMsg = "Archivo de imagen no valido!";
+    //         res.render('./users/register-form', {
+    //             oldData : req.body,
+    //             errorMsg : errorMsg,
+    //             activeUser: req.session.activeUser
+    //         });
+    //         return;
+    //     }
 
-        // No valido si el usuario sube o no archivos porque no es obligatorio establecer una foto de perfil.    
-        // Set the profile image name if exists, otherwise set the default image name.
-        const profileImageName = (files.profileImage) ? req.files.profileImage[0].filename : 'default.jpg';
-        const bannerImageName = (files.bannerImage) ? req.files.bannerImage[0].filename : 'default-banner.jpg';
-        let avatarFullPath = (files.profileImage) ? req.files.profileImage[0].path : '';
-        let bannerFullPath = (files.bannerImage) ? req.files.bannerImage[0].path : '';
+    //     // No valido si el usuario sube o no archivos porque no es obligatorio establecer una foto de perfil.    
+    //     // Set the profile image name if exists, otherwise set the default image name.
+    //     const profileImageName = (files.profileImage) ? req.files.profileImage[0].filename : 'default.jpg';
+    //     const bannerImageName = (files.bannerImage) ? req.files.bannerImage[0].filename : 'default-banner.jpg';
+    //     let avatarFullPath = (files.profileImage) ? req.files.profileImage[0].path : '';
+    //     let bannerFullPath = (files.bannerImage) ? req.files.bannerImage[0].path : '';
 
-        let user = {
-            id: uuidv4(),
-            accCreationDate: new Date().toISOString().slice(0, 10),
-            name: userData.name,
-            username: userData.username,
-            //password: userData.password,
-            password: bcrypt.hashSync(userData.password, 10),
-            avatarImageName: profileImageName,
-            bannerName: bannerImageName,
-            avatarPath: avatarFullPath,
-            bannerPath: bannerFullPath,
-            email: userData.email,
-            address: userData.address,
-            birthdate: userData.birthdate,
-            role: userData.role,
-            gender: userData.gender,
-            country: userData.country,
-            interests: userData.interest
-        };
-        fileOperation.addToFile(user, allUsersFile);
-        res.redirect('/users/login');
-    },
+    //     let user = {
+    //         id: uuidv4(),
+    //         accCreationDate: new Date().toISOString().slice(0, 10),
+    //         name: userData.name,
+    //         username: userData.username,
+    //         //password: userData.password,
+    //         password: bcrypt.hashSync(userData.password, 10),
+    //         avatarImageName: profileImageName,
+    //         bannerName: bannerImageName,
+    //         avatarPath: avatarFullPath,
+    //         bannerPath: bannerFullPath,
+    //         email: userData.email,
+    //         address: userData.address,
+    //         birthdate: userData.birthdate,
+    //         role: userData.role,
+    //         gender: userData.gender,
+    //         country: userData.country,
+    //         interests: userData.interest
+    //     };
+    //     fileOperation.addToFile(user, allUsersFile);
+    //     res.redirect('/users/login');
+    // },
     processRegister: function(req, res) {
+        const files = req.files;
         let user = req.body;
         let errors = validationResult(req);
 
         if (!errors.isEmpty()){
             console.log("Error encontrado por express-Validator");
-            return res.render('register-form', {
-                errors: errors.mapped(),
+            console.log(errors)
+            return res.render('./users/register-form', {
+                errorMsg: errors.mapped(),
                 oldData: user
             });
-        } 
-        
-        User.create(user);
+        }
 
+        const emailInDb = User.findByField('email', user.email);
+        const usernameInDb = User.findByField('username', user.username);
+
+        if (emailInDb) {
+            return res.render('./users/register-form', {
+                // Arreglar para que dsp si se vea bien el error.
+                errorMsg: {
+                    email: {
+                        msg: 'Este email ya esta registrado!'
+                    }
+                },
+                oldData: user
+            });
+        }
+
+        const profileImageName = (files.profileImage) ? req.files.profileImage[0].filename : 'default.jpg';
+        const bannerImageName = (files.bannerImage) ? req.files.bannerImage[0].filename : 'default-banner.jpg';
+
+        let dataUser = {
+            ...user,
+            email: user.email.toLowerCase(),
+            password: bcrypt.hashSync(user.password, 10),
+            avatar: profileImageName,
+            banner: bannerImageName
+        }
+
+        const userCreated = User.create(dataUser);
+        res.redirect('/users/login');
 
     },
     editIndex: function(req, res) {

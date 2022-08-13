@@ -12,17 +12,18 @@ const userAlreadyExists = require('../middlewares/users/userAlreadyExists');
 const dataTypeValidation = require('../middlewares/users/dataTypeValidation');
 
 // Controllers
-const {loginIndex, login, register, createUser, processRegister, recover, list, editIndex, editUser, deleteUser, logout, search, filter} = usersController;
+const {loginIndex, login, loginProcess, register, createUser, processRegister, recover, list, editIndex, editUser, deleteUser, logout, search, filter} = usersController;
 
 
 
 // LogIn
 router.get('/login', loginIndex);
-router.post('/login', loginValidation, login); // Falta express-validation (check pass lenght, etc).
+router.post('/login', loginProcess);
+// router.post('/login', loginValidation, login); // Falta express-validation (check pass lenght, etc).
 // Register
 router.get('/register', register);
 // router.post('/register', multipleUpload, userAlreadyExists, dataTypeValidation, validateCreateUserForm, createUser); // Falta express-validation (check pass lenght, etc).
-router.post('/register', multipleUpload, userAlreadyExists, dataTypeValidation, validateCreateUserForm, processRegister);
+router.post('/register', multipleUpload, processRegister); // userAlreadyExists, dataTypeValidation, validateCreateUserForm
 
 // Recovery
 router.get('/recover', recover);

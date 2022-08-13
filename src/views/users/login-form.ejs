@@ -33,7 +33,7 @@
 			 		<h2>Ingresar</h2>
 			 		<form action="/users/login" method="POST">
 						<div class="inputBox">
-							<input type="text" placeholder="Usuario" name="username" value="<%= userData ? userData.username : '' %>" required />
+							<input type="text" placeholder="Email" name="email" value="<%= (locals && locals.old) ? old.email : '' %>" required />
 						</div>
 						<div class="inputBox">
 							<input maxlength="25" type="password" class="controls" name="password" value="" placeholder="Contraseña" id="password" data-lpignore="true" required>
@@ -55,9 +55,11 @@
 						<p class="forget">
 							<a href="register">Registrate en Shoocity?</a>
 						</p>
+						<% if (locals.errors && errors.loginFailed) { %>
 						<p class="forget" style="color: red;">
-							<p><%= errorMsg %></p>
+							<%= errors.loginFailed.msg %>
 						</p>
+						<% } %>
          			</form>
 			 	</div>
 			</div>
