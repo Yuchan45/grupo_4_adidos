@@ -5,7 +5,8 @@ const usersController = require('../controllers/usersController');
 // Middlewares
 const multipleUpload = require('../middlewares/users/usersMulter');
 const validateCreateUserForm = require('../middlewares/users/validateRegister');
-const isLogged = require('../middlewares/isLogged');
+const guestMiddleware = require('../middlewares/guestMiddleware');
+const authMiddleware = require('../middlewares/authMiddleware');
 const isAdmin = require('../middlewares/users/isAdmin');
 
 
@@ -16,23 +17,28 @@ const {login, loginProcess, register, createUser, processRegister, recover, list
 
 
 // LogIn
-router.get('/login', login);
+router.get('/login', guestMiddleware, login);
 router.post('/login', loginProcess);
 // router.post('/login', login); // Falta express-validation (check pass lenght, etc).
+
 // Register
-router.get('/register', register);
+router.get('/register', guestMiddleware, register);
 // router.post('/register', multipleUpload, validateCreateUserForm, createUser); // Falta express-validation (check pass lenght, etc).
 router.post('/register', multipleUpload, processRegister); // validateCreateUserForm
 
 // Recovery
-router.get('/recover', recover);
+router.get('/recover', guestMiddleware, recover);
+
 // List
-router.get('/list', list); // isLogged,
+router.get('/list', authMiddleware, list); 
+
 // Edit user
-router.get('/:id/edit', editIndex);
+router.get('/:id/edit', authMiddleware, editIndex);
 router.put('/:id', multipleUpload, editUser);
+
 // Delete user
 router.delete('/:id', deleteUser);
+
 // LogOut
 router.get('/logout', logout);
 

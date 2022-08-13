@@ -264,10 +264,8 @@ const usersController = {
         userFunction.removeUserProfileBannerImage(allUsers, id);
     },
     logout: function(req, res) {
-        const user = {};
-        // fileOperation.writeActiveUser(user, activeUserFile); // Borro el usuario del archivo active-user.json
-        req.session.userLogged = {}; 
-        res.redirect('/users/login');
+        req.session.destroy(); // Borra todo lo que haya en session.
+        return res.redirect('/');
     },
     search: function(req, res) {
         users = fileOperation.readFile(allUsersFile);

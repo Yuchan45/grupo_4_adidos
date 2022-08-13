@@ -34,7 +34,7 @@
 						/>
 					</div>
 					<ul class="nav-menu-list">
-						<% if (locals.user && user.id) { %>  <!-- Me fijo si hay un usuario activo actualmente -->
+						<% if (locals && locals.isLogged) { %>  <!-- Me fijo si hay un usuario activo actualmente -->
 							<% if (locals.user && user.role == 'admin') { %>
 								<li class="user-list">
 									<i class="fa-solid fa-address-book"></i>
@@ -148,7 +148,7 @@
 							</div>
 						</div>
 						<ul class="user-list">
-						<% if (locals.user && user.id) { %>  <!-- Me fijo si hay un usuario activo actualmente -->
+						<% if (locals && locals.isLogged) { %>  <!-- Me fijo si hay un usuario activo actualmente -->
 							<% if (locals.user && user.role == 'admin') { %>
 								<li>
 									<a href="/users/list">Ver usuarios</a>

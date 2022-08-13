@@ -14,6 +14,7 @@ const mainRoutes = require('./routes/mainRoutes');
 const userRoutes = require('./routes/userRoutes');
 const productRoutes = require('./routes/productRoutes');
 const logs = require('./middlewares/logs');
+const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware');
 
 // CONFIGS
 const publicPath = path.resolve(__dirname, '../public');
@@ -36,8 +37,11 @@ app.use(session({
     }
 }));
 
-// Logs de ingreso a rutas.
+// Logs
 app.use(logs);
+
+// User Logged
+app.use(userLoggedMiddleware);
 
 // Cookie Parser
 app.use(cookieParser());
