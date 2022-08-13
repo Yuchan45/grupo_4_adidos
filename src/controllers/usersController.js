@@ -13,7 +13,8 @@ const usersController = {
     login: function(req, res) {
         res.render('./users/login-form', {
             old : '',
-            errors : ''
+            errors : '',
+            user: req.session.userLogged
         });
     },
     loginProcess: function(req, res) {      
@@ -43,6 +44,7 @@ const usersController = {
         res.render('./users/register-form', {
             oldData : '',
             errorMsg : '',
+            user: req.session.userLogged
         });
     },
     recover: function(req, res) {

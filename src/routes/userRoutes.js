@@ -5,11 +5,10 @@ const usersController = require('../controllers/usersController');
 // Middlewares
 const multipleUpload = require('../middlewares/users/usersMulter');
 const validateCreateUserForm = require('../middlewares/users/validateRegister');
-const loginValidation = require('../middlewares/users/loginValidation');
 const isLogged = require('../middlewares/isLogged');
 const isAdmin = require('../middlewares/users/isAdmin');
-const userAlreadyExists = require('../middlewares/users/userAlreadyExists');
-const dataTypeValidation = require('../middlewares/users/dataTypeValidation');
+
+
 
 // Controllers
 const {login, loginProcess, register, createUser, processRegister, recover, list, editIndex, editUser, deleteUser, logout, search, filter} = usersController;
@@ -19,11 +18,11 @@ const {login, loginProcess, register, createUser, processRegister, recover, list
 // LogIn
 router.get('/login', login);
 router.post('/login', loginProcess);
-// router.post('/login', loginValidation, login); // Falta express-validation (check pass lenght, etc).
+// router.post('/login', login); // Falta express-validation (check pass lenght, etc).
 // Register
 router.get('/register', register);
-// router.post('/register', multipleUpload, userAlreadyExists, dataTypeValidation, validateCreateUserForm, createUser); // Falta express-validation (check pass lenght, etc).
-router.post('/register', multipleUpload, processRegister); // userAlreadyExists, dataTypeValidation, validateCreateUserForm
+// router.post('/register', multipleUpload, validateCreateUserForm, createUser); // Falta express-validation (check pass lenght, etc).
+router.post('/register', multipleUpload, processRegister); // validateCreateUserForm
 
 // Recovery
 router.get('/recover', recover);
@@ -31,7 +30,7 @@ router.get('/recover', recover);
 router.get('/list', list); // isLogged,
 // Edit user
 router.get('/:id/edit', editIndex);
-router.put('/:id', multipleUpload, dataTypeValidation, editUser);
+router.put('/:id', multipleUpload, editUser);
 // Delete user
 router.delete('/:id', deleteUser);
 // LogOut
