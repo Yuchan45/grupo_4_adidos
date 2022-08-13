@@ -18,7 +18,7 @@ const productsController = {
         res.render('./products/all-products', { 
             trendingSneakers: sneakersData,
             products: updateProducts,
-            activeUser: req.session.activeUser
+            user: req.session.userLogged
         });
     },
     editProdIndex: function (req, res) {
@@ -27,7 +27,7 @@ const productsController = {
         let editProduct = productFunction.getProdById(allShoes, prodId);
 
         res.render('./products/edit-products', {
-            activeUser : req.session.activeUser,
+            user: req.session.userLogged,
             data : editProduct,
             msg : ''
         })
@@ -41,9 +41,8 @@ const productsController = {
 
         if (!file) {
             const msg = "Debe seleccionar una imagen de producto!";
-            const old = req.body;
             res.render('./products/edit-products', {
-                activeUser : req.session.activeUser,
+                user: req.session.userLogged,
                 data : editProduct,
                 msg : msg
             })
@@ -95,13 +94,13 @@ const productsController = {
             res.render('./products/product-details',  {
                 sneakerEncontrado: productoEncontrado, 
                 trendingSneakers: sneakersData,
-                activeUser: req.session.activeUser
+                user: req.session.userLogged
             });
         }
     },
     create: function (req, res) {
         res.render('./products/createProduct', {
-            activeUser : req.session.activeUser,
+            user: req.session.userLogged,
             old: '',
             errorMsg: ''
         })
@@ -116,7 +115,7 @@ const productsController = {
         const newProduct = {
             id: uuidv4(),
             prodCreationDate: new Date().toISOString().slice(0, 10), //dia que cree producto
-            productOwner: req.session.activeUser.name,
+            productOwner: req.session.userLogged.name,
             brand: product.brand,
             model: product.model,
             category: product.category,
@@ -147,7 +146,7 @@ const productsController = {
         res.render('./products/all-products', {
             trendingSneakers : productsResults,
             products : productsResults,
-            activeUser : req.session.activeUser
+            user: req.session.userLogged
         })
     },
     deleteProduct: function (req, res) {

@@ -28,14 +28,14 @@
 				<div class="aside-bounds">
 					<div class="profile-div">
 						<img
-							src="/images/users/profiles/<%= locals.activeUser && activeUser.avatarImageName ? activeUser.avatarImageName : 'default.jpg' %>"
+							src="/images/users/profiles/<%= locals.user && user.avatar ? user.avatar : 'default.jpg' %>"
 							alt=""
 							class="profile-pic"
 						/>
 					</div>
 					<ul class="nav-menu-list">
-						<% if (locals.activeUser && activeUser.id) { %>  <!-- Me fijo si hay un usuario activo actualmente -->
-							<% if (locals.activeUser && activeUser.role == 'admin') { %>
+						<% if (locals.user && user.id) { %>  <!-- Me fijo si hay un usuario activo actualmente -->
+							<% if (locals.user && user.role == 'admin') { %>
 								<li class="user-list">
 									<i class="fa-solid fa-address-book"></i>
 									<a href="/users/list">Ver usuarios</a>
@@ -43,7 +43,7 @@
 							<% } %>
 							<li>
 								<i class="fa-solid fa-user"></i>
-								<a href="/users/<%= locals.activeUser && activeUser.id %>/edit">Mi perfil</a>
+								<a href="/users/<%= locals.user && user.id %>/edit">Mi perfil</a>
 							</li>
 							<li>
 								<i class="fa-solid fa-sack-dollar"></i>
@@ -84,7 +84,7 @@
 							<i class="fa-solid fa-user-astronaut"></i>
 							<a href="">Nosotros</a>
 						</li>
-						<% if (locals.activeUser && activeUser.id) { %>
+						<% if (locals.user && user.id) { %>
 							<li class="logout">
 								<a href="/users/logout" >Cerrar Sesion</a>
 							</li>
@@ -132,30 +132,30 @@
 					</div>
 					<div class="dropdown-menu user-menu">
 						<div class="drop-menu-header">
-							<img src="/images/users/banners/<%= locals.activeUser && activeUser.bannerName ? activeUser.bannerName : 'default-banner.jpg' %>" alt="">
+							<img src="/images/users/banners/<%= locals.user && user.banner ? user.banner : 'default-banner.jpg' %>" alt="">
 						</div>
 						<div class="profile-div">
 							<img
-								src="/images/users/profiles/<%= locals.activeUser && activeUser.avatarImageName ? activeUser.avatarImageName : 'default.jpg' %>"
+								src="/images/users/profiles/<%= locals.user && user.avatar ? user.avatar : 'default.jpg' %>"
 								alt=""
 								class="profile-pic"
 							/>
 							<div class="profile-info">
-								<p class="user-role"><%= locals.activeUser && activeUser.role ? activeUser.role : '' %></p>
-								<p class="user-name"><%= locals.activeUser && activeUser.name ? activeUser.name : 'Quien eres?' %></p>
-								<p class="user-country"><%= locals.activeUser && activeUser.country ? activeUser.country : '' %></p>
+								<p class="user-role"><%= locals.user && user.role ? user.role : '' %></p>
+								<p class="user-name"><%= locals.user && user.name ? user.name : 'Quien eres?' %></p>
+								<p class="user-country"><%= locals.user && user.country ? user.country : '' %></p>
 								<hr>
 							</div>
 						</div>
 						<ul class="user-list">
-						<% if (locals.activeUser && activeUser.id) { %>  <!-- Me fijo si hay un usuario activo actualmente -->
-							<% if (locals.activeUser && activeUser.role == 'admin') { %>
+						<% if (locals.user && user.id) { %>  <!-- Me fijo si hay un usuario activo actualmente -->
+							<% if (locals.user && user.role == 'admin') { %>
 								<li>
 									<a href="/users/list">Ver usuarios</a>
 								</li>
 							<% } %>
 							<li>
-								<a href="/users/<%= locals.activeUser && activeUser.id %>/edit">Mi perfil</a>
+								<a href="/users/<%= locals.user && user.id %>/edit">Mi perfil</a>
 							</li>
 							<li>
 								<a href="/products/create">Vender</a>

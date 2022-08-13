@@ -11,7 +11,7 @@ const mainController = {
         //const activeUser = fileOperation.readFile(activeUserFile);
         res.render('home', {
             trendingSneakers: sliderSneakers,
-            activeUser: req.session.activeUser
+            user: req.session.userLogged
         });
     },
     shoppingCart: function(req, res) {
@@ -24,7 +24,7 @@ const mainController = {
             trendingSneakers: sliderSneakers,
             shopCartSneakers: shopCartSneakers,
             total: total,
-            activeUser: req.session.activeUser
+            user: req.session.userLogged
         });
     }
 };

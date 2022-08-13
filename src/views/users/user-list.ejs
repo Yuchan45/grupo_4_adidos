@@ -37,10 +37,10 @@
                 <% for(let i=0; i<users.length; i++) { %>
                 <article class="user-card">
                     <div class="banner">
-                        <img src="/images/users/banners/<%= users[i].bannerName ? users[i].bannerName : 'default-banner.jpg' %>" alt="">
+                        <img src="/images/users/banners/<%= users[i].banner ? users[i].banner : 'default-banner.jpg' %>" alt="">
                     </div>
                     <div class="data">
-                        <img src="/images/users/profiles/<%= users[i].avatarImageName ? users[i].avatarImageName : 'default.jpg' %>" alt=""/>
+                        <img src="/images/users/profiles/<%= users[i].avatar ? users[i].avatar : 'default.jpg' %>" alt=""/>
                         <div class="data-info">
                             <p class="data-title">NAME</p>
                             <p class="data-text"><%= users[i].name %></p>
@@ -56,11 +56,11 @@
                     </div>
                     <div class="actions-container">
                         <form action="/users/<%= users[i].id %>/edit" method="GET">
-                            <button type="submit" class="action-btn edit active" <%= locals.activeUser && activeUser.id==users[i].id ? '' : 'disabled' %>>Edit</button>
+                            <button type="submit" class="action-btn edit active" <%= locals.user && user.id==users[i].id ? '' : 'disabled' %>>Edit</button>
                         </form>
                         <br>
                         <form action="/users/<%= users[i].id %>?_method=DELETE" method="POST">
-                            <button type="submit" class="action-btn delete active" <%= locals.activeUser && activeUser.id==users[i].id ? '' : 'disabled' %>>Delete</button>
+                            <button type="submit" class="action-btn delete active" <%= locals.user && user.id==users[i].id ? '' : 'disabled' %>>Delete</button>
                         </form>
                     </div>
                 </article>

@@ -26,5 +26,19 @@
   "country": "ARG",
   "avatar": "default.jpg",
   "banner": "default-banner.jpg"
+ },
+ {
+  "id": 3,
+  "name": "Moka Latte",
+  "username": "moka",
+  "password": "$2b$10$U8qhU.q5Zff.Fkd5ub7y8eRLDojsJL7/avCT3kUbK5j601FEF6y.O",
+  "email": "moka@gmail.com",
+  "address": "asd",
+  "birthdate": "2022-08-26",
+  "role": "admin",
+  "gender": "female",
+  "country": "ARG",
+  "avatar": "userProfile-a7dfd2b8-2359-4462-958b-f1acf78fa888.jpeg",
+  "banner": "userBanner-0062b576-d603-43ab-815a-c59e4ee7b6c9.jpg"
  }
 ]

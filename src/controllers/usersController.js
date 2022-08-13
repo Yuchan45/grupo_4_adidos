@@ -7,12 +7,10 @@ const { v4: uuidv4 } = require('uuid');
 const User = require('../modules/User');
 
 const allUsersFile = path.join(__dirname, '../data/users.json');
-const activeUserFile = path.join(__dirname, '../data/active-user.json');
-let activeUser = fileOperation.readFile(activeUserFile);
+
 
 const usersController = {
-    loginIndex: function(req, res) {
-        // activeUser = fileOperation.readFile(activeUserFile);
+    login: function(req, res) {
         res.render('./users/login-form', {
             old : '',
             errors : ''
@@ -25,6 +23,8 @@ const usersController = {
         if (userToLogin) {
             const isPswCorrect = bcrypt.compareSync(user.password, userToLogin.password);
             if (isPswCorrect) {
+                delete userToLogin.password; // Borramos la propiedad password por temas de seguridad.
+                req.session.userLogged = userToLogin;
                 return res.redirect('/');
             }     
         }
@@ -43,22 +43,20 @@ const usersController = {
         res.render('./users/register-form', {
             oldData : '',
             errorMsg : '',
-            activeUser: req.session.activeUser
         });
     },
     recover: function(req, res) {
         res.render('./users/recover', {
-            activeUser: req.session.activeUser
+
         });
     },
     list: function(req, res) {
         // Update de los datos de los archivos
         const users = fileOperation.readFile(allUsersFile);
-        // activeUser = fileOperation.readFile(activeUserFile);
         res.render('./users/user-list', {
             filter : '',
             users: users,
-            activeUser: req.session.activeUser
+            user: req.session.userLogged
         });
     },
     // createUser: function(req, res, next) {
@@ -164,15 +162,13 @@ const usersController = {
         let errorMsg = '';
         const id = req.params.id;
         const users = fileOperation.readFile(allUsersFile);
-        // activeUser = fileOperation.readFile(activeUserFile);
 
         let editUser = userFunction.getUserById(users, id);
 
         res.render('./users/user-edit', {
             errorMsg : errorMsg,
-            users: users, // Se usa para el nav-bar
-            activeUser: req.session.activeUser, // Se usa para el nav-bar
-            editUser: editUser
+            user: req.session.userLogged, // Se usa para el nav-bar
+            editUser: editUser,
         });
     },
     editUser: function(req, res) {
@@ -190,7 +186,7 @@ const usersController = {
             res.render('./users/user-edit', {
                 editUser : editUser,
                 errorMsg : errorMsg,
-                activeUser: req.session.activeUser
+                user: req.session.userLogged
             });
             return;
         }
@@ -222,7 +218,7 @@ const usersController = {
         };
         // return res.send(modifiedUser);
         // Actualizo el usuario activo en el session.
-        req.session.activeUser = modifiedUser;
+        req.session.userLogged = modifiedUser;
 
         // if (activeUser.id == id)  fileOperation.writeActiveUser(modifiedUser, activeUserFile); // Actualizo el archivo active-user
         // Elimino del servidor las anteriores imagenes del usuario en caso de que este haya subido unas nuevas.
@@ -268,7 +264,7 @@ const usersController = {
     logout: function(req, res) {
         const user = {};
         // fileOperation.writeActiveUser(user, activeUserFile); // Borro el usuario del archivo active-user.json
-        req.session.activeUser = {}; 
+        req.session.userLogged = {}; 
         res.redirect('/users/login');
     },
     search: function(req, res) {
@@ -285,7 +281,7 @@ const usersController = {
         res.render('./users/user-list', {
             filter : '',
             users: userResults,
-            activeUser: req.session.activeUser
+            user: req.session.userLogged
         });
     },
     filter: function(req, res) {
@@ -317,7 +313,7 @@ const usersController = {
         res.render('./users/user-list', {
             filter : filter,
             users : userResults,
-            activeUser: req.session.activeUser
+            user: req.session.userLogged
         });
     }
 };

@@ -28,8 +28,8 @@ app.use(express.json());  // is a inbuilt METHOD in express to recognize the inc
 // Express-Session. (Para guardar datos del usuario actual).
 app.use(session({
     secret: "Hashhhh",
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
     cookie: {
         // Session expires after 5 mins of inactivity.
         expires: 300000
