@@ -269,8 +269,8 @@ const usersController = {
         userFunction.removeUserProfileBannerImage(allUsers, id);
     },
     logout: function(req, res) {
+        res.clearCookie("userEmail"); // Borro las coockies
         req.session.destroy(); // Borra todo lo que haya en session.
-        res.clearCookie("userEmail");
         return res.redirect('/');
     },
     search: function(req, res) {
