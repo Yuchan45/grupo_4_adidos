@@ -37,15 +37,14 @@ app.use(session({
     }
 }));
 
+// Cookie Parser
+app.use(cookieParser());
+
 // Logs
 app.use(logs);
 
 // User Logged
 app.use(userLoggedMiddleware);
-
-// Cookie Parser
-app.use(cookieParser());
-
 
 // SET TEMPLATE ENGINE (EJS)
 app.set('view engine', 'ejs');

@@ -26,6 +26,11 @@ const usersController = {
             if (isPswCorrect) {
                 delete userToLogin.password; // Borramos la propiedad password por temas de seguridad.
                 req.session.userLogged = userToLogin;
+
+                if (user.rememberUser) {
+                    res.cookie('userEmail', user.email.toLowerCase(), { maxAge: (1000 * 60) * 2 }); // MaxAge = 2mins
+                }
+
                 return res.redirect('/');
             }     
         }
@@ -265,6 +270,7 @@ const usersController = {
     },
     logout: function(req, res) {
         req.session.destroy(); // Borra todo lo que haya en session.
+        res.clearCookie("userEmail");
         return res.redirect('/');
     },
     search: function(req, res) {
