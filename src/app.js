@@ -23,7 +23,7 @@ app.set('port', process.env.PORT || 3001);
 app.set('views', path.resolve(__dirname, './views'));
 
 // Para capturar datos de los forms (POST && PUT)
-app.use(express.urlencoded({extended: false}));  // is a inbuilt method in express to recognize the incoming Request Object as strings or arrays.
+app.use(express.urlencoded({extended: false}));  // Middleware que permite recibir la info de los formularios. (req.body)
 app.use(express.json());  // is a inbuilt METHOD in express to recognize the incoming Request Object as a JSON Object.
 
 // Express-Session. (Para guardar datos del usuario actual).

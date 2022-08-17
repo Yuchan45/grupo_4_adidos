@@ -25,6 +25,7 @@ const fileStorageEngineConfig = multer.diskStorage({
 });
 
 let upload = multer({storage: fileStorageEngineConfig});
-let multipleUpload = upload.fields( [{name: 'profileImage'}, {name: 'bannerImage'}] );
+// let multipleUpload = upload.fields( [{name: 'profileImage'}, {name: 'bannerImage'}] );
+let multipleUpload = upload.any();
 
 module.exports = multipleUpload;

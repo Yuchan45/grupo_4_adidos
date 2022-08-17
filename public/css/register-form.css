@@ -66,7 +66,7 @@ input:-webkit-autofill:active{
 
 .register-wrapper form .form-group {
     text-align: left;
-    padding: 10px 0;
+    padding: 10px 0 0;
     position: relative;
     margin-bottom: 0px;
 }
@@ -189,6 +189,18 @@ input:-webkit-autofill:active{
 .upload-file-container > input {
     
 }
+
+.text-danger {
+    color: red;
+    padding: 2px 0;
+    font-size: .9rem;
+}
+
+.invalid {
+    border: 1px solid red !important;
+}
+
+
 
 /* Desktop */
 @media (min-width:769px) {

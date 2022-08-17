@@ -4,7 +4,7 @@ const usersController = require('../controllers/usersController');
 
 // Middlewares
 const multipleUpload = require('../middlewares/users/usersMulter');
-const validateCreateUserForm = require('../middlewares/users/validateRegister');
+const registerValidations = require('../middlewares/users/validateRegister');
 const guestMiddleware = require('../middlewares/guestMiddleware');
 const authMiddleware = require('../middlewares/authMiddleware');
 const isAdmin = require('../middlewares/users/isAdmin');
@@ -12,19 +12,18 @@ const isAdmin = require('../middlewares/users/isAdmin');
 
 
 // Controllers
-const {login, loginProcess, register, createUser, processRegister, recover, list, editIndex, editUser, deleteUser, logout, search, filter} = usersController;
+const {login, processLogin, register, processRegister, recover, list, editIndex, editUser, deleteUser, logout, search, filter} = usersController;
 
 
 
 // LogIn
 router.get('/login', guestMiddleware, login);
-router.post('/login', loginProcess);
+router.post('/login', processLogin);
 // router.post('/login', login); // Falta express-validation (check pass lenght, etc).
 
 // Register
 router.get('/register', guestMiddleware, register);
-// router.post('/register', multipleUpload, validateCreateUserForm, createUser); // Falta express-validation (check pass lenght, etc).
-router.post('/register', multipleUpload, processRegister); // validateCreateUserForm
+router.post('/register', multipleUpload, registerValidations, processRegister); // validateCreateUserForm
 
 // Recovery
 router.get('/recover', guestMiddleware, recover);

@@ -8,8 +8,6 @@ const productFunction = require('../modules/productFunction');
 const sneakersData = require('../data/sneakers');
 const allShoesPath = path.join(__dirname, '../data/products.json');
 const allShoes = fileOperation.readFile(allShoesPath);
-// const activeUserFile = path.join(__dirname, '../data/active-user.json');
-// const activeUser = fileOperation.readFile(activeUserFile);
 
 const productsController = {
     

@@ -11,13 +11,9 @@ const allUsersFile = path.join(__dirname, '../data/users.json');
 
 const usersController = {
     login: function(req, res) {
-        res.render('./users/login-form', {
-            old : '',
-            errors : '',
-            user: req.session.userLogged
-        });
+        res.render('./users/login-form');
     },
-    loginProcess: function(req, res) {      
+    processLogin: function(req, res) {      
         const user = req.body;
 
         const userToLogin = User.findByField('email', (user.email).toLowerCase());
@@ -46,11 +42,7 @@ const usersController = {
 
     },
     register: function(req, res) {
-        res.render('./users/register-form', {
-            oldData : '',
-            errorMsg : '',
-            user: req.session.userLogged
-        });
+        res.render('./users/register-form');
     },
     recover: function(req, res) {
         res.render('./users/recover', {
@@ -66,71 +58,21 @@ const usersController = {
             user: req.session.userLogged
         });
     },
-    // createUser: function(req, res, next) {
-    //     let errors = validationResult(req);
-    //     //console.log(errors);
-    //     if (errors.isEmpty()){
-    //         console.log("Todo valido");
-    //     } else {
-    //         console.log(errors.mapped());
-    //     }
-
-    //     let errorMsg = '';
-    //     // let activeUser = fileOperation.readFile(activeUserFile);
-
-    //     const files = req.files;
-    //     const userData = req.body;
-
-    //     if (!(req.validProfileExtension && req.validBannerExtension)) {
-    //         errorMsg = "Archivo de imagen no valido!";
-    //         res.render('./users/register-form', {
-    //             oldData : req.body,
-    //             errorMsg : errorMsg,
-    //             activeUser: req.session.activeUser
-    //         });
-    //         return;
-    //     }
-
-    //     // No valido si el usuario sube o no archivos porque no es obligatorio establecer una foto de perfil.    
-    //     // Set the profile image name if exists, otherwise set the default image name.
-    //     const profileImageName = (files.profileImage) ? req.files.profileImage[0].filename : 'default.jpg';
-    //     const bannerImageName = (files.bannerImage) ? req.files.bannerImage[0].filename : 'default-banner.jpg';
-    //     let avatarFullPath = (files.profileImage) ? req.files.profileImage[0].path : '';
-    //     let bannerFullPath = (files.bannerImage) ? req.files.bannerImage[0].path : '';
-
-    //     let user = {
-    //         id: uuidv4(),
-    //         accCreationDate: new Date().toISOString().slice(0, 10),
-    //         name: userData.name,
-    //         username: userData.username,
-    //         //password: userData.password,
-    //         password: bcrypt.hashSync(userData.password, 10),
-    //         avatarImageName: profileImageName,
-    //         bannerName: bannerImageName,
-    //         avatarPath: avatarFullPath,
-    //         bannerPath: bannerFullPath,
-    //         email: userData.email,
-    //         address: userData.address,
-    //         birthdate: userData.birthdate,
-    //         role: userData.role,
-    //         gender: userData.gender,
-    //         country: userData.country,
-    //         interests: userData.interest
-    //     };
-    //     fileOperation.addToFile(user, allUsersFile);
-    //     res.redirect('/users/login');
-    // },
     processRegister: function(req, res) {
         const files = req.files;
+        const avatarFilename = files[0].filename;
+        const bannerFilename = files[1].filename;
         let user = req.body;
         let errors = validationResult(req);
 
         if (!errors.isEmpty()){
-            console.log("Error encontrado por express-Validator");
-            console.log(errors)
+            const avatarPath = path.join(__dirname, '../../public/images/users/profiles/' + avatarFilename);
+            const bannerPath = path.join(__dirname, '../../public/images/users/banners/' + bannerFilename);
+            if (avatarFilename != 'default.jpg') userFunction.removeImage(avatarPath);
+            if (bannerFilename != 'default-banner.jpg') userFunction.removeImage(bannerPath);
             return res.render('./users/register-form', {
-                errorMsg: errors.mapped(),
-                oldData: user
+                errors: errors.mapped(), // Mapped convierte el array de errores en un obj literal con (name del elemento) y sus diferentes propiedades
+                old: user
             });
         }
 
@@ -149,8 +91,8 @@ const usersController = {
             });
         }
 
-        const profileImageName = (files.profileImage) ? req.files.profileImage[0].filename : 'default.jpg';
-        const bannerImageName = (files.bannerImage) ? req.files.bannerImage[0].filename : 'default-banner.jpg';
+        const profileImageName = (files[0]) ? avatarFilename : 'default.jpg';
+        const bannerImageName = (files[1]) ? bannerFilename : 'default-banner.jpg';
 
         let dataUser = {
             ...user,
@@ -199,6 +141,7 @@ const usersController = {
         }
 
         // Set the profile image name if exists, otherwise set the previous image name.
+        // Cambie la forma de nombrar a los files. req.files[0].filename es avatarName y  req.files[1].filename es bannerName
         const profileImageName = (files.profileImage) ? req.files.profileImage[0].filename : editUser.avatarImageName;
         const bannerImageName = (files.bannerImage) ? req.files.bannerImage[0].filename : editUser.bannerName;
 
@@ -227,7 +170,6 @@ const usersController = {
         // Actualizo el usuario activo en el session.
         req.session.userLogged = modifiedUser;
 
-        // if (activeUser.id == id)  fileOperation.writeActiveUser(modifiedUser, activeUserFile); // Actualizo el archivo active-user
         // Elimino del servidor las anteriores imagenes del usuario en caso de que este haya subido unas nuevas.
         const profilePath = path.join(__dirname, '../../public/images/users/profiles/' + editUser.avatarImageName);
         const bannerPath = path.join(__dirname, '../../public/images/users/banners/' + editUser.bannerName);
