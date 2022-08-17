@@ -12,7 +12,7 @@ const isAdmin = require('../middlewares/users/isAdmin');
 
 
 // Controllers
-const {login, processLogin, register, processRegister, recover, list, editIndex, editUser, deleteUser, logout, search, filter} = usersController;
+const {login, processLogin, register, processRegister, profile, recover, list, editIndex, editUser, deleteUser, logout, search, filter} = usersController;
 
 
 
@@ -24,6 +24,9 @@ router.post('/login', processLogin);
 // Register
 router.get('/register', guestMiddleware, register);
 router.post('/register', multipleUpload, registerValidations, processRegister); // validateCreateUserForm
+
+// Profile
+router.get('/profile', guestMiddleware, profile);
 
 // Recovery
 router.get('/recover', guestMiddleware, recover);

@@ -18,7 +18,7 @@ let functionalities = {
     writeFile: function(users, file) {
         // Recibe un array de objetos 'usuario' / 'producto' con los datos de los usuarios/producto. 
         // Los escribe en un JSON cuyo path se pasa por parametro (file).
-        let convertedData = JSON.stringify(users, null, ' ');
+        let convertedData = JSON.stringify(users, null, ' ');  // El 3er parametro sirve para formatear el JSON.
         fs.writeFileSync(file, convertedData, function(error) {
             if (error) throw error;
             console.log('Ha ocurrido un error al intentar guardar los datos');

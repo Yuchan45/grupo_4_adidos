@@ -1,0 +1,54 @@
+* {
+    font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+    background-color: #252525;
+}
+
+
+.main-container {
+
+}
+
+.main-container .banner {
+    
+}
+
+.main-container .banner > img {
+    
+}
+
+.main-container .profile {
+    
+}
+
+.main-container .profile .avatar {
+    
+}
+
+.main-container .profile .avatar img {
+    
+}
+
+.main-container .profile .main-info {
+    
+}
+
+.main-container .profile .main-info .profile-title {
+    
+}
+
+.main-container .profile .main-info .name-title {
+    
+}
+
+.main-container .profile .main-info .data-title {
+    
+}
+
+.main-container .content {
+    
+}

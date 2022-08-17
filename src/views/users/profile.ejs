@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head.ejs') %> 
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/nav-bar.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+</head>
+
+<body>
+     <!-- Inicio Nav-bar -->
+     <%- include('../partials/nav-bar') %>
+     <!-- Fin Nav-bar -->
+	 <main>
+        <div class="main-container">
+            <div class="banner">
+                <img src="/images/users/banners/default-banner.jpg" alt="">
+            </div>
+            <div class="profile">
+                <div class="avatar">
+                    <img src="/images/users/profiles/default.jpg" alt="">
+                </div>
+                <div class="main-info">
+                    <p class="profile-title">PERFIL</p>
+                    <h1 class="name-title">Yu Nakasone</h1>
+                    <p class="data-title">3 articulos en venta - 15 articulos likeados</p>
+                </div>
+            </div>
+            <div class="content">
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+	</main>
+
+    <%- include('../partials/footer') %>
+
+    <script src="/js/panels.js"></script>
+    <script src="/js/hamburger.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+</body>
+</html>

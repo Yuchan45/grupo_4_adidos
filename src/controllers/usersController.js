@@ -41,6 +41,9 @@ const usersController = {
         });
 
     },
+    profile: function(req, res) {
+        res.render('./users/profile');
+    },
     register: function(req, res) {
         res.render('./users/register-form');
     },
@@ -106,6 +109,7 @@ const usersController = {
         res.redirect('/users/login');
 
     },
+
     editIndex: function(req, res) {
         // Update de los datos de los archivos
         let errorMsg = '';
@@ -120,6 +124,7 @@ const usersController = {
             editUser: editUser,
         });
     },
+
     editUser: function(req, res) {
         let errorMsg = '';
         const files = req.files; 
