@@ -26,7 +26,7 @@ router.get('/register', guestMiddleware, register);
 router.post('/register', multipleUpload, registerValidations, processRegister); // validateCreateUserForm
 
 // Profile
-router.get('/profile', guestMiddleware, profile);
+router.get('/profile', profile); // authMiddleware Lo saco para hacer la vista
 
 // Recovery
 router.get('/recover', guestMiddleware, recover);

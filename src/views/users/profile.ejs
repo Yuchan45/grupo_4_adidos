@@ -14,27 +14,59 @@
      <!-- Fin Nav-bar -->
 	 <main>
         <div class="main-container">
-            <div class="banner">
-                <img src="/images/users/banners/default-banner.jpg" alt="">
-            </div>
-            <div class="profile">
-                <div class="avatar">
-                    <img src="/images/users/profiles/default.jpg" alt="">
+            <div class="images-wrapper">
+                <div class="banner">
+                    <img src="/images/users/banners/default-banner.jpg" alt="">
                 </div>
-                <div class="main-info">
-                    <p class="profile-title">PERFIL</p>
-                    <h1 class="name-title">Yu Nakasone</h1>
-                    <p class="data-title">3 articulos en venta - 15 articulos likeados</p>
+                <div class="overlay">
+                    <div class="avatar">
+                        <img src="/images/users/profiles/default.jpg" alt="">
+                    </div>
+                    <div class="profile">
+                        <p class="profile-title">PERFIL</p>
+                        <h1 class="profile-name">Yu Nakasone</h1>
+                        <p class="profile-subtitle">3 articulos en venta - 15 articulos likeados</p>
+                    </div>
                 </div>
             </div>
-            <div class="content">
-
-
+            <div class="data-container">
+                <div class="edit-wrapper">
+                    <i class="fa-solid fa-pen"></i>
+                </div>
+                <article class="about">
+                    <div class="btn-container">
+                        <button class="tab-btn active" data-id="history">Info</button>
+                        <button class="tab-btn" data-id="vision">Favs</button>
+                        <button class="tab-btn" data-id="goals">Extra</button>
+                    </div>
+                    <div class="about-content">
+                        <div class="content active" id="history">
+                            <h4 class="role">Admin</h4>
+                            <h4>Usuario</h4>
+                            <p>Yuchan45</p>
+                            <h4>Email</h4>
+                            <p>Yuchan45</p>
+                            <h4>País</h4>
+                            <p>Argentina</p>
+                            <h4>Género</h4>
+                            <p>Masculino</p>
+                            <h4>Dirección</h4>
+                            <p>Avenida falsa 123</p>
+                            <h4>Fecha de nacimiento</h4>
+                            <p>10 de Septiembre</p>
+                        </div>
+                        <div class="content" id="vision">
+                            <h4>Favoritos</h4>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, perspiciatis in accusantium esse ipsum ex voluptatibus perferendis explicabo quam ullam praesentium unde eum illo vitae dolor. Ea ut, commodi sed sunt, consequatur minima veritatis quis aut magni nulla quas ratione dolor! Neque fugiat rem vel dignissimos perferendis numquam accusamus soluta dolorum voluptatum deleniti excepturi omnis architecto, facilis tempora atque alias quisquam? Illum placeat dignissimos excepturi laudantium magni libero nemo deleniti quae eaque officia, aliquid obcaecati, voluptatum sunt, ipsa fuga consectetur?</p>
+                        </div>
+                        <div class="content" id="goals">
+                            <h4>Extra</h4>
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita modi sed quos ab corporis. Iure voluptates cum nemo dolorum fugiat rerum, eaque facilis, aliquid quisquam aperiam libero harum dolor soluta eligendi sint amet hic incidunt. Dicta mollitia dolor optio corporis, aspernatur a, repudiandae qui pariatur veritatis cumque neque nobis molestias!</p>
+                        </div>
+                    </div>
+                </article>
 
             </div>
-
-
-
         </div>
 
 
@@ -42,6 +74,7 @@
 
     <%- include('../partials/footer') %>
 
+    <script src="/js/tabs.js"></script>
     <script src="/js/panels.js"></script>
     <script src="/js/hamburger.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

@@ -8,47 +8,299 @@ body {
     background-color: #252525;
 }
 
+.profile-title {
+    margin: 0 auto;
+    font-size: 0.6rem;
+    font-weight: 800;
+    color: white;
+}
+
+.profile-name {
+    margin: 0 auto;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -1px;
+    line-height: 20px;
+}
+
+.profile-subtitle {
+    margin: 10px auto;
+    font-size: 0.7rem;
+    font-weight: 200;
+    color: white;
+}
+
 
 .main-container {
+    margin-top: 50px;
+}
+
+.main-container  .images-wrapper {
+    width: 100%;
+}
+
+.main-container .images-wrapper .banner {
+    width: 100%;
+    height: 120px;
+    position: absolute;
+    background-color: red;
+}
+
+.main-container .images-wrapper .banner > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.main-container .images-wrapper .overlay {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    height: 120px;
+    padding: 15px 10px 10px 10px;
+    position: relative;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.main-container .images-wrapper .overlay .avatar {
+    width: 80px;
+    height: 80px;
+}
+
+.main-container .images-wrapper .overlay .avatar img {
+    max-width: 80px;
+    min-height: 80px;
+    border-radius: 50%;
+    border: 3px solid var(--blue);
+    padding: 3px;
+    object-fit: cover;
+}
+
+.main-container .images-wrapper .overlay .profile {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+}
+
+.main-container .data-container {
+    background-color: #242424;
+}
+
+
+.edit-wrapper {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #f44336;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: -15px;
+    position: absolute;
+    right: 15px;
+    transition: all .3s ease;
+}
+
+.edit-wrapper svg {
+    font-size: 16px;
+    color: #fff;
+}
+
+.edit-wrapper:hover {
+    background-color: #f44336;
+    transform: scale(1.2);
+}
+
+
+
+/****************************/
+.about {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    margin-bottom: 50px;
+    padding-top: 25px;
+}
+
+.about .btn-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+.about .btn-container .tab-btn:nth-child(1) {
+    border-top-left-radius: 0.5rem;
+}
+
+.about .btn-container .tab-btn:nth-last-child(1) {
+    border-top-right-radius: 0.5rem;
+}
+
+
+.about .btn-container .tab-btn {
+    color: #ababab;
+    border: none;
+    background-color: #242424;
+    padding: 10px 0;
+    font-size: 16px;
+    transition: all 0.5s ease;
+    text-transform: capitalize;
+    letter-spacing: 0.25rem;
+    font-weight: 500;
+    border-bottom: 3px solid #242424;
+}
+
+.about .btn-container .tab-btn:hover {
+    background-color: #292929;
+    color: #49a6e9;
+}
+
+.about .about-content {
+    width: 100%;
+    height: 100%;
+    background-color: #242424;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    padding: 10px 20px;
+    margin-bottom: 25px;
+}
+
+.about .about-content .content {
+    display: none;
+}
+
+.about .about-content .content > h4 {
+    margin: 5px auto 5px 0 !important;
+    text-align: left;
+    font-size: .9rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.20rem;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.about .about-content .content > p {
+    margin: 0 auto 15px 0 !important;
+    text-align: left;
+    font-size: .8rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+    color: #617d98;
+}
+
+.active {
+    display: block !important;
+    background-color: #242424 !important;
+    border-bottom: 3px solid white !important;
+}
+
+.about .about-content .content .role {
+    margin: 0px auto !important;
+    color: #17ff00;
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-style: italic;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+/********* MEDIA QUERIES *********/
+
+/* Mobile and Tablet */
+@media (min-width:361px) {
+
 
 }
 
-.main-container .banner {
-    
+/* Desktop */
+@media (min-width:769px) {
+    .main-container {
+        margin-top: 100px;
+    }
+    .about .about-content .content > h4 {
+        font-size: 1.1rem;
+    }
+    .about .about-content .content > p {
+        font-size: 1rem;
+    }
+    .about .btn-container .tab-btn {
+        font-size: 1.1rem;
+    }
+    .edit-wrapper {
+        width: 50px;
+        height: 50px;
+        margin-top: -25px;
+    }
+    .edit-wrapper svg {
+        font-size: 20px;
+    }
+    .about .about-content {
+        padding: 40px 20px;
+    }
+
+    .main-container .images-wrapper .banner {
+        height: 180px;
+    }
+    .main-container .images-wrapper .overlay {
+        height: 180px;
+    }
+
+    .main-container .images-wrapper .overlay .avatar {
+        width: 150px;
+        height: 150px;
+    }
+    .main-container .images-wrapper .overlay .avatar img {
+        max-width: 150px;
+        min-height: 150px;
+    }
+
+    .profile-title {
+        font-size: 0.8rem;
+        margin-top: 15px;
+    }
+    .profile-name {
+        margin: 0 auto;
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: white;
+        letter-spacing: -1px;
+        line-height: 20px;
+    }
+    .profile-name {
+        font-size: 3rem;
+        line-height: inherit;
+    }
+    .profile-subtitle {
+        font-size: 1rem;
+    }
+
 }
 
-.main-container .banner > img {
-    
-}
-
-.main-container .profile {
-    
-}
-
-.main-container .profile .avatar {
-    
-}
-
-.main-container .profile .avatar img {
-    
-}
-
-.main-container .profile .main-info {
-    
-}
-
-.main-container .profile .main-info .profile-title {
-    
-}
-
-.main-container .profile .main-info .name-title {
-    
-}
-
-.main-container .profile .main-info .data-title {
-    
-}
-
-.main-container .content {
-    
+@media (min-width:1200px) {
+    .edit-wrapper {
+        right: 15%;
+    }
 }
