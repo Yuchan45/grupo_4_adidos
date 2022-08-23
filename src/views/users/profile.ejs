@@ -16,21 +16,21 @@
         <div class="main-container">
             <div class="images-wrapper">
                 <div class="banner">
-                    <img src="/images/users/banners/default-banner.jpg" alt="">
+                    <img src="/images/users/banners/<%= (locals.isLogged && locals.userLogged.banner) ? locals.userLogged.banner : 'default-banner.jpg' %>" alt="">
                 </div>
                 <div class="overlay">
                     <div class="avatar">
-                        <img src="/images/users/profiles/default.jpg" alt="">
+                        <img src="/images/users/profiles/<%= (locals.isLogged && locals.userLogged.avatar) ? locals.userLogged.avatar : 'default.jpg' %>" alt="">
                     </div>
                     <div class="profile">
                         <p class="profile-title">PERFIL</p>
-                        <h1 class="profile-name">Yu Nakasone</h1>
+                        <h1 class="profile-name"><%=(locals.isLogged && locals.userLogged.name) ? locals.userLogged.name : '' %></h1>
                         <p class="profile-subtitle">3 articulos en venta - 15 articulos likeados</p>
                     </div>
                 </div>
             </div>
             <div class="data-container">
-                <a href="/users/user-edit">
+                <a href="/users/<%= (locals.isLogged && locals.userLogged.role) ? locals.userLogged.id : '' %>/edit">
                     <div class="edit-wrapper">
                         <i class="fa-solid fa-pen"></i>
                     </div>

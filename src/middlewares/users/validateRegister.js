@@ -28,7 +28,7 @@ const validateCreateUserForm = [
 
     body('profileImage').custom((value, { req }) => {
         let files = req.files;
-        let acceptedExtensions = ['.jpg', '.png', '.gif', '.jfif'];
+        let acceptedExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.jfif'];
 
         let fileExtension = path.extname(files[0].originalname);
         if (!acceptedExtensions.includes(fileExtension)) {
@@ -47,7 +47,7 @@ const validateCreateUserForm = [
     }),
     body('bannerImage').custom((value, { req }) => {
         let files = req.files;
-        let acceptedExtensions = ['.jpg', '.png', '.gif', '.jfif'];
+        let acceptedExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.jfif'];
 
         let fileExtension = path.extname(files[0].originalname);
         if (!acceptedExtensions.includes(fileExtension)) {

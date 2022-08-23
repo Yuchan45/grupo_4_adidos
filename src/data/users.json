@@ -26,5 +26,19 @@
   "country": "Argentina",
   "avatar": "userProfile-01cba51c-4bb3-4cbc-8647-a294849de256.jpg",
   "banner": "userBanner-7ee61767-015c-4467-beef-003ee21ffab2.jpg"
+ },
+ {
+  "id": 3,
+  "name": "Moka Latte",
+  "username": "moka",
+  "password": "$2b$10$T7GM6Eu6QPYKQu/ahiZYK.Q8t6iF2ky4QXkyTFe93Rk3pO8GFobz2",
+  "email": "moka@gmail.com",
+  "address": "Av false 789",
+  "birthdate": "2022-08-23",
+  "role": "customer",
+  "gender": "female",
+  "country": "Argentina",
+  "avatar": "userProfile-4e2c7912-5507-44a7-92bb-5a0bedd3a13a.jpeg",
+  "banner": "userBanner-7c3e227f-1df9-4d0f-bd7e-70bb363a69be.jpg"
  }
 ]

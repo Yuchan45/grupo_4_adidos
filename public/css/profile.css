@@ -75,8 +75,9 @@ body {
 .main-container .images-wrapper .overlay .avatar img {
     max-width: 80px;
     min-height: 80px;
+    height: 80px;
     border-radius: 50%;
-    border: 3px solid var(--blue);
+    border: 3px solid var(--white);
     padding: 3px;
     object-fit: cover;
 }
@@ -262,19 +263,24 @@ body {
     }
 
     .main-container .images-wrapper .banner {
-        height: 180px;
+        height: 220px;
     }
     .main-container .images-wrapper .overlay {
-        height: 180px;
+        height: 220px;
+        padding: 25px 10px 10px 10px;
+        gap: 50px;
     }
 
     .main-container .images-wrapper .overlay .avatar {
-        width: 150px;
-        height: 150px;
+        width: 180px;
+        height: 180px;
+        min-width: 180px;
+        min-height: 180px;
     }
     .main-container .images-wrapper .overlay .avatar img {
-        max-width: 150px;
-        min-height: 150px;
+        min-width: 180px;
+        max-width: 180px;
+        height: 180px;
     }
 
     .profile-title {
