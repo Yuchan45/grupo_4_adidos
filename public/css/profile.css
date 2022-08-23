@@ -296,6 +296,9 @@ body {
     .profile-subtitle {
         font-size: 1rem;
     }
+    .about .about-content .content .role {
+        font-size: 1rem;
+    }
 
 }
 

@@ -30,9 +30,11 @@
                 </div>
             </div>
             <div class="data-container">
-                <div class="edit-wrapper">
-                    <i class="fa-solid fa-pen"></i>
-                </div>
+                <a href="/users/user-edit">
+                    <div class="edit-wrapper">
+                        <i class="fa-solid fa-pen"></i>
+                    </div>
+                </a>
                 <article class="about">
                     <div class="btn-container">
                         <button class="tab-btn active" data-id="history">Info</button>
@@ -41,19 +43,19 @@
                     </div>
                     <div class="about-content">
                         <div class="content active" id="history">
-                            <h4 class="role">Admin</h4>
+                            <h4 class="role"> <%=(locals.isLogged && locals.userLogged.role) ? locals.userLogged.role : '' %> </h4>
                             <h4>Usuario</h4>
-                            <p>Yuchan45</p>
+                            <p><%=(locals.isLogged && locals.userLogged.username) ? locals.userLogged.username : '' %></p>
                             <h4>Email</h4>
-                            <p>Yuchan45</p>
+                            <p><%=(locals.isLogged && locals.userLogged.email) ? locals.userLogged.email : '' %></p>
                             <h4>País</h4>
-                            <p>Argentina</p>
+                            <p><%=(locals.isLogged && locals.userLogged.country) ? locals.userLogged.country : '' %></p>
                             <h4>Género</h4>
-                            <p>Masculino</p>
+                            <p><%=(locals.isLogged && locals.userLogged.gender) ? locals.userLogged.gender : '' %></p>
                             <h4>Dirección</h4>
-                            <p>Avenida falsa 123</p>
+                            <p><%=(locals.isLogged && locals.userLogged.address) ? locals.userLogged.address : '' %></p>
                             <h4>Fecha de nacimiento</h4>
-                            <p>10 de Septiembre</p>
+                            <p><%=(locals.isLogged && locals.userLogged.birthdate) ? locals.userLogged.birthdate : '' %></p>
                         </div>
                         <div class="content" id="vision">
                             <h4>Favoritos</h4>
