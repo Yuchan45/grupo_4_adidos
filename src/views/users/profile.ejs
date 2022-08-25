@@ -23,7 +23,8 @@
                         <img src="/images/users/profiles/<%= (locals.isLogged && locals.userLogged.avatar) ? locals.userLogged.avatar : 'default.jpg' %>" alt="">
                     </div>
                     <div class="profile">
-                        <p class="profile-title">PERFIL</p>
+                        
+                        <p class="profile-title">PERFIL <span class="role"><%=(locals.isLogged && locals.userLogged.role) ? locals.userLogged.role : '' %></span> </p>
                         <h1 class="profile-name"><%=(locals.isLogged && locals.userLogged.name) ? locals.userLogged.name : '' %></h1>
                         <p class="profile-subtitle">3 articulos en venta - 15 articulos likeados</p>
                     </div>
@@ -43,7 +44,6 @@
                     </div>
                     <div class="about-content">
                         <div class="content active" id="history">
-                            <h4 class="role"> <%=(locals.isLogged && locals.userLogged.role) ? locals.userLogged.role : '' %> </h4>
                             <h4>Usuario</h4>
                             <p><%=(locals.isLogged && locals.userLogged.username) ? locals.userLogged.username : '' %></p>
                             <h4>Email</h4>

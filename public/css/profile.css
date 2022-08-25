@@ -5,7 +5,7 @@
 
 body {
     overflow-x: hidden;
-    background-color: #252525;
+    background-color: #242424;
 }
 
 .profile-title {
@@ -57,7 +57,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: blur(5px);
+    filter: brightness(0.5) blur(2px);
 }
 
 .main-container .images-wrapper .overlay {
@@ -109,7 +109,7 @@ body {
     align-content: center;
     justify-content: center;
     align-items: center;
-    margin-top: -15px;
+    margin-top: -60px;
     position: absolute;
     right: 15px;
     transition: all .3s ease;
@@ -136,9 +136,7 @@ body {
     align-items: center;
     width: 100%;
     max-width: 1000px;
-    margin: auto;
-    margin-bottom: 50px;
-    padding-top: 25px;
+    margin: 50px auto 50px;
 }
 
 .about .btn-container {
@@ -217,15 +215,14 @@ body {
     border-bottom: 3px solid white !important;
 }
 
-.about .about-content .content .role {
-    margin: 0px auto !important;
-    color: #17ff00;
-    font-size: .7rem;
-    font-weight: 600;
-    letter-spacing: 2px;
+.role {
+    margin: 0px auto 0px 10px !important;
+    color: #ff7a00;
+    font-size: .8rem;
+    font-weight: 800;
     text-transform: uppercase;
     font-style: italic;
-    text-align: center;
+    letter-spacing: 1px;
 }
 
 
@@ -248,6 +245,9 @@ body {
     .main-container {
         margin-top: 100px;
     }
+    .about {
+        margin: 100px auto 50px;
+    }
     .about .about-content .content > h4 {
         font-size: 1.1rem;
     }
@@ -260,7 +260,7 @@ body {
     .edit-wrapper {
         width: 50px;
         height: 50px;
-        margin-top: -25px;
+        margin-top: -120px;
     }
     .edit-wrapper svg {
         font-size: 20px;
