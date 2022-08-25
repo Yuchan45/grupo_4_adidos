@@ -40,5 +40,19 @@
   "country": "Argentina",
   "avatar": "userProfile-4e2c7912-5507-44a7-92bb-5a0bedd3a13a.jpeg",
   "banner": "userBanner-7c3e227f-1df9-4d0f-bd7e-70bb363a69be.jpg"
+ },
+ {
+  "id": 4,
+  "name": "Ryu Arakaki",
+  "username": "ryu",
+  "password": "$2b$10$GA8rsks4cfDwWGvidvY3t.2Ai7Wy8Df9x4R68/U.aw.r6mUpbjHhu",
+  "email": "ryu@gmail.com",
+  "address": "asd",
+  "birthdate": "2022-08-25",
+  "role": "admin",
+  "gender": "male",
+  "country": "Argentina",
+  "avatar": "userProfile-4d4d90bd-1319-42d5-9b9e-8fc6b624255e.jpg",
+  "banner": "userBanner-9dc6a42e-c556-4886-9111-69eab92bc7d5.jpg"
  }
 ]
