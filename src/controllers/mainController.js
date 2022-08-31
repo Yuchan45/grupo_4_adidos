@@ -2,7 +2,7 @@ const path = require('path');
 const sliderSneakers = require('../data/sneakers');
 const shopCartSneakers = require('../data/shopCartSneakers');
 const fileOperation = require('../modules/fileControl');
-const activeUserFile = path.join(__dirname, '../data/active-user.json');
+
 
 
 
@@ -11,7 +11,7 @@ const mainController = {
         //const activeUser = fileOperation.readFile(activeUserFile);
         res.render('home', {
             trendingSneakers: sliderSneakers,
-            activeUser: req.session.activeUser
+            user: req.session.userLogged
         });
     },
     shoppingCart: function(req, res) {
@@ -24,7 +24,7 @@ const mainController = {
             trendingSneakers: sliderSneakers,
             shopCartSneakers: shopCartSneakers,
             total: total,
-            activeUser: req.session.activeUser
+            user: req.session.userLogged
         });
     }
 };

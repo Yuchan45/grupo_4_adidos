@@ -4,59 +4,43 @@ const usersController = require('../controllers/usersController');
 
 // Middlewares
 const multipleUpload = require('../middlewares/users/usersMulter');
-const loginValidation = require('../middlewares/users/loginValidation');
-const isLogged = require('../middlewares/isLogged');
+const registerValidations = require('../middlewares/users/validateRegister');
+const guestMiddleware = require('../middlewares/guestMiddleware');
+const authMiddleware = require('../middlewares/authMiddleware');
 const isAdmin = require('../middlewares/users/isAdmin');
-const userAlreadyExists = require('../middlewares/users/userAlreadyExists');
-const dataTypeValidation = require('../middlewares/users/dataTypeValidation');
+
+
 
 // Controllers
-const {loginIndex, login, register, createUser, recover, list, editIndex, editUser, deleteUser, logout, search, filter} = usersController;
+const {login, processLogin, register, processRegister, profile, recover, list, editIndex, editUser, deleteUser, logout, search, filter} = usersController;
 
-// Express Validator
-const { body } = require('express-validator');
-// Validaciones
-const validateCreateUserForm = [
-    body('name')
-        .notEmpty().withMessage('Debes completar el campo de nombre!').bail()
-        .isAlpha().withMessage('El nombre no puede tener caracteres invalidos!'),
-
-    body('username')
-        .notEmpty().withMessage('Debes completar el campo de usuario!').bail()
-        .isAlphanumeric().withMessage('No se permiten caracteres invalidos!'),
-
-    body('password')
-        .notEmpty().withMessage('Debes ingresar una contraseña!').bail()
-        .isLength({min: 6, max: 100}).withMessage('Debes ingresar una contraseña valida! (minimo 6 caracteres)'),
-
-    body('email')
-        .notEmpty().withMessage('Debes completar el email!').bail()
-        .isEmail().withMessage('Debes completar un email valido!'),
-
-    body('address')
-        .notEmpty().withMessage('Debes completar el campo de direccion!').bail(),
-
-    body('birthdate')
-        .notEmpty().withMessage('Debes completar el campo de fecha de nacimiento!').bail()
-        .isDate().withMessage('La fecha de nacimiento es invalida!'),
-];
 
 
 // LogIn
-router.get('/login', loginIndex);
-router.post('/login', loginValidation, login); // Falta express-validation (check pass lenght, etc).
+router.get('/login', guestMiddleware, login);
+router.post('/login', processLogin);
+// router.post('/login', login); // Falta express-validation (check pass lenght, etc).
+
 // Register
-router.get('/register', register);
-router.post('/register', multipleUpload, userAlreadyExists, dataTypeValidation, validateCreateUserForm, createUser); // Falta express-validation (check pass lenght, etc).
+router.get('/register', guestMiddleware, register);
+router.post('/register', multipleUpload, registerValidations, processRegister); // validateCreateUserForm
+
+// Profile
+router.get('/profile', authMiddleware, profile); // authMiddleware Lo saco para hacer la vista
+
 // Recovery
-router.get('/recover', recover);
+router.get('/recover', guestMiddleware, recover);
+
 // List
-router.get('/list', isLogged, list);
+router.get('/list', authMiddleware, list); 
+
 // Edit user
-router.get('/:id/edit', editIndex);
-router.put('/:id', multipleUpload, dataTypeValidation, editUser);
+router.get('/:id/edit', authMiddleware, editIndex);
+router.put('/:id', multipleUpload, editUser);
+
 // Delete user
 router.delete('/:id', deleteUser);
+
 // LogOut
 router.get('/logout', logout);
 

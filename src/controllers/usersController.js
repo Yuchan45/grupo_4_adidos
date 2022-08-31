@@ -4,115 +4,127 @@ const { validationResult } = require('express-validator');
 const fileOperation = require('../modules/fileControl');
 const userFunction = require('../modules/userFunction');
 const { v4: uuidv4 } = require('uuid');
+const User = require('../modules/User');
 
 const allUsersFile = path.join(__dirname, '../data/users.json');
-const activeUserFile = path.join(__dirname, '../data/active-user.json');
-let activeUser = fileOperation.readFile(activeUserFile);
+
 
 const usersController = {
-    loginIndex: function(req, res) {
-        // activeUser = fileOperation.readFile(activeUserFile);
-        res.render('./users/login-form', {
-            userData : '',
-            errorMsg : '',
-            activeUser: req.session.activeUser
-        });
+    login: function(req, res) {
+        res.render('./users/login-form');
     },
-    login: function(req, res) {      
-        res.redirect('/');
+    processLogin: function(req, res) {      
+        const user = req.body;
+
+        const userToLogin = User.findByField('email', (user.email).toLowerCase());
+        if (userToLogin) {
+            const isPswCorrect = bcrypt.compareSync(user.password, userToLogin.password);
+            if (isPswCorrect) {
+                delete userToLogin.password; // Borramos la propiedad password por temas de seguridad.
+                req.session.userLogged = userToLogin;
+
+                if (user.rememberUser) {
+                    res.cookie('userEmail', user.email.toLowerCase(), { maxAge: (1000 * 60) * 2 }); // MaxAge = 2mins
+                }
+
+                return res.redirect('/');
+            }     
+        }
+        
+        return res.render('./users/login-form', {
+            old: user,
+            errors : {
+                loginFailed: {
+                    msg: 'Las credenciales son invalidas!'
+                }
+            },
+        });
+
+    },
+    profile: function(req, res) {
+        res.render('./users/profile');
     },
     register: function(req, res) {
-        res.render('./users/register-form', {
-            formData : '',
-            errorMsg : '',
-            activeUser: req.session.activeUser
-        });
+        res.render('./users/register-form');
     },
     recover: function(req, res) {
         res.render('./users/recover', {
-            activeUser: req.session.activeUser
+
         });
     },
     list: function(req, res) {
         // Update de los datos de los archivos
         const users = fileOperation.readFile(allUsersFile);
-        // activeUser = fileOperation.readFile(activeUserFile);
         res.render('./users/user-list', {
             filter : '',
             users: users,
-            activeUser: req.session.activeUser
+            user: req.session.userLogged
         });
     },
-    createUser: function(req, res, next) {
-        let errors = validationResult(req);
-        //console.log(errors);
-        if (errors.isEmpty()){
-            console.log("Todo valido");
-        } else {
-            console.log(errors.mapped());
-        }
-
-        let errorMsg = '';
-        // let activeUser = fileOperation.readFile(activeUserFile);
-
+    processRegister: function(req, res) {
         const files = req.files;
-        const userData = req.body;
+        const avatarFilename = files[0].filename;
+        const bannerFilename = files[1].filename;
+        let user = req.body;
+        let errors = validationResult(req);
 
-        if (!(req.validProfileExtension && req.validBannerExtension)) {
-            errorMsg = "Archivo de imagen no valido!";
-            res.render('./users/register-form', {
-                formData : req.body,
-                errorMsg : errorMsg,
-                activeUser: req.session.activeUser
+        if (!errors.isEmpty()){
+            const avatarPath = path.join(__dirname, '../../public/images/users/profiles/' + avatarFilename);
+            const bannerPath = path.join(__dirname, '../../public/images/users/banners/' + bannerFilename);
+            if (avatarFilename != 'default.jpg') userFunction.removeImage(avatarPath);
+            if (bannerFilename != 'default-banner.jpg') userFunction.removeImage(bannerPath);
+            return res.render('./users/register-form', {
+                errors: errors.mapped(), // Mapped convierte el array de errores en un obj literal con (name del elemento) y sus diferentes propiedades
+                old: user
             });
-            return;
         }
 
-        // No valido si el usuario sube o no archivos porque no es obligatorio establecer una foto de perfil.    
-        // Set the profile image name if exists, otherwise set the default image name.
-        const profileImageName = (files.profileImage) ? req.files.profileImage[0].filename : 'default.jpg';
-        const bannerImageName = (files.bannerImage) ? req.files.bannerImage[0].filename : 'default-banner.jpg';
-        let avatarFullPath = (files.profileImage) ? req.files.profileImage[0].path : '';
-        let bannerFullPath = (files.bannerImage) ? req.files.bannerImage[0].path : '';
+        const emailInDb = User.findByField('email', user.email);
+        const usernameInDb = User.findByField('username', user.username);
 
-        let user = {
-            id: uuidv4(),
-            accCreationDate: new Date().toISOString().slice(0, 10),
-            name: userData.name,
-            username: userData.username,
-            //password: userData.password,
-            password: bcrypt.hashSync(userData.password, 10),
-            avatarImageName: profileImageName,
-            bannerName: bannerImageName,
-            avatarPath: avatarFullPath,
-            bannerPath: bannerFullPath,
-            email: userData.email,
-            address: userData.address,
-            birthdate: userData.birthdate,
-            role: userData.role,
-            gender: userData.gender,
-            country: userData.country,
-            interests: userData.interest
-        };
-        fileOperation.addToFile(user, allUsersFile);
+        if (emailInDb) {
+            return res.render('./users/register-form', {
+                // Arreglar para que dsp si se vea bien el error.
+                errorMsg: {
+                    email: {
+                        msg: 'Este email ya esta registrado!'
+                    }
+                },
+                oldData: user
+            });
+        }
+
+        const profileImageName = (files[0]) ? avatarFilename : 'default.jpg';
+        const bannerImageName = (files[1]) ? bannerFilename : 'default-banner.jpg';
+
+        let dataUser = {
+            ...user,
+            email: user.email.toLowerCase(),
+            password: bcrypt.hashSync(user.password, 10),
+            avatar: profileImageName,
+            banner: bannerImageName
+        }
+
+        const userCreated = User.create(dataUser);
         res.redirect('/users/login');
+
     },
+
     editIndex: function(req, res) {
         // Update de los datos de los archivos
         let errorMsg = '';
         const id = req.params.id;
         const users = fileOperation.readFile(allUsersFile);
-        // activeUser = fileOperation.readFile(activeUserFile);
 
         let editUser = userFunction.getUserById(users, id);
 
         res.render('./users/user-edit', {
             errorMsg : errorMsg,
-            users: users, // Se usa para el nav-bar
-            activeUser: req.session.activeUser, // Se usa para el nav-bar
-            editUser: editUser
+            user: req.session.userLogged, // Se usa para el nav-bar
+            editUser: editUser,
         });
     },
+
     editUser: function(req, res) {
         let errorMsg = '';
         const files = req.files; 
@@ -128,12 +140,13 @@ const usersController = {
             res.render('./users/user-edit', {
                 editUser : editUser,
                 errorMsg : errorMsg,
-                activeUser: req.session.activeUser
+                user: req.session.userLogged
             });
             return;
         }
 
         // Set the profile image name if exists, otherwise set the previous image name.
+        // Cambie la forma de nombrar a los files. req.files[0].filename es avatarName y  req.files[1].filename es bannerName
         const profileImageName = (files.profileImage) ? req.files.profileImage[0].filename : editUser.avatarImageName;
         const bannerImageName = (files.bannerImage) ? req.files.bannerImage[0].filename : editUser.bannerName;
 
@@ -160,9 +173,8 @@ const usersController = {
         };
         // return res.send(modifiedUser);
         // Actualizo el usuario activo en el session.
-        req.session.activeUser = modifiedUser;
+        req.session.userLogged = modifiedUser;
 
-        // if (activeUser.id == id)  fileOperation.writeActiveUser(modifiedUser, activeUserFile); // Actualizo el archivo active-user
         // Elimino del servidor las anteriores imagenes del usuario en caso de que este haya subido unas nuevas.
         const profilePath = path.join(__dirname, '../../public/images/users/profiles/' + editUser.avatarImageName);
         const bannerPath = path.join(__dirname, '../../public/images/users/banners/' + editUser.bannerName);
@@ -204,10 +216,9 @@ const usersController = {
         userFunction.removeUserProfileBannerImage(allUsers, id);
     },
     logout: function(req, res) {
-        const user = {};
-        // fileOperation.writeActiveUser(user, activeUserFile); // Borro el usuario del archivo active-user.json
-        req.session.activeUser = {}; 
-        res.redirect('/users/login');
+        res.clearCookie("userEmail"); // Borro las coockies
+        req.session.destroy(); // Borra todo lo que haya en session.
+        return res.redirect('/');
     },
     search: function(req, res) {
         users = fileOperation.readFile(allUsersFile);
@@ -223,7 +234,7 @@ const usersController = {
         res.render('./users/user-list', {
             filter : '',
             users: userResults,
-            activeUser: req.session.activeUser
+            user: req.session.userLogged
         });
     },
     filter: function(req, res) {
@@ -255,7 +266,7 @@ const usersController = {
         res.render('./users/user-list', {
             filter : filter,
             users : userResults,
-            activeUser: req.session.activeUser
+            user: req.session.userLogged
         });
     }
 };

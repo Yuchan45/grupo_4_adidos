@@ -22,78 +22,119 @@
                     <h3 class="register-label">Datos</h3>
                     <div class="form-group first-last-name">
                         <label for="name">Nombre y apellido</label>
-                        <input type="text" name="name" id="name" value="<%= formData ? formData.name : '' %>" >
+                        <input type="text" name="name" class="<%= locals.errors && errors.name ? 'invalid' : '' %>"
+                         id="name" value="<%= locals.old ? old.name : '' %>" >
+                        <% if (locals.errors && errors.name) { %>
+                            <div class="text-danger">
+                                <%= errors.name.msg; %>
+                            </div>
+                        <% } %>
                     </div>
                     <div class="form-group user">
                         <label for="user">Usuario</label>
-                        <input type="text" name="username" id="username" value="<%= formData ? formData.username : '' %>" required>
+                        <input type="text" name="username" class="<%= locals.errors && errors.username ? 'invalid' : '' %>" 
+                         id="username" value="<%= locals.old ? old.username : '' %>" >
+                        <% if (locals.errors && errors.username) { %>
+                            <div class="text-danger">
+                                <%= errors.username.msg; %>
+                            </div>
+                        <% } %>
                     </div>
                     <div class="form-group user">
                         <label for="password">Password</label>
-                        <input type="password" name="password" id="password" minlength="6" value="<%= formData ? formData.password : '' %>" required>
+                        <input type="password" name="password" class="<%= locals.errors && errors.password ? 'invalid' : '' %>"
+                         id="password" minlength="6" value="<%= locals.old ? old.password : '' %>" >
+                        <% if (locals.errors && errors.password) { %>
+                            <div class="text-danger">
+                                <%= errors.password.msg; %>
+                            </div>
+                        <% } %>
                     </div>
                     <div class="form-group email">
                         <label for="email">E-mail</label>
-                        <input type="email" name="email" id="email" value="<%= formData ? formData.email : '' %>" required>
+                        <input type="email" name="email" class="<%= locals.errors && errors.email ? 'invalid' : '' %>"
+                         id="email" value="<%= locals.old ? old.email : '' %>" >
+                        <% if (locals.errors && errors.email) { %>
+                            <div class="text-danger">
+                                <%= errors.email.msg; %>
+                            </div>
+                        <% } %>
                     </div>
                     <div class="form-group domicilio">
                         <label for="address">Domicilio</label>
-                        <input type="text" name="address" id="address" value="<%= formData ? formData.address : '' %>" required>
+                        <input type="text" name="address" class="<%= locals.errors && errors.address ? 'invalid' : '' %>"
+                         id="address" value="<%= locals.old ? old.address : '' %>" >
+                        <% if (locals.errors && errors.address) { %>
+                            <div class="text-danger">
+                                <%= errors.address.msg; %>
+                            </div>
+                        <% } %>
                     </div>
                     <h3 class="register-label">Fecha de nacimiento</h3>
                     <div class="form-group">
-                        <input type="date" name="birthdate" id="birthdate" value="<%= formData ? formData.birthdate : '' %>" required>
+                        <input type="date" name="birthdate" class="<%= locals.errors && errors.birthdate ? 'invalid' : '' %>"
+                         id="birthdate" value="<%= locals.old ? old.birthdate : '' %>" >
+                        <% if (locals.errors && errors.birthdate) { %>
+                            <div class="text-danger">
+                                <%= errors.birthdate.msg; %>
+                            </div>
+                        <% } %>
                     </div>
                 </div>
                 <div class="register-form-right">
                     <h3 class="register-label">Perfil de usuario</h3>
                     <div class="radio-list">
                         <div class="radio-group">
-                            <input type="radio" id="role" name="role" value="admin" <%= (formData.role == 'admin') ? "checked" : '' %> checked>
-                            <label for="buySell">Administrador</label>
+                            <input type="radio" id="role2" name="role" value="customer" <%= (locals.old && old.role == 'customer') ? "checked" : '' %> checked>
+                            <label for="buySell">Cliente</label>
                         </div>
                         <div class="radio-group">
-                            <input type="radio" id="role2" name="role" value="customer" <%= (formData.role == 'customer') ? "checked" : '' %>>
-                            <label for="buySell">Cliente</label>
+                            <input type="radio" id="role" name="role" value="admin" <%= (locals.old && old.role == 'admin') ? "checked" : '' %>>
+                            <label for="buySell">Administrador</label>
                         </div>
                     </div>
                     <h3 class="register-label">Genero</h3>
                     <div class="radio-list">
                         <div class="radio-group">
-                            <input type="radio" id="gender" name="gender" value="male" <%= (formData.gender == 'male') ? "checked" : '' %> checked>
+                            <input type="radio" id="gender" name="gender" value="male" <%= (locals.old && old.gender == 'male') ? "checked" : '' %> checked>
                             <label for="gender">Hombre</label>
                         </div>
                         <div class="radio-group">
-                            <input type="radio" id="gender2" name="gender" value="female" <%= (formData.gender == 'female') ? "checked" : '' %>>
+                            <input type="radio" id="gender2" name="gender" value="female" <%= (locals.old && old.gender == 'female') ? "checked" : '' %>>
                             <label for="gender">Mujer</label>
                         </div>
                         <div class="radio-group">
-                            <input type="radio" id="gender3" name="gender" value="other" <%= (formData.gender == 'other') ? "checked" : '' %>>
+                            <input type="radio" id="gender3" name="gender" value="other" <%= (locals.old && old.gender == 'other') ? "checked" : '' %>>
                             <label for="gender">Otro</label>
                         </div>
                     </div>
                     <h3 class="register-label">País de nacimiento</h3>
                     <select class="country-combobox" name="country" id="country">
-                        <option value="ARG" <%= (formData.country == 'ARG') ? "selected" : '' %>>Argentina</option>
-                        <option value="BRZ" <%= (formData.country == 'BRZ') ? "selected" : '' %>>Brasil</option>
-                        <option value="CHL" <%= (formData.country == 'CHL') ? "selected" : '' %>>Chile</option>
-                        <option value="PER" <%= (formData.country == 'PER') ? "selected" : '' %>>Peru</option>
-                        <option value="BLV" <%= (formData.country == 'BLV') ? "selected" : '' %>>Bolivia</option>
-                        <option value="UGY" <%= (formData.country == 'UGY') ? "selected" : '' %>>Uruguay</option>
+                        <% let countries = ["Argentina", "Bolivia", "Brasil", "Colombia", "Chile", "Ecuador", "Paraguay", "Perú", "Uruguay", "Venezuela"] %>
+                        <% for( let i = 0; i < countries.length; i++ ) { %>
+                            <option value="<%= countries[i] %>" <%= (locals.old && old.country == countries[i]) ? "selected" : '' %>><%= countries[i] %></option>
+                        <% } %>
                     </select>
                     <div class="upload-file-container">
                         <label for="profileImage">Foto de perfil</label>
                         <input type="file" id="profileImage" name="profileImage">
+                        <% if (locals.errors && errors.profileImage) { %>
+                            <div class="text-danger">
+                                <%= errors.profileImage.msg; %>
+                            </div>
+                        <% } %>
                     </div>
                     <div class="upload-file-container">
                         <label for="bannerImage">Banner</label>
                         <input type="file" id="bannerImage" name="bannerImage">
+                        <% if (locals.errors && errors.bannerImage) { %>
+                            <div class="text-danger">
+                                <%= errors.bannerImage.msg; %>
+                            </div>
+                        <% } %>
                     </div>
                 </div>
                 <div class="send-container">
-                    <div class="error-message-container">
-                        <label class="error-msg"><%= errorMsg %></label>
-                    </div>
                     <button type="submit" class="submit-btn">Crear cuenta</button>
                 </div>
             </form>

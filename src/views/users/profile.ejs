@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head.ejs') %> 
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/nav-bar.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+</head>
+
+<body>
+     <!-- Inicio Nav-bar -->
+     <%- include('../partials/nav-bar') %>
+     <!-- Fin Nav-bar -->
+	 <main>
+        <div class="main-container">
+            <div class="images-wrapper">
+                <div class="banner">
+                    <img src="/images/users/banners/<%= (locals.isLogged && locals.userLogged.banner) ? locals.userLogged.banner : 'default-banner.jpg' %>" alt="">
+                </div>
+                <div class="overlay">
+                    <div class="avatar">
+                        <img src="/images/users/profiles/<%= (locals.isLogged && locals.userLogged.avatar) ? locals.userLogged.avatar : 'default.jpg' %>" alt="">
+                    </div>
+                    <div class="profile">
+                        
+                        <p class="profile-title">PERFIL <span class="role"><%=(locals.isLogged && locals.userLogged.role) ? locals.userLogged.role : '' %></span> </p>
+                        <h1 class="profile-name"><%=(locals.isLogged && locals.userLogged.name) ? locals.userLogged.name : '' %></h1>
+                        <p class="profile-subtitle">3 articulos en venta - 15 articulos likeados</p>
+                    </div>
+                </div>
+            </div>
+            <div class="data-container">
+                <a href="/users/<%= (locals.isLogged && locals.userLogged.role) ? locals.userLogged.id : '' %>/edit">
+                    <div class="edit-wrapper">
+                        <i class="fa-solid fa-pen"></i>
+                    </div>
+                </a>
+                <article class="about">
+                    <div class="btn-container">
+                        <button class="tab-btn active" data-id="history">Info</button>
+                        <button class="tab-btn" data-id="vision">Favs</button>
+                        <button class="tab-btn" data-id="goals">Extra</button>
+                    </div>
+                    <div class="about-content">
+                        <div class="content active" id="history">
+                            <h4>Usuario</h4>
+                            <p><%=(locals.isLogged && locals.userLogged.username) ? locals.userLogged.username : '' %></p>
+                            <h4>Email</h4>
+                            <p><%=(locals.isLogged && locals.userLogged.email) ? locals.userLogged.email : '' %></p>
+                            <h4>País</h4>
+                            <p><%=(locals.isLogged && locals.userLogged.country) ? locals.userLogged.country : '' %></p>
+                            <h4>Género</h4>
+                            <p><%=(locals.isLogged && locals.userLogged.gender) ? locals.userLogged.gender : '' %></p>
+                            <h4>Dirección</h4>
+                            <p><%=(locals.isLogged && locals.userLogged.address) ? locals.userLogged.address : '' %></p>
+                            <h4>Fecha de nacimiento</h4>
+                            <p><%=(locals.isLogged && locals.userLogged.birthdate) ? locals.userLogged.birthdate : '' %></p>
+                        </div>
+                        <div class="content" id="vision">
+                            <h4>Favoritos</h4>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, perspiciatis in accusantium esse ipsum ex voluptatibus perferendis explicabo quam ullam praesentium unde eum illo vitae dolor. Ea ut, commodi sed sunt, consequatur minima veritatis quis aut magni nulla quas ratione dolor! Neque fugiat rem vel dignissimos perferendis numquam accusamus soluta dolorum voluptatum deleniti excepturi omnis architecto, facilis tempora atque alias quisquam? Illum placeat dignissimos excepturi laudantium magni libero nemo deleniti quae eaque officia, aliquid obcaecati, voluptatum sunt, ipsa fuga consectetur?</p>
+                        </div>
+                        <div class="content" id="goals">
+                            <h4>Extra</h4>
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita modi sed quos ab corporis. Iure voluptates cum nemo dolorum fugiat rerum, eaque facilis, aliquid quisquam aperiam libero harum dolor soluta eligendi sint amet hic incidunt. Dicta mollitia dolor optio corporis, aspernatur a, repudiandae qui pariatur veritatis cumque neque nobis molestias!</p>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+
+
+	</main>
+
+    <%- include('../partials/footer') %>
+
+    <script src="/js/tabs.js"></script>
+    <script src="/js/panels.js"></script>
+    <script src="/js/hamburger.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+</body>
+</html>
