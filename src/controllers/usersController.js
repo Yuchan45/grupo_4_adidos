@@ -8,7 +8,6 @@ const User = require('../modules/User');
 
 const allUsersFile = path.join(__dirname, '../data/users.json');
 
-
 const usersController = {
     login: function(req, res) {
         res.render('./users/login-form');
