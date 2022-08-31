@@ -217,7 +217,8 @@ body {
 
 .role {
     margin: 0px auto 0px 10px !important;
-    color: #ff7a00;
+    /* color: #ff7a00; */
+    color: var(--blue);
     font-size: .8rem;
     font-weight: 800;
     text-transform: uppercase;
