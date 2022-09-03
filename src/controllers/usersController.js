@@ -62,8 +62,16 @@ const usersController = {
     },
     processRegister: function(req, res) {
         const files = req.files;
-        const avatarFilename = files[0].filename;
-        const bannerFilename = files[1].filename;
+        let avatarFilename = 'default.jpg';
+        let bannerFilename = 'default-banner.jpg';
+        // res.send(files);
+        if (files[0]) {
+            avatarFilename = files[0].filename;
+        }
+        if (files[1]) {
+            bannerFilename = files[1].filename;
+        }
+
         let user = req.body;
         let errors = validationResult(req);
 
@@ -72,6 +80,7 @@ const usersController = {
             const bannerPath = path.join(__dirname, '../../public/images/users/banners/' + bannerFilename);
             if (avatarFilename != 'default.jpg') userFunction.removeImage(avatarPath);
             if (bannerFilename != 'default-banner.jpg') userFunction.removeImage(bannerPath);
+            console.log(errors.mapped());
             return res.render('./users/register-form', {
                 errors: errors.mapped(), // Mapped convierte el array de errores en un obj literal con (name del elemento) y sus diferentes propiedades
                 old: user
@@ -93,15 +102,15 @@ const usersController = {
             });
         }
 
-        const profileImageName = (files[0]) ? avatarFilename : 'default.jpg';
-        const bannerImageName = (files[1]) ? bannerFilename : 'default-banner.jpg';
+        // const profileImageName = (files[0]) ? avatarFilename : 'default.jpg';
+        // const bannerImageName = (files[1]) ? bannerFilename : 'default-banner.jpg';
 
         let dataUser = {
             ...user,
             email: user.email.toLowerCase(),
             password: bcrypt.hashSync(user.password, 10),
-            avatar: profileImageName,
-            banner: bannerImageName
+            avatar: avatarFilename,
+            banner: bannerFilename
         }
 
         const userCreated = User.create(dataUser);
