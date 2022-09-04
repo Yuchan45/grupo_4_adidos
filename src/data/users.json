@@ -54,5 +54,19 @@
   "country": "Argentina",
   "avatar": "userProfile-4d4d90bd-1319-42d5-9b9e-8fc6b624255e.jpg",
   "banner": "userBanner-9dc6a42e-c556-4886-9111-69eab92bc7d5.jpg"
+ },
+ {
+  "id": 5,
+  "name": "Franco Estevez",
+  "username": "FrancoE",
+  "password": "$2b$10$T2q5.I2qvYVaPQ1AaT5pheLXB0xQ1sGIfOAAaYV5jR688wu4Lx4uK",
+  "email": "francoestevez20008@gmail.com",
+  "address": "212",
+  "birthdate": "2008-11-06",
+  "role": "customer",
+  "gender": "male",
+  "country": "Argentina",
+  "avatar": "userProfile-006c4450-132a-4a42-ba47-176f8e9838da.png",
+  "banner": "userBanner-33a2b23d-ab68-4aa1-864f-612d972eeb64.png"
  }
 ]
