@@ -20,7 +20,10 @@ const validateCreateUserForm = [
         .isEmail().withMessage('Debes completar un email valido'),
 
     body('address')
-        .notEmpty().withMessage('Debes completar el campo de direccion').bail(),
+        .notEmpty().withMessage('Debes completar el campo de calle').bail(),
+
+    body('addressNumber')
+        .notEmpty().withMessage('Debes completar el campo de numero de calle').bail(),
 
     body('birthdate')
         .notEmpty().withMessage('Debes completar el campo de fecha de nacimiento').bail()

@@ -60,15 +60,27 @@
                             </div>
                         <% } %>
                     </div>
-                    <div class="form-group domicilio">
-                        <label for="address">Domicilio</label>
-                        <input type="text" name="address" class="<%= locals.errors && errors.address ? 'invalid' : '' %>"
-                         id="address" value="<%= locals.old ? old.address : '' %>" >
-                        <% if (locals.errors && errors.address) { %>
-                            <div class="text-danger">
-                                <%= errors.address.msg; %>
-                            </div>
-                        <% } %>
+                    <div class="register-address">
+                        <div class="form-group address">
+                            <label for="address">Calle</label>
+                            <input type="text" name="address" class="<%= locals.errors && errors.address ? 'invalid' : '' %>"
+                            id="address" value="<%= locals.old ? old.address : '' %>" >
+                           <% if (locals.errors && errors.address) { %>
+                               <div class="text-danger">
+                                   <%= errors.address.msg; %>
+                               </div>
+                           <% } %>
+                        </div>
+                        <div class="form-group addressNumber">
+                            <label for="addressNumber">Numero</label>
+                            <input type="number" name="addressNumber" class="<%= locals.errors && errors.addressNumber ? 'invalid' : '' %>"
+                            id="addressNumber" value="<%= locals.old ? old.addressNumber : '' %>" >
+                           <% if (locals.errors && errors.addressNumber) { %>
+                               <div class="text-danger">
+                                   <%= errors.addressNumber.msg; %>
+                               </div>
+                           <% } %>
+                        </div>
                     </div>
                     <h3 class="register-label">Fecha de nacimiento</h3>
                     <div class="form-group">
@@ -113,6 +125,14 @@
                         <% let countries = ["Argentina", "Bolivia", "Brasil", "Colombia", "Chile", "Ecuador", "Paraguay", "Perú", "Uruguay", "Venezuela"] %>
                         <% for( let i = 0; i < countries.length; i++ ) { %>
                             <option value="<%= countries[i] %>" <%= (locals.old && old.country == countries[i]) ? "selected" : '' %>><%= countries[i] %></option>
+                        <% } %>
+                    </select>
+                    <!--AGREGADO-->
+                    <h3 class="register-label">Cash</h3>
+                    <select class="cash-combobox" name="cash" id="cash">
+                        <% let cash = ["$ARS", "US$D", "EUR", "GBP"] %>
+                        <% for( let i = 0; i < cash.length; i++ ) { %>
+                            <option value="<%= cash[i] %>" <%= (locals.old && old.cash == cash[i]) ? "selected" : '' %>><%= cash[i] %></option>
                         <% } %>
                     </select>
                     <div class="upload-file-container">
