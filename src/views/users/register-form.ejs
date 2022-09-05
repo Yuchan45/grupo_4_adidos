@@ -127,14 +127,16 @@
                             <option value="<%= countries[i] %>" <%= (locals.old && old.country == countries[i]) ? "selected" : '' %>><%= countries[i] %></option>
                         <% } %>
                     </select>
-                    <!--AGREGADO-->
-                    <h3 class="register-label">Cash</h3>
-                    <select class="cash-combobox" name="cash" id="cash">
-                        <% let cash = ["$ARS", "US$D", "EUR", "GBP"] %>
-                        <% for( let i = 0; i < cash.length; i++ ) { %>
-                            <option value="<%= cash[i] %>" <%= (locals.old && old.cash == cash[i]) ? "selected" : '' %>><%= cash[i] %></option>
-                        <% } %>
-                    </select>
+                    <div class="form-group cash">
+                    <label for="cash">Cash</label>
+                            <input type="number" name="cash" class="<%= locals.errors && errors.cash ? 'invalid' : '' %>"
+                            id="cash" value="<%= locals.old ? old.cash : '' %>" >
+                           <% if (locals.errors && errors.cash) { %>
+                               <div class="text-danger">
+                                   <%= errors.cash.msg; %>
+                               </div>
+                           <% } %>
+                    </div>
                     <div class="upload-file-container">
                         <label for="profileImage">Foto de perfil</label>
                         <input type="file" id="profileImage" name="profileImage">

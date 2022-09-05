@@ -28,6 +28,9 @@ const validateCreateUserForm = [
     body('birthdate')
         .notEmpty().withMessage('Debes completar el campo de fecha de nacimiento').bail()
         .isDate().withMessage('La fecha de nacimiento es invalida'),
+    
+    body('cash')
+        .notEmpty().withMessage('Debes completar el campo cash').bail(),
 
     body('profileImage').custom((value, { req }) => {
         let files = req.files;
