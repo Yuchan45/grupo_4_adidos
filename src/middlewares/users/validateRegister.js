@@ -33,14 +33,21 @@ const validateCreateUserForm = [
         .notEmpty().withMessage('Debes completar el campo cash').bail(),
 
     body('profileImage').custom((value, { req }) => {
+        // console.log("ACA")
+        // Si el usuario no ingresa foto de perfil, que siga. Luego se le sera asignada una por defecto.
         let files = req.files;
-        let acceptedExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.jfif'];
-
-        let fileExtension = path.extname(files[0].originalname);
-        if (!acceptedExtensions.includes(fileExtension)) {
-            throw new Error(`Las extensiones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
+        console.log(files)
+        if (files.length > 0) {
+            let acceptedExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.jfif'];
+    
+            
+            let fileExtension = path.extname(files[0].originalname);
+            if (!acceptedExtensions.includes(fileExtension)) {
+                throw new Error(`Las extensiones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
+            } else {
+                return true;
+            }
         }
-
         return true;
         // if (!file) {
         //     throw new Error('Si no ingresa una imagen de perfil, se le sera asignada una por defecto');
@@ -52,14 +59,19 @@ const validateCreateUserForm = [
         // }
     }),
     body('bannerImage').custom((value, { req }) => {
+        // if (!req.files) return; // Si el usuario no ingresa foto de perfil, que siga. Luego se le sera asignada una por defecto.
         let files = req.files;
-        let acceptedExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.jfif'];
-
-        let fileExtension = path.extname(files[0].originalname);
-        if (!acceptedExtensions.includes(fileExtension)) {
-            throw new Error(`Las extensiones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
+        if (files.length > 0) {
+            let acceptedExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.jfif'];
+    
+            let fileExtension = path.extname(files[0].originalname);
+            if (!acceptedExtensions.includes(fileExtension)) {
+                throw new Error(`Las extensiones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
+            } else {
+                return true;
+            }
+    
         }
-
         return true;
         // if (!file) {
         //     throw new Error('Si no ingresa una imagen de portada, se le sera asignada una por defecto');
