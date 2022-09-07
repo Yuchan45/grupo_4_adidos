@@ -33,14 +33,14 @@
 								<img src="<%= shopCartSneakers[i].image %> " alt="">
 							</div>
 							<div class="item-details">
-								<h3 class="item-tittle"> <%= shopCartSneakers[i].brand + " - '" + shopCartSneakers[i].model + "'" %> </h3>
-								<p class="item-price"> <%= "ARS$" + shopCartSneakers[i].price %> </p>
+								<h3 class="item-tittle"> <%= shopCartSneakers[i].brand + " - " + shopCartSneakers[i].model + "" %> </h3>
+								<p class="item-price"> <%= "ARS $" + shopCartSneakers[i].price %> </p>
 								<p class="item-stock"> <%="Stock: " + shopCartSneakers[i].stock %> </p>
-								<select class="item-quantity" name="quantity">
+								<!-- <select class="item-quantity" name="quantity">
 									<% for(let j=0; j<shopCartSneakers[i].stock; j++) { %>
 										<option value="<%= j+1 %>"> <%= j+1 %>  </option>
 									<% } %>
-								</select>
+								</select> -->
 								<button class="delete-prod">
 									<p class="item-button">Quitar</p>
 								</button>

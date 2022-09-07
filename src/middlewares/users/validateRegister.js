@@ -30,11 +30,9 @@ const validateCreateUserForm = [
         // console.log("ACA")
         // Si el usuario no ingresa foto de perfil, que siga. Luego se le sera asignada una por defecto.
         let files = req.files;
-        console.log(files)
+        // console.log(files)
         if (files.length > 0) {
-            let acceptedExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.jfif'];
-    
-            
+            let acceptedExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.jfif'];   
             let fileExtension = path.extname(files[0].originalname);
             if (!acceptedExtensions.includes(fileExtension)) {
                 throw new Error(`Las extensiones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
