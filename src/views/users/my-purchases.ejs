@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+        <%- include('../partials/head') %> 
+        <link rel="stylesheet" href="/css/nav-bar.css" />
+        <link rel="stylesheet" href="/css/footer.css" />
+        <link rel="stylesheet" href="/css/purchased-products.css" />
+        <link rel="stylesheet" href="/css/normalize.css" />
+        <title>Shopping cart</title>
+    </head>
+    <body>
+        <!-- Nav-bar -->
+        <%- include('../partials/nav-bar') %>
+        <main>
+            <div class="main-container">
+                <form class="search-bar" action="/users/search" method="GET">
+                    <div class="search-container">
+                        <input class="search-input" type="search" name="search" id="search" placeholder="Buscar"/>
+                        <button class="search-btn">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                </form>
+
+
+
+
+
+
+
+
+            </div>
+
+
+        </main>
+        <!-- Footer -->
+        <%- include('../partials/footer') %>
+
+		<script src="/js/hamburger.js"></script>
+    </body>
+</html>

@@ -43,6 +43,9 @@ const usersController = {
     profile: function(req, res) {
         res.render('./users/profile');
     },
+    myPurchases: function(req, res) {
+        res.render('./users/my-purchases');
+    },
     register: function(req, res) {
         res.render('./users/register-form');
     },
