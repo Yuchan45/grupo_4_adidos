@@ -12,7 +12,7 @@ const isAdmin = require('../middlewares/users/isAdmin');
 
 
 // Controllers
-const {login, processLogin, register, processRegister, profile, recover, list, editIndex, editUser, deleteUser, logout, search, filter} = usersController;
+const {login, processLogin, register, processRegister, profile, myPurchases, recover, list, editIndex, editUser, deleteUser, logout, search, filter} = usersController;
 
 
 
@@ -27,6 +27,9 @@ router.post('/register', multipleUpload, registerValidations, processRegister); 
 
 // Profile
 router.get('/profile', authMiddleware, profile); // authMiddleware Lo saco para hacer la vista
+
+// Purchases
+router.get('/my_purchases', myPurchases);// authMiddleware Lo saco para hacer la vista
 
 // Recovery
 router.get('/recover', guestMiddleware, recover);

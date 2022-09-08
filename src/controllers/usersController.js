@@ -43,6 +43,9 @@ const usersController = {
     profile: function(req, res) {
         res.render('./users/profile');
     },
+    myPurchases: function(req, res) {
+        res.render('./users/my-purchases');
+    },
     register: function(req, res) {
         res.render('./users/register-form');
     },
@@ -80,7 +83,7 @@ const usersController = {
             const bannerPath = path.join(__dirname, '../../public/images/users/banners/' + bannerFilename);
             if (avatarFilename != 'default.jpg') userFunction.removeImage(avatarPath);
             if (bannerFilename != 'default-banner.jpg') userFunction.removeImage(bannerPath);
-            console.log(errors.mapped());
+            // console.log(errors.mapped());
             return res.render('./users/register-form', {
                 errors: errors.mapped(), // Mapped convierte el array de errores en un obj literal con (name del elemento) y sus diferentes propiedades
                 old: user

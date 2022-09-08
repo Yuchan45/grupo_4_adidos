@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+        <%- include('../partials/head') %> 
+        <link rel="stylesheet" href="/css/nav-bar.css" />
+        <link rel="stylesheet" href="/css/footer.css" />
+        <link rel="stylesheet" href="/css/my-purchases.css" />
+        <link rel="stylesheet" href="/css/normalize.css" />
+        <title>Shopping cart</title>
+    </head>
+    <body>
+        <!-- Nav-bar -->
+        <%- include('../partials/nav-bar') %>
+        <main>
+            <div class="main-container">
+                <h1 class="purchases-title">Mis compras</h1>
+
+                <div class="header-menu">
+                    <form class="search-bar" action="/users/search" method="GET">
+                        <div class="search-container">
+                            <input class="search-input" type="search" name="search-purchases" id="search" placeholder="Buscar"/>
+                            <button class="search-btn">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </div>
+                    </form>
+                    <p>50 compras</p>
+                </div>
+
+                <div class="articles-container">
+                    <div class="item">
+                        <div class="purchase-date">
+                            <p>6 de septiembre</p>
+                        </div>
+                        <div class="item-body">
+                            <div class="picture">
+                                <img src="" alt="">
+                            </div>
+                            <div class="details">
+                                <p class="item-status">Estado: <span>Finalizado</span> </p>
+                                <h2 class="item-name">Asics - Evo Ride 2</h2>
+                                <p class="item-brief-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, cupiditate?</p>
+                                <p class="item-quantity"><span>n°</span> unidad</p>
+                            </div>
+                            <div class="action-btns">
+                                <button class="purchase-btn">
+									<p class="item-button">Ver Producto</p>
+								</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+                </div>
+                
+
+
+
+
+
+
+
+
+            </div>
+
+
+        </main>
+        <!-- Footer -->
+        <%- include('../partials/footer') %>
+
+		<script src="/js/hamburger.js"></script>
+    </body>
+</html>
