@@ -1,0 +1,14 @@
+id
+fullName
+userName
+password
+email
+avatar
+banner
+address
+number
+birthday
+role
+gender
+country
+cash

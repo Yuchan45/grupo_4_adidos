@@ -176,10 +176,12 @@ const usersController = {
             bannerPath: bannerFullPath,
             email: data.email,
             address: data.address,
+            addressNumber: data.addressNumber,
             birthdate: data.birthdate,
             role: data.role,
             gender: data.gender,
             country: data.country,
+            cash: data.cash,
             interests: data.interest
         };
         // return res.send(modifiedUser);

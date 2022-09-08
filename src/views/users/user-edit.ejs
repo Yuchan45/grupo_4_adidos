@@ -35,9 +35,13 @@
                         <label for="email">E-mail</label>
                         <input type="email" name="email" id="email" value="<%= editUser.email %>" required>
                     </div>
-                    <div class="form-group domicilio">
-                        <label for="address">Domicilio</label>
+                    <div class="form-group address">
+                        <label for="address">Calle</label>
                         <input type="text" name="address" id="address" value="<%= editUser.address %>" required>
+                    </div>
+                    <div class="form-group addressNumber">
+                        <label for="addressNumber">Numero</label>
+                        <input type="number" name="addressNumber" id="addressNumber" value="<%= editUser.addressNumber %>" required>
                     </div>
                     <h3 class="edit-label">Fecha de nacimiento</h3>
                     <div class="form-group">
@@ -80,6 +84,10 @@
                         <option value="BLV" <%= (editUser.country == 'BLV') ? "selected" : '' %>>Bolivia</option>
                         <option value="UGY" <%= (editUser.country == 'UGY') ? "selected" : '' %>>Uruguay</option>
                     </select>
+                    <div class="form-group cash">
+                        <label for="cash">Cash</label>
+                        <input type="number" name="cash" id="cash" value="<%= editUser.cash %>" required>
+                    </div>
                     <div class="upload-file-container">
                         <label for="profileImage">Foto de perfil</label>
                         <input type="file" id="profileImage" name="profileImage">

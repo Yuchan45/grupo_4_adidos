@@ -81,7 +81,13 @@ input:-webkit-autofill:active{
     background-color: #171818;
 }
 
-.register-wrapper form .form-group input {
+.register-address{
+    display: flex;
+    flex-direction: row;
+}
+
+.register-wrapper form .form-group input 
+{
     width: 100%;
     margin: auto;
     padding: 0 10px;
@@ -166,6 +172,17 @@ input:-webkit-autofill:active{
     color: white;
 }
 
+.cash-combobox {
+    margin: 10px 0;
+    padding: 0 10px;
+    height: 30px;
+    width: 250px;
+    border-radius: 3px;
+    border: 1px solid var(--blue);
+    font-size: var(--normal);
+    background-color: #181818;
+    color: white;
+}
 .send-container .error-message-container {
     text-align: center;
     color: var(--red);
@@ -220,6 +237,7 @@ input:-webkit-autofill:active{
     .register-wrapper form {
         display: flex;
         flex-wrap: wrap;
+        align-items: flex-start;
     }
     .register-form-left {
         width: 50%;
