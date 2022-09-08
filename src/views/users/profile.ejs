@@ -52,10 +52,14 @@
                             <p><%=(locals.isLogged && locals.userLogged.country) ? locals.userLogged.country : '' %></p>
                             <h4>Género</h4>
                             <p><%=(locals.isLogged && locals.userLogged.gender) ? locals.userLogged.gender : '' %></p>
-                            <h4>Dirección</h4>
+                            <h4>Calle</h4>
                             <p><%=(locals.isLogged && locals.userLogged.address) ? locals.userLogged.address : '' %></p>
+                            <h4>Numero</h4>
+                            <p><%=(locals.isLogged && locals.userLogged.addressNumber) ? locals.userLogged.addressNumber : '' %></p>
                             <h4>Fecha de nacimiento</h4>
                             <p><%=(locals.isLogged && locals.userLogged.birthdate) ? locals.userLogged.birthdate : '' %></p>
+                            <h4>Cash</h4>
+                            <p><%=(locals.isLogged && locals.userLogged.cash) ? locals.userLogged.cash : '' %></p>
                         </div>
                         <div class="content" id="vision">
                             <h4>Favoritos</h4>
