@@ -114,7 +114,15 @@
                     <button type="submit" class="submit-btn">Guardar</button>
                 </div>
             </form>
-        </div>
+        <form action="/products/delete/<%=product.id%" method="POST">
+            ><!--PARA ELIMINAR-->
+                <div class="send-container">
+                    <div class="error-message-container">
+                        <label class="error-msg"><%= msg ? msg : '' %></label>
+                    </div>
+                    <button type="submit" class="submit-btn">Delete</button>
+                </div>
+            </form>
     </main>
 
 
