@@ -67,12 +67,16 @@ const usersController = {
         const files = req.files;
         let avatarFilename = 'default.jpg';
         let bannerFilename = 'default-banner.jpg';
-        // res.send(files);
-        if (files[0]) {
-            avatarFilename = files[0].filename;
-        }
-        if (files[1]) {
-            bannerFilename = files[1].filename;
+        
+        console.log(files)
+        if (files.length > 0) {
+            for (let i=0; i<files.length; i++) {
+                if (files[i].fieldname == 'profileImage') {
+                    avatarFilename = files[i].filename;
+                } else if (files[i].fieldname == 'bannerImage') {
+                    bannerFilename = files[i].filename;
+                }
+            }
         }
 
         let user = req.body;
@@ -105,9 +109,6 @@ const usersController = {
             });
         }
 
-        // const profileImageName = (files[0]) ? avatarFilename : 'default.jpg';
-        // const bannerImageName = (files[1]) ? bannerFilename : 'default-banner.jpg';
-
         let dataUser = {
             ...user,
             email: user.email.toLowerCase(),
@@ -115,6 +116,9 @@ const usersController = {
             avatar: avatarFilename,
             banner: bannerFilename
         }
+
+        console.log(avatarFilename)
+        console.log(bannerFilename)
 
         const userCreated = User.create(dataUser);
         res.redirect('/users/login');
