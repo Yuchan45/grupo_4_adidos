@@ -128,14 +128,14 @@
                         <% } %>
                     </select>
                     <div class="form-group cash">
-                    <label for="cash">Cash</label>
-                            <input type="number" name="cash" class="<%= locals.errors && errors.cash ? 'invalid' : '' %>"
-                            id="cash" value="<%= locals.old ? old.cash : '' %>" >
-                           <% if (locals.errors && errors.cash) { %>
-                               <div class="text-danger">
-                                   <%= errors.cash.msg; %>
-                               </div>
-                           <% } %>
+                        <label for="cash">Cash</label>
+                        <input type="number" name="cash" class="<%= locals.errors && errors.cash ? 'invalid' : '' %>"
+                        id="cash" value="<%= locals.old ? old.cash : '' %>" >
+                        <% if (locals.errors && errors.cash) { %>
+                            <div class="text-danger">
+                                <%= errors.cash.msg; %>
+                            </div>
+                        <% } %>
                     </div>
                     <div class="upload-file-container">
                         <label for="profileImage">Foto de perfil</label>
