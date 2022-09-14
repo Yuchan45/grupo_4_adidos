@@ -83,11 +83,12 @@ input:-webkit-autofill:active{
 
 .register-address{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
-.register-wrapper form .form-group input 
-{
+
+.register-wrapper form .form-group input {
+    /* width: 250px; */
     width: 100%;
     margin: auto;
     padding: 0 10px;
@@ -163,8 +164,10 @@ input:-webkit-autofill:active{
 .country-combobox {
     margin: 10px 0;
     padding: 0 10px;
-    height: 30px;
-    width: 250px;
+    height: 40px;
+    width: 100%;
+    max-width: 380px;
+    /* width: 250px; */
     border-radius: 3px;
     border: 1px solid var(--blue);
     font-size: var(--normal);
@@ -204,7 +207,8 @@ input:-webkit-autofill:active{
 }
 
 .upload-file-container > input {
-    
+    width: 100%;
+    max-width: 300px;
 }
 
 .text-danger {
@@ -258,5 +262,19 @@ input:-webkit-autofill:active{
     }
     .register-wrapper form .submit-btn:hover {
         background-color: #124897;
+    }
+    .register-address{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+    .addressNumber {
+        width: 100px;
+    }
+    .register-wrapper form .form-group input {
+        max-width: 380px;
+    }
+    .country-combobox {
+        max-width: 380px;
     }
 }
