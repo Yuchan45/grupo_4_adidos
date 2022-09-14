@@ -2,7 +2,14 @@
 // 2- Buscar al usuario que se queire loggear por su email o userName
 // 3- Buscar a un usuario por ID
 // 4- Editar la informacion de un usuario
-// 5- Eliminar a un usuari ode la DB
+// 5- Eliminar a un usuario de la DB
+
+// Sequelize
+const db = require('../database/models');
+const sequelize = db.sequelize;
+//Otra forma de llamar a los modelos
+const Users = db.User;
+
 const path = require('path');
 
 const fileOp = require('./fileControl');
@@ -14,6 +21,14 @@ const User = {
         let allUsers = this.findAll();
         let lastUser = allUsers.pop();
         return lastUser ? lastUser.id + 1 : 1;
+    },
+    generateIdDatabase: async function() {
+        const lastUser = await Users.findAll({
+            order: [['id', 'DESC']],
+            limit: 1
+        });
+        console.log(lastUser[0].id);
+        // return lastUser[0] ? lastUser[0].id + 1 : 1;
     },
     findAll: function() {
         return fileOp.readFile(this.filePath);
@@ -32,7 +47,20 @@ const User = {
         // Recibe por parametro un objeto literal (usuario)
         let newUser = {
             id: this.generateId(),
-            ...userData // Es un spreadOperator, es lo mismo que hacer name: uderData.name, etc.
+            fullname: userData.name,
+            username: userData.username,
+            password: userData.password,
+            email: userData.email,
+            street: userData.address,
+            number: userData.addressNumber,
+            birthdate: userData.birthdate,
+            role: userData.role,
+            gender: userData.gender,
+            country: userData.country,
+            cash: userData.cash,
+            avatar: userData.avatar,
+            banner: userData.banner,
+            //...userData // Es un spreadOperator, es lo mismo que hacer name: uderData.name, etc.
         }
         fileOp.addToFile(newUser, this.filePath);
         return newUser;

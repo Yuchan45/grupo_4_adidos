@@ -70,12 +70,11 @@ const usersController = {
             user: req.session.userLogged
         });
     },
-    processRegister: function(req, res) {
+    processRegister: async function(req, res) {
         const files = req.files;
         let avatarFilename = 'default.jpg';
         let bannerFilename = 'default-banner.jpg';
         
-        console.log(files)
         if (files.length > 0) {
             for (let i=0; i<files.length; i++) {
                 if (files[i].fieldname == 'profileImage') {
@@ -94,7 +93,6 @@ const usersController = {
             const bannerPath = path.join(__dirname, '../../public/images/users/banners/' + bannerFilename);
             if (avatarFilename != 'default.jpg') userFunction.removeImage(avatarPath);
             if (bannerFilename != 'default-banner.jpg') userFunction.removeImage(bannerPath);
-            // console.log(errors.mapped());
             return res.render('./users/register-form', {
                 errors: errors.mapped(), // Mapped convierte el array de errores en un obj literal con (name del elemento) y sus diferentes propiedades
                 old: user
@@ -102,7 +100,7 @@ const usersController = {
         }
 
         const emailInDb = User.findByField('email', user.email);
-        const usernameInDb = User.findByField('username', user.username);
+        // const usernameInDb = User.findByField('username', user.username);
 
         if (emailInDb) {
             return res.render('./users/register-form', {
@@ -124,12 +122,18 @@ const usersController = {
             banner: bannerFilename
         }
 
-        console.log(avatarFilename)
-        console.log(bannerFilename)
+        const userCreated = User.create(dataUser); // Por el momento voy a hacer que se guarden los usuarios tanto en el users.json como en la db.
 
-        const userCreated = User.create(dataUser);
-        res.redirect('/users/login');
+        await Users.create({
+            ...userCreated,
+            creation_date: null,
+            last_updated: null
+        });
 
+
+
+        res.send(userCreated);
+        //res.redirect('/users/login');
     },
 
     editIndex: function(req, res) {
@@ -295,8 +299,11 @@ const usersController = {
     },
     test: async function(req, res) {
 
-        const users = await Users.findAll();
+        // const users = await Users.findAll();
+        // res.send(users);
+        const users = User.generateIdDatabase();
         res.send(users);
+
 
     }
 };

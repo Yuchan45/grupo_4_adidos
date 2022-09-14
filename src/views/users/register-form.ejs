@@ -128,7 +128,7 @@
                         <% } %>
                     </select>
                     <div class="form-group cash">
-                        <label for="cash">Cash</label>
+                    <label for="cash">Cash</label>
                         <input type="number" name="cash" class="<%= locals.errors && errors.cash ? 'invalid' : '' %>"
                         id="cash" value="<%= locals.old ? old.cash : '' %>" >
                         <% if (locals.errors && errors.cash) { %>
