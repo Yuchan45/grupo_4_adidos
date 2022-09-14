@@ -11,51 +11,51 @@ module.exports = function(sequelize, dataTypes) {
             allowNull: false
         },
         fullname: {
-            type: dataTypes.VARCHAR(100), 
+            type: dataTypes.STRING(100), 
             allowNull: false
         },
         username: {
-            type: dataTypes.VARCHAR(100), 
+            type: dataTypes.STRING(100), 
             allowNull: false
         },
         password: {
-            type: dataTypes.VARCHAR(100), 
+            type: dataTypes.STRING(100), 
             allowNull: false
         },
         email: {
-            type: dataTypes.VARCHAR(500), 
+            type: dataTypes.STRING(500), 
             allowNull: false
         },
         street: {
-            type: dataTypes.VARCHAR(500), 
+            type: dataTypes.STRING(500), 
             allowNull: false
         },
         number: {
-            type: dataTypes.VARCHAR(25), 
+            type: dataTypes.STRING(25), 
             allowNull: false
         },
-        birthday: {
-            type: dataTypes.DATE(),
+        birthdate: {
+            type: dataTypes.DATEONLY(),
             defaultValue: null
         },
         role: {
-            type: dataTypes.VARCHAR(50), 
+            type: dataTypes.STRING(50), 
             allowNull: false
         },
         gender: {
-            type: dataTypes.VARCHAR(15), 
+            type: dataTypes.STRING(15), 
             allowNull: false
         },
         country: {
-            type: dataTypes.VARCHAR(100), 
+            type: dataTypes.STRING(100), 
             allowNull: false
         },
         avatar: {
-            type: dataTypes.VARCHAR(200),
+            type: dataTypes.STRING(200),
             defaultValue: 'default.jpg'
         },
         banner: {
-            type: dataTypes.VARCHAR(200),
+            type: dataTypes.STRING(200),
             defaultValue: 'default-banner.jpg'
         },
         cash: {
@@ -65,27 +65,22 @@ module.exports = function(sequelize, dataTypes) {
 
         },
         creation_date: {
-            type: dataTypes.DATETIME(),
+            type: dataTypes.DATE(),
             defaultValue: null
 
         },
-        last_update: {
-            type: dataTypes.DATETIME(),
+        last_updated: {
+            type: dataTypes.DATE(),
             defaultValue: null
         }
     }
 
     let config = {
-        tableName: "Users"
+        tableName: "Users",
+        timestamps: false
     }
 
     let User = sequelize.define(alias, cols, config)
-
-    User.associate = function(models) {
-        User.hasMany(User.Favorite, {
-            as: "Favorite",
-        });
-    }
 
     return User
 }

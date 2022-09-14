@@ -3,8 +3,15 @@ const bcrypt = require('bcrypt');
 const { validationResult } = require('express-validator');
 const fileOperation = require('../modules/fileControl');
 const userFunction = require('../modules/userFunction');
-const { v4: uuidv4 } = require('uuid');
 const User = require('../modules/User');
+
+
+// Sequelize
+const db = require('../database/models');
+const sequelize = db.sequelize;
+//Otra forma de llamar a los modelos
+const Users = db.User;
+
 
 const allUsersFile = path.join(__dirname, '../data/users.json');
 
@@ -285,6 +292,12 @@ const usersController = {
             users : userResults,
             user: req.session.userLogged
         });
+    },
+    test: async function(req, res) {
+
+        const users = await Users.findAll();
+        res.send(users);
+
     }
 };
 

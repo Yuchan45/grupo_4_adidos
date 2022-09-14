@@ -16,11 +16,11 @@ module.exports = function(sequelize, dataTypes) {
             defaultValue: null
         },
         model: {
-            type: dataTypes.VARCHAR(100), 
+            type: dataTypes.STRING(100), 
             allowNull: false
         },
         description: {
-            type: dataTypes.VARCHAR(1000),
+            type: dataTypes.STRING(1000),
             defaultValue: null
         },
         price: {
@@ -32,11 +32,11 @@ module.exports = function(sequelize, dataTypes) {
             allowNull: false
         },
         image: {
-            type: dataTypes.VARCHAR(200),
+            type: dataTypes.STRING(200),
             defaultValue: 'default.png'
         },
         gender: {
-            type: dataTypes.VARCHAR(50), 
+            type: dataTypes.STRING(50), 
             allowNull: false
         },
         stock: {
@@ -48,7 +48,7 @@ module.exports = function(sequelize, dataTypes) {
             defaultValue: null
         },
         colors_hexa: {
-            type: dataTypes.VARCHAR(200),
+            type: dataTypes.STRING(200),
             defaultValue: null
         },
         size_eur: {
@@ -56,11 +56,11 @@ module.exports = function(sequelize, dataTypes) {
             allowNull: false
         },
         creation_date: {
-            type: dataTypes.DATETIME(),
+            type: dataTypes.DATE(),
             defaultValue: null
         },
         last_update: {
-            type: dataTypes.DATETIME(),
+            type: dataTypes.DATE(),
             defaultValue: null
         },
     }

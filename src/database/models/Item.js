@@ -25,7 +25,7 @@ module.exports = function(sequelize, dataTypes) {
             allowNull: false
         },
         purchase_date: {
-            type: dataTypes.DATETIME(),
+            type: dataTypes.DATE(),
             defaultValue: null
         }
     }
