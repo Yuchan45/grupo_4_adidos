@@ -4,7 +4,7 @@ const { body } = require('express-validator');
 
 // Validaciones
 const validateCreateUserForm = [
-    body('name')
+    body('fullname')
         .notEmpty().withMessage('Debes completar el campo de nombre'),
 
     body('username')
@@ -19,10 +19,10 @@ const validateCreateUserForm = [
         .notEmpty().withMessage('Debes completar el email').bail()
         .isEmail().withMessage('Debes completar un email valido'),
 
-    body('address')
+    body('street')
         .notEmpty().withMessage('Debes completar el campo de calle').bail(),
 
-    body('addressNumber')
+    body('number')
         .notEmpty().withMessage('Debes completar el campo de numero de calle').bail(),
 
     body('birthdate')

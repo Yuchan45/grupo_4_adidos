@@ -22,13 +22,14 @@ const User = {
         let lastUser = allUsers.pop();
         return lastUser ? lastUser.id + 1 : 1;
     },
-    generateIdDatabase: async function() {
+    generateDbId: async function() {
         const lastUser = await Users.findAll({
             order: [['id', 'DESC']],
             limit: 1
         });
-        console.log(lastUser[0].id);
-        // return lastUser[0] ? lastUser[0].id + 1 : 1;
+        console.log(lastUser);
+        console.log("Generated id:", lastUser[0] ? lastUser[0].id + 1 : 1)
+        return lastUser[0] ? lastUser[0].id + 1 : 1;
     },
     findAll: function() {
         return fileOp.readFile(this.filePath);
@@ -47,23 +48,24 @@ const User = {
         // Recibe por parametro un objeto literal (usuario)
         let newUser = {
             id: this.generateId(),
-            fullname: userData.name,
-            username: userData.username,
-            password: userData.password,
-            email: userData.email,
-            street: userData.address,
-            number: userData.addressNumber,
-            birthdate: userData.birthdate,
-            role: userData.role,
-            gender: userData.gender,
-            country: userData.country,
-            cash: userData.cash,
-            avatar: userData.avatar,
-            banner: userData.banner,
-            //...userData // Es un spreadOperator, es lo mismo que hacer name: uderData.name, etc.
+            ...userData // Es un spreadOperator, es lo mismo que hacer name: uderData.name, etc.
         }
         fileOp.addToFile(newUser, this.filePath);
         return newUser;
+    },
+    createUserDb: async function(userData) {
+        // Recibe por parametro un objeto literal (usuario)
+        let newUser = {
+            id: this.generateDbId(),
+            ...userData, // Es un spreadOperator, es lo mismo que hacer name: uderData.name, etc.
+            creation_date: null,
+            last_updated: null
+        }
+        const createdUser = await Users.create({ 
+            ...newUser
+        });
+
+        return createdUser;
     },
     delete: function(id) {
         let allUsers = this.findAll();

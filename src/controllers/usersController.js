@@ -103,6 +103,7 @@ const usersController = {
         // const usernameInDb = User.findByField('username', user.username);
 
         if (emailInDb) {
+            console.log("Este email ya esta registrado!"); // Por el momento se deja asi xdxd
             return res.render('./users/register-form', {
                 // Arreglar para que dsp si se vea bien el error.
                 errorMsg: {
@@ -122,17 +123,13 @@ const usersController = {
             banner: bannerFilename
         }
 
+        console.log(dataUser);
+
         const userCreated = User.create(dataUser); // Por el momento voy a hacer que se guarden los usuarios tanto en el users.json como en la db.
+        
+        const dbUserCreated = User.createUserDb(dataUser);
 
-        await Users.create({
-            ...userCreated,
-            creation_date: null,
-            last_updated: null
-        });
-
-
-
-        res.send(userCreated);
+        res.send(dbUserCreated);
         //res.redirect('/users/login');
     },
 
@@ -299,10 +296,10 @@ const usersController = {
     },
     test: async function(req, res) {
 
-        // const users = await Users.findAll();
-        // res.send(users);
-        const users = User.generateIdDatabase();
-        res.send(users);
+        const userId = await User.generateIdDatabase();
+
+        
+        // res.send(userId.toString());
 
 
     }
