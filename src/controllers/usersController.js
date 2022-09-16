@@ -61,9 +61,9 @@ const usersController = {
 
         });
     },
-    list: function(req, res) {
+    list: async function(req, res) {
         // Update de los datos de los archivos
-        const users = fileOperation.readFile(allUsersFile);
+        const users = await Users.findAll();
         res.render('./users/user-list', {
             filter : '',
             users: users,
@@ -87,7 +87,6 @@ const usersController = {
 
         let user = req.body;
         let errors = validationResult(req);
-
         if (!errors.isEmpty()){
             const avatarPath = path.join(__dirname, '../../public/images/users/profiles/' + avatarFilename);
             const bannerPath = path.join(__dirname, '../../public/images/users/banners/' + bannerFilename);
@@ -100,8 +99,6 @@ const usersController = {
         }
 
         const emailInDb = User.findByField('email', user.email);
-        // const usernameInDb = User.findByField('username', user.username);
-
         if (emailInDb) {
             console.log("Este email ya esta registrado!"); // Por el momento se deja asi xdxd
             return res.render('./users/register-form', {
@@ -123,14 +120,24 @@ const usersController = {
             banner: bannerFilename
         }
 
-        console.log(dataUser);
-
+        // Creo el usuario (tanto en la db como en el json)
         const userCreated = User.create(dataUser); // Por el momento voy a hacer que se guarden los usuarios tanto en el users.json como en la db.
-        
-        const dbUserCreated = User.createUserDb(dataUser);
+        const dbUserCreated = await User.createUserDb(dataUser);
 
-        res.send(dbUserCreated);
-        //res.redirect('/users/login');
+        if (userCreated && dbUserCreated) {
+            res.redirect('/users/login');
+        } else {
+            res.render('./users/register-form', {
+                // Arreglar para que dsp si se vea bien el error.
+                errorMsg: {
+                    email: {
+                        msg: 'Un problema ha ocurrido mientras se creaba tu usuario!'
+                    }
+                },
+                oldData: user
+            });
+        }
+
     },
 
     editIndex: function(req, res) {

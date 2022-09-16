@@ -43,7 +43,7 @@
                         <img src="/images/users/profiles/<%= users[i].avatar ? users[i].avatar : 'default.jpg' %>" alt=""/>
                         <div class="data-info">
                             <p class="data-title">NAME</p>
-                            <p class="data-text"><%= users[i].name %></p>
+                            <p class="data-text"><%= users[i].fullname %></p>
                             <p class="data-title">USERNAME</p>
                             <p class="data-text"><%= users[i].username %></p>
                             <p class="data-title">ROLE</p>
@@ -56,11 +56,11 @@
                     </div>
                     <div class="actions-container">
                         <form action="/users/<%= users[i].id %>/edit" method="GET">
-                            <button type="submit" class="action-btn edit active" <%= locals.user && user.id==users[i].id ? '' : 'disabled' %>>Edit</button>
+                            <button type="submit" class="action-btn edit active">Edit</button>
                         </form>
                         <br>
                         <form action="/users/<%= users[i].id %>?_method=DELETE" method="POST">
-                            <button type="submit" class="action-btn delete active" <%= locals.user && user.id==users[i].id ? '' : 'disabled' %>>Delete</button>
+                            <button type="submit" class="action-btn delete active">Delete</button>
                         </form>
                     </div>
                 </article>

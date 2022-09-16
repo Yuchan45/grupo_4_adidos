@@ -56,7 +56,7 @@ const User = {
     createUserDb: async function(userData) {
         // Recibe por parametro un objeto literal (usuario)
         let newUser = {
-            id: this.generateDbId(),
+            //id: this.generateDbId(),  // No hace falta esto, el id se agrega automaticamente al crear el registro en la tabla
             ...userData, // Es un spreadOperator, es lo mismo que hacer name: uderData.name, etc.
             creation_date: null,
             last_updated: null
@@ -64,7 +64,7 @@ const User = {
         const createdUser = await Users.create({ 
             ...newUser
         });
-
+        console.log("hice el create...")
         return createdUser;
     },
     delete: function(id) {
