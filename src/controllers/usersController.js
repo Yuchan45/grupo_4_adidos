@@ -141,13 +141,12 @@ const usersController = {
 
     },
 
-    editIndex: function(req, res) {
+    editIndex: async function(req, res) {
         // Update de los datos de los archivos
         let errorMsg = '';
         const id = req.params.id;
-        const users = fileOperation.readFile(allUsersFile);
 
-        let editUser = userFunction.getUserById(users, id);
+        const editUser = await Users.findByPk(id);
 
         res.render('./users/user-edit', {
             errorMsg : errorMsg,
@@ -314,18 +313,9 @@ const usersController = {
         });
     },
     test: async function(req, res) {
-        // const emailInDb = await User.findByEmailDb('yu.nakasone@gmasil.com');
 
-        // if (emailInDb.length > 0) {
-        //     res.send(emailInDb);
-        // } else {
-        //     res.send("nada");
-        // }
-        const validUsers = await User.findByEmailDb(('yu.nakasone@gmail.com').toLowerCase()); // El findByEmailDb, por mas que trar solo 1 usuario, lo trae dentro de un array asi que tengo que sacarlo de ahi.
-        const userToLogin = (validUsers.length > 0) ? validUsers[0] : '';
-
-        res.send(userToLogin ? userToLogin : 'NO EXISTE');
-
+        const editUser = await Users.findByPk(20);
+        res.send(editUser);
 
     }
 };

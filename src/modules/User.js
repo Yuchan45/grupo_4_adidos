@@ -17,6 +17,32 @@ const fileOp = require('./fileControl');
 
 const User = {
     filePath: path.join(__dirname, '../data/users.json'),
+
+    getDateTime: function() {
+        // Returns current Date and Time as YYYY-MM-DD hh:mm:ss
+        let date_ob = new Date();
+        // current date
+        // adjust 0 before single digit date
+        let date = ("0" + date_ob.getDate()).slice(-2);
+
+        // current month
+        let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
+        // current year
+        let year = date_ob.getFullYear();
+
+        // current hours
+        let hours = date_ob.getHours();
+
+        // current minutes
+        let minutes = date_ob.getMinutes();
+
+        // current seconds
+        let seconds = date_ob.getSeconds();
+
+        // prints date & time in YYYY-MM-DD HH:MM:SS format
+        return (year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds);
+    },
     generateId: function() {
         let allUsers = this.findAll();
         let lastUser = allUsers.pop();
@@ -67,13 +93,12 @@ const User = {
         let newUser = {
             //id: this.generateDbId(),  // No hace falta esto, el id se agrega automaticamente al crear el registro en la tabla
             ...userData, // Es un spreadOperator, es lo mismo que hacer name: uderData.name, etc.
-            creation_date: null,
-            last_updated: null
+            creation_date: this.getDateTime(),
+            last_updated: this.getDateTime()
         }
         const createdUser = await Users.create({ 
             ...newUser
         });
-        console.log("hice el create...")
         return createdUser;
     },
     delete: function(id) {
@@ -84,7 +109,7 @@ const User = {
     },
     editar: function() {
 
-    }
+    },
 
 
 }
