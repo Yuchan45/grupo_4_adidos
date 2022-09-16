@@ -13,7 +13,7 @@
 
     <main class="main-profile-edit">
         <div class="edit-wrapper">
-            <h1 class="form-title">Hello <%= editUser.name %></h1>
+            <h1 class="form-title">Hello <%= editUser.fullname %></h1>
             <h4 class="form-subtitle ">Edit your profile</h4>
 
             <form action="/users/<%= editUser.id %>?_method=PUT" method="POST" enctype="multipart/form-data"> <!-- enctype="multipart/form-data" -->

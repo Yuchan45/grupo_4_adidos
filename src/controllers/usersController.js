@@ -19,10 +19,12 @@ const usersController = {
     login: function(req, res) {
         res.render('./users/login-form');
     },
-    processLogin: function(req, res) {      
+    processLogin: async function(req, res) {      
         const user = req.body;
 
-        const userToLogin = User.findByField('email', (user.email).toLowerCase());
+        const validUsers = await User.findByEmailDb((user.email).toLowerCase()); // El findByEmailDb, por mas que trae solo 1 usuario, lo trae dentro de un array asi que tengo que sacarlo de ahi.
+        const userToLogin = (validUsers.length > 0) ? validUsers[0] : '';
+
         if (userToLogin) {
             const isPswCorrect = bcrypt.compareSync(user.password, userToLogin.password);
             if (isPswCorrect) {
@@ -32,7 +34,6 @@ const usersController = {
                 if (user.rememberUser) {
                     res.cookie('userEmail', user.email.toLowerCase(), { maxAge: (1000 * 60) * 2 }); // MaxAge = 2mins
                 }
-
                 return res.redirect('/');
             }     
         }
@@ -313,15 +314,17 @@ const usersController = {
         });
     },
     test: async function(req, res) {
-        const emailInDb = await User.findByEmailDb('yu.nakasone@gmasil.com');
+        // const emailInDb = await User.findByEmailDb('yu.nakasone@gmasil.com');
 
-        if (emailInDb.length > 0) {
-            res.send(emailInDb);
-        } else {
-            res.send("nada");
-        }
+        // if (emailInDb.length > 0) {
+        //     res.send(emailInDb);
+        // } else {
+        //     res.send("nada");
+        // }
+        const validUsers = await User.findByEmailDb(('yu.nakasone@gmail.com').toLowerCase()); // El findByEmailDb, por mas que trar solo 1 usuario, lo trae dentro de un array asi que tengo que sacarlo de ahi.
+        const userToLogin = (validUsers.length > 0) ? validUsers[0] : '';
 
-        
+        res.send(userToLogin ? userToLogin : 'NO EXISTE');
 
 
     }
