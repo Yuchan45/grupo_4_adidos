@@ -21,7 +21,7 @@
                     <h3 class="edit-label">Datos</h3>
                     <div class="form-group first-last-name">
                         <label for="name">Nombre y apellido</label>
-                        <input type="text" name="name" id="name" value="<%= editUser.name %>" required>
+                        <input type="text" name="name" id="name" value="<%= editUser.fullname %>" required>
                     </div>
                     <div class="form-group user">
                         <label for="user">Usuario</label>
@@ -36,12 +36,12 @@
                         <input type="email" name="email" id="email" value="<%= editUser.email %>" required>
                     </div>
                     <div class="form-group address">
-                        <label for="address">Calle</label>
-                        <input type="text" name="address" id="address" value="<%= editUser.address %>" required>
+                        <label for="street">Calle</label>
+                        <input type="text" name="street" id="address" value="<%= editUser.street %>" required>
                     </div>
                     <div class="form-group addressNumber">
-                        <label for="addressNumber">Numero</label>
-                        <input type="number" name="addressNumber" id="addressNumber" value="<%= editUser.addressNumber %>" required>
+                        <label for="number">Numero</label>
+                        <input type="number" name="number" id="addressNumber" value="<%= editUser.number %>" required>
                     </div>
                     <h3 class="edit-label">Fecha de nacimiento</h3>
                     <div class="form-group">

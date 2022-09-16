@@ -44,6 +44,15 @@ const User = {
         let userFound = allUsers.find(user => user[field] === text); // El user[field] seria como hacer un user.id o user.email, etc
         return userFound;
     },
+    findByEmailDb: async function(email) {
+        const usersDb = await Users.findAll({
+            where: {
+                email: email
+            },
+            limit: 1
+        });
+        return usersDb;
+    },
     create: function(userData) {
         // Recibe por parametro un objeto literal (usuario)
         let newUser = {

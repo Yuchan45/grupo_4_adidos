@@ -98,8 +98,8 @@ const usersController = {
             });
         }
 
-        const emailInDb = User.findByField('email', user.email);
-        if (emailInDb) {
+        const emailInDb = await User.findByEmailDb(user.email);
+        if (emailInDb.length > 0) {
             console.log("Este email ya esta registrado!"); // Por el momento se deja asi xdxd
             return res.render('./users/register-form', {
                 // Arreglar para que dsp si se vea bien el error.
@@ -121,10 +121,10 @@ const usersController = {
         }
 
         // Creo el usuario (tanto en la db como en el json)
-        const userCreated = User.create(dataUser); // Por el momento voy a hacer que se guarden los usuarios tanto en el users.json como en la db.
+        // const userCreated = User.create(dataUser); // Por el momento voy a hacer que se guarden los usuarios tanto en el users.json como en la db.
         const dbUserCreated = await User.createUserDb(dataUser);
 
-        if (userCreated && dbUserCreated) {
+        if (dbUserCreated) {
             res.redirect('/users/login');
         } else {
             res.render('./users/register-form', {
@@ -225,27 +225,38 @@ const usersController = {
         }
         res.redirect('/');
     },
-    deleteUser: function(req, res) {
+    deleteUser: async function(req, res) {
         if (!req.params.id) return;
         const id = req.params.id;
-        let allUsers = fileOperation.readFile(allUsersFile); // ReadFile devuelve un array de objetos usuario.
-        let activeUser = fileOperation.readFile(activeUserFile);
+        // let allUsers = fileOperation.readFile(allUsersFile); // ReadFile devuelve un array de objetos usuario.
+        let allUsersDb = await Users.findAll();
+        let activeUser = req.session.userLogged;
         
-        let newArray = userFunction.removeUserFromArray(allUsers, id);
-        fileOperation.writeFile(newArray, allUsersFile);
+        // Borro el user del json
+        // let newArray = userFunction.removeUserFromArray(allUsers, id);
+        // fileOperation.writeFile(newArray, allUsersFile);
+
+        // Borro el user de la db
+        await Users.destroy({
+            where: {
+                id: id
+            },
+            force: true 
+        });
         
+        // Remove image files.
+        userFunction.removeUserProfileBannerImage(allUsersDb, id);
+
         if (activeUser.id == id) {
-            fileOperation.writeActiveUser({}, activeUserFile); // Limpio el archivo active-user
-            req.session.activeUser = {};
+            // Si estoy borrando mi propio usuario.
+            req.session.userLogged = '';
             res.redirect('/users/login');
         } else {
             // Esto es por si en algun momento pinta poder borrar otros usuarios que no sean nuestros xdxd
-            req.session.activeUser = {}; 
-            res.redirect('/users/login');
+            console.log("Has borrado un usuario que no es tuyo picaron");
+            res.redirect('/');
         }
 
-        // Remove image files.
-        userFunction.removeUserProfileBannerImage(allUsers, id);
     },
     logout: function(req, res) {
         res.clearCookie("userEmail"); // Borro las coockies
@@ -302,11 +313,15 @@ const usersController = {
         });
     },
     test: async function(req, res) {
+        const emailInDb = await User.findByEmailDb('yu.nakasone@gmasil.com');
 
-        const userId = await User.generateIdDatabase();
+        if (emailInDb.length > 0) {
+            res.send(emailInDb);
+        } else {
+            res.send("nada");
+        }
 
         
-        // res.send(userId.toString());
 
 
     }
