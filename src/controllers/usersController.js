@@ -155,55 +155,33 @@ const usersController = {
         });
     },
 
-    editUser: function(req, res) {
-        let errorMsg = '';
+    editUser: async function(req, res) {
         const files = req.files; 
         const id = req.params.id; // Id del usuario a modificar.
         const data = req.body; // Datos recibidos del form de edicion.
 
-        // const activeUser = fileOperation.readFile(activeUserFile);
-        const allUsers = fileOperation.readFile(allUsersFile); 
-        const editUser = userFunction.getUserById(allUsers, id); 
+        const editUser = await Users.findByPk(id);
 
-        if (!(req.validProfileExtension && req.validBannerExtension)) {
-            errorMsg = "Archivo de imagen no valido!";
-            res.render('./users/user-edit', {
-                editUser : editUser,
-                errorMsg : errorMsg,
-                user: req.session.userLogged
-            });
-            return;
-        }
-
-        // Set the profile image name if exists, otherwise set the previous image name.
+        // Set new avatar/banner if modified, otherwise set the previous avatar/banner image.
         // Cambie la forma de nombrar a los files. req.files[0].filename es avatarName y  req.files[1].filename es bannerName
-        const profileImageName = (files.profileImage) ? req.files.profileImage[0].filename : editUser.avatarImageName;
-        const bannerImageName = (files.bannerImage) ? req.files.bannerImage[0].filename : editUser.bannerName;
+        let avatarFilename = editUser.avatar;
+        let bannerFilename = editUser.banner;
 
-        let avatarFullPath = (files.profileImage) ? req.files.profileImage[0].path : '';
-        let bannerFullPath = (files.bannerImage) ? req.files.bannerImage[0].path : '';
+        if (files.length > 0) {
+            for (let i=0; i<files.length; i++) {
+                if (files[i].fieldname == 'profileImage') {
+                    avatarFilename = files[i].filename;
+                } else if (files[i].fieldname == 'bannerImage') {
+                    bannerFilename = files[i].filename;
+                }
+            }
+        }
+        return res.send(avatarFilename + ' ' + bannerFilename);
+        const profileImageName = (files.profileImage) ? files.profileImage[0].filename : editUser.avatar;
+        const bannerImageName = (files.bannerImage) ? files.bannerImage[0].filename : editUser.banner;
 
-        let modifiedUser = {
-            id: editUser.id,
-            accCreationDate: editUser.accCreationDate,
-            name: data.name,
-            username: data.username,
-            password: data.password,
-            avatarImageName: profileImageName,
-            bannerName: bannerImageName,
-            avatarPath: avatarFullPath,
-            bannerPath: bannerFullPath,
-            email: data.email,
-            address: data.address,
-            addressNumber: data.addressNumber,
-            birthdate: data.birthdate,
-            role: data.role,
-            gender: data.gender,
-            country: data.country,
-            cash: data.cash,
-            interests: data.interest
-        };
-        // return res.send(modifiedUser);
+
+
         // Actualizo el usuario activo en el session.
         req.session.userLogged = modifiedUser;
 
@@ -314,8 +292,10 @@ const usersController = {
     },
     test: async function(req, res) {
 
-        const editUser = await Users.findByPk(20);
-        res.send(editUser);
+        const editUser = await Users.findByPk(25);
+
+        // Set the profile image name if exists, otherwise set the previous image name.
+        res.send(editUser.banner);
 
     }
 };
