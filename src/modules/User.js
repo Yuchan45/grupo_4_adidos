@@ -90,14 +90,11 @@ const User = {
     },
     createUserDb: async function(userData) {
         // Recibe por parametro un objeto literal (usuario)
-        let newUser = {
+        const createdUser = await Users.create({ 
             //id: this.generateDbId(),  // No hace falta esto, el id se agrega automaticamente al crear el registro en la tabla
             ...userData, // Es un spreadOperator, es lo mismo que hacer name: uderData.name, etc.
             creation_date: this.getDateTime(),
             last_updated: this.getDateTime()
-        }
-        const createdUser = await Users.create({ 
-            ...newUser
         });
         return createdUser;
     },
@@ -107,8 +104,21 @@ const User = {
         fileOp.writeFile(finalUsers, this.filePath);
         return true;
     },
-    editar: function() {
+    editUserDb: async function(userData, id) {
+        // Recibe por parametro un objeto literal (usuario)
 
+        const updatedUser = await Users.update({ 
+            //id: this.generateDbId(),  // No hace falta esto, el id se agrega automaticamente al crear el registro en la tabla
+            ...userData, // Es un spreadOperator, es lo mismo que hacer name: uderData.name, etc.
+            creation_date: this.getDateTime(),
+            last_updated: this.getDateTime()
+        }, {
+            where: {
+                id: id
+            }
+        });
+        
+        return updatedUser;
     },
 
 

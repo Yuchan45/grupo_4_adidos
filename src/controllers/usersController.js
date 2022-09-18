@@ -158,7 +158,7 @@ const usersController = {
     editUser: async function(req, res) {
         const files = req.files; 
         const id = req.params.id; // Id del usuario a modificar.
-        const data = req.body; // Datos recibidos del form de edicion.
+        const user = req.body; // Datos recibidos del form de edicion.
 
         const editUser = await Users.findByPk(id);
 
@@ -170,49 +170,50 @@ const usersController = {
         if (files.length > 0) {
             for (let i=0; i<files.length; i++) {
                 if (files[i].fieldname == 'profileImage') {
+                    // Elimino el anterior avatar.
+                    const avatarPath = path.join(__dirname, '../../public/images/users/profiles/' + avatarFilename);
+                    userFunction.removeImage(avatarPath);
+                    // Le asigno el nuevo avatar.
                     avatarFilename = files[i].filename;
                 } else if (files[i].fieldname == 'bannerImage') {
+                    // Elimino el anterior banner.
+                    const bannerPath = path.join(__dirname, '../../public/images/users/banners/' + bannerFilename);
+                    userFunction.removeImage(bannerPath);
+                    // Le asigno el nuevo banner.
                     bannerFilename = files[i].filename;
                 }
             }
         }
-        return res.send(avatarFilename + ' ' + bannerFilename);
-        const profileImageName = (files.profileImage) ? files.profileImage[0].filename : editUser.avatar;
-        const bannerImageName = (files.bannerImage) ? files.bannerImage[0].filename : editUser.banner;
 
+        let dataUser = {
+            ...user,
+            avatar: avatarFilename,
+            banner: bannerFilename
+        }
 
+        const updatedUser = await User.editUserDb(dataUser, id);
+        if (!updatedUser) return res.send("Ha ocurrido un problema al editar el usuario");
 
         // Actualizo el usuario activo en el session.
-        req.session.userLogged = modifiedUser;
-
-        // Elimino del servidor las anteriores imagenes del usuario en caso de que este haya subido unas nuevas.
-        const profilePath = path.join(__dirname, '../../public/images/users/profiles/' + editUser.avatarImageName);
-        const bannerPath = path.join(__dirname, '../../public/images/users/banners/' + editUser.bannerName);
-        if (profileImageName != editUser.avatarImageName) userFunction.removeImage(profilePath);
-        if (bannerImageName != editUser.bannerName) userFunction.removeImage(bannerPath);
-        
-        
-        // Creo un nuevo array sin el elemento modificado.
-        let updatedArray = userFunction.removeUserFromArray(allUsers, id);
-        updatedArray.push(modifiedUser);
-        fileOperation.writeFile(updatedArray, allUsersFile);
+        req.session.userLogged = dataUser;  
 
         if (editUser.role == 'admin') {
-            res.redirect('/users/list');
-            return;
+            return res.redirect('/users/list');
         }
+
         res.redirect('/');
     },
     deleteUser: async function(req, res) {
         if (!req.params.id) return;
         const id = req.params.id;
-        // let allUsers = fileOperation.readFile(allUsersFile); // ReadFile devuelve un array de objetos usuario.
-        let allUsersDb = await Users.findAll();
+        let deleteUser = await Users.findByPk(id);
         let activeUser = req.session.userLogged;
-        
-        // Borro el user del json
-        // let newArray = userFunction.removeUserFromArray(allUsers, id);
-        // fileOperation.writeFile(newArray, allUsersFile);
+
+        // Remove image files.
+        const avatarPath = path.join(__dirname, '../../public/images/users/profiles/' + deleteUser.avatar);
+        const bannerPath = path.join(__dirname, '../../public/images/users/banners/' + deleteUser.banner);
+        userFunction.removeImage(avatarPath);
+        userFunction.removeImage(bannerPath);
 
         // Borro el user de la db
         await Users.destroy({
@@ -222,8 +223,6 @@ const usersController = {
             force: true 
         });
         
-        // Remove image files.
-        userFunction.removeUserProfileBannerImage(allUsersDb, id);
 
         if (activeUser.id == id) {
             // Si estoy borrando mi propio usuario.
