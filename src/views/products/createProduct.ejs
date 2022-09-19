@@ -20,39 +20,80 @@
 
             <form action="/products/create" method="POST" enctype="multipart/form-data"> 
                 <div class="register-form-left">
-                    <div class="form-group brand">
-                        <h3 class="register-label">Marca</h3>
-                        <select class="country-combobox create-country" name="brand" id="brand">
-                            <option value="adidas" <%= (old.brand == 'adidas') ? "selected" : '' %>>Adidas</option>
-                            <option value="asics" <%= (old.brand == 'asics') ? "selected" : '' %>>Asics</option>
-                            <option value="brooks" <%= (old.brand == 'brooks') ? "selected" : '' %>>Brooks</option>
-                            <option value="mizuno" <%= (old.brand == 'mizuno') ? "selected" : '' %>>Mizuno</option>
-                            <option value="nike" <%= (old.brand == 'nike') ? "selected" : '' %>>Nike</option>
-                            <option value="newBalance" <%= (old.brand == 'newBalance') ? "selected" : '' %>>New Balance</option>
-                            <option value="puma" <%= (old.brand == 'puma') ? "selected" : '' %>>Puma</option>
-                            <option value="reebok" <%= (old.brand == 'reebok') ? "selected" : '' %>>Reebok</option>
-                            <option value="saucony" <%= (old.brand == 'saucony') ? "selected" : '' %>>Saucony</option>
-                            <option value="vans" <%= (old.brand == 'vans') ? "selected" : '' %>>Vans</option>
-                        </select>
+                    <div class="brand-model-container">
+                        <div class="form-group brand">
+                            <h3 class="register-label">Marca</h3>
+                            <select class="country-combobox create-country" name="brand" id="brand">
+                                <option value="adidas" <%= (old.brand == 'adidas') ? "selected" : '' %>>Adidas</option>
+                                <option value="asics" <%= (old.brand == 'asics') ? "selected" : '' %>>Asics</option>
+                                <option value="brooks" <%= (old.brand == 'brooks') ? "selected" : '' %>>Brooks</option>
+                                <option value="mizuno" <%= (old.brand == 'mizuno') ? "selected" : '' %>>Mizuno</option>
+                                <option value="nike" <%= (old.brand == 'nike') ? "selected" : '' %>>Nike</option>
+                                <option value="newBalance" <%= (old.brand == 'newBalance') ? "selected" : '' %>>New Balance</option>
+                                <option value="puma" <%= (old.brand == 'puma') ? "selected" : '' %>>Puma</option>
+                                <option value="reebok" <%= (old.brand == 'reebok') ? "selected" : '' %>>Reebok</option>
+                                <option value="saucony" <%= (old.brand == 'saucony') ? "selected" : '' %>>Saucony</option>
+                                <option value="vans" <%= (old.brand == 'vans') ? "selected" : '' %>>Vans</option>
+                            </select>
+                        </div>
+                        <div class="form-group first-last-name">
+                            <label for="name">Modelo</label>
+                            <input type="text" name="model" id="model"  value="<%= old.model %>" required>
+                        </div>
                     </div>
-                    <div class="form-group first-last-name">
-                        <label for="name">Modelo</label>
-                        <input type="text" name="model" id="model"  value="<%= old.model %>" required>
+                    <div class="category-stock-container">
+                        <div class="form-group category">
+                            <h3 class="register-label">Categoria</h3>
+                            <select class="country-combobox create-cbox" name="category" id="category">
+                                <option value="running" <%= (old.category == 'running') ? "selected" : '' %>>Running</option>
+                                <option value="urban"  <%= (old.category == 'urban') ? "selected" : '' %>>Urban</option>
+                                <option value="trackAndField"  <%= (old.category == 'trackAndField') ? "selected" : '' %>>Track & Field</option>
+                            </select>
+                        </div>
+                        <div class="form-group stock">
+                            <h3 class="register-label">Stock</h3>
+                            <input type="number" name="stock" id="stock" value="<%= (old.stock) ? old.stock : 1 %>" required>
+                        </div>
                     </div>
-                    <div class="form-group user">
-                        <label for="description">Descripción</label>
-                        <textarea class="description-txt" name="description" id="description" required><%= old.description %></textarea>
+                    <div class="size-colors-container">
+                        <div class="form-group talle">
+                            <h3 class="register-label">Talles</h3>
+                            <select class="country-combobox create-cbox" name="size" id="color">
+                                <option value="34" <%= (old.size == '34') ? "selected" : '' %>>34</option>
+                                <option value="35" <%= (old.size == '35') ? "selected" : '' %>>35</option>
+                                <option value="36" <%= (old.size == '36') ? "selected" : '' %>>36</option>
+                                <option value="37" <%= (old.size == '37') ? "selected" : '' %>>37</option>
+                                <option value="38" <%= (old.size == '38') ? "selected" : '' %>>38</option>
+                                <option value="39" <%= (old.size == '39') ? "selected" : '' %>>39</option>
+                                <option value="40" <%= (old.size == '40') ? "selected" : '' %>>40</option>
+                                <option value="41" <%= (old.size == '41') ? "selected" : '' %>>41</option>
+                                <option value="42" <%= (old.size == '42') ? "selected" : '' %>>42</option>
+                                <option value="43" <%= (old.size == '43') ? "selected" : '' %>>43</option>
+                                <option value="44" <%= (old.size == '44') ? "selected" : '' %>>44</option>
+                            </select>
+                        </div>
+                        <div class="color-pickers-wrapper">
+                            <h3 class="register-label">Colores</h3>
+                            <div class="colors">
+                                <input type="color" id="colorpicker1" name="color1" value="<%= (old.color1) ? old.color1 : "#ffffff"%>">
+                                <input type="color" id="colorpicker2" name="color2" value="<%= (old.color2) ? old.color2 : "#ffffff"%>">
+                                <input type="color" id="colorpicker3" name="color3" value="<%= (old.color3) ? old.color3 : "#ffffff"%>">
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group user">
-                        <label for="price">Precio</label>
-                        <input type="number" name="price" id="price" value="<%= old.price %>" required>
-                    </div>
-                    <div class="form-group discount">
-                        <label for="discount">Descuento</label>
-                        <input type="number" name="discount" id="discount" value="<%= old.discount %>" required>
+
+                    <div class="price-discount-container">
+                        <div class="form-group user">
+                            <label for="price">Precio</label>
+                            <input type="number" name="price" id="price" value="<%= old.price %>" required>
+                        </div>
+                        <div class="form-group discount">
+                            <label for="discount">Descuento</label>
+                            <input type="number" name="discount" id="discount" value="<%= old.discount %>" required>
+                        </div>
                     </div>
                     <h3 class="register-label">Genero</h3>
-                    <div class="radio-list">
+                    <div class="radio-list-normalizer">
                         <div class="radio-group">
                             <input type="radio" id="gender" name="gender" value="male" <%= (old.gender == 'male') ? "checked" : '' %> checked>
                             <label for="gender">Hombre</label>
@@ -62,43 +103,13 @@
                             <label for="gender">Mujer</label>
                         </div>
                         <div class="radio-group">
-                            <input type="radio" id="gender" name="gender" value="other" <%= (old.gender == 'other') ? "checked" : '' %>>
-                            <label for="gender">Otro</label>
+                            <input type="radio" id="gender" name="gender" value="unisex" <%= (old.gender == 'unisex') ? "checked" : '' %>>
+                            <label for="gender">Unisex</label>
                         </div>
                     </div>
-                </div>
-                <div class="register-form-right">
-                    <div class="form-group category">
-                        <h3 class="register-label">Categoria</h3>
-                        <select class="country-combobox create-cbox" name="category" id="category">
-                            <option value="running" <%= (old.category == 'running') ? "selected" : '' %>>Running</option>
-                            <option value="urban"  <%= (old.category == 'urban') ? "selected" : '' %>>Urban</option>
-                            <option value="trackAndField"  <%= (old.category == 'trackAndField') ? "selected" : '' %>>Track & Field</option>
-                        </select>
-                    </div>
-                    <div class="form-group color">
-                        <h3 class="register-label">Color</h3>
-                        <select class="country-combobox create-cbox" name="color" id="color">
-                            <option value="#ff0000" <%= (old.color == '#ff0000') ? "selected" : '' %>>Rojo</option>
-                            <option value="#00ff00" <%= (old.color == '#00ff00') ? "selected" : '' %>>Verde</option>
-                            <option value="#0000ff" <%= (old.color == '#0000ff') ? "selected" : '' %>>Azul</option>
-                        </select>
-                    </div>
-                    <div class="form-group talle">
-                        <h3 class="register-label">Talles</h3>
-                        <select class="country-combobox create-cbox" name="size" id="color">
-                            <option value="5" <%= (old.size == '5') ? "selected" : '' %>>5</option>
-                            <option value="6" <%= (old.size == '6') ? "selected" : '' %>>6</option>
-                            <option value="7" <%= (old.size == '7') ? "selected" : '' %>>7</option>
-                            <option value="8" <%= (old.size == '8') ? "selected" : '' %>>8</option>
-                            <option value="9" <%= (old.size == '9') ? "selected" : '' %>>9</option>
-                            <option value="10" <%= (old.size == '10') ? "selected" : '' %>>10</option>
-                            <option value="11" <%= (old.size == '11') ? "selected" : '' %>>11</option>
-                        </select>
-                    </div>
-                    <div class="form-group stock">
-                        <label for="stock">Cantidad a vender</label>
-                        <input type="number" name="stock" id="stock" value="<%= (old.stock) ? old.stock : 1 %>" required>
+                    <div class="form-group user">
+                        <label for="description">Descripción</label>
+                        <textarea class="description-txt" name="description" id="description" required><%= old.description %></textarea>
                     </div>
                     <div class="upload-file-container">
                         <label for="product-image">Imagen del producto</label>
@@ -106,6 +117,8 @@
                         <br>
                         <span>Este campo es requerido</span>
                     </div>
+                    
+                    
                 </div>
                 <div class="send-container">
                     <div class="error-message-container">
