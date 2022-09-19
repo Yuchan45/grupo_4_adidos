@@ -103,13 +103,11 @@ const productsController = {
             errorMsg: ''
         })
     },
-    // productList: function (req, res) {
-    //     res.render('./products/productsList', { products: allShoes });
-    // },
     createProduct: function (req, res) {
         const file = req.file;
         const product = req.body;
 
+        return res.send(product);
         const newProduct = {
             id: uuidv4(),
             prodCreationDate: new Date().toISOString().slice(0, 10), //dia que cree producto
