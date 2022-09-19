@@ -13,16 +13,16 @@
     <!-- Nav-bar -->
     <%- include('../partials/nav-bar') %>
 
-    <main class="main-register">
+    <main class="main-register main-create-product">
         <div class="register-wrapper">
             <h1 class="form-title">PUBLICA TU ANUNCIO</h1>
             <h2 class="form-subtitle ">Incluye algunos detalles</h2>
 
             <form action="/products/create" method="POST" enctype="multipart/form-data"> 
                 <div class="register-form-left">
+                    <h3 class="register-label">Marca</h3>
                     <div class="brand-model-container">
                         <div class="form-group brand">
-                            <h3 class="register-label">Marca</h3>
                             <select class="country-combobox create-country" name="brand" id="brand">
                                 <option value="adidas" <%= (old.brand == 'adidas') ? "selected" : '' %>>Adidas</option>
                                 <option value="asics" <%= (old.brand == 'asics') ? "selected" : '' %>>Asics</option>
