@@ -4,13 +4,14 @@ const { v4: uuidv4 } = require('uuid');
 const fileOperation = require('../modules/fileControl');
 const userFunction = require('../modules/userFunction');
 const productFunction = require('../modules/productFunction');
+const { validationResult } = require('express-validator');
 
+const Product = require('../modules/Products');
 const sneakersData = require('../data/sneakers');
 const allShoesPath = path.join(__dirname, '../data/products.json');
 const allShoes = fileOperation.readFile(allShoesPath);
 
-const productsController = {
-    
+const productsController = {  
     allProducts: function (req, res) {
         updateProducts = fileOperation.readFile(allShoesPath);
         res.render('./products/all-products', { 
@@ -19,7 +20,7 @@ const productsController = {
             user: req.session.userLogged
         });
     },
-    editProdIndex: function (req, res) {
+    editProduct: function (req, res) {
         const prodId = req.params.id;
         const allShoes = fileOperation.readFile(allShoesPath);
         let editProduct = productFunction.getProdById(allShoes, prodId);
@@ -30,7 +31,7 @@ const productsController = {
             msg : ''
         })
     },
-    editProduct: function (req, res) {
+    ProcessEditProduct: function (req, res) {
         const id = req.params.id;
         const file = req.file;
         const product = req.body;
@@ -96,35 +97,44 @@ const productsController = {
             });
         }
     },
-    create: function (req, res) {
+    createProduct: function (req, res) {
         res.render('./products/createProduct', {
             user: req.session.userLogged,
             old: '',
             errorMsg: ''
         })
     },
-    createProduct: function (req, res) {
+    ProcessCreateProduct: async function (req, res) {
         const file = req.file;
         const product = req.body;
-
-        return res.send(product);
-        const newProduct = {
-            id: uuidv4(),
-            prodCreationDate: new Date().toISOString().slice(0, 10), //dia que cree producto
-            productOwner: req.session.userLogged.name,
-            brand: product.brand,
+        
+        let errors = validationResult(req);
+        if (!errors.isEmpty()){
+            //return res.send(errors.mapped());
+            return res.render('./products/createProduct', {
+                errors: errors.mapped(), // Mapped convierte el array de errores en un obj literal con (name del elemento) y sus diferentes propiedades
+                old: product
+            });
+        }
+        
+        const userId = req.session.userLogged.id;
+        const colors_hexa = [product.color1, product.color2, product.color3];
+        let prodData = {
+            user_id: userId,
+            brand_id: product.brand,
             model: product.model,
-            category: product.category,
             description: product.description,
             price: product.price,
             discount: product.discount,
             image: file.filename,
-            color: product.color,
             gender: product.gender,
-            stock: product.stock
-        };
-        
-        fileOperation.addToFile(newProduct, allShoesPath);
+            stock: product.stock,
+            category_id: product.category,
+            colors_hexa: colors_hexa,
+            size_eur: product.size,
+        }
+
+        const prodCreated = Product.createProductDb(prodData); 
         res.redirect('/products');
     },
     search: function(req, res) {

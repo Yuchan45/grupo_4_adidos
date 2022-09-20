@@ -263,7 +263,7 @@ input:-webkit-autofill:active{
         justify-content: flex-start;
     }
     .register-wrapper form .submit-btn {
-        background-color: transparent;
+        background-color: #ffffff0a;
     }
     .register-wrapper form .submit-btn:hover {
         background-color: #124897;

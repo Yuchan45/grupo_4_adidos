@@ -95,6 +95,12 @@ textarea{
     letter-spacing: .2rem;
 }
 
+.text-danger {
+    color: red;
+    padding: 2px 0;
+    font-size: .9rem;
+}
+
 /* Desktop */
 @media (min-width:769px) {
     .main-create-product {
