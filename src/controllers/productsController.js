@@ -11,6 +11,12 @@ const sneakersData = require('../data/sneakers');
 const allShoesPath = path.join(__dirname, '../data/products.json');
 const allShoes = fileOperation.readFile(allShoesPath);
 
+// Sequelize
+const db = require('../database/models');
+const Products = db.Product;
+const Brands = db.Brand;
+const Categories = db.Category;
+
 const productsController = {  
     allProducts: function (req, res) {
         updateProducts = fileOperation.readFile(allShoesPath);
@@ -97,11 +103,14 @@ const productsController = {
             });
         }
     },
-    createProduct: function (req, res) {
+    createProduct: async function (req, res) {
+        const brands = await Brands.findAll({ raw: true });
+        const categories = await Categories.findAll({ raw: true });
         res.render('./products/createProduct', {
             user: req.session.userLogged,
             old: '',
-            errorMsg: ''
+            brands: brands,
+            categories: categories
         })
     },
     ProcessCreateProduct: async function (req, res) {
@@ -110,10 +119,13 @@ const productsController = {
         
         let errors = validationResult(req);
         if (!errors.isEmpty()){
-            //return res.send(errors.mapped());
+            const brands = await Brands.findAll({ raw: true });
+            const categories = await Categories.findAll({ raw: true });
             return res.render('./products/createProduct', {
                 errors: errors.mapped(), // Mapped convierte el array de errores en un obj literal con (name del elemento) y sus diferentes propiedades
-                old: product
+                old: product,
+                brands: brands,
+                categories: categories
             });
         }
         
@@ -167,6 +179,10 @@ const productsController = {
         productFunction.removeProductImage(products, id);
 
         res.redirect('/products');
+    },
+    test: async function(req, res) {
+        const brands = await Brands.findAll({ raw: true });
+        return res.send(brands);
     }
 };
 

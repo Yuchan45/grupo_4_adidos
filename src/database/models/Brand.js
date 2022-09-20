@@ -18,10 +18,20 @@ module.exports = function(sequelize, dataTypes) {
     }
 
     let config = {
-        tableName: "Brands"
+        tableName: "Brands",
+        timestamps: false
     }
 
-    let Brand = sequelize.define(alias, cols, config)
+    let Brand = sequelize.define(alias, cols, config);
+
+    // Associations
+    Brand.associate = function (models) {
+        Brand.hasMany(models.Product, {
+            as: "products",
+            foreignKey: "brand_id"
+        });
+    }
+
 
     return Brand
 }

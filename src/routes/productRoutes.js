@@ -8,7 +8,7 @@ const uploadFile = require('../middlewares/products/productsMulter');
 // const hasFile = require('../middlewares/products/hasFile');
 const validateProducts = require('../middlewares/products/validateProducts');
 
-const {allProducts, createProduct, ProcessCreateProduct, search, obtenerPorId, editProduct, ProcessEditProduct, deleteProduct} = productsController;
+const {allProducts, createProduct, ProcessCreateProduct, search, obtenerPorId, editProduct, ProcessEditProduct, deleteProduct, test} = productsController;
 
 router.get('/', allProducts);
 
@@ -28,6 +28,7 @@ router.put('/:id', uploadFile.single("product-image"), ProcessEditProduct)
 
 router.delete('/delete/:id', deleteProduct);
 
+router.get('/test', test);
 
 
 module.exports = router;

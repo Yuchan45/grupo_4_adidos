@@ -19,7 +19,8 @@ module.exports = function(sequelize, dataTypes) {
     }
 
     let config = {
-        tableName: "Favorites"
+        tableName: "Favorites",
+        timestamps: false
     }
 
     let Favorite = sequelize.define(alias, cols, config)

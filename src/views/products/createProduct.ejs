@@ -24,15 +24,9 @@
                     <div class="brand-model-container">
                         <div class="form-group brand">
                             <select class="country-combobox create-country" name="brand" id="brand">
-                                <option value="1" <%= (old.brand == '1') ? "selected" : '' %>>Asics</option>
-                                <option value="2" <%= (old.brand == '2') ? "selected" : '' %>>Adidas</option>
-                                <option value="3" <%= (old.brand == '3') ? "selected" : '' %>>Nike</option>
-                                <option value="4" <%= (old.brand == '4') ? "selected" : '' %>>Puma</option>
-                                <option value="5" <%= (old.brand == '5') ? "selected" : '' %>>Reebok</option>
-                                <option value="6" <%= (old.brand == '6') ? "selected" : '' %>>New Balance</option>
-                                <option value="7" <%= (old.brand == '7') ? "selected" : '' %>>Brooks</option>
-                                <option value="8" <%= (old.brand == '8') ? "selected" : '' %>>Mizuno</option>
-                                <option value="9" <%= (old.brand == '9') ? "selected" : '' %>>Saucony</option>
+                                <% brands.forEach(brand => { %>
+                                    <option value="<%= brand.id %>" <%= (old.brand == brand.id) ? "selected" : '' %>><%= brand.name %></option>
+                                <% }); %>
                             </select>
                         </div>
                         <% if (locals.errors && errors.brand) { %>
@@ -54,11 +48,9 @@
                         <div class="form-group category">
                             <h3 class="register-label">Categoria</h3>
                             <select class="country-combobox create-cbox" name="category" id="category">
-                                <option value="1"  <%= (old.category == '1') ? "selected" : '' %>>Track & Field</option>
-                                <option value="2" <%= (old.category == '2') ? "selected" : '' %>>Running</option>
-                                <option value="3"  <%= (old.category == '3') ? "selected" : '' %>>Urban</option>
-                                <option value="4"  <%= (old.category == '4') ? "selected" : '' %>>Football</option>
-                                <option value="5"  <%= (old.category == '5') ? "selected" : '' %>>Training</option>
+                                <% categories.forEach(category => { %>
+                                    <option value="<%= category.id %>" <%= (old.category == category.id) ? "selected" : '' %>><%= category.name %></option>
+                                <% }); %>
                             </select>
                             <% if (locals.errors && errors.category) { %>
                                 <div class="text-danger">
