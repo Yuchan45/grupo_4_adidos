@@ -26,60 +26,74 @@ const productsController = {
             products: products,
         });
     },
-    editProduct: function (req, res) {
-        const prodId = req.params.id;
-        const allShoes = fileOperation.readFile(allShoesPath);
-        let editProduct = productFunction.getProdById(allShoes, prodId);
+    running: async function (req, res) {
+        const categoryName = 'Running';
+        const category = await Categories.findAll({
+            where: {
+                name: categoryName
+            }
+        });
 
-        res.render('./products/edit-products', {
-            user: req.session.userLogged,
-            data : editProduct,
-            msg : ''
-        })
-    },
-    processEditProduct: function (req, res) {
-        const id = req.params.id;
-        const file = req.file;
-        const product = req.body;
-        const allShoes = fileOperation.readFile(allShoesPath);
-        let editProduct = productFunction.getProdById(allShoes, id);
-
-        if (!file) {
-            const msg = "Debe seleccionar una imagen de producto!";
-            res.render('./products/edit-products', {
-                user: req.session.userLogged,
-                data : editProduct,
-                msg : msg
-            })
-            return;
+        if (!(category.length > 0)) {
+            return res.send("Lo sentimos... No hay zapatillas de esta categoria (En la base de datos no estan).");
         }
-        //console.log(file.filename)
-     
-        const updatedProduct = {
-            id: editProduct.id,
-            prodCreationDate: editProduct.prodCreationDate, //dia que cree producto
-            // productOwner:  
-            brand: product.brand,
-            model: product.model,
-            category: product.category,
-            description: product.description,
-            price: product.price,
-            discount: product.discount,
-            image: file.filename,
-            color: product.color,
-            gender: product.gender,
-            stock: product.stock
-        };
+        const category_id = category[0].id;
 
-        // Remove image files.
-        productFunction.removeProductImage(allShoes, id);
+        const products = await Products.findAll({
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}],
+            where: {
+                category_id: category_id
+            }
+        });
+        res.render('./products/all-products', {
+            products: products,
+        });
+    },
+    urban: async function (req, res) {
+        const categoryName = 'Urban';
+        const category = await Categories.findAll({
+            where: {
+                name: categoryName
+            }
+        });
 
-        // Creo un nuevo array sin el elemento modificado.
-        let updatedArray = productFunction.removeProdFromArray(allShoes, id);
-        updatedArray.push(updatedProduct);
-        fileOperation.writeFile(updatedArray, allShoesPath);
+        if (!(category.length > 0)) {
+            return res.send("Lo sentimos... No hay zapatillas de esta categoria (En la base de datos no estan).");
+        }
+        const category_id = category[0].id;
 
-        res.redirect('/products');
+        const products = await Products.findAll({
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}],
+            where: {
+                category_id: category_id
+            }
+        });
+        res.render('./products/all-products', {
+            products: products,
+        });
+    },
+    trackAndField: async function (req, res) {
+        const categoryName = 'Track & field';
+        const category = await Categories.findAll({
+            where: {
+                name: categoryName
+            }
+        });
+
+        if (!(category.length > 0)) {
+            return res.send("Lo sentimos... No hay zapatillas de esta categoria (En la base de datos no estan).");
+        }
+        const category_id = category[0].id;
+
+        const products = await Products.findAll({
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}],
+            where: {
+                category_id: category_id
+            }
+        });
+        res.render('./products/all-products', {
+            products: products,
+        });
     },
     obtenerPorId: async (req, res) => {
         const productId = req.params.id;
@@ -150,6 +164,74 @@ const productsController = {
         const prodCreated = Product.createProductDb(prodData); 
         res.redirect('/products');
     },
+    editProduct: function (req, res) {
+        const prodId = req.params.id;
+        const allShoes = fileOperation.readFile(allShoesPath);
+        let editProduct = productFunction.getProdById(allShoes, prodId);
+
+        res.render('./products/edit-products', {
+            user: req.session.userLogged,
+            data : editProduct,
+            msg : ''
+        })
+    },
+    processEditProduct: function (req, res) {
+        const id = req.params.id;
+        const file = req.file;
+        const product = req.body;
+        const allShoes = fileOperation.readFile(allShoesPath);
+        let editProduct = productFunction.getProdById(allShoes, id);
+
+        if (!file) {
+            const msg = "Debe seleccionar una imagen de producto!";
+            res.render('./products/edit-products', {
+                user: req.session.userLogged,
+                data : editProduct,
+                msg : msg
+            })
+            return;
+        }
+        //console.log(file.filename)
+     
+        const updatedProduct = {
+            id: editProduct.id,
+            prodCreationDate: editProduct.prodCreationDate, //dia que cree producto
+            // productOwner:  
+            brand: product.brand,
+            model: product.model,
+            category: product.category,
+            description: product.description,
+            price: product.price,
+            discount: product.discount,
+            image: file.filename,
+            color: product.color,
+            gender: product.gender,
+            stock: product.stock
+        };
+
+        // Remove image files.
+        productFunction.removeProductImage(allShoes, id);
+
+        // Creo un nuevo array sin el elemento modificado.
+        let updatedArray = productFunction.removeProdFromArray(allShoes, id);
+        updatedArray.push(updatedProduct);
+        fileOperation.writeFile(updatedArray, allShoesPath);
+
+        res.redirect('/products');
+    },
+    deleteProduct: function (req, res) {
+        const id = req.params.id;
+       if (!id) return;
+
+       let products = fileOperation.readFile(allShoesPath);
+       let newArray = productFunction.removeProdFromArray(products, id);
+       fileOperation.writeFile(newArray, allShoesPath);
+
+       // Remove image files.
+       productFunction.removeProductImage(products, id);
+
+       res.redirect('/products');
+   },
     search: function(req, res) {
         // const activeUser = fileOperation.readFile(activeUserFile);
         const allShoes = fileOperation.readFile(allShoesPath);
@@ -167,19 +249,6 @@ const productsController = {
             products : productsResults,
             user: req.session.userLogged
         })
-    },
-    deleteProduct: function (req, res) {
-         const id = req.params.id;
-        if (!id) return;
-
-        let products = fileOperation.readFile(allShoesPath);
-        let newArray = productFunction.removeProdFromArray(products, id);
-        fileOperation.writeFile(newArray, allShoesPath);
-
-        // Remove image files.
-        productFunction.removeProductImage(products, id);
-
-        res.redirect('/products');
     },
     test: async function(req, res) {
         const brands = await Brands.findAll({ raw: true });
