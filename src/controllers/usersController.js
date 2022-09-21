@@ -199,7 +199,6 @@ const usersController = {
 
         if (loggedUser.id == id) {
             // Actualizo los datos del usuario activo en el session en caso de que este haya modificado sus propios datos.
-            console.log("PASO POR ACA")
             req.session.userLogged = updatedUser;  
         }
 

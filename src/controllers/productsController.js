@@ -37,7 +37,7 @@ const productsController = {
             msg : ''
         })
     },
-    ProcessEditProduct: function (req, res) {
+    processEditProduct: function (req, res) {
         const id = req.params.id;
         const file = req.file;
         const product = req.body;
@@ -113,7 +113,11 @@ const productsController = {
             categories: categories
         })
     },
-    ProcessCreateProduct: async function (req, res) {
+    processCreateProduct: async function (req, res) {
+        if (!req.session.userLogged) {
+            return res.redirect('/users/login');
+        }
+
         const file = req.file;
         const product = req.body;
         
@@ -129,7 +133,9 @@ const productsController = {
             });
         }
         
+
         const userId = req.session.userLogged.id;
+        
         const colors_hexa = [product.color1, product.color2, product.color3];
         let prodData = {
             user_id: userId,
@@ -142,7 +148,7 @@ const productsController = {
             gender: product.gender,
             stock: product.stock,
             category_id: product.category,
-            colors_hexa: colors_hexa,
+            colors_hexa: colors_hexa.toString(),
             size_eur: product.size,
         }
 
