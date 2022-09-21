@@ -12,16 +12,17 @@
                 </div>
                 <div class="prod-description">
                     <h3 class="prod-category">
-                        <%= products[i].category %>
+                        <%= products[i].categories.name %>
                     </h3>
                     <h2 class="prod-title">
-                        <%= products[i].brand %>
+                        <%= products[i].brands.name %>
                     </h2>
                     <h2 class="prod-model">
                         <%= products[i].model %>
                     </h2>
                     <h2 class="prod-price">ARS $<%- products[i].price %>
                     </h2>
+                    <h2 class="prod-owner">Publicado por: <span><%= products[i].users.fullname %></span> </h2>
                 </div>
                 <% if (locals.activeUser && activeUser.role == 'admin') { %>
                     <div class="deleteEditProd">

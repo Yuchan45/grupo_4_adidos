@@ -18,12 +18,12 @@ const Brands = db.Brand;
 const Categories = db.Category;
 
 const productsController = {  
-    allProducts: function (req, res) {
-        updateProducts = fileOperation.readFile(allShoesPath);
-        res.render('./products/all-products', { 
-            trendingSneakers: sneakersData,
-            products: updateProducts,
-            user: req.session.userLogged
+    allProducts: async function (req, res) {
+        const products = await Products.findAll({
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}] 
+        });
+        res.render('./products/all-products', {
+            products: products,
         });
     },
     editProduct: function (req, res) {
