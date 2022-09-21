@@ -5,12 +5,19 @@
         <% } %>
         <% for(let i=0; i<products.length; i++) { %>
             <div class="main-item">
+                <div class="item-header">
+                    <a href=""><ion-icon name="bag-add-outline"></ion-icon></a>
+                    <a href=""><ion-icon name="heart-outline"></ion-icon></a>
+                </div>
                 <div class="item-image">
                     <a href="<%= " products/" + products[i].id %> ">
                         <img src="/images/products/<%= (products[i].image) ? products[i].image : 'default.jpg' %> " alt="" />
                     </a>
                 </div>
                 <div class="prod-description">
+                    <div class="brand-logo-wrapper">
+                        <img src="/images/products/logos/<%= (products[i].brands.logo) ? products[i].brands.logo : 'default-logo.jpg' %>" alt="">
+                    </div>
                     <h3 class="prod-category">
                         <%= products[i].categories.name %>
                     </h3>
