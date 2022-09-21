@@ -81,27 +81,22 @@ const productsController = {
 
         res.redirect('/products');
     },
-    obtenerPorId: (req, res) => {
+    obtenerPorId: async (req, res) => {
         const productId = req.params.id;
-        //console.log(productId);
-        let productoEncontrado;
-
-        for (let i = 0; i < allShoes.length; i++) {
-            //console.log(allShoes[i]);
-            if (allShoes[i].id === productId) {
-                productoEncontrado = allShoes[i];
-            }
-        }
-        //console.log(productoEncontrado)
+        let productoEncontrado = await Products.findByPk(productId, {
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}] 
+        });
         if (!productoEncontrado) {
-            res.status(404).send("No se encuentra el producto");
-        } else {
-            res.render('./products/product-details',  {
-                sneakerEncontrado: productoEncontrado, 
-                trendingSneakers: sneakersData,
-                user: req.session.userLogged
-            });
+            return res.status(404).send("No se encuentra el producto");
         }
+
+        const colores = productoEncontrado.colors_hexa.split(',');
+        // return res.send(colores);
+        res.render('./products/product-details',  {
+            product: productoEncontrado, 
+            colores: colores,
+            trendingSneakers: sneakersData,
+        });
     },
     createProduct: async function (req, res) {
         const brands = await Brands.findAll({ raw: true });
