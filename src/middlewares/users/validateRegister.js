@@ -4,7 +4,7 @@ const { body } = require('express-validator');
 
 // Validaciones
 const validateCreateUserForm = [
-    body('name')
+    body('fullname')
         .notEmpty().withMessage('Debes completar el campo de nombre'),
 
     body('username')
@@ -19,10 +19,10 @@ const validateCreateUserForm = [
         .notEmpty().withMessage('Debes completar el email').bail()
         .isEmail().withMessage('Debes completar un email valido'),
 
-    body('address')
+    body('street')
         .notEmpty().withMessage('Debes completar el campo de calle').bail(),
 
-    body('addressNumber')
+    body('number')
         .notEmpty().withMessage('Debes completar el campo de numero de calle').bail(),
 
     body('birthdate')
@@ -48,8 +48,9 @@ const validateCreateUserForm = [
         }
         return true;
         // if (!file) {
-        //     throw new Error('Si no ingresa una imagen de perfil, se le sera asignada una por defecto');
+        //     throw new Error('Debe ingresar una imagen del producto!');
         // } else {
+        //     let acceptedExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.jfif']; 
         //     let fileExtension = path.extname(file.originalname);
         //     if (!acceptedExtensions.includes(fileExtension)) {
         //         throw new Error(`Las extensiones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
@@ -60,7 +61,7 @@ const validateCreateUserForm = [
         // if (!req.files) return; // Si el usuario no ingresa foto de perfil, que siga. Luego se le sera asignada una por defecto.
         let files = req.files;
         if (files.length > 0) {
-            let acceptedExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.jfif'];
+            let acceptedExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.jfif', '.webp'];
     
             let fileExtension = path.extname(files[0].originalname);
             if (!acceptedExtensions.includes(fileExtension)) {

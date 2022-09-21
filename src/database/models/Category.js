@@ -9,16 +9,25 @@ module.exports = function(sequelize, dataTypes) {
             allowNull: false
         },
         name: {
-            type: dataTypes.VARCHAR(100), 
+            type: dataTypes.STRING(100), 
             allowNull: false
         },
     }
 
     let config = {
-        tableName: "Categories"
+        tableName: "Categories",
+        timestamps: false
     }
 
     let Category = sequelize.define(alias, cols, config)
+
+    // Associations
+    Category.associate = function (models) {
+        Category.hasMany(models.Product, {
+            as: "products",
+            foreignKey: "category_id"
+        });
+    }
 
     return Category
 }

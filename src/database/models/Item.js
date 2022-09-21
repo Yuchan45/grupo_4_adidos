@@ -25,13 +25,14 @@ module.exports = function(sequelize, dataTypes) {
             allowNull: false
         },
         purchase_date: {
-            type: dataTypes.DATETIME(),
+            type: dataTypes.DATE(),
             defaultValue: null
         }
     }
 
     let config = {
-        tableName: "Items"
+        tableName: "Items",
+        timestamps: false
     }
 
     let Item = sequelize.define(alias, cols, config)

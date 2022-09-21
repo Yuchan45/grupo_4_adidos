@@ -21,12 +21,12 @@
                 <div class="register-form-left">
                     <h3 class="register-label">Datos</h3>
                     <div class="form-group first-last-name">
-                        <label for="name">Nombre y apellido</label>
-                        <input type="text" name="name" class="<%= locals.errors && errors.name ? 'invalid' : '' %>"
-                         id="name" value="<%= locals.old ? old.name : '' %>" >
-                        <% if (locals.errors && errors.name) { %>
+                        <label for="fullname">Nombre y apellido</label>
+                        <input type="text" name="fullname" class="<%= locals.errors && errors.fullname ? 'invalid' : '' %>"
+                         id="name" value="<%= locals.old ? old.fullname : '' %>" >
+                        <% if (locals.errors && errors.fullname) { %>
                             <div class="text-danger">
-                                <%= errors.name.msg; %>
+                                <%= errors.fullname.msg; %>
                             </div>
                         <% } %>
                     </div>
@@ -62,22 +62,22 @@
                     </div>
                     <div class="register-address">
                         <div class="form-group address">
-                            <label for="address">Calle</label>
-                            <input type="text" name="address" class="<%= locals.errors && errors.address ? 'invalid' : '' %>"
-                            id="address" value="<%= locals.old ? old.address : '' %>" >
-                           <% if (locals.errors && errors.address) { %>
+                            <label for="street">Calle</label>
+                            <input type="text" name="street" class="<%= locals.errors && errors.street ? 'invalid' : '' %>"
+                            id="address" value="<%= locals.old ? old.street : '' %>" >
+                           <% if (locals.errors && errors.street) { %>
                                <div class="text-danger">
-                                   <%= errors.address.msg; %>
+                                   <%= errors.street.msg; %>
                                </div>
                            <% } %>
                         </div>
                         <div class="form-group addressNumber">
-                            <label for="addressNumber">Numero</label>
-                            <input type="number" name="addressNumber" class="<%= locals.errors && errors.addressNumber ? 'invalid' : '' %>"
-                            id="addressNumber" value="<%= locals.old ? old.addressNumber : '' %>" >
-                           <% if (locals.errors && errors.addressNumber) { %>
+                            <label for="number">Numero</label>
+                            <input type="number" name="number" class="<%= locals.errors && errors.number ? 'invalid' : '' %>"
+                            id="addressNumber" value="<%= locals.old ? old.number : '' %>" >
+                           <% if (locals.errors && errors.number) { %>
                                <div class="text-danger">
-                                   <%= errors.addressNumber.msg; %>
+                                   <%= errors.number.msg; %>
                                </div>
                            <% } %>
                         </div>
@@ -129,13 +129,13 @@
                     </select>
                     <div class="form-group cash">
                     <label for="cash">Cash</label>
-                            <input type="number" name="cash" class="<%= locals.errors && errors.cash ? 'invalid' : '' %>"
-                            id="cash" value="<%= locals.old ? old.cash : '' %>" >
-                           <% if (locals.errors && errors.cash) { %>
-                               <div class="text-danger">
-                                   <%= errors.cash.msg; %>
-                               </div>
-                           <% } %>
+                        <input type="number" name="cash" class="<%= locals.errors && errors.cash ? 'invalid' : '' %>"
+                        id="cash" value="<%= locals.old ? old.cash : '' %>" >
+                        <% if (locals.errors && errors.cash) { %>
+                            <div class="text-danger">
+                                <%= errors.cash.msg; %>
+                            </div>
+                        <% } %>
                     </div>
                     <div class="upload-file-container">
                         <label for="profileImage">Foto de perfil</label>

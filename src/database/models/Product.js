@@ -16,11 +16,11 @@ module.exports = function(sequelize, dataTypes) {
             defaultValue: null
         },
         model: {
-            type: dataTypes.VARCHAR(100), 
+            type: dataTypes.STRING(100), 
             allowNull: false
         },
         description: {
-            type: dataTypes.VARCHAR(1000),
+            type: dataTypes.STRING(1000),
             defaultValue: null
         },
         price: {
@@ -32,11 +32,11 @@ module.exports = function(sequelize, dataTypes) {
             allowNull: false
         },
         image: {
-            type: dataTypes.VARCHAR(200),
+            type: dataTypes.STRING(200),
             defaultValue: 'default.png'
         },
         gender: {
-            type: dataTypes.VARCHAR(50), 
+            type: dataTypes.STRING(50), 
             allowNull: false
         },
         stock: {
@@ -48,7 +48,7 @@ module.exports = function(sequelize, dataTypes) {
             defaultValue: null
         },
         colors_hexa: {
-            type: dataTypes.VARCHAR(200),
+            type: dataTypes.STRING(200),
             defaultValue: null
         },
         size_eur: {
@@ -56,11 +56,11 @@ module.exports = function(sequelize, dataTypes) {
             allowNull: false
         },
         creation_date: {
-            type: dataTypes.DATETIME(),
+            type: dataTypes.DATE(),
             defaultValue: null
         },
         last_update: {
-            type: dataTypes.DATETIME(),
+            type: dataTypes.DATE(),
             defaultValue: null
         },
     }
@@ -70,6 +70,24 @@ module.exports = function(sequelize, dataTypes) {
     }
 
     let Product = sequelize.define(alias, cols, config)
+
+    // Associations
+    Product.associate = function (models) {
+        Product.belongsTo(models.Brand, {
+            as: "brands",
+            foreignKey: "brand_id"
+        });
+
+        Product.belongsTo(models.Category, {
+            as: "categories",
+            foreignKey: "category_id"
+        });
+
+        Product.belongsTo(models.User, {
+            as: "users",
+            foreignKey: "user_id"
+        });
+    }
 
     return Product
 }

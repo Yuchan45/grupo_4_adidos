@@ -9,19 +9,29 @@ module.exports = function(sequelize, dataTypes) {
             allowNull: false
         },
         name: {
-            type: dataTypes.VARCHAR(100), 
+            type: dataTypes.STRING(100), 
             allowNull: false
         },
         logo: {
-            type: dataTypes.VARCHAR(200)
+            type: dataTypes.STRING(200)
         }
     }
 
     let config = {
-        tableName: "Brands"
+        tableName: "Brands",
+        timestamps: false
     }
 
-    let Brand = sequelize.define(alias, cols, config)
+    let Brand = sequelize.define(alias, cols, config);
+
+    // Associations
+    Brand.associate = function (models) {
+        Brand.hasMany(models.Product, {
+            as: "products",
+            foreignKey: "brand_id"
+        });
+    }
+
 
     return Brand
 }

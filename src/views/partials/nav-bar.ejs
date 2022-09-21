@@ -142,7 +142,7 @@
 							/>
 							<div class="profile-info">
 								<p class="user-role"><%= (locals.isLogged && locals.userLogged.role) ? locals.userLogged.role : '' %></p>
-								<p class="user-name"><%= (locals.isLogged && locals.userLogged.name) ? locals.userLogged.name : 'Quien eres?' %></p>
+								<p class="user-name"><%= (locals.isLogged && locals.userLogged.fullname) ? locals.userLogged.fullname : 'Quien eres?' %></p>
 								<p class="user-country"><%= (locals.isLogged && locals.userLogged.country) ? locals.userLogged.country : '' %></p>
 								<hr>
 							</div>

@@ -5,26 +5,30 @@ const productsController = require('../controllers/productsController');
 
 // Middlewares
 const uploadFile = require('../middlewares/products/productsMulter');
-const hasFile = require('../middlewares/products/hasFile');
+// const hasFile = require('../middlewares/products/hasFile');
+const validateProducts = require('../middlewares/products/validateProducts');
 
-router.get('/', productsController.allProducts);
+const {allProducts, createProduct, ProcessCreateProduct, search, obtenerPorId, editProduct, ProcessEditProduct, deleteProduct, test} = productsController;
 
-router.get('/create', productsController.create);
+router.get('/', allProducts);
 
-router.post('/create', uploadFile.single("product-image"), hasFile, productsController.createProduct); 
+router.get('/create', createProduct);
+
+router.post('/create', uploadFile.single("productImage"), validateProducts, ProcessCreateProduct); 
 
 //router.get('/list',productsController.productList); // El listado se muestra directamente en la vista de products (/products)
 
-router.get('/search', productsController.search);
+router.get('/search', search);
 
-router.get('/:id', productsController.obtenerPorId);
+router.get('/:id', obtenerPorId);
 
-router.get('/:id/edit', productsController.editProdIndex);
+router.get('/:id/edit', editProduct);
 
-router.put('/:id', uploadFile.single("product-image"), productsController.editProduct)
+router.put('/:id', uploadFile.single("product-image"), ProcessEditProduct)
 
-router.delete('/delete/:id', productsController.deleteProduct);
+router.delete('/delete/:id', deleteProduct);
 
+router.get('/test', test);
 
 
 module.exports = router;
