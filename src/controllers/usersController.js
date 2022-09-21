@@ -159,7 +159,7 @@ const usersController = {
         const files = req.files; 
         const id = req.params.id; // Id del usuario a modificar.
         const user = req.body; // Datos recibidos del form de edicion.
-        const loggedUser = req.session.userLogged;
+        let loggedUser = req.session.userLogged;
 
         const editUser = await Users.findByPk(id);
 
@@ -196,11 +196,13 @@ const usersController = {
         if (!updateResult) return res.send("Ha ocurrido un problema al editar el usuario");
 
         const updatedUser = await Users.findByPk(id);   // Necesito los datos actualizados asi que vuelvo a buscar el registro.
-        if (loggedUser == id) {
+        // return res.send(updatedUser)
+        if (loggedUser.id == id) {
             // Actualizo los datos del usuario activo en el session en caso de que este haya modificado sus propios datos.
-            loggedUser = updatedUser;  
+            console.log("PASO POR ACA")
+            req.session.userLogged = updatedUser;  
         }
-
+        // return res.send(updatedUser)
         if (loggedUser.role == 'admin') {
             return res.redirect('/users/list');
         }
