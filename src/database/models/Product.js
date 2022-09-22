@@ -53,7 +53,7 @@ module.exports = function(sequelize, dataTypes) {
             defaultValue: null
         },
         size_eur: {
-            type: dataTypes.INTEGER(5), 
+            type: dataTypes.STRING(200),
             allowNull: false
         },
         creation_date: {

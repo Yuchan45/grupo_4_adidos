@@ -36,31 +36,30 @@
                         <h3>$<%= product.price %></h3>
                         <p><%= product.discount %>% OFF</p>
                     </div>
+
+                    <p class="gender-title">Género: <span> <%= product.gender %></span></p>
                 </div>
                 <div class="selection">
                     <h3>Colores</h3>
                     <div class="colors-wrapper">
-                        <% for(let j=0; j<colores.length; j++) { %>
-                        <div class="color" style=<%= 'background-color:' + colores[j] + ';' %> ></div>
+                        <% for(let j=0; j < colors.length; j++) { %>
+                        <div class="color" style=<%= 'background-color:' + colors[j] + ';' %> ></div>
                         <% } %>
                     </div>
                 
                     <h3>Talles</h3>
                     <select class="size-dropdown" size="1">
-                        <!-- HAY QUE MODIFICAR ESTO PARA QUE MUESTRE VARIOS (SIMIL A COMO SE HACE CON COLORES) -->
-                        <option>39</option>
-                        <option>40</option>
-                        <option>41</option>
-                        <option>42</option>
-                        <option>43</option>
-                        <option>44</option>
+                        <% for(let k=0; k < sizes.length; k++) { %>
+                            <option value=""> <%= sizes[k] %> </option>
+                        <% } %>
+                     
                     </select>
                     <h3>Descripcion</h3>
                     <details class="prod-description">
                         <summary>Ver descripción</summary>
                         <p><%= product.description %></p>
                     </details>
-                    <p class="stock"><%= product.stock %> products en stock!</p>
+                    <p class="stock"><%= product.stock %> producto/s en stock!</p>
                 </div>
                 <div class="buy">
                     <p>Comprar ahora</p>

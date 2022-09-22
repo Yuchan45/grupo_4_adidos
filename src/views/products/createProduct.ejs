@@ -69,9 +69,61 @@
                         </div>
                     </div>
                     <div class="size-colors-container">
-                        <div class="form-group talle">
-                            <h3 class="register-label">Talles</h3>
-                            <select class="country-combobox create-cbox" name="size" id="color">
+                        <h3 class="register-label size-title">Talles</h3>
+                        <div class="form-group-talle talle">
+                            <div class="sizes-group">
+                                <input class="size-input" id="size34" type="checkbox" name="sizes" value="34" <%= (old.sizes && (old.sizes).includes("34")) ? 'checked' : '' %>>
+                                <label class="size-label" for="size34">34</label>
+                            </div>
+                            <div class="sizes-group">
+                                <input class="size-input" id="size35" type="checkbox" name="sizes" value="35" <%= (old.sizes && (old.sizes).includes("35")) ? 'checked' : '' %> >
+                                <label class="size-label" for="size35">35</label>
+                            </div>
+                            <div class="sizes-group">
+                                <input class="size-input" id="size36" type="checkbox" name="sizes" value="36" <%= (old.sizes && (old.sizes).includes("36")) ? 'checked' : '' %>>
+                                <label class="size-label" for="size36">36</label>
+                            </div>
+                            <div class="sizes-group">
+                                <input class="size-input" id="size37" type="checkbox" name="sizes" value="37" <%= (old.sizes && (old.sizes).includes("37")) ? 'checked' : '' %>>
+                                <label class="size-label" for="size37">37</label>
+                            </div>
+                            <div class="sizes-group">
+                                <input class="size-input" id="size38" type="checkbox" name="sizes" value="38" <%= (old.sizes && (old.sizes).includes("38")) ? 'checked' : '' %>>
+                                <label class="size-label" for="size38">38</label>
+                            </div>
+                            <div class="sizes-group">
+                                <input class="size-input" id="size39" type="checkbox" name="sizes" value="39" <%= (old.sizes && (old.sizes).includes("39")) ? 'checked' : '' %>>
+                                <label class="size-label" for="size39">39</label>
+                            </div>
+                            <div class="sizes-group">
+                                <input class="size-input" id="size40" type="checkbox" name="sizes" value="40" <%= (old.sizes && (old.sizes).includes("40")) ? 'checked' : '' %>>
+                                <label class="size-label" for="size40">40</label>
+                            </div>
+                            <div class="sizes-group">
+                                <input class="size-input" id="size41" type="checkbox" name="sizes" value="41" <%= (old.sizes && (old.sizes).includes("41")) ? 'checked' : '' %>>
+                                <label class="size-label" for="size41">41</label>
+                            </div>
+                            <div class="sizes-group">
+                                <input class="size-input" id="size42" type="checkbox" name="sizes" value="42" <%= (old.sizes && (old.sizes).includes("42")) ? 'checked' : '' %>>
+                                <label class="size-label" for="size42">42</label>
+                            </div>
+                            <div class="sizes-group">
+                                <input class="size-input" id="size43" type="checkbox" name="sizes" value="43" <%= (old.sizes && (old.sizes).includes("43")) ? 'checked' : '' %>>
+                                <label class="size-label" for="size43">43</label>
+                            </div>
+                            <div class="sizes-group">
+                                <input class="size-input" id="size44" type="checkbox" name="sizes" value="44" <%= (old.sizes && (old.sizes).includes("44")) ? 'checked' : '' %>>
+                                <label class="size-label" for="size44">44</label>
+                            </div>
+                            <div class="sizes-group">
+                                <input class="size-input" id="size45" type="checkbox" name="sizes" value="45" <%= (old.sizes && (old.sizes).includes("45")) ? 'checked' : '' %>>
+                                <label class="size-label" for="size45">45</label>
+                            </div>
+
+
+
+
+                            <!-- <select class="country-combobox create-cbox" name="size" id="color">
                                 <option value="34" <%= (old.size == '34') ? "selected" : '' %>>34</option>
                                 <option value="35" <%= (old.size == '35') ? "selected" : '' %>>35</option>
                                 <option value="36" <%= (old.size == '36') ? "selected" : '' %>>36</option>
@@ -83,7 +135,7 @@
                                 <option value="42" <%= (old.size == '42') ? "selected" : '' %>>42</option>
                                 <option value="43" <%= (old.size == '43') ? "selected" : '' %>>43</option>
                                 <option value="44" <%= (old.size == '44') ? "selected" : '' %>>44</option>
-                            </select>
+                            </select> -->
                             <% if (locals.errors && errors.size) { %>
                                 <div class="text-danger">
                                     <%= errors.size.msg; %>
@@ -93,25 +145,15 @@
                         <div class="color-pickers-wrapper">
                             <h3 class="register-label">Colores</h3>
                             <div class="colors">
-                                <input type="color" id="colorpicker1" name="color1" value="<%= (old.color1) ? old.color1 : "#ffffff"%>">
-                                <input type="color" id="colorpicker2" name="color2" value="<%= (old.color2) ? old.color2 : "#ffffff"%>">
-                                <input type="color" id="colorpicker3" name="color3" value="<%= (old.color3) ? old.color3 : "#ffffff"%>">
+                                <input type="color" id="colorpicker1" name="colors" value="<%= (old.colors) ? old.colors[0] : "#ffffff"%>">
+                                <input type="color" id="colorpicker2" name="colors" value="<%= (old.colors) ? old.colors[1] : "#ffffff"%>">
+                                <input type="color" id="colorpicker3" name="colors" value="<%= (old.colors) ? old.colors[2] : "#ffffff"%>">
                             </div>
-                            <% if (locals.errors && errors.color1) { %>
+                            <!-- <% if (locals.errors && errors.colors) { %>
                                 <div class="text-danger">
-                                    <%= errors.color1.msg; %>
+                                    <%= errors.colors.msg; %>
                                 </div>
-                            <% } %>
-                            <% if (locals.errors && errors.color2) { %>
-                                <div class="text-danger">
-                                    <%= errors.color2.msg; %>
-                                </div>
-                            <% } %>
-                            <% if (locals.errors && errors.color3) { %>
-                                <div class="text-danger">
-                                    <%= errors.color3.msg; %>
-                                </div>
-                            <% } %>
+                            <% } %> -->
                         </div>
                     </div>
 

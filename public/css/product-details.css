@@ -240,6 +240,21 @@ body{
     border: 1px solid #8d8d8d;
 }
 
+.gender-title {
+    margin: 15px 0 5px;
+    text-align: left;
+    text-transform: capitalize;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.gender-title span {
+    font-weight: 500;
+    font-style: italic;
+    margin-left: 5px;
+    color: var(--blue);
+}
+
 .brand-logo-wrapper > img {
 	max-height: 100%;
     max-width: 100%;

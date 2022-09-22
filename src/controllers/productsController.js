@@ -104,11 +104,13 @@ const productsController = {
             return res.status(404).send("No se encuentra el producto");
         }
 
-        const colores = productoEncontrado.colors_hexa.split(',');
+        const colors = productoEncontrado.colors_hexa.split(',');
+        const sizes = productoEncontrado.size_eur.split(',');
         // return res.send(colores);
         res.render('./products/product-details',  {
             product: productoEncontrado, 
-            colores: colores,
+            colors: colors,
+            sizes: sizes,
             trendingSneakers: sneakersData,
         });
     },
@@ -126,26 +128,30 @@ const productsController = {
         if (!req.session.userLogged) {
             return res.redirect('/users/login');
         }
-
         const file = req.file;
         const product = req.body;
         
+
         let errors = validationResult(req);
         if (!errors.isEmpty()){
+            // Remuevo la imagen ingresada.
+            if (file) {
+                const imagePath = path.join(__dirname, '../../public/images/products/' + file.filename);
+                userFunction.removeImage(imagePath);
+            }
+            // Me traigo los datos a enviar a la vista.
             const brands = await Brands.findAll({ raw: true });
             const categories = await Categories.findAll({ raw: true });
             return res.render('./products/createProduct', {
                 errors: errors.mapped(), // Mapped convierte el array de errores en un obj literal con (name del elemento) y sus diferentes propiedades
                 old: product,
                 brands: brands,
-                categories: categories
+                categories: categories,
             });
         }
         
-
         const userId = req.session.userLogged.id;
-        
-        const colors_hexa = [product.color1, product.color2, product.color3];
+
         let prodData = {
             user_id: userId,
             brand_id: product.brand,
@@ -157,8 +163,8 @@ const productsController = {
             gender: product.gender,
             stock: product.stock,
             category_id: product.category,
-            colors_hexa: colors_hexa.toString(),
-            size_eur: product.size,
+            colors_hexa: product.colors.toString(),
+            size_eur: product.sizes.toString(),
         }
 
         const prodCreated = Product.createProductDb(prodData); 
