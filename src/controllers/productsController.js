@@ -17,6 +17,7 @@ const Products = db.Product;
 const Brands = db.Brand;
 const Categories = db.Category;
 
+
 const productsController = {  
     allProducts: async function (req, res) {
         const products = await Products.findAll({
