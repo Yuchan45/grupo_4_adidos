@@ -8,6 +8,7 @@
 - \recursos_varios\EER-Scripts-db\scripts
 
 
+
 ## Weekly Sprint 6: 
 - \recursos_varios\dailys\weekly-sprint-6
 
