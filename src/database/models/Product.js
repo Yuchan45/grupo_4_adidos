@@ -4,7 +4,8 @@ module.exports = function(sequelize, dataTypes) {
     let cols = {
         id: {
             type: dataTypes.INTEGER(10).UNSIGNED,
-            primaryKey: true, 
+            primaryKey: true,
+            autoIncrement: true, 
             allowNull: false
         },
         user_id: {
@@ -27,7 +28,7 @@ module.exports = function(sequelize, dataTypes) {
             type: dataTypes.DECIMAL(15,2), 
             allowNull: false
         },
-        dicount: {
+        discount: {
             type: dataTypes.DECIMAL(5,1), 
             allowNull: false
         },
@@ -52,21 +53,22 @@ module.exports = function(sequelize, dataTypes) {
             defaultValue: null
         },
         size_eur: {
-            type: dataTypes.INTEGER(5), 
+            type: dataTypes.STRING(200),
             allowNull: false
         },
         creation_date: {
             type: dataTypes.DATE(),
             defaultValue: null
         },
-        last_update: {
+        last_updated: {
             type: dataTypes.DATE(),
             defaultValue: null
         },
     }
 
     let config = {
-        tableName: "Products"
+        tableName: "Products",
+        timestamps: false
     }
 
     let Product = sequelize.define(alias, cols, config)

@@ -17,17 +17,7 @@ const validateProducts = [
         .notEmpty().withMessage('Debes completar el campo de stock').bail()
         .isNumeric().withMessage('El stock debe ser un dato numerico'),
 
-    body('size')
-        .notEmpty().withMessage('Debes completar el campo de talles').bail(),
-
-    body('color1')
-        .notEmpty().withMessage('Debes completar el 1er campo de color').bail(),
-
-    body('color2')
-        .notEmpty().withMessage('Debes completar el 2do campo de color').bail(),
-
-    body('color3')
-        .notEmpty().withMessage('Debes completar el 3er campo de color').bail(),
+        // HACER QUE VALIDE QUE POR LO MENOS HAYA 1 SIZE SELECCIONADO!
 
     body('price')
         .notEmpty().withMessage('Debes completar el campo de precio').bail()

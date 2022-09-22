@@ -95,6 +95,40 @@ textarea{
     letter-spacing: .2rem;
 }
 
+.size-title {
+    margin-top: 15px !important;
+}
+
+.form-group-talle {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    text-align: left;
+    padding: 5px 0 0;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.sizes-group {
+}
+
+.sizes-group .size-input {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+
+.sizes-group .size-label {
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+
 .text-danger {
     color: red;
     padding: 2px 0;
