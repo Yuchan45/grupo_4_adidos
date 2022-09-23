@@ -8,12 +8,13 @@ const uploadFile = require('../middlewares/products/productsMulter');
 // const hasFile = require('../middlewares/products/hasFile');
 const validateProducts = require('../middlewares/products/validateProducts');
 
-const {allProducts, running, urban, trackAndField, createProduct, processCreateProduct, search, obtenerPorId, editProduct, processEditProduct, deleteProduct, test} = productsController;
+const {allProducts, running, urban, trackAndField, myProducts, createProduct, processCreateProduct, search, obtenerPorId, editProduct, processEditProduct, deleteProduct, test} = productsController;
 
 router.get('/', allProducts);
 router.get('/running', running);
 router.get('/urban', urban);
 router.get('/track-and-field', trackAndField);
+router.get('/my-products', myProducts);
 
 router.get('/create', createProduct);
 

@@ -96,6 +96,20 @@ const productsController = {
             products: products,
         });
     },
+    myProducts: async (req, res) => {
+        const productOwner = req.session.userLogged ? req.session.userLogged : '';
+        if (!productOwner) return res.redirect('/users/login');
+
+        const products = await Products.findAll({
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}],
+            where: {
+                user_id: productOwner.id
+            }
+        });
+        res.render('./products/myProducts', {
+            products: products,
+        });
+    },
     obtenerPorId: async (req, res) => {
         const productId = req.params.id;
         let productoEncontrado = await Products.findByPk(productId, {
@@ -171,15 +185,32 @@ const productsController = {
         const prodCreated = Product.createProductDb(prodData); 
         res.redirect('/products');
     },
-    editProduct: function (req, res) {
-        const prodId = req.params.id;
-        const allShoes = fileOperation.readFile(allShoesPath);
-        let editProduct = productFunction.getProdById(allShoes, prodId);
+    editProduct: async function (req, res) {
+        const productId = req.params.id;
+        const brands = await Brands.findAll({ raw: true });
+        const categories = await Categories.findAll({ raw: true });
+        
+
+        let editProduct = await Products.findByPk(productId, {
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}] 
+        });
+        if (!editProduct) {
+            return res.status(404).send("No se encuentra el producto");
+        }
+        
+        const sizes = editProduct.size_eur.split(',');
+        const colors = editProduct.colors_hexa.split(',');
+        //console.log(sizes);
+        // return res.send(sizes);
 
         res.render('./products/edit-products', {
             user: req.session.userLogged,
-            data : editProduct,
-            msg : ''
+            product: editProduct,
+            old: '',
+            brands: brands,
+            categories: categories,
+            sizes: sizes,
+            colors: colors
         })
     },
     processEditProduct: function (req, res) {
@@ -226,18 +257,21 @@ const productsController = {
 
         res.redirect('/products');
     },
-    deleteProduct: function (req, res) {
+    deleteProduct: async function (req, res) {
+        if (!req.params.id) return;
         const id = req.params.id;
-       if (!id) return;
+        let prodToDelete = await Products.findByPk(id);
 
-       let products = fileOperation.readFile(allShoesPath);
-       let newArray = productFunction.removeProdFromArray(products, id);
-       fileOperation.writeFile(newArray, allShoesPath);
+        return res.send(prodToDelete);
 
-       // Remove image files.
-       productFunction.removeProductImage(products, id);
+        let products = fileOperation.readFile(allShoesPath);
+        let newArray = productFunction.removeProdFromArray(products, id);
+        fileOperation.writeFile(newArray, allShoesPath);
 
-       res.redirect('/products');
+        // Remove image files.
+        productFunction.removeProductImage(products, id);
+
+        res.redirect('/products');
    },
     search: function(req, res) {
         // const activeUser = fileOperation.readFile(activeUserFile);

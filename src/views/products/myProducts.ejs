@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head') %> 
+    <link rel="stylesheet" href="/css/nav-bar.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/all-products.css" />
+    <link rel="stylesheet" href="/css/normalize.css" />
+    <link rel="stylesheet" href="/css/product.css" />
+    <title>My Products</title>
+  </head>
+  <body>
+    <!-- Nav-bar -->
+    <%- include('../partials/nav-bar') %>
+
+    <main>
+      <div class="main-header">
+        <div class="image-container">
+          <img
+            src="https://images.pexels.com/photos/235922/pexels-photo-235922.jpeg?cs=srgb&dl=pexels-pixabay-235922.jpg&fm=jpg"
+            alt=""
+            class="main-img"
+          />
+        </div>
+        <div class="main-banner">
+          <p class="banner-text">Las mejores zapatillas solo en Shoocity.</p>
+          <p class="banner-text">No corren, vuelan.</p>
+        </div>
+      </div>
+      <div class="product-list-container">
+        <div class="main-item-container">
+            <% if (products.length == 0) { %>
+                <span>No hay productos!</span>
+            <% } %>
+            <% for(let i=0; i<products.length; i++) { %>
+                <div class="main-item">
+                    <div class="item-header">
+                        <a href=""><ion-icon name="bag-add-outline"></ion-icon></a>
+                        <a href=""><ion-icon name="heart-outline"></ion-icon></a>
+                    </div>
+                    <div class="item-image">
+                        <a href="<%= "products/" + products[i].id %> ">
+                            <img src="/images/products/<%= (products[i].image) ? products[i].image : 'default.jpg' %> " alt="" />
+                        </a>
+                    </div>
+                    <div class="prod-description">
+                        <div class="brand-logo-wrapper">
+                            <img src="/images/products/logos/<%= (products[i].brands.logo) ? products[i].brands.logo : 'default-logo.jpg' %>" alt="">
+                        </div>
+                        <h3 class="prod-category">
+                            <%= products[i].categories.name %>
+                        </h3>
+                        <h2 class="prod-title">
+                            <%= products[i].brands.name %>
+                        </h2>
+                        <h2 class="prod-model">
+                            <%= products[i].model %>
+                        </h2>
+                        <h2 class="prod-price">ARS $<%= products[i].price %>
+                        </h2>
+                        <h2 class="prod-owner">Publicado por: <span><%= products[i].users.fullname %></span> </h2>
+                    </div>
+                    <div class="deleteEditProd">
+                        <form action="/products/<%= products[i].id %>/edit" method="GET">
+                            <button type="submit" class="editButton"><ion-icon name="create-outline"></ion-icon></button>
+                        </form>
+                        <form action="/products/delete/<%= products[i].id %>?_method=DELETE" method="POST">
+                            <button type="submit" class="deleteButton"><ion-icon name="trash-outline"></ion-icon></button>
+                        </form> 
+                    </div>
+                </div>
+                <% } %>
+        </div>
+    </div>
+    </main>
+    
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+    <script src="/js/hamburger.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  </body>
+</html>
