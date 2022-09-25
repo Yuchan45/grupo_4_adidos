@@ -204,58 +204,91 @@ const productsController = {
         // return res.send(sizes);
 
         res.render('./products/edit-products', {
-            user: req.session.userLogged,
             product: editProduct,
-            old: '',
             brands: brands,
             categories: categories,
             sizes: sizes,
             colors: colors
         })
     },
-    processEditProduct: function (req, res) {
+    processEditProduct: async function (req, res) {
+        if (!req.session.userLogged) {
+            return res.redirect('/users/login');
+        }
         const id = req.params.id;
         const file = req.file;
         const product = req.body;
-        const allShoes = fileOperation.readFile(allShoesPath);
-        let editProduct = productFunction.getProdById(allShoes, id);
 
-        if (!file) {
-            const msg = "Debe seleccionar una imagen de producto!";
-            res.render('./products/edit-products', {
-                user: req.session.userLogged,
-                data : editProduct,
-                msg : msg
-            })
-            return;
+        // Me busco el producto de la db sin modificar para recuperar datos previos.
+        let editProduct = await Products.findByPk(id, {
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}] 
+        });
+        if (!editProduct) {
+            return res.status(404).send("No se encuentra el producto a modificar en la base de datos");
         }
-        //console.log(file.filename)
-     
-        const updatedProduct = {
-            id: editProduct.id,
-            prodCreationDate: editProduct.prodCreationDate, //dia que cree producto
-            // productOwner:  
-            brand: product.brand,
+
+        let errors = validationResult(req);
+        if (!errors.isEmpty()){
+            // Remuevo la imagen ingresada (xq al ser un caso fallido de modificacion, la imagen no debe ser guardada).
+            if (file) {
+                const imagePath = path.join(__dirname, '../../public/images/products/' + file.filename);
+                userFunction.removeImage(imagePath);
+            }
+            // Vuelvo a mostrar la vista de edicion de produto.
+            const brands = await Brands.findAll({ raw: true });
+            const categories = await Categories.findAll({ raw: true });
+            
+
+            const sizes = editProduct.size_eur.split(',');
+            const colors = editProduct.colors_hexa.split(',');
+            return res.render('./products/edit-products', {
+                errors: errors.mapped(),
+                product: editProduct,
+                brands: brands,
+                categories: categories,
+                sizes: sizes,
+                colors: colors
+            })
+        }
+
+        const prevProdImage = editProduct.image;
+        let updatedProdImage = '';
+        if (file) {
+            // Debo remover la antigua imagen del producto del sv.
+            const prevImagePath = path.join(__dirname, '../../public/images/products/' + prevProdImage);
+            userFunction.removeImage(prevImagePath);
+            // Actualizo con la nueva imagen del producto.
+            updatedProdImage = file.filename;
+
+        } else {
+            // Debo dejar la antigua imagen del producto.
+            updatedProdImage = prevProdImage;
+        }
+
+        const userId = req.session.userLogged.id;
+
+        let prodData = {
+            user_id: userId,
+            brand_id: product.brand,
             model: product.model,
-            category: product.category,
             description: product.description,
             price: product.price,
             discount: product.discount,
-            image: file.filename,
-            color: product.color,
+            image: updatedProdImage,
             gender: product.gender,
-            stock: product.stock
-        };
+            stock: product.stock,
+            category_id: product.category,
+            colors_hexa: product.colors.toString(),
+            size_eur: product.sizes.toString(),
+        }
+
+        const updateResult = await Product.editProductDb(prodData, id);
+        if (!updateResult) return res.send("Ha ocurrido un problema al modificar los datos del producto");
 
         // Remove image files.
-        productFunction.removeProductImage(allShoes, id);
+        // productFunction.removeProductImage(allShoes, id);
 
-        // Creo un nuevo array sin el elemento modificado.
-        let updatedArray = productFunction.removeProdFromArray(allShoes, id);
-        updatedArray.push(updatedProduct);
-        fileOperation.writeFile(updatedArray, allShoesPath);
-
-        res.redirect('/products');
+        res.redirect('/products/' + id + 'edit');
     },
     deleteProduct: async function (req, res) {
         if (!req.params.id) return;

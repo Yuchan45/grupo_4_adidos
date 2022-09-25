@@ -18,7 +18,7 @@
             <h1 class="form-title">EDITA TU ANUNCIO</h1>
             <h2 class="form-subtitle ">Incluye algunos detalles</h2>
 
-            <form action="/products/create" method="POST" enctype="multipart/form-data"> 
+            <form action="/products/<%= product.id %>/edit?_method=PUT" method="POST" enctype="multipart/form-data"> 
                 <div class="register-form-left">
                     <h3 class="register-label">Marca</h3>
                     <div class="brand-model-container">
@@ -120,22 +120,6 @@
                                 <label class="size-label" for="size45">45</label>
                             </div>
 
-
-
-
-                            <!-- <select class="country-combobox create-cbox" name="size" id="color">
-                                <option value="34" <%= (old.size == '34') ? "selected" : '' %>>34</option>
-                                <option value="35" <%= (old.size == '35') ? "selected" : '' %>>35</option>
-                                <option value="36" <%= (old.size == '36') ? "selected" : '' %>>36</option>
-                                <option value="37" <%= (old.size == '37') ? "selected" : '' %>>37</option>
-                                <option value="38" <%= (old.size == '38') ? "selected" : '' %>>38</option>
-                                <option value="39" <%= (old.size == '39') ? "selected" : '' %>>39</option>
-                                <option value="40" <%= (old.size == '40') ? "selected" : '' %>>40</option>
-                                <option value="41" <%= (old.size == '41') ? "selected" : '' %>>41</option>
-                                <option value="42" <%= (old.size == '42') ? "selected" : '' %>>42</option>
-                                <option value="43" <%= (old.size == '43') ? "selected" : '' %>>43</option>
-                                <option value="44" <%= (old.size == '44') ? "selected" : '' %>>44</option>
-                            </select> -->
                             <% if (locals.errors && errors.size) { %>
                                 <div class="text-danger">
                                     <%= errors.size.msg; %>

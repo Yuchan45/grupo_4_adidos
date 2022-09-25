@@ -37,7 +37,6 @@ const Product = {
             creation_date: this.getDateTime(),
             last_updated: this.getDateTime()
         });
-        
         return createdUser;
     },
     editProductDb: async function(prodData, id) {
