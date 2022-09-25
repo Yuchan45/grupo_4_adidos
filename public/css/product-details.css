@@ -114,6 +114,7 @@ body{
 
 .prod-description summary {
     color: var(--blue);
+    cursor: pointer;
 }
 
 .prod-description summary > p {

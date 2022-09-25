@@ -5,34 +5,35 @@
             <i class="fa-solid fa-chevron-left"></i>
         </div>
         <div class="content-container">
-            <% for(let i=0; i<trendingSneakers.length; i++) { %> 
+            <% for(let i=0; i<products.length; i++) { %> 
             <article class="product">
                 <div class="prod-header">
                     <a href=""><ion-icon name="bag-add-outline"></ion-icon></a>
                     <a href=""><ion-icon name="heart-outline"></ion-icon></a>
                 </div>
                 <div class="prod-picture">
-                    <img src="<%= trendingSneakers[i].image %> " alt="">
+                    <img src="<%= products[i].image %> " alt="">
                 </div>
                 <div class="prod-description">
-                    <h3 class="prod-category"><%= trendingSneakers[i].category %></h3>
-                    <h2 class="prod-title"><%= trendingSneakers[i].brand %></h2>
-                    <h2 class="prod-model"><%= trendingSneakers[i].model %></h2>
+                    <h3 class="prod-category"><%= products[i].category %></h3>
+                    <h2 class="prod-title"><%= products[i].brand %></h2>
+                    <h2 class="prod-model"><%= products[i].model %></h2>
                     <h3 class="prod-colors">Colores</h3>
                     <div class="colors-wrapper">
-                        <% for(let j=0; j<trendingSneakers[i].color.length; j++) { %>
-                        <div class="color" style=<%= 'background-color:' + trendingSneakers[i].color[j] + ';' %> ></div>
+                        <% let colors =  products[i].colors_hexa.split(',');%>
+                        <% for(let j=0; j<colors.length; j++) { %>
+                        <div class="color" style=<%= 'background-color:' + colors[j] + ';' %> ></div>
                         <% } %>
                     </div>
                     <div class="prod-price-desc">
-                        <p>ARS $<%- trendingSneakers[i].price %></p>
-                        <% if (trendingSneakers[i].discount !== 0) { %>
-                            <p><%- trendingSneakers[i].discount %>% OFF</p>
+                        <p>ARS $<%- products[i].price %></p>
+                        <% if (products[i].discount !== 0) { %>
+                            <p><%- products[i].discount %>% OFF</p>
                         <% } %> 
                     </div>
                 </div>
                 <a href=""></a>
-                <a href="<%= "/products/" + trendingSneakers[i].id %>">
+                <a href="<%= "/products/" + products[i].id %>">
                     <button class="prod-button">VER</button>
                 </a>
             </article>

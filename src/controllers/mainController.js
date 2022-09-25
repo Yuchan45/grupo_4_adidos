@@ -3,16 +3,24 @@ const sliderSneakers = require('../data/sneakers');
 const shopCartSneakers = require('../data/shopCartSneakers');
 const fileOperation = require('../modules/fileControl');
 
+// Sequelize
+const db = require('../database/models');
+const Products = db.Product;
+const Brands = db.Brand;
+const Categories = db.Category;
 
 
 
 const mainController = {
-    index: function(req, res) {
-        //const activeUser = fileOperation.readFile(activeUserFile);
-        res.render('home', {
-            trendingSneakers: sliderSneakers,
-            user: req.session.userLogged
+    index: async function(req, res) {
+        const products = await Products.findAll({
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}] 
         });
+
+        res.render('home', {
+            products: products,
+        });
+        
     },
     shoppingCart: function(req, res) {
         //const activeUser = fileOperation.readFile(activeUserFile);
@@ -21,7 +29,7 @@ const mainController = {
             total += shopCartSneakers[i].price;
         }
         res.render('shopping-cart', {
-            trendingSneakers: sliderSneakers,
+            products: sliderSneakers,
             shopCartSneakers: shopCartSneakers,
             total: total,
             user: req.session.userLogged
