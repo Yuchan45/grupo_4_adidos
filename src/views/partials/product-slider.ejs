@@ -11,12 +11,17 @@
                     <a href=""><ion-icon name="bag-add-outline"></ion-icon></a>
                     <a href=""><ion-icon name="heart-outline"></ion-icon></a>
                 </div>
-                <div class="prod-picture">
-                    <img src="<%= products[i].image %> " alt="">
-                </div>
+                <a href="<%= "/products/" + products[i].id %>">
+                    <div class="prod-picture">
+                        <img src="/images/products/<%= (products[i].image) ? products[i].image : 'default.png' %>" alt="">
+                    </div>
+                </a>
                 <div class="prod-description">
-                    <h3 class="prod-category"><%= products[i].category %></h3>
-                    <h2 class="prod-title"><%= products[i].brand %></h2>
+                    <div class="brand-wrapper">
+                        <img src="/images/products/logos/<%= (products[i].brands.logo) ? products[i].brands.logo : 'default-logo.jpg' %>" alt="">
+                    </div>
+                    <h3 class="prod-category"><%= products[i].categories.name %></h3>
+                    <h2 class="prod-title"><%= products[i].brands.name %></h2>
                     <h2 class="prod-model"><%= products[i].model %></h2>
                     <h3 class="prod-colors">Colores</h3>
                     <div class="colors-wrapper">
@@ -26,13 +31,13 @@
                         <% } %>
                     </div>
                     <div class="prod-price-desc">
+                        <% const formattedDiscount =  (products[i].discount).split('.')[0]%>
                         <p>ARS $<%- products[i].price %></p>
                         <% if (products[i].discount !== 0) { %>
-                            <p><%- products[i].discount %>% OFF</p>
+                            <p><%- formattedDiscount %>% OFF</p>
                         <% } %> 
                     </div>
                 </div>
-                <a href=""></a>
                 <a href="<%= "/products/" + products[i].id %>">
                     <button class="prod-button">VER</button>
                 </a>

@@ -43,6 +43,7 @@
 
 .content-container .product {
     min-width: 90%;
+    max-width: 300px;
     height: 100%;
     padding: 10px 0;
     margin-right: 10px;
@@ -100,6 +101,23 @@
 .product .prod-description {
     width: 90%;
     margin: 0px auto;
+    position: relative;
+}
+
+.brand-wrapper {
+    height: 45px;
+    max-width: 75px;
+    padding: 5px;
+    position: absolute;
+    right: 0px;
+    margin-top: -45px;
+    background-color: transparent;
+}
+
+.brand-wrapper > img {
+	max-height: 100%;
+    max-width: 100%;
+    object-fit: cover;
 }
 
 .product .prod-description .colors-wrapper {
