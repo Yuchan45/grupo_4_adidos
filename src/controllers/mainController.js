@@ -22,14 +22,17 @@ const mainController = {
         });
         
     },
-    shoppingCart: function(req, res) {
-        //const activeUser = fileOperation.readFile(activeUserFile);
+    shoppingCart: async function(req, res) {
+        const products = await Products.findAll({
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}] 
+        });
+        
         let total = 0;
         for (let i=0; i<shopCartSneakers.length; i++) {
             total += shopCartSneakers[i].price;
         }
         res.render('shopping-cart', {
-            products: sliderSneakers,
+            products: products,
             shopCartSneakers: shopCartSneakers,
             total: total,
             user: req.session.userLogged

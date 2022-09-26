@@ -294,17 +294,20 @@ const productsController = {
         if (!req.params.id) return;
         const id = req.params.id;
         let prodToDelete = await Products.findByPk(id);
-
-        return res.send(prodToDelete);
-
-        let products = fileOperation.readFile(allShoesPath);
-        let newArray = productFunction.removeProdFromArray(products, id);
-        fileOperation.writeFile(newArray, allShoesPath);
-
+        
         // Remove image files.
-        productFunction.removeProductImage(products, id);
+        const imagePath = path.join(__dirname, '../../public/images/products/' + prodToDelete.image);
+        userFunction.removeImage(imagePath);
 
-        res.redirect('/products');
+        // Borro el prod de la db
+        await Products.destroy({
+            where: {
+                id: id
+            },
+            force: true 
+        });
+
+        res.redirect('/products/my-products');
    },
     search: function(req, res) {
         // const activeUser = fileOperation.readFile(activeUserFile);
