@@ -16,6 +16,8 @@ const db = require('../database/models');
 const Products = db.Product;
 const Brands = db.Brand;
 const Categories = db.Category;
+const Users = db.User;
+const Favorites = db.Favorite;
 
 
 const productsController = {  
@@ -110,7 +112,7 @@ const productsController = {
             products: products,
         });
     },
-    obtenerPorId: async (req, res) => {
+    productDetails: async (req, res) => {
         const productId = req.params.id;
         let productoEncontrado = await Products.findByPk(productId, {
             include: [{association: "brands"}, {association: "categories"}, {association: "users"}] 
@@ -119,14 +121,13 @@ const productsController = {
             return res.status(404).send("No se encuentra el producto");
         }
 
-        const colors = productoEncontrado.colors_hexa.split(',');
-        const sizes = productoEncontrado.size_eur.split(',');
-        // return res.send(colores);
+        const allProducts = await Products.findAll({
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}] 
+        });
+
         res.render('./products/product-details',  {
-            product: productoEncontrado, 
-            colors: colors,
-            sizes: sizes,
-            trendingSneakers: sneakersData,
+            product: productoEncontrado,
+            products: allProducts  // Esto es para el products-slider
         });
     },
     createProduct: async function (req, res) {
@@ -326,6 +327,25 @@ const productsController = {
             products : productsResults,
             user: req.session.userLogged
         })
+    },
+    addToFavorites: async (req, res) => {
+        if (!req.session.userLogged) return res.redirect('/users/login');
+        if (!req.params.id) return;
+        const id = req.params.id;
+
+        // return res.send(id);
+        const newFav = {
+            user_id: req.session.userLogged.id,
+            product_id: id
+        };
+
+        const createdFav = await Product.createFavoriteDb(newFav);
+        if (!createdFav) return res.send("Ha ocurrido un problema al agregar el producto a favoritos :(");
+
+        return res.send("El producto ha sido añadido a favoritos!");
+
+        // DEBERIA PODER VOLVER AL 'MISMO' LUGAR XQ EL AGREGAR A FAVORITOS NO TE CAMBIA DE PAGINA. PERO NO SE COMO HACER ESE REDIRECT.
+        // return res.redirect('/products');
     },
     test: async function(req, res) {
         const brands = await Brands.findAll({ raw: true });

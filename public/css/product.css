@@ -13,10 +13,23 @@
 	max-width: 100%;
 	object-fit: cover;
 }
+
 .item-image{
 	height: 150px;
 	width: 100% !important;
 	padding: 15px;
+}
+
+.item-header form {
+
+}
+
+.item-header form .fav {
+
+}
+
+.item-header form .bag {
+
 }
 
 .item-name {

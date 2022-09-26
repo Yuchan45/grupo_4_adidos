@@ -42,6 +42,7 @@
                 <div class="selection">
                     <h3>Colores</h3>
                     <div class="colors-wrapper">
+                        <% const colors = product.colors_hexa.split(','); %>
                         <% for(let j=0; j < colors.length; j++) { %>
                         <div class="color" style=<%= 'background-color:' + colors[j] + ';' %> ></div>
                         <% } %>
@@ -49,6 +50,7 @@
                 
                     <h3>Talles</h3>
                     <select class="size-dropdown" size="1">
+                        <% const sizes = product.size_eur.split(','); %>
                         <% for(let k=0; k < sizes.length; k++) { %>
                             <option value=""> <%= sizes[k] %> </option>
                         <% } %>

@@ -3,6 +3,7 @@ const db = require('../database/models');
 const sequelize = db.sequelize;
 //Otra forma de llamar a los modelos
 const Products = db.Product;
+const Favorites = db.Favorite;
 const path = require('path');
 
 const Product = {
@@ -51,6 +52,12 @@ const Product = {
         });
         
         return updatedProd;
+    },
+    createFavoriteDb: async function(favData) {
+        const createdFavorite = await Favorites.create({ 
+            ...favData,
+        });
+        return createdFavorite;
     },
 
 
