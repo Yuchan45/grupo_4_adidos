@@ -8,8 +8,12 @@
             <% for(let i=0; i<products.length; i++) { %> 
             <article class="product">
                 <div class="prod-header">
-                    <a href=""><ion-icon name="bag-add-outline"></ion-icon></a>
-                    <a href=""><ion-icon name="heart-outline"></ion-icon></a>
+                    <form action="/products/shopping-cart/<%= products[i].id %>" method="POST">
+                        <button type="submit" class="action-btn bag"><ion-icon name="bag-add-outline"></ion-icon></button>
+                    </form>
+                    <form action="/products/favorites/<%= products[i].id %>" method="POST">
+                        <button type="submit" class="action-btn fav"><ion-icon name="heart-outline"></ion-icon></button>
+                    </form>
                 </div>
                 <a href="<%= "/products/" + products[i].id %>">
                     <div class="prod-picture">

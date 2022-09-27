@@ -64,6 +64,7 @@
     font-size: 25px;
     color: white;
     align-items: center;
+    gap: 8px;
 }
 
 .product .prod-header > a {
@@ -102,6 +103,25 @@
     width: 90%;
     margin: 0px auto;
     position: relative;
+}
+
+.prod-header .action-btn {
+    background-color: transparent;
+    border: none;
+    padding: 2px;
+    transition: all .2s ease;
+    font-size: 25px;
+    color: white;
+}
+
+.prod-header .fav:hover {
+    color: var(--red);
+    transform: scale(1.1);
+}
+
+.prod-header .bag:hover {
+    color: var(--blue);
+    transform: scale(1.1);
 }
 
 .brand-wrapper {

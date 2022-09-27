@@ -331,18 +331,29 @@ const productsController = {
     addToFavorites: async (req, res) => {
         if (!req.session.userLogged) return res.redirect('/users/login');
         if (!req.params.id) return;
-        const id = req.params.id;
+        const prodId = req.params.id;
+        const userId = req.session.userLogged.id;
 
-        // return res.send(id);
-        const newFav = {
-            user_id: req.session.userLogged.id,
-            product_id: id
-        };
+        // Chequeamos que el usuario no tenga ya añadido este producto en favoritos.
+        const alreadyFav = await Favorites.findOne({
+            where: {
+                user_id: userId,
+                product_id: prodId
+            }
+        });
 
-        const createdFav = await Product.createFavoriteDb(newFav);
-        if (!createdFav) return res.send("Ha ocurrido un problema al agregar el producto a favoritos :(");
-
-        return res.send("El producto ha sido añadido a favoritos!");
+        if (!alreadyFav) {
+            const newFav = {
+                user_id: userId,
+                product_id: prodId
+            };
+    
+            const createdFav = await Product.createFavoriteDb(newFav);
+            if (!createdFav) return res.send("Ha ocurrido un problema al agregar el producto a favoritos :(");
+    
+            return res.send("El producto ha sido añadido a favoritos!");
+        }
+        return res.send("Ya estaba en favoritos!");
 
         // DEBERIA PODER VOLVER AL 'MISMO' LUGAR XQ EL AGREGAR A FAVORITOS NO TE CAMBIA DE PAGINA. PERO NO SE COMO HACER ESE REDIRECT.
         // return res.redirect('/products');
