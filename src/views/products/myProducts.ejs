@@ -35,8 +35,19 @@
             <% for(let i=0; i<products.length; i++) { %>
                 <div class="main-item">
                     <div class="item-header">
-                        <a href=""><ion-icon name="bag-add-outline"></ion-icon></a>
-                        <a href=""><ion-icon name="heart-outline"></ion-icon></a>
+						<% let isFav = false; %> 
+						<% if (locals.userLogged) { %>
+							<% const userId = products[i].favUsers[0] ? products[i].favUsers[0].id : '' %>
+							<% if (userId == locals.userLogged.id) { %>
+								<% isFav = true; %> 
+							<% } %>
+						<% } %>
+                        <form action="/products/shopping-cart/<%= products[i].id %>" method="POST">
+							<button type="submit" class="action-btn bag"><ion-icon name="bag-add-outline"></ion-icon></button>
+						</form>
+						<form action="/products/favorites/<%= products[i].id %>" method="POST">
+							<button type="submit" class="action-btn fav <%= isFav ? 'active-fav' : '' %> "><ion-icon name="heart-outline"></ion-icon></button>
+						</form>
                     </div>
                     <div class="item-image">
                         <a href="<%= "products/" + products[i].id %> ">

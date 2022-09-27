@@ -14,7 +14,7 @@ const Categories = db.Category;
 const mainController = {
     index: async function(req, res) {
         const products = await Products.findAll({
-            include: [{association: "brands"}, {association: "categories"}, {association: "users"}] 
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}, {association: "favUsers"}] 
         });
 
         res.render('home', {

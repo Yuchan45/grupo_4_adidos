@@ -26,9 +26,21 @@
             </div>
             <div class="info-container">
                 <div class="prod-info">
-                    <h2 class="brand"><%= product.brands.name %></h2>
-                    <h1 class="model"><%= product.model %></h1>
-                    <p class="prod-owner">Por <span><%= product.users.fullname %></span></p>
+                    <div class="information">
+                        <h2 class="brand"><%= product.brands.name %></h2>
+                        <h1 class="model"><%= product.model %></h1>
+                        <p class="prod-owner">Por <span><%= product.users.fullname %></span></p>
+                    </div>
+                    <% let isFav = false; %> 
+                    <% if (locals.userLogged) { %>
+                        <% const userId = product.favUsers[0] ? product.favUsers[0].id : '' %>
+                        <% if (userId == locals.userLogged.id) { %>
+                            <% isFav = true; %> 
+                        <% } %>
+                    <% } %>
+                    <form action="/products/favorites/<%= product.id %>" method="POST">
+                        <button type="submit" class="action-btn fav <%= isFav ? 'active-fav' : '' %> "><ion-icon name="heart-outline"></ion-icon></button>
+                    </form>
                 </div>
                 <div class="description">
                     <h3 class="category"><%= product.categories.name %></h3>

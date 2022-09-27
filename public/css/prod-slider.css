@@ -124,6 +124,11 @@
     transform: scale(1.1);
 }
 
+.active-fav {
+    color: var(--pink) !important;
+    transform: scale(1.1);
+}
+
 .brand-wrapper {
     height: 40px;
     max-width: 70px;

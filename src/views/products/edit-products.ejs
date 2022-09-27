@@ -71,6 +71,7 @@
                     <div class="size-colors-container">
                         <h3 class="register-label size-title">Talles</h3>
                         <div class="form-group-talle talle">
+                            <% let sizes = product.size_eur.split(',');%>
                             <div class="sizes-group">
                                 <input class="size-input" id="size34" type="checkbox" name="sizes" value="34" <%= (sizes && (sizes).includes("34")) ? 'checked' : '' %>>
                                 <label class="size-label" for="size34">34</label>
@@ -129,6 +130,7 @@
                         <div class="color-pickers-wrapper">
                             <h3 class="register-label">Colores</h3>
                             <div class="colors">
+                                <% let colors =  product.colors_hexa.split(',');%>
                                 <input type="color" id="colorpicker1" name="colors" value="<%= (colors) ? colors[0] : "#ffffff"%>">
                                 <input type="color" id="colorpicker2" name="colors" value="<%= (colors) ? colors[1] : "#ffffff"%>">
                                 <input type="color" id="colorpicker3" name="colors" value="<%= (colors) ? colors[2] : "#ffffff"%>">

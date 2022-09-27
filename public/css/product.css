@@ -37,6 +37,10 @@
     transform: scale(1.1);
 }
 
+.active-fav {
+    color: var(--pink);
+    transform: scale(1.1);
+}
 
 .item-name {
 	font-family: "Montserrat", sans-serif;

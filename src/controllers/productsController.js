@@ -23,7 +23,7 @@ const Favorites = db.Favorite;
 const productsController = {  
     allProducts: async function (req, res) {
         const products = await Products.findAll({
-            include: [{association: "brands"}, {association: "categories"}, {association: "users"}, {association: "favUsers"}] 
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}, {association: "favUsers"}]
         });
         res.render('./products/all-products', {
             products: products,
@@ -43,7 +43,7 @@ const productsController = {
         const category_id = category[0].id;
 
         const products = await Products.findAll({
-            include: [{association: "brands"}, {association: "categories"}, {association: "users"}],
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}, {association: "favUsers"}],
             where: {
                 category_id: category_id
             }
@@ -66,7 +66,7 @@ const productsController = {
         const category_id = category[0].id;
 
         const products = await Products.findAll({
-            include: [{association: "brands"}, {association: "categories"}, {association: "users"}],
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}, {association: "favUsers"}],
             where: {
                 category_id: category_id
             }
@@ -89,7 +89,7 @@ const productsController = {
         const category_id = category[0].id;
 
         const products = await Products.findAll({
-            include: [{association: "brands"}, {association: "categories"}, {association: "users"}],
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}, {association: "favUsers"}],
             where: {
                 category_id: category_id
             }
@@ -103,7 +103,7 @@ const productsController = {
         if (!productOwner) return res.redirect('/users/login');
 
         const products = await Products.findAll({
-            include: [{association: "brands"}, {association: "categories"}, {association: "users"}],
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}, {association: "favUsers"}],
             where: {
                 user_id: productOwner.id
             }
@@ -115,14 +115,14 @@ const productsController = {
     productDetails: async (req, res) => {
         const productId = req.params.id;
         let productoEncontrado = await Products.findByPk(productId, {
-            include: [{association: "brands"}, {association: "categories"}, {association: "users"}] 
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}, {association: "favUsers"}] 
         });
         if (!productoEncontrado) {
             return res.status(404).send("No se encuentra el producto");
         }
 
         const allProducts = await Products.findAll({
-            include: [{association: "brands"}, {association: "categories"}, {association: "users"}] 
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}, {association: "favUsers"}] 
         });
 
         res.render('./products/product-details',  {
@@ -208,8 +208,6 @@ const productsController = {
             product: editProduct,
             brands: brands,
             categories: categories,
-            sizes: sizes,
-            colors: colors
         })
     },
     processEditProduct: async function (req, res) {
@@ -247,8 +245,6 @@ const productsController = {
                 product: editProduct,
                 brands: brands,
                 categories: categories,
-                sizes: sizes,
-                colors: colors
             })
         }
 
