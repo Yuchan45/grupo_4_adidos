@@ -23,7 +23,7 @@ const Favorites = db.Favorite;
 const productsController = {  
     allProducts: async function (req, res) {
         const products = await Products.findAll({
-            include: [{association: "brands"}, {association: "categories"}, {association: "users"}] 
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}, {association: "favUsers"}] 
         });
         res.render('./products/all-products', {
             products: products,

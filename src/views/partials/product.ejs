@@ -3,9 +3,18 @@
         <% if (products.length == 0) { %>
             <span>No hay productos!</span>
         <% } %>
+        
         <% for(let i=0; i<products.length; i++) { %>
             <div class="main-item">
                 <div class="item-header">
+                    <!-- esta mierda de aca es prueba -->
+
+                    <!-- fin de prueba -->
+                    <% const isFav = '';%>
+                    <li>
+                        <%= products[i].favUsers[1].id %>
+                    </li> 
+
                     <form action="/products/shopping-cart/<%= products[i].id %>" method="POST">
                         <button type="submit" class="action-btn bag"><ion-icon name="bag-add-outline"></ion-icon></button>
                     </form>

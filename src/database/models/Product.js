@@ -89,6 +89,14 @@ module.exports = function(sequelize, dataTypes) {
             as: "users",
             foreignKey: "user_id"
         });
+
+        Product.belongsToMany(models.User, {
+            as: "favUsers",
+            through: "Favorites",
+            foreignKey: "product_id",
+            otherKey: "user_id",
+            timestamps: false
+        });
     }
 
     return Product
