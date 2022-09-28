@@ -324,6 +324,34 @@ const productsController = {
             user: req.session.userLogged
         })
     },
+    favorites: async (req, res) => {
+        if (!req.session.userLogged) return res.redirect('/users/login');
+        const userId = req.session.userLogged.id;
+
+        const favorites = await Favorites.findAll({
+            where: {
+                user_id: userId
+            }
+        });
+
+        let favoriteProdIds = [];
+        favorites.forEach(product => {
+            // Me armo un array con los ids de los productos favoritos del usuario.
+            favoriteProdIds.push(product.product_id);
+        });
+
+        const products = await Products.findAll({
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}, {association: "favUsers"}],
+            where: {
+                id: favoriteProdIds       // Esto es magia, se puede pasar un array de ids...
+            }
+        });
+
+        res.render('./products/all-products', {
+            products: products,
+        });
+
+    },
     addToFavorites: async (req, res) => {
         if (!req.session.userLogged) return res.redirect('/users/login');
         if (!req.params.id) return;
@@ -339,6 +367,7 @@ const productsController = {
         });
 
         if (!alreadyFav) {
+            // Lo agrega a favoritos
             const newFav = {
                 user_id: userId,
                 product_id: prodId
@@ -348,15 +377,34 @@ const productsController = {
             if (!createdFav) return res.send("Ha ocurrido un problema al agregar el producto a favoritos :(");
     
             return res.send("El producto ha sido añadido a favoritos!");
+        } else {
+            // Lo saca de favoritos
+
+            await Favorites.destroy({
+                where: {
+                    product_id: prodId
+                },
+                force: true 
+            });
+
+            return res.send("El producto ha sido removido de favoritos!");
         }
+
         return res.send("Ya estaba en favoritos!");
 
         // DEBERIA PODER VOLVER AL 'MISMO' LUGAR XQ EL AGREGAR A FAVORITOS NO TE CAMBIA DE PAGINA. PERO NO SE COMO HACER ESE REDIRECT.
         // return res.redirect('/products');
     },
     test: async function(req, res) {
-        const brands = await Brands.findAll({ raw: true });
-        return res.send(brands);
+        const products = await Products.findAll({
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}, {association: "favUsers"}],
+            where: {
+                id: [30, 31, 32]
+            }
+        });
+        res.render('./products/all-products', {
+            products: products,
+        });
     }
 };
 

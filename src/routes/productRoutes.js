@@ -9,7 +9,8 @@ const uploadFile = require('../middlewares/products/productsMulter');
 const validateProducts = require('../middlewares/products/validateProducts');
 const validateEditProducts = require('../middlewares/products/validateEditProducts');
 
-const {allProducts, running, urban, trackAndField, myProducts, createProduct, processCreateProduct, search, productDetails, editProduct, processEditProduct, deleteProduct, addToFavorites, test} = productsController;
+const {allProducts, running, urban, trackAndField, myProducts, createProduct, processCreateProduct, search, productDetails,
+        editProduct, processEditProduct, deleteProduct, favorites, addToFavorites, test} = productsController;
 
 router.get('/', allProducts);
 router.get('/running', running);
@@ -25,17 +26,19 @@ router.post('/create', uploadFile.single("productImage"), validateProducts, proc
 
 router.get('/search', search);
 
-router.get('/:id', productDetails);
-
 router.get('/:id/edit', editProduct);
 
 router.put('/:id/edit', uploadFile.single("productImage"), validateEditProducts, processEditProduct)
 
 router.delete('/delete/:id', deleteProduct);
 
+router.get('/favorites', favorites); 
 router.post('/favorites/:id', addToFavorites); 
 
 router.get('/test', test);
+
+router.get('/:id', productDetails);
+
 
 
 module.exports = router;

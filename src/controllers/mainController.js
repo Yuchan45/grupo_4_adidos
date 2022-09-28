@@ -24,7 +24,7 @@ const mainController = {
     },
     shoppingCart: async function(req, res) {
         const products = await Products.findAll({
-            include: [{association: "brands"}, {association: "categories"}, {association: "users"}] 
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}, {association: "favUsers"}] 
         });
         
         let total = 0;
@@ -35,7 +35,6 @@ const mainController = {
             products: products,
             shopCartSneakers: shopCartSneakers,
             total: total,
-            user: req.session.userLogged
         });
     }
 };
