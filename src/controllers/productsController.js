@@ -390,10 +390,8 @@ const productsController = {
             return res.send("El producto ha sido removido de favoritos!");
         }
 
-        return res.send("Ya estaba en favoritos!");
-
         // DEBERIA PODER VOLVER AL 'MISMO' LUGAR XQ EL AGREGAR A FAVORITOS NO TE CAMBIA DE PAGINA. PERO NO SE COMO HACER ESE REDIRECT.
-        // return res.redirect('/products');
+
     },
     test: async function(req, res) {
         const products = await Products.findAll({

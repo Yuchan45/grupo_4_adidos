@@ -1,7 +1,5 @@
 const path = require('path');
-const sliderSneakers = require('../data/sneakers');
 const shopCartSneakers = require('../data/shopCartSneakers');
-const fileOperation = require('../modules/fileControl');
 
 // Sequelize
 const db = require('../database/models');
@@ -36,6 +34,18 @@ const mainController = {
             shopCartSneakers: shopCartSneakers,
             total: total,
         });
+    },
+    addShoppingCart: async (req, res) => {
+        if (!req.session.userLogged) return res.redirect('/users/login');
+
+        // Tengo que crear el carrito vacio (con nro de orden y status(inicialmente pending))
+        
+        // Tengo que crear el item (la instancia del producto con quantity, precio congelado y fecha de agregado).
+
+
+
+
+        return res.send("Añadir al carrito");
     }
 };
 

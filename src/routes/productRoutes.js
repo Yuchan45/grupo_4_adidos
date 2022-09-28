@@ -35,6 +35,7 @@ router.delete('/delete/:id', deleteProduct);
 router.get('/favorites', favorites); 
 router.post('/favorites/:id', addToFavorites); 
 
+
 router.get('/test', test);
 
 router.get('/:id', productDetails);
