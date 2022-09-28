@@ -4,6 +4,8 @@ const sequelize = db.sequelize;
 //Otra forma de llamar a los modelos
 const Products = db.Product;
 const Favorites = db.Favorite;
+const ShoppingCarts = db.Shopping_cart;
+const Items = db.Item;
 const path = require('path');
 
 const Product = {
@@ -58,6 +60,12 @@ const Product = {
             ...favData,
         });
         return createdFavorite;
+    },
+    createShoppingCartDb: async function(data) {
+        const createdShoppingCart = await ShoppingCarts.create({ 
+            ...data
+        });
+        return createdShoppingCart;
     },
 
 
