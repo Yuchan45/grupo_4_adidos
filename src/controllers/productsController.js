@@ -357,6 +357,7 @@ const productsController = {
         if (!req.params.id) return;
         const prodId = req.params.id;
         const userId = req.session.userLogged.id;
+        console.log({prodId, userId});
 
         // Chequeamos que el usuario no tenga ya añadido este producto en favoritos.
         const alreadyFav = await Favorites.findOne({

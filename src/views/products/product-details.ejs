@@ -25,59 +25,60 @@
                 </div>
             </div>
             <div class="info-container">
-                <div class="prod-info">
-                    <div class="information">
-                        <h2 class="brand"><%= product.brands.name %></h2>
-                        <h1 class="model"><%= product.model %></h1>
-                        <p class="prod-owner">Por <span><%= product.users.fullname %></span></p>
-                    </div>
-                    <% let isFav = false; %> 
-                    <% if (locals.userLogged) { %>
-                        <% const userId = product.favUsers[0] ? product.favUsers[0].id : '' %>
-                        <% if (userId == locals.userLogged.id) { %>
-                            <% isFav = true; %> 
+                <form action="/shopping-cart/<%= product.id %>" method="POST"></form>
+                    <div class="prod-info">
+                        <div class="information">
+                            <h2 class="brand"><%= product.brands.name %></h2>
+                            <h1 class="model"><%= product.model %></h1>
+                            <p class="prod-owner">Por <span><%= product.users.fullname %></span></p>
+                        </div>
+                        <% let isFav = false; %> 
+                        <% if (locals.userLogged) { %>
+                            <% const userId = product.favUsers[0] ? product.favUsers[0].id : '' %>
+                            <% if (userId == locals.userLogged.id) { %>
+                                <% isFav = true; %> 
+                            <% } %>
                         <% } %>
-                    <% } %>
-                    <form action="/products/favorites/<%= product.id %>" method="POST">
-                        <button type="submit" class="action-btn fav <%= isFav ? 'active-fav' : '' %> "><ion-icon name="heart-outline"></ion-icon></button>
-                    </form>
-                </div>
-                <div class="description">
-                    <h3 class="category"><%= product.categories.name %></h3>
-                    <div class="price">
-                        <h3>$<%= product.price %></h3>
-                        <p><%= product.discount %>% OFF</p>
+                        <button type="button" id="heart-<%= product.id %>" onclick="like(<%= product.id %>)" class="action-btn fav <%= isFav ? 'active-fav' : '' %> ">
+                            <ion-icon name="heart-outline"></ion-icon>
+                        </button>
                     </div>
+                    <div class="description">
+                        <h3 class="category"><%= product.categories.name %></h3>
+                        <div class="price">
+                            <h3>$<%= product.price %></h3>
+                            <p><%= product.discount %>% OFF</p>
+                        </div>
 
-                    <p class="gender-title">Género: <span> <%= product.gender %></span></p>
-                </div>
-                <div class="selection">
-                    <h3>Colores</h3>
-                    <div class="colors-wrapper">
-                        <% const colors = product.colors_hexa.split(','); %>
-                        <% for(let j=0; j < colors.length; j++) { %>
-                        <div class="color" style=<%= 'background-color:' + colors[j] + ';' %> ></div>
-                        <% } %>
+                        <p class="gender-title">Género: <span> <%= product.gender %></span></p>
+                    </div>
+                    <div class="selection">
+                        <h3>Colores</h3>
+                        <div class="colors-wrapper">
+                            <% const colors = product.colors_hexa.split(','); %>
+                            <% for(let j=0; j < colors.length; j++) { %>
+                            <div class="color" style=<%= 'background-color:' + colors[j] + ';' %> ></div>
+                            <% } %>
+                        </div>
+                    
+                        <h3>Talles</h3>
+                        <select name="size" class="size-dropdown" size="1">
+                            <% const sizes = product.size_eur.split(','); %>
+                            <% for(let k=0; k < sizes.length; k++) { %>
+                                <option value="<%= sizes[k] %>"> <%= sizes[k] %> </option>
+                            <% } %>
+                        
+                        </select>
+                        <h3>Descripcion</h3>
+                        <details class="prod-description">
+                            <summary>Ver descripción</summary>
+                            <p><%= product.description %></p>
+                        </details>
+                        <p class="stock"><%= product.stock %> producto/s en stock!</p>
                     </div>
                 
-                    <h3>Talles</h3>
-                    <select class="size-dropdown" size="1">
-                        <% const sizes = product.size_eur.split(','); %>
-                        <% for(let k=0; k < sizes.length; k++) { %>
-                            <option value=""> <%= sizes[k] %> </option>
-                        <% } %>
-                     
-                    </select>
-                    <h3>Descripcion</h3>
-                    <details class="prod-description">
-                        <summary>Ver descripción</summary>
-                        <p><%= product.description %></p>
-                    </details>
-                    <p class="stock"><%= product.stock %> producto/s en stock!</p>
-                </div>
-                <div class="buy">
-                    <p>Comprar ahora</p>
-                </div>
+                    <button type="submit" class="buy">Comprar ahora!</button>
+                </form>
             </div>
         </div>
     </main>
@@ -88,6 +89,7 @@
     <!-- Footer -->
     <%- include('../partials/footer') %>
 
+    <script src="/js/like.js"></script>
     <script src="/js/hamburger.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

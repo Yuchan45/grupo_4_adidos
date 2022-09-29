@@ -15,12 +15,9 @@
                             <% isFav = true; %> 
                         <% } %>
                     <% } %>
-                    <form action="/shopping-cart/<%= products[i].id %>" method="POST">
-                        <button type="submit" class="action-btn bag"><ion-icon name="bag-add-outline"></ion-icon></button>
-                    </form>
-                    <form action="/products/favorites/<%= products[i].id %>" method="POST">
-                        <button type="submit" class="action-btn fav <%= isFav ? 'active-fav' : '' %>"><ion-icon name="heart-outline"></ion-icon></button>
-                    </form>
+                    <button type="button" id="heart-<%= products[i].id %>" onclick="like(<%= products[i].id %>)" class="action-btn fav <%= isFav ? 'active-fav' : '' %> ">
+                        <ion-icon name="heart-outline"></ion-icon>
+                    </button>
                 </div>
                 <a href="<%= "/products/" + products[i].id %>">
                     <div class="prod-picture">

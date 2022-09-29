@@ -67,7 +67,10 @@ const Product = {
         });
         return createdShoppingCart;
     },
+    createItemsDb: async function(itemData) {
 
+
+    }
 
 }
 

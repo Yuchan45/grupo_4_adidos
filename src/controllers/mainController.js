@@ -40,12 +40,17 @@ const mainController = {
     addShoppingCart: async (req, res) => {
         if (!req.session.userLogged) return res.redirect('/users/login');
         const userId = req.session.userLogged.id;
+        const prodId = req.params.id;
 
-        // Tengo que crear el carrito vacio (con nro de orden y status(inicialmente pending)). 
         // Cuando el usuario haga click en "Finalizar compra", ahi cambio el status del carrito a 'effective' y listo.
+
+
+
+
+        const transactionNumber = parseInt(Date.now().toString().slice(5));
         const data = {
             user_id: userId,
-            transaction_number: uuidv4(),
+            transaction_number: transactionNumber, 
             status: 1
         };
 
@@ -53,7 +58,16 @@ const mainController = {
         if (!createdShoppingCart) return res.send("Ha ocurrido un error al crear el carrito de compras");
 
         // Tengo que crear el item (la instancia del producto con quantity, precio congelado y fecha de agregado).
+        // Me traigo el ultimo shopping cart
 
+
+        // const itemData = {
+        //     shopping_cart_id: ,
+        //     product_id: ,
+        //     quantity: ,
+        //     purchase_value: ,
+
+        // };
 
 
 
