@@ -21,8 +21,8 @@
                 <div class="register-form-left">
                     <h3 class="register-label">Datos</h3>
                     <div class="form-group first-last-name">
-                        <label for="fullname">Nombre y apellido</label>
-                        <input type="text" name="fullname" class="<%= locals.errors && errors.fullname ? 'invalid' : '' %>"
+                        <label for="fullname">Nombre y apellido</label >
+                        <input id="prueba" type="text" name="fullname" class="<%= locals.errors && errors.fullname ? 'invalid' : '' %>"
                          id="name" value="<%= locals.old ? old.fullname : '' %>" >
                         <% if (locals.errors && errors.fullname) { %>
                             <div class="text-danger">
@@ -169,5 +169,6 @@
 
     <!-- Scripts -->
     <script src="/js/hamburger.js"></script>
+    <script src="/js/registerValidations.js"></script>"
 </body>
 </html>
