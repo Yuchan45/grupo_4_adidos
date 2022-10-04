@@ -97,6 +97,14 @@ module.exports = function(sequelize, dataTypes) {
             otherKey: "user_id",
             timestamps: false
         });
+
+        Product.belongsToMany(models.Shopping_cart, {
+            as: "shoppingCarts",
+            through: "Items",
+            foreignKey: "product_id",
+            otherKey: "shopping_cart_id",
+            timestamps: false
+        });
     }
 
     return Product

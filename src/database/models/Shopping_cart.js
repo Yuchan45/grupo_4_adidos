@@ -27,7 +27,27 @@ module.exports = function(sequelize, dataTypes) {
         timestamps: false
     }
 
-    let Shopping_cart = sequelize.define(alias, cols, config)
+    let Shopping_cart = sequelize.define(alias, cols, config);
+
+    // Associations
+    Shopping_cart.associate = function (models) {
+        Shopping_cart.belongsTo(models.User, {
+            as: "users",
+            foreignKey: "user_id"
+        });
+
+        Shopping_cart.belongsToMany(models.Product, {
+            as: "items",
+            through: "Items",
+            foreignKey: "shopping_cart_id",
+            otherKey: "product_id",
+            timestamps: false
+        });
+        
+        
+    }
+
+
 
     return Shopping_cart
 }

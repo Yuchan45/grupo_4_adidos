@@ -96,6 +96,12 @@ module.exports = function(sequelize, dataTypes) {
             otherKey: "product_id",
             timestamps: false
         });
+
+        User.hasMany(models.Shopping_cart, {
+            as: "shoppingCarts",
+            foreignKey: "user_id"
+        });
+
     }
 
     return User

@@ -35,7 +35,9 @@ module.exports = function(sequelize, dataTypes) {
         timestamps: false
     }
 
-    let Item = sequelize.define(alias, cols, config)
+    let Item = sequelize.define(alias, cols, config);
 
+    // Associations
+    
     return Item
 }
