@@ -17,7 +17,7 @@
                 <div class="cart-left">
                     <div class="cart-header">
                         <h1 class="header-tittle">TU CARRITO</h1>
-                        <p class="header-text">TOTAL (<%= shopCartSneakers.length %>  productos)</p>
+                        <p class="header-text">TOTAL (<%=  %>  productos)</p>
                         <p class="header-text">
                             Los productos seleccionados de Shocity no estan reservados.
                         </p>
@@ -26,18 +26,18 @@
                         <p class="banner-text">CONTINUA COMPRANDO</p>
                         <p class="banner-item">></p>
                     </a>
-					<% for(let i=0; i<shopCartSneakers.length; i++) { %>
+					<% for(let i=0; i< 5; i++) { %>
 					<div class="cart-item-list">
 						<div class="item">
 							<div class="item-picture">
-								<img src="<%= shopCartSneakers[i].image %> " alt="">
+								<img src="<%=  %> " alt="">
 							</div>
 							<div class="item-details">
-								<h3 class="item-tittle"> <%= shopCartSneakers[i].brand + " - " + shopCartSneakers[i].model + "" %> </h3>
-								<p class="item-price"> <%= "ARS $" + shopCartSneakers[i].price %> </p>
-								<p class="item-stock"> <%="Stock: " + shopCartSneakers[i].stock %> </p>
+								<h3 class="item-tittle">ASICS - EVORIDE</h3>
+								<p class="item-price"> <%= "ARS $" %> </p>
+								<p class="item-stock"> <%="Stock: " %> </p>
 								<!-- <select class="item-quantity" name="quantity">
-									<% for(let j=0; j<shopCartSneakers[i].stock; j++) { %>
+									<% for(let j=0; j< 5; j++) { %>
 										<option value="<%= j+1 %>"> <%= j+1 %>  </option>
 									<% } %>
 								</select> -->
@@ -52,10 +52,10 @@
                 <div class="cart-right">
                     <div class="order-summery">
                         <h2 class="order-tittle">RESUMEN DEL PEDIDO</h2>
-						<% for(let i=0; i<shopCartSneakers.length; i++) { %>
+						<% for(let i=0; i<5; i++) { %>
 						<div class="order-details">
-							<p class="order-text"> <%= shopCartSneakers[i].brand + " - " + shopCartSneakers[i].model %> </p>
-							<p class="order-text"> <%= "$" + shopCartSneakers[i].price %>  </p>
+							<p class="order-text">ADIDAS ULTRABOOST</p>
+							<p class="order-text">$123</p>
 						</div>
 						<% } %>
                         <div class="order-details">
@@ -65,7 +65,7 @@
 						<hr>
                         <div class="order-details">
                             <p class="order-text-bold">TOTAL</p>
-                            <p class="order-text-bold"> <%= "$" + total %> </p>
+                            <p class="order-text-bold"> <%= "$"  %> </p>
                         </div>
                     </div>
                     <button class="cart-button">Comprar</button>

@@ -25,18 +25,32 @@ const mainController = {
         
     },
     shoppingCart: async function(req, res) {
+        if (!req.session.userLogged) return res.redirect('/users/login');
+        const userId = req.session.userLogged.id;
+
         const products = await Products.findAll({
             include: [{association: "brands"}, {association: "categories"}, {association: "users"}, {association: "favUsers"}] 
         });
-        
-        let total = 0;
-        for (let i=0; i<shopCartSneakers.length; i++) {
-            total += shopCartSneakers[i].price;
-        }
+
+        const shoppingCart = await ShoppingCarts.findOne({
+            where: {
+                user_id: userId,
+                status: 1
+            }
+        });
+
+        const shoppingCartId = shoppingCart.id;
+        const items = await Items.findAll({
+            where: {
+                shopping_cart_id: shoppingCartId
+            }
+        }, {
+            include: [{association: ""}, {association: ""}, {association: ""}, {association: ""}] 
+        });
+
+
         res.render('shopping-cart', {
-            products: products,
-            shopCartSneakers: shopCartSneakers,
-            total: total,
+            products: products
         });
     },
     addShoppingCart: async (req, res) => {
@@ -98,7 +112,7 @@ const mainController = {
         const createdItem = Product.createItemsDb(itemData);
         if (!createdItem) return res.send("Error al crear el item :(");
 
-        return res.send(createdItem);
+        return res.redirect('/shopping-cart');
     }
 };
 
