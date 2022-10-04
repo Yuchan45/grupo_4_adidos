@@ -37,6 +37,8 @@ const mainController = {
                 user_id: userId,
                 status: 1
             }
+        }, {
+            include: [{association: "users"}, {association: "products"}] 
         });
 
         const shoppingCartId = shoppingCart.id;
@@ -44,13 +46,13 @@ const mainController = {
             where: {
                 shopping_cart_id: shoppingCartId
             }
-        }, {
-            include: [{association: ""}, {association: ""}, {association: ""}, {association: ""}] 
         });
 
 
         res.render('shopping-cart', {
-            products: products
+            products: products,
+            shoppingCart: shoppingCart,
+            items: items
         });
     },
     addShoppingCart: async (req, res) => {
