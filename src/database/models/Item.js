@@ -8,7 +8,7 @@ module.exports = function(sequelize, dataTypes) {
             autoIncrement: true, 
             allowNull: false
         },
-        shop_cart_id: {
+        shopping_cart_id: {
             type: dataTypes.INTEGER(10).UNSIGNED,
             defaultValue: null
         },

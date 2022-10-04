@@ -69,9 +69,9 @@ const mainController = {
                 status: 1
             };
 
-            shoppingCart = Product.createShoppingCartDb(data);
+            shoppingCart = await Product.createShoppingCartDb(data);
             if (!shoppingCart) return res.send("Ha ocurrido un error al crear el carrito de compras");
-            console.log("Shopping cart CREADO");
+            console.log("Shopping cart CREADO " + shoppingCart.id);
         } else {
             // Hay que buscar el carrito activo.
             shoppingCart = await ShoppingCarts.findAll({
@@ -79,25 +79,26 @@ const mainController = {
                     user_id: userId
                 }
             });
-            console.log("Shopping cart ENCONTRADO");
+            console.log("Shopping cart ENCONTRADO" + shoppingCart.id);
         }
 
-        console.log(shoppingCart);
 
         // Tengo que crear el item (la instancia del producto con quantity, precio congelado y fecha de agregado).
         const prodToAdd = await Products.findByPk(prodId);
         if (!prodToAdd) return res.send("Error al cargar el producto al carrito :(");
 
+        const shoppingCartId = shoppingCart.id;
         const itemData = {
-            shopping_cart_id: shoppingCart.id,
+            shopping_cart_id: shoppingCartId,
             product_id: prodId,
             quantity: 1, // POR AHORA LO VAMOS A DEJAR ASI...
             purchase_value: prodToAdd.price
         };
 
         const createdItem = Product.createItemsDb(itemData);
+        if (!createdItem) return res.send("Error al crear el item :(");
 
-        return res.send("Añadir al carrito");
+        return res.send(createdItem);
     }
 };
 
