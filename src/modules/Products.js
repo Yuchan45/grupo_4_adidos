@@ -68,8 +68,34 @@ const Product = {
         return createdShoppingCart;
     },
     createItemsDb: async function(itemData) {
+        const createdItem = await Items.create({
+            ...itemData,
+            purchase_date: this.getDateTime(),
+        });
+        return createdItem;
 
+    },
+    shoppingCartStatus: function(carts) {
+        // Recibe por parametro un array de carritos. Devuelve...
+        // '-1' -> Este usuario no tiene carritos (sean activos o cerrados).
+        // '0'  -> Este usuario no tiene carritos ACTIVOS.
+        // 'Objeto carrito'  -> Este usuario tiene un carrito ACTIVO.
 
+        let result = 0;
+        if (carts.length > 0) {
+            // Ya hay un carrito para este usuario (sea activo o no).
+            carts.forEach(cart => {
+                if (cart.status == 1) {
+                    // Verifico si el carrito es activo o no. Status: (0 = 'pending', 1 = 'effective').
+                    console.log("Pase por aca")
+                    result = cart;
+                }
+            });
+        } else {
+            // No hay carrito activo para este usuario. Hay que crear uno.
+            result = -1;
+        }
+        return result;
     }
 
 }

@@ -8,6 +8,8 @@ const db = require('../database/models');
 const Products = db.Product;
 const Brands = db.Brand;
 const Categories = db.Category;
+const ShoppingCarts = db.Shopping_cart;
+const Items = db.Item;
 
 
 
@@ -41,35 +43,59 @@ const mainController = {
         if (!req.session.userLogged) return res.redirect('/users/login');
         const userId = req.session.userLogged.id;
         const prodId = req.params.id;
+        const prodData = req.body;
 
         // Cuando el usuario haga click en "Finalizar compra", ahi cambio el status del carrito a 'effective' y listo.
 
+        const carritos = await ShoppingCarts.findAll({
+            where: {
+                user_id: userId
+            }
+        });
 
+        // Detalles de estados:
+        // '-1' -> Este usuario no tiene carritos (sean activos o cerrados).
+        // '0'  -> Este usuario no tiene carritos ACTIVOS.
+        // 'Objeto carrito'  -> Este usuario tiene un carrito ACTIVO.
 
+        const resultStatus = Product.shoppingCartStatus(carritos);
+        let shoppingCart = '';
+        if (resultStatus == -1 || resultStatus == 0) {
+            // Hay que crear un carrito nuevo xq no hay carritos activos.
+            const transactionNumber = parseInt(Date.now().toString().slice(5));
+            const data = {
+                user_id: userId,
+                transaction_number: transactionNumber, 
+                status: 1
+            };
 
-        const transactionNumber = parseInt(Date.now().toString().slice(5));
-        const data = {
-            user_id: userId,
-            transaction_number: transactionNumber, 
-            status: 1
-        };
+            shoppingCart = Product.createShoppingCartDb(data);
+            if (!shoppingCart) return res.send("Ha ocurrido un error al crear el carrito de compras");
+            console.log("Shopping cart CREADO");
+        } else {
+            // Hay que buscar el carrito activo.
+            shoppingCart = await ShoppingCarts.findAll({
+                where: {
+                    user_id: userId
+                }
+            });
+            console.log("Shopping cart ENCONTRADO");
+        }
 
-        const createdShoppingCart = Product.createShoppingCartDb(data);
-        if (!createdShoppingCart) return res.send("Ha ocurrido un error al crear el carrito de compras");
+        console.log(shoppingCart);
 
         // Tengo que crear el item (la instancia del producto con quantity, precio congelado y fecha de agregado).
-        // Me traigo el ultimo shopping cart
+        const prodToAdd = await Products.findByPk(prodId);
+        if (!prodToAdd) return res.send("Error al cargar el producto al carrito :(");
 
+        const itemData = {
+            shopping_cart_id: shoppingCart.id,
+            product_id: prodId,
+            quantity: 1, // POR AHORA LO VAMOS A DEJAR ASI...
+            purchase_value: prodToAdd.price
+        };
 
-        // const itemData = {
-        //     shopping_cart_id: ,
-        //     product_id: ,
-        //     quantity: ,
-        //     purchase_value: ,
-
-        // };
-
-
+        const createdItem = Product.createItemsDb(itemData);
 
         return res.send("Añadir al carrito");
     }

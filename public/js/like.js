@@ -11,7 +11,7 @@ async function like(id) {
     const data = await response.text();
     
 
-    if (data=='El producto ha sido añadido a favoritos!') {
+    if (data=='True') {
         btn.classList.add("active-fav");
     } else {
         btn.classList.remove("active-fav");

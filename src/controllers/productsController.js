@@ -377,7 +377,7 @@ const productsController = {
             const createdFav = await Product.createFavoriteDb(newFav);
             if (!createdFav) return res.send("Ha ocurrido un problema al agregar el producto a favoritos :(");
     
-            return res.send("El producto ha sido añadido a favoritos!");
+            return res.send("True");
         } else {
             // Lo saca de favoritos
 
