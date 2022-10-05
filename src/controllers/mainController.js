@@ -40,6 +40,17 @@ const mainController = {
                 status: 1
             }
         });
+        console.log("Imprimiendo products")
+        
+        // const brand = await shoppingCart.products[0].getBrands();
+        // console.log(shoppingCart.products[0].brands);
+
+        for await (product of shoppingCart.products) {
+            product.brands = await product.getBrands();
+
+        }
+            
+
 
         shoppingCart = shoppingCart ? shoppingCart : '';
 

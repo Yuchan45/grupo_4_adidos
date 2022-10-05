@@ -12,6 +12,7 @@
     <body>
         <!-- Nav-bar -->
         <%- include('./partials/nav-bar') %>
+        
         <main>
             <div class="cart-main">
                 <div class="cart-left">
@@ -23,7 +24,7 @@
                         </p>
                         <ul>
                             <% for( let i = 0; i < shoppingCart.products.length; i++ ) { %>
-                                <%= shoppingCart.products[i].brand_id %> 
+                                <%= shoppingCart.products[i].brands.name %> 
                             <% } %>
                         </ul>
                     </div>
@@ -31,11 +32,11 @@
                         <p class="banner-text">CONTINUA COMPRANDO</p>
                         <p class="banner-item">></p>
                     </a>
-					<% for(let i=0; i< 5; i++) { %>
+					<% for(let i=0; i< shoppingCart.products.length; i++) { %>
 					<div class="cart-item-list">
 						<div class="item">
 							<div class="item-picture">
-								<img src="<%=  %> " alt="">
+								<img src="/images/products/<%= shoppingCart.products[i].image %> " alt="">
 							</div>
 							<div class="item-details">
 								<h3 class="item-tittle">ASICS - EVORIDE</h3>
