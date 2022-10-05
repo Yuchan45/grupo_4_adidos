@@ -21,6 +21,11 @@
                         <p class="header-text">
                             Los productos seleccionados de Shocity no estan reservados.
                         </p>
+                        <ul>
+                            <% for( let i = 0; i < shoppingCart.products.length; i++ ) { %>
+                                <%= shoppingCart.products[i].brand_id %> 
+                            <% } %>
+                        </ul>
                     </div>
                     <a href="/" class="cart-banner">
                         <p class="banner-text">CONTINUA COMPRANDO</p>

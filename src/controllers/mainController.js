@@ -32,27 +32,20 @@ const mainController = {
             include: [{association: "brands"}, {association: "categories"}, {association: "users"}, {association: "favUsers"}] 
         });
 
-        const shoppingCart = await ShoppingCarts.findOne({
+
+        let shoppingCart = await ShoppingCarts.findOne({
+            include: [{association: "users"}, {association: "products"}],
             where: {
                 user_id: userId,
                 status: 1
             }
-        }, {
-            include: [{association: "users"}, {association: "products"}] 
         });
 
-        const shoppingCartId = shoppingCart.id;
-        const items = await Items.findAll({
-            where: {
-                shopping_cart_id: shoppingCartId
-            }
-        });
-
+        shoppingCart = shoppingCart ? shoppingCart : '';
 
         res.render('shopping-cart', {
             products: products,
-            shoppingCart: shoppingCart,
-            items: items
+            shoppingCart: shoppingCart
         });
     },
     addShoppingCart: async (req, res) => {
@@ -90,12 +83,12 @@ const mainController = {
             console.log("Shopping cart CREADO " + shoppingCart.id);
         } else {
             // Hay que buscar el carrito activo.
-            shoppingCart = await ShoppingCarts.findAll({
+            shoppingCart = await ShoppingCarts.findOne({
                 where: {
                     user_id: userId
                 }
             });
-            console.log("Shopping cart ENCONTRADO" + shoppingCart.id);
+            console.log("Shopping cart ENCONTRADO" + shoppingCart);
         }
 
 

@@ -87,7 +87,6 @@ const Product = {
             carts.forEach(cart => {
                 if (cart.status == 1) {
                     // Verifico si el carrito es activo o no. Status: (0 = 'pending', 1 = 'effective').
-                    console.log("Pase por aca")
                     result = cart;
                 }
             });
