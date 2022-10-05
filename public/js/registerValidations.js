@@ -1,7 +1,10 @@
 window.addEventListener("load", function() {
-    let label = document.querySelector("#prueba");
+    let nameInput = document.querySelector("#nameInput");
+    let nameTxt = document.querySelector("#fullName");
 
-    label.addEventListener("focus", function() {
+    nameInput.addEventListener("keypress", function() {
+        
         console.log(1)
+        nameTxt.innerHTML = "Hola"
     })
 })
