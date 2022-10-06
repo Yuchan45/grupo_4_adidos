@@ -8,7 +8,7 @@ router.get('/', index);
 
 router.get('/shopping-cart', shoppingCart);
 router.post('/shopping-cart/:id', addShoppingCart);
-router.delete('shopping-cart/delete/:id', removeShoppingCartItem);
+router.delete('/shopping-cart/delete/:id', removeShoppingCartItem);
 
 
 
