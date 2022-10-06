@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router();
 const mainController = require('../controllers/mainController');
 
-const {index, shoppingCart, addShoppingCart} = mainController;
+const {index, shoppingCart, addShoppingCart, removeShoppingCartItem} = mainController;
 
 router.get('/', index);
 
 router.get('/shopping-cart', shoppingCart);
 router.post('/shopping-cart/:id', addShoppingCart);
+router.delete('shopping-cart/delete/:id', removeShoppingCartItem);
 
 
 

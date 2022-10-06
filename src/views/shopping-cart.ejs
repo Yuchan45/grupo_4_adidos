@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="item-details">
                                     <h3 class="item-tittle">
-                                        <%= shoppingCart.products[i].categories.name %> - <%= shoppingCart.products[i].model %>
+                                        <%= shoppingCart.products[i].brands.name %> - <%= shoppingCart.products[i].model %>
                                     </h3>
                                     <p class="item-price">
                                         <%= shoppingCart.products[i].categories.name %>
@@ -51,9 +51,9 @@
                                     <p class="item-price">
                                         ARS $ <%= shoppingCart.products[i].price %>
                                     </p>
-                                    <button class="delete-prod">
-                                        <p class="item-button">Quitar</p>
-                                    </button>
+                                    <form action="shopping-cart/delete/<%= products[i].id %>?_method=DELETE" method="POST">
+                                        <button type="submit" class="delete-prod">Quitar</button>
+                                    </form> 
                                 </div>
                             </div>
                         </div>

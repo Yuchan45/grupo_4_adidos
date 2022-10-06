@@ -121,6 +121,9 @@ const mainController = {
         if (!createdItem) return res.send("Error al crear el item :(");
 
         return res.redirect('/shopping-cart');
+    },
+    removeShoppingCartItem: async (req, res) => {
+        return res.send("Remuevo");
     }
 };
 
