@@ -32,7 +32,6 @@ const mainController = {
             include: [{association: "brands"}, {association: "categories"}, {association: "users"}, {association: "favUsers"}] 
         });
 
-
         let shoppingCart = await ShoppingCarts.findOne({
             include: [{association: "users"}, {association: "products"}],
             where: {
@@ -40,19 +39,22 @@ const mainController = {
                 status: 1
             }
         });
-        console.log("Imprimiendo products")
-        
-        // const brand = await shoppingCart.products[0].getBrands();
-        // console.log(shoppingCart.products[0].brands);
 
-        for await (product of shoppingCart.products) {
-            product.brands = await product.getBrands();
+        shoppingCart = shoppingCart ? shoppingCart : '';
 
+        // Me traigo las asociaciones de los productos que me llegan en el shopping cart.
+        if (shoppingCart) {
+            // Brands
+            for await (product of shoppingCart.products) {
+                product.brands = await product.getBrands();
+            }
+            // Categories
+            for await (product of shoppingCart.products) {
+                product.categories = await product.getCategories();
+            }
         }
             
 
-
-        shoppingCart = shoppingCart ? shoppingCart : '';
 
         res.render('shopping-cart', {
             products: products,
