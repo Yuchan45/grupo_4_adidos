@@ -51,7 +51,7 @@
                                     <p class="item-price">
                                         ARS $ <%= shoppingCart.products[i].price %>
                                     </p>
-                                    <form action="shopping-cart/delete/<%= products[i].id %>?_method=DELETE" method="POST" class="remove-form">
+                                    <form action="shopping-cart/delete/<%= shoppingCart.products[i].id %>?_method=DELETE" method="POST" class="remove-form">
                                         <button type="submit" class="delete-prod">
                                             <ion-icon name="trash-outline"></ion-icon>
                                         </button>

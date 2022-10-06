@@ -123,7 +123,31 @@ const mainController = {
         return res.redirect('/shopping-cart');
     },
     removeShoppingCartItem: async (req, res) => {
-        return res.send("Remuevo");
+        if (!req.session.userLogged) return res.redirect('/users/login');
+        const userId = req.session.userLogged.id;
+        const prodId = req.params.id;
+
+        // Primero debo saber que carrito tiene el usuario, para asi borrar el items de ese carrito.
+        const shoppingCart = await ShoppingCarts.findOne({
+            where: {
+                user_id: userId
+            }
+        });
+        console.log("Product_id: " + prodId)
+        console.log(shoppingCart)
+        const shoppingCartId = shoppingCart.id;
+
+        // Borro el prod de la db
+        await Items.destroy({
+            where: {
+                shopping_Cart_id: shoppingCartId,
+                product_id: prodId
+            },
+            force: true 
+        });
+
+
+        return res.redirect('/shopping-cart');
     }
 };
 
