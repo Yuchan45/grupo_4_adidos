@@ -172,7 +172,9 @@ body{
     opacity: .8;
     border: none;
     transition: all .3s ease;
+    color: white;
     margin: 10px auto 0;
+    font-weight: 700;
 }
 
 .info-container .buy:hover {

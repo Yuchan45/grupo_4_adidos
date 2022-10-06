@@ -39,17 +39,22 @@
                         <div class="cart-item-list">
                             <div class="item">
                                 <div class="item-picture">
-                                    <img src="/images/products/<%= shoppingCart.products[i].image %> " alt="">
+                                    <a href="/products/<%= shoppingCart.products[i].id %>">
+                                        <img src="/images/products/<%= shoppingCart.products[i].image %> " alt="">
+                                    </a>
                                 </div>
                                 <div class="item-details">
-                                    <h3 class="item-tittle">
-                                        <%= shoppingCart.products[i].brands.name %> - <%= shoppingCart.products[i].model %>
-                                    </h3>
-                                    <p class="item-price">
+                                    <p class="item-category">
                                         <%= shoppingCart.products[i].categories.name %>
                                     </p>
+                                    <div class="brand-logo-wrapper">
+                                        <img src="/images/products/logos/<%= (shoppingCart.products[i].brands.logo) ? shoppingCart.products[i].brands.logo : 'default-logo.jpg' %>" alt="">
+                                    </div>
+                                    <h2 class="prod-model">
+                                        <%= shoppingCart.products[i].model %>
+                                    </h2>
                                     <p class="item-price">
-                                        ARS $ <%= shoppingCart.products[i].price %>
+                                        ARS $<%= shoppingCart.products[i].price %>
                                     </p>
                                     <form action="shopping-cart/delete/<%= shoppingCart.products[i].id %>?_method=DELETE" method="POST" class="remove-form">
                                         <button type="submit" class="delete-prod">
