@@ -148,7 +148,44 @@ const mainController = {
 
 
         return res.redirect('/shopping-cart');
+    },
+    
+    test: async (req, res) => {
+        let countByBrands = {};
+        let brandsArray = [];
+
+        const brands = await Brands.findAll();
+        brands.forEach(brand => {
+            brandsArray.push(brand.name);
+        });
+        
+        const products = await Products.findAll({
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}, {association: "favUsers"}] 
+        });
+        
+        for (let i=0; i<brandsArray.length; i++) {
+            let count = 0;
+            for (let j=0; j<products.length; j++) {
+                if (products[j].brands.name == brandsArray[i]) {
+                    let marca = products[j].brands.name;
+                    count += 1;
+                    countByBrands[marca] = count;
+                }
+            }
+        }
+
+        return res.send(countByBrands);
+
+
+
+
+        
+
+
+        return res.send("hola");
     }
+
+
 };
 
 module.exports = mainController;
