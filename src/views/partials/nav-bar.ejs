@@ -35,16 +35,17 @@
 					</div>
 					<ul class="nav-menu-list">
 						<% if (locals && locals.isLogged) { %>  <!-- Me fijo si hay un usuario activo actualmente -->
+							<li>
+								<i class="fa-solid fa-user"></i>
+								<a href="/users/profile">Mi perfil</a>
+							</li>
 							<% if (locals.userLogged.role == 'admin') { %>
 								<li class="user-list">
 									<i class="fa-solid fa-address-book"></i>
 									<a href="/users/list">Ver usuarios</a>
 								</li>
 							<% } %>
-							<li>
-								<i class="fa-solid fa-user"></i>
-								<a href="/users/profile">Mi perfil</a>
-							</li>
+							<br>
 							<li>
 								<i class="fa-solid fa-sack-dollar"></i>
 								<a href="/products/create">Vender</a>
@@ -52,6 +53,10 @@
 							<li>
 								<i class="fa-solid fa-bag-shopping"></i>
 								<a href="/users/my_purchases">Mis compras</a>
+							</li>
+							<li>
+								<i class="fa-solid fa-cart-arrow-down"></i>
+								<a href="/shopping-cart">Carrito</a>
 							</li>
 							<li>
 								<i class="fa-solid fa-bag-shopping"></i>
@@ -77,16 +82,16 @@
 							<a href="/products">Tienda</a>
 						</li>
 						<li>
-							<i class="fa-solid fa-shoe-prints"></i>
-							<a href="">Marcas</a>
+							<i class="fa-solid fa-person-running"></i>
+							<a href="/products/running">Running</a>
 						</li>
 						<li>
-							<i class="fa-solid fa-tag"></i>
-							<a href="">Ofertas</a>
+							<i class="fa-solid fa-tree-city"></i>
+							<a href="/products/urban">Urban</a>
 						</li>
 						<li>
-							<i class="fa-solid fa-user-astronaut"></i>
-							<a href="">Nosotros</a>
+							<i class="fa-solid fa-medal"></i>
+							<a href="/products/track-and-field">Track & Field</a>
 						</li>
 						<% if (locals.isLogged) { %>
 							<li class="logout">
