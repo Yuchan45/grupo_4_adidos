@@ -67,8 +67,6 @@ const mainController = {
         const prodId = req.params.id;
         const prodData = req.body;
 
-        // Cuando el usuario haga click en "Finalizar compra", ahi cambio el status del carrito a 'effective' y listo.
-
         const carritos = await ShoppingCarts.findAll({
             where: {
                 user_id: userId
@@ -149,7 +147,27 @@ const mainController = {
 
         return res.redirect('/shopping-cart');
     },
-    
+    purchase: async (req, res) => {
+        if (!req.session.userLogged) return res.redirect('/users/login');
+        const userId = req.session.userLogged.id;
+
+        const shoppingCart = await ShoppingCarts.findOne({
+            where: {
+                user_id: userId,
+                status: 1
+            }
+        });
+
+        // Se puede updatear un solo registro de esta forma mas sencilla.
+        if (shoppingCart) {
+            shoppingCart.status = 0;
+            await shoppingCart.save();
+            return res.redirect("/users/my_purchases");
+        } else {
+            return res.redirect("/shopping-cart");
+        }
+
+    },
     test: async (req, res) => {
         let countByBrands = {};
         let brandsArray = [];

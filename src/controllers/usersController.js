@@ -6,11 +6,17 @@ const userFunction = require('../modules/userFunction');
 const User = require('../modules/User');
 
 
+
 // Sequelize
 const db = require('../database/models');
 const sequelize = db.sequelize;
 //Otra forma de llamar a los modelos
 const Users = db.User;
+const Products = db.Product;
+const Brands = db.Brand;
+const Categories = db.Category;
+const ShoppingCarts = db.Shopping_cart;
+const Items = db.Item;
 
 
 const allUsersFile = path.join(__dirname, '../data/users.json');
@@ -51,8 +57,41 @@ const usersController = {
     profile: function(req, res) {
         res.render('./users/profile');
     },
-    myPurchases: function(req, res) {
-        res.render('./users/my-purchases');
+    myPurchases: async function(req, res) {
+        if (!req.session.userLogged) return res.redirect('/users/login');
+        const userId = req.session.userLogged.id;
+
+        const products = await Products.findAll({
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}, {association: "favUsers"}] 
+        });
+
+        let shoppingCart = await ShoppingCarts.findOne({
+            include: [{association: "users"}, {association: "products"}],
+            where: {
+                user_id: userId,
+                status: 1
+            }
+        });
+
+        shoppingCart = shoppingCart ? shoppingCart : '';
+
+        // Me traigo las asociaciones de los productos que me llegan en el shopping cart.
+        if (shoppingCart) {
+            // Brands
+            for await (product of shoppingCart.products) {
+                product.brands = await product.getBrands();
+            }
+            // Categories
+            for await (product of shoppingCart.products) {
+                product.categories = await product.getCategories();
+            }
+        }
+            
+
+
+        res.render('./users/my-purchases', {
+            shoppingCart: shoppingCart
+        });
     },
     register: function(req, res) {
         res.render('./users/register-form');

@@ -92,7 +92,9 @@
                             <p class="order-text-bold">$ <%= total %> </p>
                         </div>
                     </div>
-                    <button class="cart-button">Comprar</button>
+                    <form action="/purchase" method="POST">
+                        <button type="submit" class="cart-button">Completar Compra!</button>
+                    </form> 
                 </div>
             </div>
             <!-- PRODUCTS CARROUSEL -->

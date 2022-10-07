@@ -16,45 +16,57 @@
                 <h1 class="purchases-title">Mis compras</h1>
 
                 <div class="header-menu">
-                    <form class="search-bar" action="/users/search" method="GET">
-                        <div class="search-container">
-                            <input class="search-input" type="search" name="search-purchases" id="search" placeholder="Buscar"/>
-                            <button class="search-btn">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </button>
-                        </div>
-                    </form>
-                    <p>50 compras</p>
+                    <p>50 productos</p>
                 </div>
 
-                <div class="articles-container">
-                    <div class="item">
-                        <div class="purchase-date">
-                            <p>6 de septiembre</p>
-                        </div>
-                        <div class="item-body">
-                            <div class="picture">
-                                <img src="" alt="">
-                            </div>
-                            <div class="details">
+                <ul>
+                    <% for(let i=0; i< shoppingCart.products.length; i++) { %>
+                        <li>
+                            <%= shoppingCart.products[i] %> 
+                        </li>
+                    <% } %>
+                </ul>
+
+                <% if (shoppingCart) { %>
+                    <% for(let i=0; i< shoppingCart.products.length; i++) { %>
+                    <div class="articles-container">
+                        <div class="item">
+                            <div class="purchase-number">
+                                <p><span>Orden #</span>67231415</p>
                                 <p class="item-status">Estado: <span>Finalizado</span> </p>
-                                <h2 class="item-name">Asics - Evo Ride 2</h2>
-                                <p class="item-brief-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, cupiditate?</p>
-                                <p class="item-quantity"><span>n°</span> unidad</p>
                             </div>
-                            <div class="action-btns">
-                                <button class="purchase-btn">
-									<p class="item-button">Ver Producto</p>
-								</button>
+                            <div class="item-body">
+                                <div class="picture">
+                                    <!-- /images/products/product-image1664255778798.webp -->
+                                    <img src="/images/products/product-image1664255778798.webp" alt=""> 
+                                </div>
+                                <div class="details">
+                                    <div class="details-body">
+                                        <p class="item-category">
+                                            Track & Field
+                                        </p>
+                                        <div class="brand-logo-wrapper">
+                                            <img src="/images/products/logos/asics-logo.png" alt="">
+                                        </div>
+                                        <h2 class="item-name">Evo Ride 2</h2>
+                                        <p class="item-brief-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, cupiditate?</p>
+                                        <p class="item-price">$1000</p>
+                                    </div>
+                                    <div class="action-btns">
+                                        <form action="/purchase" method="POST">
+                                            <button type="submit" class="purchase-btn">
+                                                <p class="item-button">Ver Producto</p>
+                                            </button>
+                                        </form> 
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-
                     </div>
+                    <% } %>
+                <% } %>
 
 
-
-                </div>
                 
 
 
