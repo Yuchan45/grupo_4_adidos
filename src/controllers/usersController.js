@@ -69,7 +69,7 @@ const usersController = {
             include: [{association: "users"}, {association: "products"}],
             where: {
                 user_id: userId,
-                status: 1
+                status: 0  // Necesito los carrito "inactivo" o ya cerrados.
             }
         });
 
@@ -86,8 +86,8 @@ const usersController = {
                 product.categories = await product.getCategories();
             }
         }
-            
-
+        
+        // console.log(shoppingCart);
 
         res.render('./users/my-purchases', {
             shoppingCart: shoppingCart

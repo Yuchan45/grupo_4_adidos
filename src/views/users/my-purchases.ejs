@@ -13,52 +13,45 @@
         <%- include('../partials/nav-bar') %>
         <main>
             <div class="main-container">
-                <h1 class="purchases-title">Mis compras</h1>
-
                 <div class="header-menu">
-                    <p>50 productos</p>
+                    <h1 class="purchases-title">Mis compras</h1>
+                    <p><%= shoppingCart.products.length %> compras</p>
                 </div>
-
-                <ul>
-                    <% for(let i=0; i< shoppingCart.products.length; i++) { %>
-                        <li>
-                            <%= shoppingCart.products[i] %> 
-                        </li>
-                    <% } %>
-                </ul>
 
                 <% if (shoppingCart) { %>
                     <% for(let i=0; i< shoppingCart.products.length; i++) { %>
                     <div class="articles-container">
                         <div class="item">
                             <div class="purchase-number">
-                                <p><span>Orden #</span>67231415</p>
+                                <p><span>Orden #</span><%= shoppingCart.transaction_number %></p>
                                 <p class="item-status">Estado: <span>Finalizado</span> </p>
                             </div>
                             <div class="item-body">
                                 <div class="picture">
-                                    <!-- /images/products/product-image1664255778798.webp -->
-                                    <img src="/images/products/product-image1664255778798.webp" alt=""> 
+                                    <a href="/products/<%= shoppingCart.products[i].id %>">
+                                        <img src="/images/products/<%= shoppingCart.products[i].image %>" alt="">
+                                    </a>
                                 </div>
                                 <div class="details">
                                     <div class="details-body">
                                         <p class="item-category">
-                                            Track & Field
+                                            <%= shoppingCart.products[i].categories.name %>
                                         </p>
                                         <div class="brand-logo-wrapper">
-                                            <img src="/images/products/logos/asics-logo.png" alt="">
+                                            <img src="/images/products/logos/<%= shoppingCart.products[i].brands.logo %>" alt="">
                                         </div>
-                                        <h2 class="item-name">Evo Ride 2</h2>
-                                        <p class="item-brief-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, cupiditate?</p>
-                                        <p class="item-price">$1000</p>
+                                        <h2 class="item-name"><%= shoppingCart.products[i].model %></h2>
+                                        <p class="item-brief-description"><%= shoppingCart.products[i].description %></p>
+                                        <p class="item-price">ARS$ <%= shoppingCart.products[i].price %></p>
                                     </div>
-                                    <div class="action-btns">
-                                        <form action="/purchase" method="POST">
-                                            <button type="submit" class="purchase-btn">
-                                                <p class="item-button">Ver Producto</p>
-                                            </button>
-                                        </form> 
-                                    </div>
+                                </div>
+                                <div class="action-btns">
+                                    <a href="/products/<%= shoppingCart.products[i].id %>">
+                                        <button type="submit" class="purchase-btn">
+                                            <p class="item-button">Ver Producto</p>
+                                        </button>
+                                
+                                    </a>
                                 </div>
                             </div>
                         </div>
