@@ -15,7 +15,11 @@
             <div class="main-container">
                 <div class="header-menu">
                     <h1 class="purchases-title">Mis compras</h1>
-                    <p><%= shoppingCart.products.length %> compras</p>
+                    <% if (shoppingCart) { %>
+                        <p><%= shoppingCart.products.length %> compras</p>
+                    <% } else { %>
+                        <span>No tienes compras!</span>
+                    <% } %>
                 </div>
 
                 <% if (shoppingCart) { %>
