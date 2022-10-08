@@ -96,12 +96,13 @@ const usersController = {
         });
     },
     list: async function(req, res) {
+        if (!req.session.userLogged && userLogged.role == 'admin') return res.redirect('/users/login');
+
         // Update de los datos de los archivos
         const users = await Users.findAll();
         res.render('./users/user-list', {
             filter : '',
             users: users,
-            user: req.session.userLogged
         });
     },
     processRegister: async function(req, res) {
@@ -278,13 +279,14 @@ const usersController = {
         req.session.destroy(); // Borra todo lo que haya en session.
         return res.redirect('/');
     },
-    search: function(req, res) {
-        users = fileOperation.readFile(allUsersFile);
+    search: async function(req, res) {
+        const users = await Users.findAll();
+
         let userSearch = req.query.search;
         let userResults = []
 
         for (let i = 0; i < users.length; i++) {
-            if (users[i].username.toLowerCase().includes(userSearch.toLowerCase()) || users[i].name.toLowerCase().includes(userSearch.toLowerCase())) {
+            if (users[i].username.toLowerCase().includes(userSearch.toLowerCase()) || users[i].fullname.toLowerCase().includes(userSearch.toLowerCase())) {
                 userResults.push(users[i])
             }
         }
@@ -292,7 +294,6 @@ const usersController = {
         res.render('./users/user-list', {
             filter : '',
             users: userResults,
-            user: req.session.userLogged
         });
     },
     filter: function(req, res) {
@@ -324,7 +325,6 @@ const usersController = {
         res.render('./users/user-list', {
             filter : filter,
             users : userResults,
-            user: req.session.userLogged
         });
     },
     test: async function(req, res) {
