@@ -17,7 +17,7 @@ const Brands = db.Brand;
 const Categories = db.Category;
 const ShoppingCarts = db.Shopping_cart;
 const Items = db.Item;
-
+const Favorites = db.Favorite;
 
 const allUsersFile = path.join(__dirname, '../data/users.json');
 
@@ -54,8 +54,41 @@ const usersController = {
         });
 
     },
-    profile: function(req, res) {
-        res.render('./users/profile');
+    profile: async function(req, res) {
+        if (!req.session.userLogged) return res.redirect('/users/login');
+        const userId = req.session.userLogged.id;
+
+        const favorites = await Favorites.findAll({
+            where: {
+                user_id: userId
+            }
+        });
+        let favoriteProdIds = [];
+        favorites.forEach(product => {
+            // Me armo un array con los ids de los productos favoritos del usuario.
+            favoriteProdIds.push(product.product_id);
+        });
+
+        const favProducts = await Products.findAll({
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}, {association: "favUsers"}],
+            where: {
+                id: favoriteProdIds       // Esto es magia, se puede pasar un array de ids...
+            }
+        });
+        // Me traje los productos favoritos del usuario. --> products
+
+        const productsOnSale = await Products.findAll({
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}, {association: "favUsers"}],
+            where: {
+                user_id: userId
+            }
+        });
+        // Me traje los productos que el usuario tiene en venta --> productsOnSale
+
+        res.render('./users/profile', {
+            favProducts: favProducts,
+            productsOnSale: productsOnSale
+        });
     },
     myPurchases: async function(req, res) {
         if (!req.session.userLogged) return res.redirect('/users/login');
