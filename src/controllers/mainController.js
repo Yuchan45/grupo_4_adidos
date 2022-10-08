@@ -54,7 +54,7 @@ const mainController = {
             }
         }
             
-
+        // console.log(shoppingCart)
 
         res.render('shopping-cart', {
             products: products,
