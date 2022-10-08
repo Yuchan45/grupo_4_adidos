@@ -61,10 +61,6 @@ const usersController = {
         if (!req.session.userLogged) return res.redirect('/users/login');
         const userId = req.session.userLogged.id;
 
-        const products = await Products.findAll({
-            include: [{association: "brands"}, {association: "categories"}, {association: "users"}, {association: "favUsers"}] 
-        });
-
         let shoppingCart = await ShoppingCarts.findOne({
             include: [{association: "users"}, {association: "products"}],
             where: {
@@ -86,8 +82,6 @@ const usersController = {
                 product.categories = await product.getCategories();
             }
         }
-        
-        // console.log(shoppingCart);
 
         res.render('./users/my-purchases', {
             shoppingCart: shoppingCart

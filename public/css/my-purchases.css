@@ -150,6 +150,7 @@ body {
 .main-container {
     margin-top: 80px;
     width: 100vw;
+    min-height: 80vh;
 }
 
 .header-menu {
