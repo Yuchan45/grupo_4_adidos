@@ -306,23 +306,23 @@ const productsController = {
 
         res.redirect('/products/my-products');
    },
-    search: function(req, res) {
-        // const activeUser = fileOperation.readFile(activeUserFile);
-        const allShoes = fileOperation.readFile(allShoesPath);
+    search: async function(req, res) {
+        //const allShoes = fileOperation.readFile(allShoesPath);
+        const allShoes = await Products.findAll({
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}, {association: "favUsers"}]
+        });
 
         let userSearch = req.query.search;
         let productsResults = [];
 
         for (let i = 0; i < allShoes.length; i++) {
-            if (allShoes[i].brand.toLowerCase().includes(userSearch.toLowerCase())) {
+            if (allShoes[i].brands.name.toLowerCase().includes(userSearch.toLowerCase()) || allShoes[i].model.toLowerCase().includes(userSearch.toLowerCase())) {
                 productsResults.push(allShoes[i])
             }
         }
         res.render('./products/all-products', {
-            trendingSneakers : productsResults,
-            products : productsResults,
-            user: req.session.userLogged
-        })
+            products: productsResults,
+        });
     },
     favorites: async (req, res) => {
         if (!req.session.userLogged) return res.redirect('/users/login');
