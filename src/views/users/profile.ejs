@@ -65,7 +65,10 @@
                         </div>
                         <div class="content" id="vision">
                             <h4>Favoritos</h4>
-                            <% for( let i = 0; i < favProducts.length; i++ ) { %>
+                            <% if (favProducts.length == 0) { %>
+                                <p>No tienes productos en favoritos!</p>
+                            <% } %>
+                            <% for(let i = 0; i < favProducts.length; i++ ) { %>
                                 <div class="item-row">
                                     <div class="picture">
                                         <a href="/products/<%= favProducts[i].id %>">
