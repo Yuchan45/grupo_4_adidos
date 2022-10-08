@@ -96,7 +96,7 @@ const usersController = {
         });
     },
     list: async function(req, res) {
-        if (!req.session.userLogged && userLogged.role == 'admin') return res.redirect('/users/login');
+        if (!req.session.userLogged || req.session.userLogged.role != 'admin') return res.redirect('/users/login');
 
         // Update de los datos de los archivos
         const users = await Users.findAll();
@@ -280,6 +280,7 @@ const usersController = {
         return res.redirect('/');
     },
     search: async function(req, res) {
+        if (!req.session.userLogged || req.session.userLogged.role != 'admin') return res.redirect('/users/login');
         const users = await Users.findAll();
 
         let userSearch = req.query.search;
@@ -296,10 +297,11 @@ const usersController = {
             users: userResults,
         });
     },
-    filter: function(req, res) {
+    filter: async function(req, res) {
+        if (!req.session.userLogged || req.session.userLogged.role != 'admin') return res.redirect('/users/login');
         const filter = req.query.filter;
 
-        users = fileOperation.readFile(allUsersFile);
+        const users = await Users.findAll();
         
         let userResults = [];
         switch (filter) {
@@ -307,16 +309,16 @@ const usersController = {
                 userResults = users;
                 break;
             case 'id':
-                userResults = userFunction.getUsersOrderedById(users);
+                userResults = await userFunction.getUsersOrderedByIdDb();
                 break;
             case 'role':
-                userResults = userFunction.getUsersOrderedByRole(users);
+                userResults = await userFunction.getUsersOrderedByRoleDb();
                 break;
             case 'name':
-                userResults = userFunction.getUsersOrderedByName(users);
+                userResults = await userFunction.getUsersOrderedByNameDb();
                 break;
             case 'country':
-                userResults = userFunction.getUsersOrderedByCountry(users);
+                userResults = await userFunction.getUsersOrderedByCountryDb();
                 break;
             default:
                 res.send("Error");
