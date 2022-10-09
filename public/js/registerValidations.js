@@ -2,25 +2,47 @@ const formulario = document.getElementById('formulario')
 const inputs = document.querySelectorAll('#formulario input')
 
 const expresiones = {
-	fullname1: /^[a-zA-Z0-9\_\-]{2,16}$/, // Letras, numeros, guion y guion_bajo
+	fullname: /^[a-zA-Z0-9\_\-]{2,16}$/, // Letras, numeros, guion y guion_bajo
 	username: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
 	password: /^.{8,16}$/, // 8 a 16 digitos.
 	email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
 }
 
 const validarFormulario = (e) => {
+    let nameTxt = document.querySelector("#fullName");
+
+
     switch (e.target.name) {
         case "fullname": 
-        if (expresiones.fullname1.test()) {
-            
-        }
+            if (expresiones.fullname.test(e.target.value)) {
+                nameTxt.innerHTML = ""
+                document.getElementById('formFullname').classList.remove('text-danger')
+            } else {
+                nameTxt.innerHTML = "Debe contener minimo 2 caracteres."
+                document.getElementById('formFullname').classList.add('text-danger')
+            }
         break;
+
         case "username": 
-
+            if (expresiones.username.test(e.target.value)) {
+                nameTxt.innerHTML = ""
+                document.getElementById('formUsername').classList.remove('text-danger')
+            } else {
+                nameTxt.innerHTML = "Debe contener minimo 2 caracteres."
+                document.getElementById('formUsername').classList.add('text-danger')
+            }
         break;
+
         case "password": 
-
+            if (expresiones.username.test(e.target.value)) {
+                nameTxt.innerHTML = ""
+                document.getElementById('formPassword').classList.remove('text-danger')
+            } else {
+                nameTxt.innerHTML = "Debe contener minimo 8 caracteres."
+                document.getElementById('formPassword').classList.add('text-danger')
+            }
         break;
+
         case "email": 
 
         break;
