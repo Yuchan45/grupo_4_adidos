@@ -17,48 +17,52 @@
             <h1 class="form-title">Registrate</h1>
             <h4 class="form-subtitle ">Sé parte de Shoocity</h4>
 
-            <form action="/users/register" method="POST" enctype="multipart/form-data">
+            <form id="formulario" action="/users/register" method="POST" enctype="multipart/form-data">
                 <div class="register-form-left">
                     <h3 class="register-label">Datos</h3>
-                    <div class="form-group first-last-name">
-                        <label for="fullname">Nombre y apellido</label>
-                        <input type="text" name="fullname" class="<%= locals.errors && errors.fullname ? 'invalid' : '' %>"
-                         id="name" value="<%= locals.old ? old.fullname : '' %>" >
+                    <div class="form-group first-last-name" id="formFullname">
+                        <label for="fullname">Nombre y apellido</label >
+                        <input id="nameInput" type="text" name="fullname" class="<%= locals.errors && errors.fullname ? 'invalid' : '' %>"
+                        id="name" value="<%= locals.old ? old.fullname : '' %>">
                         <% if (locals.errors && errors.fullname) { %>
                             <div class="text-danger">
                                 <%= errors.fullname.msg; %>
                             </div>
                         <% } %>
+                         <p id="fullName"></p>
                     </div>
-                    <div class="form-group user">
+                    <div class="form-group user" id="formUsername">
                         <label for="user">Usuario</label>
                         <input type="text" name="username" class="<%= locals.errors && errors.username ? 'invalid' : '' %>" 
-                         id="username" value="<%= locals.old ? old.username : '' %>" >
-                        <% if (locals.errors && errors.username) { %>
-                            <div class="text-danger">
-                                <%= errors.username.msg; %>
-                            </div>
-                        <% } %>
+                        id="username" value="<%= locals.old ? old.username : '' %>" >
+                       <% if (locals.errors && errors.username) { %>
+                           <div class="text-danger">
+                               <%= errors.username.msg; %>
+                           </div>
+                       <% } %>
+                         <p id="userName"></p>
                     </div>
-                    <div class="form-group user">
+                    <div class="form-group user" id="formPassword">
                         <label for="password">Password</label>
                         <input type="password" name="password" class="<%= locals.errors && errors.password ? 'invalid' : '' %>"
-                         id="password" minlength="6" value="<%= locals.old ? old.password : '' %>" >
-                        <% if (locals.errors && errors.password) { %>
-                            <div class="text-danger">
-                                <%= errors.password.msg; %>
-                            </div>
-                        <% } %>
+                        id="password" minlength="6" value="<%= locals.old ? old.password : '' %>" >
+                       <% if (locals.errors && errors.password) { %>
+                           <div class="text-danger">
+                               <%= errors.password.msg; %>
+                           </div>
+                       <% } %>
+                         <p id="passwordText"></p>
                     </div>
-                    <div class="form-group email">
+                    <div class="form-group email" id="formEmail">
                         <label for="email">E-mail</label>
                         <input type="email" name="email" class="<%= locals.errors && errors.email ? 'invalid' : '' %>"
-                         id="email" value="<%= locals.old ? old.email : '' %>" >
-                        <% if (locals.errors && errors.email) { %>
-                            <div class="text-danger">
-                                <%= errors.email.msg; %>
-                            </div>
-                        <% } %>
+                        id="email" value="<%= locals.old ? old.email : '' %>" >
+                       <% if (locals.errors && errors.email) { %>
+                           <div class="text-danger">
+                               <%= errors.email.msg; %>
+                           </div>
+                       <% } %>
+                         <p id="emailText"></p>
                     </div>
                     <div class="register-address">
                         <div class="form-group address">
@@ -169,5 +173,6 @@
 
     <!-- Scripts -->
     <script src="/js/hamburger.js"></script>
+    <script src="/js/registerValidations.js"></script>"
 </body>
 </html>
