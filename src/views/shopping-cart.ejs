@@ -12,63 +12,89 @@
     <body>
         <!-- Nav-bar -->
         <%- include('./partials/nav-bar') %>
+
+        <!-- CALCULAMOS LA SUMATORIA TOTAL DE LOS PRODUCTOS -->
+        <% let total = 0; %>
+        <% if (shoppingCart) { %>
+            <% for( let i = 0; i < shoppingCart.products.length; i++ ) { %>
+                <% total += parseInt(shoppingCart.products[i].price); %>
+            <% } %>
+        <% } %>
         <main>
             <div class="cart-main">
                 <div class="cart-left">
                     <div class="cart-header">
                         <h1 class="header-tittle">TU CARRITO</h1>
-                        <p class="header-text">TOTAL (<%= shopCartSneakers.length %>  productos)</p>
+                        <p class="header-text">TOTAL (<%= shoppingCart ? shoppingCart.products.length : '0' %>  productos)</p>
                         <p class="header-text">
                             Los productos seleccionados de Shocity no estan reservados.
                         </p>
                     </div>
                     <a href="/" class="cart-banner">
                         <p class="banner-text">CONTINUA COMPRANDO</p>
-                        <p class="banner-item">></p>
+                        <p class="banner-item">>></p>
                     </a>
-					<% for(let i=0; i<shopCartSneakers.length; i++) { %>
-					<div class="cart-item-list">
-						<div class="item">
-							<div class="item-picture">
-								<img src="<%= shopCartSneakers[i].image %> " alt="">
-							</div>
-							<div class="item-details">
-								<h3 class="item-tittle"> <%= shopCartSneakers[i].brand + " - " + shopCartSneakers[i].model + "" %> </h3>
-								<p class="item-price"> <%= "ARS $" + shopCartSneakers[i].price %> </p>
-								<p class="item-stock"> <%="Stock: " + shopCartSneakers[i].stock %> </p>
-								<!-- <select class="item-quantity" name="quantity">
-									<% for(let j=0; j<shopCartSneakers[i].stock; j++) { %>
-										<option value="<%= j+1 %>"> <%= j+1 %>  </option>
-									<% } %>
-								</select> -->
-								<button class="delete-prod">
-									<p class="item-button">Quitar</p>
-								</button>
-							</div>
-						</div>
-					</div>
-					<% } %>
+                    <% if (shoppingCart) { %>
+                        <% for(let i=0; i< shoppingCart.products.length; i++) { %>
+                        <div class="cart-item-list">
+                            <div class="item">
+                                <div class="item-picture">
+                                    <a href="/products/<%= shoppingCart.products[i].id %>">
+                                        <img src="/images/products/<%= shoppingCart.products[i].image %> " alt="">
+                                    </a>
+                                </div>
+                                <div class="item-details">
+                                    <p class="item-category">
+                                        <%= shoppingCart.products[i].categories.name %>
+                                    </p>
+                                    <div class="brand-logo-wrapper">
+                                        <img src="/images/products/logos/<%= (shoppingCart.products[i].brands.logo) ? shoppingCart.products[i].brands.logo : 'default-logo.jpg' %>" alt="">
+                                    </div>
+                                    <h2 class="prod-model">
+                                        <%= shoppingCart.products[i].model %>
+                                    </h2>
+                                    <p class="item-price">
+                                        ARS $<%= shoppingCart.products[i].price %>
+                                    </p>
+                                    <form action="shopping-cart/delete/<%= shoppingCart.products[i].id %>?_method=DELETE" method="POST" class="remove-form">
+                                        <button type="submit" class="delete-prod">
+                                            <ion-icon name="trash-outline"></ion-icon>
+                                        </button>
+                                    </form> 
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                    <% } %>
                 </div>
                 <div class="cart-right">
                     <div class="order-summery">
                         <h2 class="order-tittle">RESUMEN DEL PEDIDO</h2>
-						<% for(let i=0; i<shopCartSneakers.length; i++) { %>
-						<div class="order-details">
-							<p class="order-text"> <%= shopCartSneakers[i].brand + " - " + shopCartSneakers[i].model %> </p>
-							<p class="order-text"> <%= "$" + shopCartSneakers[i].price %>  </p>
-						</div>
-						<% } %>
-                        <div class="order-details">
-                            <p class="order-text">ENTREGA</p>
-                            <p class="order-text" style="color: green;">GRATIS</p>
-                        </div>
+                        <% if (shoppingCart) { %>
+                            <% for(let i=0; i< shoppingCart.products.length; i++) { %>
+                            <div class="order-details">
+                                <p class="order-text"><%= shoppingCart.products[i].model %></p>
+                                <p class="order-text">ARS$ <%= shoppingCart.products[i].price %></p>
+                            </div>
+                            <% } %>
+                        <% } %>
+
+                        
+                        <% if (total >= 2000) { %>
+                            <div class="order-details">
+                                <p class="order-text">ENTREGA</p>
+                                <p class="order-text" style="color: green;">GRATIS</p>
+                            </div>
+                        <% } %>
 						<hr>
                         <div class="order-details">
                             <p class="order-text-bold">TOTAL</p>
-                            <p class="order-text-bold"> <%= "$" + total %> </p>
+                            <p class="order-text-bold">$ <%= total %> </p>
                         </div>
                     </div>
-                    <button class="cart-button">Comprar</button>
+                    <form action="/purchase" method="POST">
+                        <button type="submit" class="cart-button">Completar Compra!</button>
+                    </form> 
                 </div>
             </div>
             <!-- PRODUCTS CARROUSEL -->
@@ -79,5 +105,7 @@
         <%- include('./partials/footer') %>
 
 		<script src="/js/hamburger.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     </body>
 </html>

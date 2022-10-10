@@ -2,8 +2,19 @@ const express = require('express');
 const router = express.Router();
 const mainController = require('../controllers/mainController');
 
-router.get('/', mainController.index);
-router.get('/shopping-cart', mainController.shoppingCart);
+const {index, shoppingCart, addShoppingCart, removeShoppingCartItem, test, purchase} = mainController;
+
+router.get('/', index);
+
+router.get('/shopping-cart', shoppingCart);
+router.post('/shopping-cart/:id', addShoppingCart);
+router.delete('/shopping-cart/delete/:id', removeShoppingCartItem);
+router.post('/purchase', purchase);
+
+router.get('/test', test);
+
+
+// Unit tests
 router.get('/testSession', function(req, res) {
     if (req.session.nvisitas == undefined) {
         req.session.nvisitas = 0;
@@ -12,8 +23,12 @@ router.get('/testSession', function(req, res) {
 
     res.send('Numero de visitas: ' + req.session.nvisitas);
 });
+
 router.get('/activeUser', function(req, res) {
-    res.send(req.session.activeUser);
+    if (req.session.userLogged) {
+        return res.send(req.session.userLogged)
+    }
+    return res.send('No hay usuario loguado');
 });
 
 module.exports = router;

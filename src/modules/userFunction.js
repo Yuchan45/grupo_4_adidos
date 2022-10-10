@@ -1,6 +1,12 @@
 const path = require('path');
 const fs = require('fs');
 
+// Sequelize
+const db = require('../database/models');
+const sequelize = db.sequelize;
+//Otra forma de llamar a los modelos
+const Users = db.User;
+
 let functionalities = {
     usernameAvailable: function(array, username) {
         // Recibe un array de objetos "usuario" y un string "username". Se fija si dicho usuario se encuentra en el array.
@@ -120,7 +126,40 @@ let functionalities = {
     },
     getUsersOrderedByCountry: function() {
         return users.sort(this.sortByCountry);
-    }
+    },
+    getUsersOrderedByIdDb: async () => {
+        // Reciben un array de objetos users, sacados de latabla de Users de la db. Los retorna ordenados por id.
+        return await Users.findAll({
+            order: [
+                ['id', 'ASC']
+            ]
+        });
+    },
+    getUsersOrderedByNameDb: async () => {
+        // Reciben un array de objetos users, sacados de latabla de Users de la db. Los retorna ordenados por el campo fullname.
+        return await Users.findAll({
+            order: [
+                ['fullname', 'ASC']
+            ]
+        });
+    },
+    getUsersOrderedByRoleDb: async () => {
+        // Reciben un array de objetos users, sacados de latabla de Users de la db. Los retorna ordenados por el campo role.
+        return await Users.findAll({
+            order: [
+                ['role', 'ASC']
+            ]
+        });
+    },
+    getUsersOrderedByCountryDb: async () => {
+        // Reciben un array de objetos users, sacados de latabla de Users de la db. Los retorna ordenados por el campo country.
+        return await Users.findAll({
+            order: [
+                ['country', 'ASC']
+            ]
+        });
+    },
+
 
 
 };

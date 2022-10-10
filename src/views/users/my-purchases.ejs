@@ -13,48 +13,57 @@
         <%- include('../partials/nav-bar') %>
         <main>
             <div class="main-container">
-                <h1 class="purchases-title">Mis compras</h1>
-
                 <div class="header-menu">
-                    <form class="search-bar" action="/users/search" method="GET">
-                        <div class="search-container">
-                            <input class="search-input" type="search" name="search-purchases" id="search" placeholder="Buscar"/>
-                            <button class="search-btn">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </button>
-                        </div>
-                    </form>
-                    <p>50 compras</p>
+                    <h1 class="purchases-title">Mis compras</h1>
+                    <% if (shoppingCart) { %>
+                        <p><%= shoppingCart.products.length %> compras</p>
+                    <% } else { %>
+                        <span>No tienes compras!</span>
+                    <% } %>
                 </div>
 
-                <div class="articles-container">
-                    <div class="item">
-                        <div class="purchase-date">
-                            <p>6 de septiembre</p>
-                        </div>
-                        <div class="item-body">
-                            <div class="picture">
-                                <img src="" alt="">
-                            </div>
-                            <div class="details">
+                <% if (shoppingCart) { %>
+                    <% for(let i=0; i< shoppingCart.products.length; i++) { %>
+                    <div class="articles-container">
+                        <div class="item">
+                            <div class="purchase-number">
+                                <p><span>Orden #</span><%= shoppingCart.transaction_number %></p>
                                 <p class="item-status">Estado: <span>Finalizado</span> </p>
-                                <h2 class="item-name">Asics - Evo Ride 2</h2>
-                                <p class="item-brief-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, cupiditate?</p>
-                                <p class="item-quantity"><span>n°</span> unidad</p>
                             </div>
-                            <div class="action-btns">
-                                <button class="purchase-btn">
-									<p class="item-button">Ver Producto</p>
-								</button>
+                            <div class="item-body">
+                                <div class="picture">
+                                    <a href="/products/<%= shoppingCart.products[i].id %>">
+                                        <img src="/images/products/<%= shoppingCart.products[i].image %>" alt="">
+                                    </a>
+                                </div>
+                                <div class="details">
+                                    <div class="details-body">
+                                        <p class="item-category">
+                                            <%= shoppingCart.products[i].categories.name %>
+                                        </p>
+                                        <div class="brand-logo-wrapper">
+                                            <img src="/images/products/logos/<%= shoppingCart.products[i].brands.logo %>" alt="">
+                                        </div>
+                                        <h2 class="item-name"><%= shoppingCart.products[i].model %></h2>
+                                        <p class="item-brief-description"><%= shoppingCart.products[i].description %></p>
+                                        <p class="item-price">ARS$ <%= shoppingCart.products[i].price %></p>
+                                    </div>
+                                </div>
+                                <div class="action-btns">
+                                    <a href="/products/<%= shoppingCart.products[i].id %>">
+                                        <button type="submit" class="purchase-btn">
+                                            <p class="item-button">Ver Producto</p>
+                                        </button>
+                                
+                                    </a>
+                                </div>
                             </div>
                         </div>
-
-
                     </div>
+                    <% } %>
+                <% } %>
 
 
-
-                </div>
                 
 
 

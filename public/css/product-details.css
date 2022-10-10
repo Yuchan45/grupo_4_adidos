@@ -114,6 +114,7 @@ body{
 
 .prod-description summary {
     color: var(--blue);
+    cursor: pointer;
 }
 
 .prod-description summary > p {
@@ -169,8 +170,11 @@ body{
     justify-content: center;
     align-items: center;
     opacity: .8;
+    border: none;
     transition: all .3s ease;
+    color: white;
     margin: 10px auto 0;
+    font-weight: 700;
 }
 
 .info-container .buy:hover {
@@ -188,21 +192,43 @@ body{
     margin-bottom: 25px;
     border-bottom: 1px solid #dfdfdf;
     padding-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: center;
 }
 
-.prod-info .brand {
+.prod-info .action-btn {
+    background-color: transparent;
+    border: none;
+    padding: 2px;
+    transition: all .2s ease;
+    font-size: 30px;
+}
+
+.prod-info .fav:hover {
+    color: var(--pink);
+    transform: scale(1.1);
+}
+
+.prod-info .active-fav {
+    color: var(--pink);
+    transform: scale(1.1);
+}
+
+.prod-info .information .brand {
     font-size: 1.2rem;
     margin: 0 auto 0px;
     text-transform: capitalize;
     font-style: italic;
 }
 
-.prod-info .model {
+.prod-info .information .model {
     font-size: 1.5rem;
     margin: 0 auto 5px;
 }
 
-.prod-info .prod-owner {
+.prod-info .information .prod-owner {
     margin: 5px 0;
     font-size: var(--small);
     color: var(--onyx);
@@ -260,6 +286,9 @@ body{
     max-width: 100%;
     object-fit: cover;
 }
+
+
+
 /* Mobile and Tablet */
 @media (min-width:361px) {
     .main-container {

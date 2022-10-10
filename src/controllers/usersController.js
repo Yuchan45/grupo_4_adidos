@@ -6,12 +6,18 @@ const userFunction = require('../modules/userFunction');
 const User = require('../modules/User');
 
 
+
 // Sequelize
 const db = require('../database/models');
 const sequelize = db.sequelize;
 //Otra forma de llamar a los modelos
 const Users = db.User;
-
+const Products = db.Product;
+const Brands = db.Brand;
+const Categories = db.Category;
+const ShoppingCarts = db.Shopping_cart;
+const Items = db.Item;
+const Favorites = db.Favorite;
 
 const allUsersFile = path.join(__dirname, '../data/users.json');
 
@@ -48,11 +54,71 @@ const usersController = {
         });
 
     },
-    profile: function(req, res) {
-        res.render('./users/profile');
+    profile: async function(req, res) {
+        if (!req.session.userLogged) return res.redirect('/users/login');
+        const userId = req.session.userLogged.id;
+
+        const favorites = await Favorites.findAll({
+            where: {
+                user_id: userId
+            }
+        });
+        let favoriteProdIds = [];
+        favorites.forEach(product => {
+            // Me armo un array con los ids de los productos favoritos del usuario.
+            favoriteProdIds.push(product.product_id);
+        });
+
+        const favProducts = await Products.findAll({
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}, {association: "favUsers"}],
+            where: {
+                id: favoriteProdIds       // Esto es magia, se puede pasar un array de ids...
+            }
+        });
+        // Me traje los productos favoritos del usuario. --> products
+
+        const productsOnSale = await Products.findAll({
+            include: [{association: "brands"}, {association: "categories"}, {association: "users"}, {association: "favUsers"}],
+            where: {
+                user_id: userId
+            }
+        });
+        // Me traje los productos que el usuario tiene en venta --> productsOnSale
+
+        res.render('./users/profile', {
+            favProducts: favProducts,
+            productsOnSale: productsOnSale
+        });
     },
-    myPurchases: function(req, res) {
-        res.render('./users/my-purchases');
+    myPurchases: async function(req, res) {
+        if (!req.session.userLogged) return res.redirect('/users/login');
+        const userId = req.session.userLogged.id;
+
+        let shoppingCart = await ShoppingCarts.findOne({
+            include: [{association: "users"}, {association: "products"}],
+            where: {
+                user_id: userId,
+                status: 0  // Necesito los carrito "inactivo" o ya cerrados.
+            }
+        });
+
+        shoppingCart = shoppingCart ? shoppingCart : '';
+
+        // Me traigo las asociaciones de los productos que me llegan en el shopping cart.
+        if (shoppingCart) {
+            // Brands
+            for await (product of shoppingCart.products) {
+                product.brands = await product.getBrands();
+            }
+            // Categories
+            for await (product of shoppingCart.products) {
+                product.categories = await product.getCategories();
+            }
+        }
+
+        res.render('./users/my-purchases', {
+            shoppingCart: shoppingCart
+        });
     },
     register: function(req, res) {
         res.render('./users/register-form');
@@ -63,12 +129,13 @@ const usersController = {
         });
     },
     list: async function(req, res) {
+        if (!req.session.userLogged || req.session.userLogged.role != 'admin') return res.redirect('/users/login');
+
         // Update de los datos de los archivos
         const users = await Users.findAll();
         res.render('./users/user-list', {
             filter : '',
             users: users,
-            user: req.session.userLogged
         });
     },
     processRegister: async function(req, res) {
@@ -245,13 +312,15 @@ const usersController = {
         req.session.destroy(); // Borra todo lo que haya en session.
         return res.redirect('/');
     },
-    search: function(req, res) {
-        users = fileOperation.readFile(allUsersFile);
+    search: async function(req, res) {
+        if (!req.session.userLogged || req.session.userLogged.role != 'admin') return res.redirect('/users/login');
+        const users = await Users.findAll();
+
         let userSearch = req.query.search;
         let userResults = []
 
         for (let i = 0; i < users.length; i++) {
-            if (users[i].username.toLowerCase().includes(userSearch.toLowerCase()) || users[i].name.toLowerCase().includes(userSearch.toLowerCase())) {
+            if (users[i].username.toLowerCase().includes(userSearch.toLowerCase()) || users[i].fullname.toLowerCase().includes(userSearch.toLowerCase())) {
                 userResults.push(users[i])
             }
         }
@@ -259,13 +328,13 @@ const usersController = {
         res.render('./users/user-list', {
             filter : '',
             users: userResults,
-            user: req.session.userLogged
         });
     },
-    filter: function(req, res) {
+    filter: async function(req, res) {
+        if (!req.session.userLogged || req.session.userLogged.role != 'admin') return res.redirect('/users/login');
         const filter = req.query.filter;
 
-        users = fileOperation.readFile(allUsersFile);
+        const users = await Users.findAll();
         
         let userResults = [];
         switch (filter) {
@@ -273,16 +342,16 @@ const usersController = {
                 userResults = users;
                 break;
             case 'id':
-                userResults = userFunction.getUsersOrderedById(users);
+                userResults = await userFunction.getUsersOrderedByIdDb();
                 break;
             case 'role':
-                userResults = userFunction.getUsersOrderedByRole(users);
+                userResults = await userFunction.getUsersOrderedByRoleDb();
                 break;
             case 'name':
-                userResults = userFunction.getUsersOrderedByName(users);
+                userResults = await userFunction.getUsersOrderedByNameDb();
                 break;
             case 'country':
-                userResults = userFunction.getUsersOrderedByCountry(users);
+                userResults = await userFunction.getUsersOrderedByCountryDb();
                 break;
             default:
                 res.send("Error");
@@ -291,7 +360,6 @@ const usersController = {
         res.render('./users/user-list', {
             filter : filter,
             users : userResults,
-            user: req.session.userLogged
         });
     },
     test: async function(req, res) {

@@ -13,10 +13,33 @@
 	max-width: 100%;
 	object-fit: cover;
 }
+
 .item-image{
 	height: 150px;
 	width: 100% !important;
 	padding: 15px;
+}
+
+.action-btn {
+    background-color: transparent;
+    border: none;
+    padding: 2px;
+    transition: all .2s ease;
+}
+
+.fav:hover {
+    color: var(--pink);
+    transform: scale(1.1);
+}
+
+.bag:hover {
+    color: var(--blue);
+    transform: scale(1.1);
+}
+
+.active-fav {
+    color: var(--pink);
+    transform: scale(1.1);
 }
 
 .item-name {
@@ -97,38 +120,52 @@
     font-size: var(--normal);
 }
 
-.editButton{
-  height: 30px;
-  font-weight: 800;
-  background-color: var(--blue);
-  border: none;
-  border-radius: 5px;
-  opacity: .8;
-  transition: all .3s ease;
+.editButton {
+	height: 35px;
+    width: 35px;
+    font-weight: 800;
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    opacity: 1;
+    transition: all .3s ease;
 }
 
 .deleteButton{
-	height: 30px;
-	font-weight: 800;
-	background-color: var(--red);
-	border: none;
-	border-radius: 5px;
-	opacity: .8;
-	transition: all .3s ease;
+	height: 35px;
+    width: 35px;
+    font-weight: 800;
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    opacity: 1;
+    transition: all .3s ease;
 }
 
-.editButton:hover {
-	opacity: 1;
+.editButton:hover , .deleteButton:hover {
+	background-color: #daf2ff;
 }
 
-.deleteButton:hover {
-	opacity: 1;
+.editButton > ion-icon {
+	font-size: 25px;
+    font-weight: 800;
+    color: green;
 }
+
+.deleteButton > ion-icon {
+	font-size: 25px;
+    font-weight: 800;
+    color: red;
+}
+  
+
 
 .deleteEditProd{
 	display: flex;
-	flex-direction: row;
-	justify-content: space-evenly;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 5px;
+    border-top: 1px solid #d3d3d3;
 }
 
 .item-header {
@@ -140,7 +177,7 @@
     font-size: 24px;
     color: black;
     align-items: center;
-    gap: 5px;
+    gap: 8px;
 }
 
 .item-header > a {

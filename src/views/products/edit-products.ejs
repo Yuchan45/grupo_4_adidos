@@ -13,105 +13,201 @@
     <!-- Nav-bar -->
     <%- include('../partials/nav-bar') %>
 
-    <main class="main-register">
+    <main class="main-register main-create-product">
         <div class="register-wrapper">
-            <h1 class="form-title">MODIFICA TU PUBLICACION</h1>
+            <h1 class="form-title">EDITA TU ANUNCIO</h1>
             <h2 class="form-subtitle ">Incluye algunos detalles</h2>
 
-            <form action="/products/<%= data.id %>?_method=PUT" method="POST" enctype="multipart/form-data"> 
+            <form action="/products/<%= product.id %>/edit?_method=PUT" method="POST" enctype="multipart/form-data"> 
                 <div class="register-form-left">
-                    <div class="form-group brand">
-                        <h3 class="register-label">Marca</h3>
-                        <select class="country-combobox create-country" name="brand" id="brand">
-                            <option value="adidas" <%= (data.brand == 'adidas') ? "selected" : '' %>>Adidas</option>
-                            <option value="asics" <%= (data.brand == 'asics') ? "selected" : '' %>>Asics</option>
-                            <option value="brooks" <%= (data.brand == 'brooks') ? "selected" : '' %>>Brooks</option>
-                            <option value="mizuno" <%= (data.brand == 'mizuno') ? "selected" : '' %>>Mizuno</option>
-                            <option value="nike" <%= (data.brand == 'nike') ? "selected" : '' %>>Nike</option>
-                            <option value="newBalance" <%= (data.brand == 'newBalance') ? "selected" : '' %>>New Balance</option>
-                            <option value="puma" <%= (data.brand == 'puma') ? "selected" : '' %>>Puma</option>
-                            <option value="reebok" <%= (data.brand == 'reebok') ? "selected" : '' %>>Reebok</option>
-                            <option value="saucony" <%= (data.brand == 'saucony') ? "selected" : '' %>>Saucony</option>
-                            <option value="vans" <%= (data.brand == 'vans') ? "selected" : '' %>>Vans</option>
-                        </select>
+                    <h3 class="register-label">Marca</h3>
+                    <div class="brand-model-container">
+                        <div class="form-group brand">
+                            <select class="country-combobox create-country" name="brand" id="brand">
+                                <% brands.forEach(brand => { %>
+                                    <option value="<%= brand.id %>" <%= (product.brands.id == brand.id) ? "selected" : '' %>><%= brand.name %></option>
+                                <% }); %>
+                            </select>
+                        </div>
+                        <% if (locals.errors && errors.brand) { %>
+                            <div class="text-danger">
+                                <%= errors.brand.msg; %>
+                            </div>
+                        <% } %>
+                        <div class="form-group first-last-name">
+                            <label for="name">Modelo</label>
+                            <input type="text" name="model" id="model"  value="<%= product.model %>">
+                        </div>
+                        <% if (locals.errors && errors.model) { %>
+                            <div class="text-danger">
+                                <%= errors.model.msg; %>
+                            </div>
+                        <% } %>
                     </div>
-                    <div class="form-group first-last-name">
-                        <label for="name">Modelo</label>
-                        <input type="text" name="model" id="model" value="<%= data.model %>" required>
+                    <div class="category-stock-container">
+                        <div class="form-group category">
+                            <h3 class="register-label">Categoria</h3>
+                            <select class="country-combobox create-cbox" name="category" id="category">
+                                <% categories.forEach(category => { %>
+                                    <option value="<%= category.id %>" <%= (product.categories.id == category.id) ? "selected" : '' %>><%= category.name %></option>
+                                <% }); %>
+                            </select>
+                            <% if (locals.errors && errors.category) { %>
+                                <div class="text-danger">
+                                    <%= errors.category.msg; %>
+                                </div>
+                            <% } %>
+                        </div>
+                        <div class="form-group stock">
+                            <h3 class="register-label">Stock</h3>
+                            <input type="number" name="stock" id="stock" value="<%= (product.stock) ? product.stock : 1 %>">
+                            <% if (locals.errors && errors.stock) { %>
+                                <div class="text-danger">
+                                    <%= errors.stock.msg; %>
+                                </div>
+                            <% } %>
+                        </div>
                     </div>
-                    <div class="form-group user">
-                        <label for="description">Descripción</label>
-                        <textarea class="description-txt" name="description" id="description" required><%= data.description %></textarea>
+                    <div class="size-colors-container">
+                        <h3 class="register-label size-title">Talles</h3>
+                        <div class="form-group-talle talle">
+                            <% let sizes = product.size_eur.split(',');%>
+                            <div class="sizes-group">
+                                <input class="size-input" id="size34" type="checkbox" name="sizes" value="34" <%= (sizes && (sizes).includes("34")) ? 'checked' : '' %>>
+                                <label class="size-label" for="size34">34</label>
+                            </div>
+                            <div class="sizes-group">
+                                <input class="size-input" id="size35" type="checkbox" name="sizes" value="35" <%= (sizes && (sizes).includes("35")) ? 'checked' : '' %> >
+                                <label class="size-label" for="size35">35</label>
+                            </div>
+                            <div class="sizes-group">
+                                <input class="size-input" id="size36" type="checkbox" name="sizes" value="36" <%= (sizes && (sizes).includes("36")) ? 'checked' : '' %>>
+                                <label class="size-label" for="size36">36</label>
+                            </div>
+                            <div class="sizes-group">
+                                <input class="size-input" id="size37" type="checkbox" name="sizes" value="37" <%= (sizes && (sizes).includes("37")) ? 'checked' : '' %>>
+                                <label class="size-label" for="size37">37</label>
+                            </div>
+                            <div class="sizes-group">
+                                <input class="size-input" id="size38" type="checkbox" name="sizes" value="38" <%= (sizes && (sizes).includes("38")) ? 'checked' : '' %>>
+                                <label class="size-label" for="size38">38</label>
+                            </div>
+                            <div class="sizes-group">
+                                <input class="size-input" id="size39" type="checkbox" name="sizes" value="39" <%= (sizes && (sizes).includes("39")) ? 'checked' : '' %>>
+                                <label class="size-label" for="size39">39</label>
+                            </div>
+                            <div class="sizes-group">
+                                <input class="size-input" id="size40" type="checkbox" name="sizes" value="40" <%= (sizes && (sizes).includes("40")) ? 'checked' : '' %>>
+                                <label class="size-label" for="size40">40</label>
+                            </div>
+                            <div class="sizes-group">
+                                <input class="size-input" id="size41" type="checkbox" name="sizes" value="41" <%= (sizes && (sizes).includes("41")) ? 'checked' : '' %>>
+                                <label class="size-label" for="size41">41</label>
+                            </div>
+                            <div class="sizes-group">
+                                <input class="size-input" id="size42" type="checkbox" name="sizes" value="42" <%= (sizes && (sizes).includes("42")) ? 'checked' : '' %>>
+                                <label class="size-label" for="size42">42</label>
+                            </div>
+                            <div class="sizes-group">
+                                <input class="size-input" id="size43" type="checkbox" name="sizes" value="43" <%= (sizes && (sizes).includes("43")) ? 'checked' : '' %>>
+                                <label class="size-label" for="size43">43</label>
+                            </div>
+                            <div class="sizes-group">
+                                <input class="size-input" id="size44" type="checkbox" name="sizes" value="44" <%= (sizes && (sizes).includes("44")) ? 'checked' : '' %>>
+                                <label class="size-label" for="size44">44</label>
+                            </div>
+                            <div class="sizes-group">
+                                <input class="size-input" id="size45" type="checkbox" name="sizes" value="45" <%= (sizes && (sizes).includes("45")) ? 'checked' : '' %>>
+                                <label class="size-label" for="size45">45</label>
+                            </div>
+
+                            <% if (locals.errors && errors.size) { %>
+                                <div class="text-danger">
+                                    <%= errors.size.msg; %>
+                                </div>
+                            <% } %>
+                        </div>
+                        <div class="color-pickers-wrapper">
+                            <h3 class="register-label">Colores</h3>
+                            <div class="colors">
+                                <% let colors =  product.colors_hexa.split(',');%>
+                                <input type="color" id="colorpicker1" name="colors" value="<%= (colors) ? colors[0] : "#ffffff"%>">
+                                <input type="color" id="colorpicker2" name="colors" value="<%= (colors) ? colors[1] : "#ffffff"%>">
+                                <input type="color" id="colorpicker3" name="colors" value="<%= (colors) ? colors[2] : "#ffffff"%>">
+                            </div>
+                            <!-- <% if (locals.errors && errors.colors) { %>
+                                <div class="text-danger">
+                                    <%= errors.colors.msg; %>
+                                </div>
+                            <% } %> -->
+                        </div>
                     </div>
-                    <div class="form-group user">
-                        <label for="price">Precio</label>
-                        <input type="number" name="price" id="price" value="<%= data.price %>" required>
-                    </div>
-                    <div class="form-group discount">
-                        <label for="discount">Descuento</label>
-                        <input type="number" name="discount" id="discount" value="<%= data.discount %>" required>
+
+                    <div class="price-discount-container">
+                        <div class="form-group user">
+                            <label for="price">Precio</label>
+                            <input type="number" name="price" id="price" value="<%= product.price %>">
+                            <% if (locals.errors && errors.price) { %>
+                                <div class="text-danger">
+                                    <%= errors.price.msg; %>
+                                </div>
+                            <% } %>
+                        </div>
+                        <div class="form-group discount">
+                            <label for="discount">Descuento</label>
+                            <input type="number" name="discount" id="discount" value="<%= product.discount %>">
+                            <% if (locals.errors && errors.discount) { %>
+                                <div class="text-danger">
+                                    <%= errors.discount.msg; %>
+                                </div>
+                            <% } %>
+                        </div>
                     </div>
                     <h3 class="register-label">Genero</h3>
-                    <div class="radio-list">
+                    <div class="radio-list-normalizer">
                         <div class="radio-group">
-                            <input type="radio" id="gender" name="gender" value="male" <%= (data.gender == 'male') ? "checked" : '' %> checked>
+                            <input type="radio" id="gender" name="gender" value="male" <%= (product.gender == 'male') ? "checked" : '' %> checked>
                             <label for="gender">Hombre</label>
                         </div>
                         <div class="radio-group">
-                            <input type="radio" id="gender" name="gender" value="female" <%= (data.gender == 'female') ? "checked" : '' %>>
+                            <input type="radio" id="gender" name="gender" value="female" <%= (product.gender == 'female') ? "checked" : '' %>>
                             <label for="gender">Mujer</label>
                         </div>
                         <div class="radio-group">
-                            <input type="radio" id="gender" name="gender" value="other" <%= (data.gender == 'other') ? "checked" : '' %>>
-                            <label for="gender">Otro</label>
+                            <input type="radio" id="gender" name="gender" value="unisex" <%= (product.gender == 'unisex') ? "checked" : '' %>>
+                            <label for="gender">Unisex</label>
                         </div>
                     </div>
-                </div>
-                <div class="register-form-right">
-                    <div class="form-group category">
-                        <h3 class="register-label">Categoria</h3>
-                        <select class="country-combobox create-cbox" name="category" id="category">
-                            <option value="running" <%= (data.category == 'running') ? "selected" : '' %>>Running</option>
-                            <option value="urban"  <%= (data.category == 'urban') ? "selected" : '' %>>Urban</option>
-                            <option value="trackAndField"  <%= (data.category == 'trackAndField') ? "selected" : '' %>>Track & Field</option>
-                        </select>
-                    </div>
-                    <div class="form-group color">
-                        <h3 class="register-label">Color</h3>
-                        <select class="country-combobox create-cbox" name="color" id="color">
-                            <option value="#ff0000" <%= (data.color == '#ff0000') ? "selected" : '' %>>Rojo</option>
-                            <option value="#00ff00" <%= (data.color == '#00ff00') ? "selected" : '' %>>Verde</option>
-                            <option value="#0000ff" <%= (data.color == '#0000ff') ? "selected" : '' %>>Azul</option>
-                        </select>
-                    </div>
-                    <div class="form-group talle">
-                        <h3 class="register-label">Talles</h3>
-                        <select class="country-combobox create-cbox" name="size" id="color">
-                            <option value="5" <%= (data.size == '5') ? "selected" : '' %>>5</option>
-                            <option value="6" <%= (data.size == '6') ? "selected" : '' %>>6</option>
-                            <option value="7" <%= (data.size == '7') ? "selected" : '' %>>7</option>
-                            <option value="8" <%= (data.size == '8') ? "selected" : '' %>>8</option>
-                            <option value="9" <%= (data.size == '9') ? "selected" : '' %>>9</option>
-                            <option value="10" <%= (data.size == '10') ? "selected" : '' %>>10</option>
-                            <option value="11" <%= (data.size == '11') ? "selected" : '' %>>11</option>
-                        </select>
-                    </div>
-                    <div class="form-group stock">
-                        <label for="stock">Cantidad a vender</label>
-                        <input type="number" name="stock" id="stock" value="<%= (data.stock) ? data.stock : 1 %>" required>
+                    <% if (locals.errors && errors.gender) { %>
+                        <div class="text-danger">
+                            <%= errors.gender.msg; %>
+                        </div>
+                    <% } %>
+                    <div class="form-group user">
+                        <label for="description">Descripción</label>
+                        <textarea class="description-txt" name="description" id="description" placeholder="Esbribe la description aqui..." ><%= (product.description) ? product.description : '-' %></textarea>
+                        <% if (locals.errors && errors.description) { %>
+                            <div class="text-danger">
+                                <%= errors.description.msg; %>
+                            </div>
+                        <% } %>
                     </div>
                     <div class="upload-file-container">
                         <label for="product-image">Imagen del producto</label>
-                        <input type="file" id="product-image" name="product-image">
+                        <input type="file" id="product-image" name="productImage">
                         <br>
                         <span>Este campo es requerido</span>
+                        <% if (locals.errors && errors.productImage) { %>
+                            <div class="text-danger">
+                                <%= errors.productImage.msg; %>
+                            </div>
+                        <% } %>
                     </div>
+                    
+                    
                 </div>
                 <div class="send-container">
-                    <div class="error-message-container">
-                        <label class="error-msg"><%= msg ? msg : '' %></label>
-                    </div>
-                    <button type="submit" class="submit-btn">Guardar</button>
+                    <button type="submit" class="submit-btn">Crear producto</button>
                 </div>
             </form>
         </div>

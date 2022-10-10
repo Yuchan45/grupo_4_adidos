@@ -8,7 +8,7 @@ module.exports = function(sequelize, dataTypes) {
             autoIncrement: true, 
             allowNull: false
         },
-        shop_cart_id: {
+        shopping_cart_id: {
             type: dataTypes.INTEGER(10).UNSIGNED,
             defaultValue: null
         },
@@ -35,7 +35,9 @@ module.exports = function(sequelize, dataTypes) {
         timestamps: false
     }
 
-    let Item = sequelize.define(alias, cols, config)
+    let Item = sequelize.define(alias, cols, config);
 
+    // Associations
+    
     return Item
 }

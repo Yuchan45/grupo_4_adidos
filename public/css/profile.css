@@ -226,7 +226,70 @@ body {
     letter-spacing: 1px;
 }
 
+.item-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #282828;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
 
+.picture {
+    height: 90px;
+    width: 40% !important;
+    max-width: 280px;
+    padding: 15px;
+    text-align: center;
+}
+
+.picture a > img {
+    max-width: 250px;
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    transition: all .3s ease;
+}
+
+.picture a > img:hover {
+    transform: scale(1.1);
+}
+
+.details {
+    width: 50%;
+}
+
+.item-category {
+    font-size: 0.7rem;
+    text-align: center;
+    font-style: italic;
+    color: #a3a3a3;
+    text-transform: uppercase;
+    margin: 0;
+    font-weight: 600;
+    color: var(--blue);
+}
+
+.item-name {
+    text-align: left;
+    margin: 5px auto 10px 0px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    font-style: italic;
+    text-transform: capitalize;
+}
+
+.item-price {
+    color: #adadad;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -1px;
+    margin: 0;
+}
 
 
 
@@ -312,6 +375,9 @@ body {
     }
     .about .about-content .content .role {
         font-size: 1rem;
+    }
+    .item-category {
+        text-align: left;
     }
 
 }

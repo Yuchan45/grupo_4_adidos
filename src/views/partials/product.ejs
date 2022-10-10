@@ -1,16 +1,28 @@
 <div class="product-list-container">
     <div class="main-item-container">
         <% if (products.length == 0) { %>
+            <br>
             <span>No hay productos!</span>
+            <br>
         <% } %>
+        
         <% for(let i=0; i<products.length; i++) { %>
             <div class="main-item">
                 <div class="item-header">
-                    <a href=""><ion-icon name="bag-add-outline"></ion-icon></a>
-                    <a href=""><ion-icon name="heart-outline"></ion-icon></a>
+                    <% let isFav = false; %> 
+                    <% if (locals.userLogged) { %>
+                        <% const userId = products[i].favUsers[0] ? products[i].favUsers[0].id : '' %>
+                        <% if (userId == locals.userLogged.id) { %>
+                            <% isFav = true; %> 
+                        <% } %>
+                    <% } %>
+                    <button type="button" id="heart-<%= products[i].id %>" onclick="like(<%= products[i].id %>)" 
+                        class="action-btn fav <%= isFav ? 'active-fav' : '' %> ">
+                        <ion-icon name="heart-outline"></ion-icon>
+                    </button>
                 </div>
                 <div class="item-image">
-                    <a href="<%= "products/" + products[i].id %> ">
+                    <a href="<%= "/products/" + products[i].id %> ">
                         <img src="/images/products/<%= (products[i].image) ? products[i].image : 'default.jpg' %> " alt="" />
                     </a>
                 </div>

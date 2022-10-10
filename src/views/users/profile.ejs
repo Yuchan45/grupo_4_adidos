@@ -26,7 +26,9 @@
                         
                         <p class="profile-title">PERFIL <span class="role"><%=(locals.isLogged && locals.userLogged.role) ? locals.userLogged.role : '' %></span> </p>
                         <h1 class="profile-name"><%=(locals.isLogged && locals.userLogged.fullname) ? locals.userLogged.fullname : '' %></h1>
-                        <p class="profile-subtitle">3 articulos en venta - 15 articulos likeados</p>
+                        <% if (locals.isLogged) { %>
+                            <p class="profile-subtitle"><%= productsOnSale.length + " articulos en venta"%> - <%= favProducts.length + " articulos en favoritos"%></p>
+                        <% } %>
                     </div>
                 </div>
             </div>
@@ -63,7 +65,24 @@
                         </div>
                         <div class="content" id="vision">
                             <h4>Favoritos</h4>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, perspiciatis in accusantium esse ipsum ex voluptatibus perferendis explicabo quam ullam praesentium unde eum illo vitae dolor. Ea ut, commodi sed sunt, consequatur minima veritatis quis aut magni nulla quas ratione dolor! Neque fugiat rem vel dignissimos perferendis numquam accusamus soluta dolorum voluptatum deleniti excepturi omnis architecto, facilis tempora atque alias quisquam? Illum placeat dignissimos excepturi laudantium magni libero nemo deleniti quae eaque officia, aliquid obcaecati, voluptatum sunt, ipsa fuga consectetur?</p>
+                            <% if (favProducts.length == 0) { %>
+                                <p>No tienes productos en favoritos!</p>
+                            <% } %>
+                            <% for(let i = 0; i < favProducts.length; i++ ) { %>
+                                <div class="item-row">
+                                    <div class="picture">
+                                        <a href="/products/<%= favProducts[i].id %>">
+                                            <img src="/images/products/<%= favProducts[i].image %>" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="details">
+                                        <p class="item-category"><%= favProducts[i].categories.name %></p>
+                                        <h2 class="item-name"><%= favProducts[i].model %></h2>
+                                        <p class="item-price">ARS$ <%= favProducts[i].price %></p>
+                                    </div>
+                                </div>
+                            <% } %>
+
                         </div>
                         <div class="content" id="goals">
                             <h4>Extra</h4>

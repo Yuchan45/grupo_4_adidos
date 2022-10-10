@@ -3,6 +3,9 @@ const db = require('../database/models');
 const sequelize = db.sequelize;
 //Otra forma de llamar a los modelos
 const Products = db.Product;
+const Favorites = db.Favorite;
+const ShoppingCarts = db.Shopping_cart;
+const Items = db.Item;
 const path = require('path');
 
 const Product = {
@@ -37,7 +40,6 @@ const Product = {
             creation_date: this.getDateTime(),
             last_updated: this.getDateTime()
         });
-        
         return createdUser;
     },
     editProductDb: async function(prodData, id) {
@@ -53,7 +55,47 @@ const Product = {
         
         return updatedProd;
     },
+    createFavoriteDb: async function(favData) {
+        const createdFavorite = await Favorites.create({ 
+            ...favData,
+        });
+        return createdFavorite;
+    },
+    createShoppingCartDb: async function(data) {
+        const createdShoppingCart = await ShoppingCarts.create({ 
+            ...data
+        });
+        return createdShoppingCart;
+    },
+    createItemsDb: async function(itemData) {
+        const createdItem = await Items.create({
+            ...itemData,
+            purchase_date: this.getDateTime(),
+        });
+        return createdItem;
 
+    },
+    shoppingCartStatus: function(carts) {
+        // Recibe por parametro un array de carritos. Devuelve...
+        // '-1' -> Este usuario no tiene carritos (sean activos o cerrados).
+        // '0'  -> Este usuario no tiene carritos ACTIVOS.
+        // 'Objeto carrito'  -> Este usuario tiene un carrito ACTIVO.
+
+        let result = 0;
+        if (carts.length > 0) {
+            // Ya hay un carrito para este usuario (sea activo o no).
+            carts.forEach(cart => {
+                if (cart.status == 1) {
+                    // Verifico si el carrito es activo o no. Status: (0 = 'pending', 1 = 'effective').
+                    result = cart;
+                }
+            });
+        } else {
+            // No hay carrito activo para este usuario. Hay que crear uno.
+            result = -1;
+        }
+        return result;
+    }
 
 }
 

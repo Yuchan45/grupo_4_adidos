@@ -88,6 +88,20 @@ module.exports = function(sequelize, dataTypes) {
             as: "products",
             foreignKey: "user_id"
         });
+
+        User.belongsToMany(models.Product, {
+            as: "favProducts",
+            through: "Favorites",
+            foreignKey: "user_id",
+            otherKey: "product_id",
+            timestamps: false
+        });
+
+        User.hasMany(models.Shopping_cart, {
+            as: "shoppingCarts",
+            foreignKey: "user_id"
+        });
+
     }
 
     return User
