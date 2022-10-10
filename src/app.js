@@ -4,6 +4,8 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const app = express();
+//cors 
+
 
 // METHOD OVERRRIDE package
 // override with the X-HTTP-Method-Override header in the request. We can now use the 'put' & 'delete' method in html forms.
@@ -13,6 +15,7 @@ app.use(methodOverride('_method'));
 const mainRoutes = require('./routes/mainRoutes');
 const userRoutes = require('./routes/userRoutes');
 const productRoutes = require('./routes/productRoutes');
+const apiRoutes = require('./routes/apiRoutes')
 const logs = require('./middlewares/logs');
 const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware');
 
@@ -53,6 +56,7 @@ app.set('view engine', 'ejs');
 app.use('/', mainRoutes);
 app.use('/users', userRoutes);
 app.use('/products', productRoutes);
+app.use('/api', apiRoutes);
 
 // 404 NOT FOUND
 app.use((req, res, next) => {
