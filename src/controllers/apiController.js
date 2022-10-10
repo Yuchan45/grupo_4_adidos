@@ -78,6 +78,14 @@ module.exports = {
                     data: products
                 })
             })
-    }
+    },
+
+    getBrands: async (req, res) => {
+        let brands = await db.Brand.findAll();
+        res.json({
+        brands,
+        count: brands.length
+      })
+      }
     
 }

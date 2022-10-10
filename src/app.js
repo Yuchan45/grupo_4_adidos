@@ -4,6 +4,8 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const app = express();
+//cors 
+
 
 // METHOD OVERRRIDE package
 // override with the X-HTTP-Method-Override header in the request. We can now use the 'put' & 'delete' method in html forms.
