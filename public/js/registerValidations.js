@@ -2,14 +2,25 @@ const formulario = document.getElementById('formulario')
 const inputs = document.querySelectorAll('#formulario input')
 
 const expresiones = {
-	fullname: /^[a-zA-Z0-9\_\-]{2,16}$/, // Letras, numeros, guion y guion_bajo
-	username: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+	fullname: /^[a-zA-Z0-9\_\-]{2,20}$/, // Letras, numeros, guion y guion_bajo
+	username: /^[a-zA-ZÀ-ÿ\s]{2,40}$/, // Letras y espacios, pueden llevar acentos.
 	password: /^.{8,16}$/, // 8 a 16 digitos.
 	email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
 }
 
+const campos = {
+    fullname: false,
+    username: false,
+    password: false,
+    email: false
+}
+
 const validarFormulario = (e) => {
     let nameTxt = document.querySelector("#fullName");
+    let userTxt = document.querySelector("#userName");
+    let passwordTxt = document.querySelector("#passwordText"); 
+    let emailTxt = document.querySelector("#emailText");
+
 
 
     switch (e.target.name) {
@@ -17,34 +28,48 @@ const validarFormulario = (e) => {
             if (expresiones.fullname.test(e.target.value)) {
                 nameTxt.innerHTML = ""
                 document.getElementById('formFullname').classList.remove('text-danger')
+                campos['fullname'] = true;
             } else {
-                nameTxt.innerHTML = "Debe contener minimo 2 caracteres."
+                nameTxt.innerHTML = "Debe contener minimos 2 caracteres."
                 document.getElementById('formFullname').classList.add('text-danger')
+                campos['fullname'] = false;
             }
         break;
 
         case "username": 
             if (expresiones.username.test(e.target.value)) {
-                nameTxt.innerHTML = ""
+                userTxt.innerHTML = ""
                 document.getElementById('formUsername').classList.remove('text-danger')
+                campos['username'] = true;
             } else {
-                nameTxt.innerHTML = "Debe contener minimo 2 caracteres."
+                userTxt.innerHTML = "Debe contener minimos 2 caracteres validos."
                 document.getElementById('formUsername').classList.add('text-danger')
+                campos['username'] = false;
             }
         break;
 
         case "password": 
-            if (expresiones.username.test(e.target.value)) {
-                nameTxt.innerHTML = ""
+            if (expresiones.password.test(e.target.value)) {
+                passwordTxt.innerHTML = ""
                 document.getElementById('formPassword').classList.remove('text-danger')
+                campos['password'] = true;
             } else {
-                nameTxt.innerHTML = "Debe contener minimo 8 caracteres."
+                passwordTxt.innerHTML = "Debe contener entre 8 a 16 caracteres validos."
                 document.getElementById('formPassword').classList.add('text-danger')
+                campos['password'] = false;
             }
         break;
 
         case "email": 
-
+            if (expresiones.email.test(e.target.value)) {
+                emailTxt.innerHTML = ""
+                document.getElementById('formEmail').classList.remove('text-danger')
+                campos['email'] = true;
+            } else {
+                emailTxt.innerHTML = "Debe ingresar un mail valido."
+                document.getElementById('formEmail').classList.add('text-danger')
+                campos['email'] = false;
+            }
         break;
     }
 } 
@@ -58,60 +83,8 @@ inputs.forEach((input) => {
 
 formulario.addEventListener("submit", (e) => {
     e.preventDefault();
+
+    if(campos.fullname && campos.username && campos.password && campos.email) {
+
+    }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-// window.addEventListener("load", function() {
-//     let nameInput = document.querySelector("#nameInput");
-//     let nameTxt = document.querySelector("#fullName");
-
-//     nameInput.addEventListener("submit", function() {
-        
-//         if (nameInput.value.lenght < 2) {
-//             console.log("error")
-//         }
-
-//         console.log(1)
-//         nameTxt.innerHTML = "Hola"
-//     })
-// })
-
-
-// window.addEventListener("load", function() {
-
-//     let form = this.document.querySelector("form")
-
-//     form.addEventListener('submit', function(e){
-
-//         let nameInput = document.querySelector("#nameInput");
-//         console.log(nameInput)
-
-//     })
-
-
-
-//     // let nameInput = document.querySelector("#nameInput");
-//     // let nameTxt = document.querySelector("#fullName");
-
-//     // nameInput.addEventListener("submit", function(e) {
-//     //     e.preventDefault();
-
-//     //     if (nameInput.value == "") {
-//     //         console.log(1)
-//     //     }
-
-
-//     //     // console.log(1)
-//     //     // nameTxt.innerHTML = "Hola"
-//     // })
-// })
