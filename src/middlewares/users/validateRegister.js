@@ -9,7 +9,9 @@ const validateCreateUserForm = [
 
     body('username')
         .notEmpty().withMessage('Debes completar el campo de usuario').bail()
-        .isAlphanumeric().withMessage('No se permiten caracteres invalidos'),
+        .isAlphanumeric().withMessage('No se permiten caracteres invalidos')
+        .isLength({min: 2, max: 100}).withMessage('Debes ingresar un nombre de usuario valido! (minimo 2 caracteres)'),
+
 
     body('password')
         .notEmpty().withMessage('Debes ingresar una contraseña').bail()
