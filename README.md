@@ -57,7 +57,7 @@ Home, detalle de producto, carrito de compras, formulario de registro, formulari
 (Diseño de las tarjetas de presentacion de los productos)
 
 
-# **Tablero de tareas - TRELLO:**
+# **TRELLO:**
 
 - Sprint 2 - https://trello.com/b/vkfML8Dk/shoocity
 - Sprint 3 - https://trello.com/b/aqLLKBv2/sprint-3
