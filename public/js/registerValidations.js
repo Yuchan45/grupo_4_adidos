@@ -2,7 +2,7 @@ const formulario = document.getElementById('formulario')
 const inputs = document.querySelectorAll('#formulario input')
 
 const expresiones = {
-	fullname: /^[a-zA-Z0-9\_\-]{2,20}$/, // Letras, numeros, guion y guion_bajo
+	fullname: /^[a-zA-Z0-9\_\s+\-]{2,20}$/, // Letras, numeros, guion y guion_bajo
 	username: /^[a-zA-ZÀ-ÿ\s]{2,40}$/, // Letras y espacios, pueden llevar acentos.
 	password: /^.{8,16}$/, // 8 a 16 digitos.
 	email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/

@@ -1,11 +1,8 @@
-# Proyecto: ShooCity E-commerce 
+# **Proyecto: ShooCity E-commerce**
 
 ## Grupo: 04-Code Apples
 
-## Heroku
-- https://shoocity.herokuapp.com
-
-## Descripcion:
+## **Descripcion:**
 
 ¿Qué productos o servicios brindará nuestro sitio?
 
@@ -21,7 +18,7 @@ Home, detalle de producto, carrito de compras, formulario de registro, formulari
 - Trataremos de implementar un diseño agradable e intuitivo para mejorar la experiencia de usuario.
 
 
-# Integrantes:
+# **Integrantes:**
 - Nakasone Tomas Yu
 
 - Pilar Atencio 
@@ -33,7 +30,7 @@ Home, detalle de producto, carrito de compras, formulario de registro, formulari
 - Kevin Marzo
 
 
-# 5 sitios referentes y el motivo de su seleccion:
+# **5 sitios referentes y el motivo de su seleccion:**
 
 - Adidas: https://www.adidas.com.ar
 (Sitio web completo de 1er nivel con diseños y tendencias)
@@ -55,20 +52,54 @@ Home, detalle de producto, carrito de compras, formulario de registro, formulari
 (Diseño de las tarjetas de presentacion de los productos)
 
 
-# Tablero de tareas - TRELLO:
+# **Tablero de tareas - TRELLO:**
 
-Sprint 2 - https://trello.com/b/vkfML8Dk/shoocity
+- Sprint 2 - https://trello.com/b/vkfML8Dk/shoocity
+- Sprint 3 - https://trello.com/b/aqLLKBv2/sprint-3
+- Sprint 4 - https://trello.com/b/0PtGed6t/sprint-4
+- Sprint 5 - https://trello.com/b/Hu6JuYC3/sprint-5
+- Sprint 6 - https://trello.com/invite/b/wAfwKgBV/a055da6ca810766a1f6576d68fda81c8/sprint-6
+- Sprint 7 - https://trello.com/invite/b/RPmEtRzD/ab7fc02d97dd19f46996d4ba440b83c5/sprint-7
+- Sprint 8 - https://trello.com/invite/b/MSfbtkZI/04cc94d8d29f70c8ef35edcdc7456bbb/sprint-8
 
-Sprint 3 - https://trello.com/b/aqLLKBv2/sprint-3
 
-Sprint 4 - https://trello.com/b/0PtGed6t/sprint-4
+# **Dashboard del sitio:**
 
-Sprint 5 - https://trello.com/b/Hu6JuYC3/sprint-5
+https://github.com/Yuchan45/shoocity-react
 
-Sprint 6 - https://trello.com/invite/b/wAfwKgBV/a055da6ca810766a1f6576d68fda81c8/sprint-6
 
-Sprint 7 - https://trello.com/invite/b/RPmEtRzD/ab7fc02d97dd19f46996d4ba440b83c5/sprint-7
+# **Tecnologias utilizadas:**
 
-Sprint 8 - https://trello.com/invite/b/MSfbtkZI/04cc94d8d29f70c8ef35edcdc7456bbb/sprint-8
+* HTML
+* CSS
+* Javascript
+* NodeJS
+* ExpressJS
+* MySql
+* EJS
+* Sequelize
+* React 
+
+
+# **Detalles de ejecucion del proyecto localmente**
+
+1. Clonar el repositorio de Github
+
+2. Ejecutar el comando npm install en la consola (estando en la raiz de la carpeta del proyecto)
+
+3. Abrir/Instalar Xampp y correr MySql
+
+4. Crear la base de datos y poblarla: 
+   - Buscar el archivo de "datos y estructura" en src/database/db-scripts/Dump-Shoocity-Data-Structure.
+   - Crear un nuevo SCHEMA y nombrarlo "shoocity_db"
+   - Importar los datos del archivo: "Data import" -> "Import from self-contained File" --> Dump-Shoocity-Data-Structure.
+   - Seleccionar "Target SCHEMA" --> "Shoocity_db"
+   - Importar
+
+
+
+
+
+
 
 
