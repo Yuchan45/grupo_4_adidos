@@ -1,5 +1,6 @@
 # **ShooCity E-commerce**
 ![Portada-Shoocity](https://user-images.githubusercontent.com/43625804/196301334-919cdb98-b41d-4a58-9bd8-979359ae4099.png)
+![responsive](https://user-images.githubusercontent.com/43625804/196302372-7f73ec95-89bc-4ef2-9ad7-9108f03af78b.png)
 
 
 ### Grupo: 04-Code Apples
